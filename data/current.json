@@ -85,6 +85,12 @@
     },
     "catty-ccc": {
       "name": "Catty CCC"
+    },
+    "derek-d": {
+      "name": "Derek D"
+    },
+    "ertl-e": {
+      "name": "Ertl E"
     }
   },
   "availability": {
@@ -122,50 +128,88 @@
       ],
       "yellow": [],
       "updatedAt": "2026-07-08T17:14:59.316Z"
+    },
+    "derek-d": {
+      "green": [
+        "2026-07-10T10:30",
+        "2026-07-17T10:30",
+        "2026-07-24T10:30",
+        "2026-07-31T10:30",
+        "2026-07-31T11:45"
+      ],
+      "yellow": [
+        "2026-07-10T11:45",
+        "2026-07-17T11:45",
+        "2026-07-24T11:45"
+      ],
+      "updatedAt": "2026-07-08T18:55:17.871Z"
+    },
+    "ertl-e": {
+      "green": [
+        "2026-07-10T11:45",
+        "2026-07-17T11:45",
+        "2026-07-24T11:45",
+        "2026-07-31T11:45"
+      ],
+      "yellow": [],
+      "updatedAt": "2026-07-08T19:09:10.466Z"
     }
   },
   "allocations": {
     "2026-07-17T10:30": {
       "players": [
-        "adam-aaa"
+        "adam-aaa",
+        "derek-d"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "adam-aaa"
+        "adam-aaa",
+        "derek-d"
       ]
     },
     "2026-07-17T11:45": {
       "players": [
+        "ertl-e",
         "adam-aaa"
       ],
-      "yellowCandidates": [],
+      "yellowCandidates": [
+        "derek-d"
+      ],
       "confirmed": [
+        "ertl-e",
         "adam-aaa"
       ]
     },
     "2026-07-24T11:45": {
       "players": [
+        "ertl-e",
         "adam-aaa"
       ],
-      "yellowCandidates": [],
+      "yellowCandidates": [
+        "derek-d"
+      ],
       "confirmed": [
+        "ertl-e",
         "adam-aaa"
       ]
     },
     "2026-07-31T10:30": {
       "players": [
+        "derek-d",
         "adam-aaa"
       ],
       "yellowCandidates": [
         "betty-bbb"
       ],
       "confirmed": [
+        "derek-d",
         "adam-aaa"
       ]
     },
     "2026-07-24T10:30": {
       "players": [
         "catty-ccc",
+        "derek-d",
         "adam-aaa"
       ],
       "yellowCandidates": [
@@ -173,17 +217,7 @@
       ],
       "confirmed": [
         "catty-ccc",
-        "adam-aaa"
-      ]
-    },
-    "2026-07-31T11:45": {
-      "players": [
-        "catty-ccc",
-        "adam-aaa"
-      ],
-      "yellowCandidates": [],
-      "confirmed": [
-        "catty-ccc",
+        "derek-d",
         "adam-aaa"
       ]
     },
@@ -191,25 +225,44 @@
       "players": [
         "betty-bbb",
         "catty-ccc",
+        "derek-d",
         "adam-aaa"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "betty-bbb",
         "catty-ccc",
+        "derek-d",
         "adam-aaa"
       ]
     },
     "2026-07-10T11:45": {
       "players": [
         "betty-bbb",
+        "ertl-e",
         "catty-ccc",
         "adam-aaa"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "betty-bbb",
+        "ertl-e",
         "catty-ccc",
+        "adam-aaa"
+      ]
+    },
+    "2026-07-31T11:45": {
+      "players": [
+        "catty-ccc",
+        "ertl-e",
+        "derek-d",
+        "adam-aaa"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "catty-ccc",
+        "ertl-e",
+        "derek-d",
         "adam-aaa"
       ]
     }
@@ -264,6 +317,26 @@
       "type": "allocate",
       "text": "Allocated July Longbourn",
       "at": "2026-07-08T17:15:07.411Z"
+    },
+    {
+      "type": "import",
+      "text": "Imported availability for Derek D",
+      "at": "2026-07-08T18:55:17.871Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-08T18:55:29.896Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Ertl E",
+      "at": "2026-07-08T19:09:10.468Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-08T19:09:30.916Z"
     }
   ]
 }
