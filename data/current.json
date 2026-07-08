@@ -82,6 +82,9 @@
     },
     "betty-bbb": {
       "name": "Betty BBB"
+    },
+    "catty-ccc": {
+      "name": "Catty CCC"
     }
   },
   "availability": {
@@ -109,6 +112,16 @@
         "2026-07-31T10:30"
       ],
       "updatedAt": "2026-07-08T17:10:44.700Z"
+    },
+    "catty-ccc": {
+      "green": [
+        "2026-07-10T10:30",
+        "2026-07-10T11:45",
+        "2026-07-24T10:30",
+        "2026-07-31T11:45"
+      ],
+      "yellow": [],
+      "updatedAt": "2026-07-08T17:14:59.316Z"
     }
   },
   "allocations": {
@@ -126,17 +139,6 @@
         "adam-aaa"
       ],
       "yellowCandidates": [],
-      "confirmed": [
-        "adam-aaa"
-      ]
-    },
-    "2026-07-24T10:30": {
-      "players": [
-        "adam-aaa"
-      ],
-      "yellowCandidates": [
-        "betty-bbb"
-      ],
       "confirmed": [
         "adam-aaa"
       ]
@@ -161,34 +163,53 @@
         "adam-aaa"
       ]
     },
+    "2026-07-24T10:30": {
+      "players": [
+        "catty-ccc",
+        "adam-aaa"
+      ],
+      "yellowCandidates": [
+        "betty-bbb"
+      ],
+      "confirmed": [
+        "catty-ccc",
+        "adam-aaa"
+      ]
+    },
     "2026-07-31T11:45": {
       "players": [
+        "catty-ccc",
         "adam-aaa"
       ],
       "yellowCandidates": [],
       "confirmed": [
+        "catty-ccc",
         "adam-aaa"
       ]
     },
     "2026-07-10T10:30": {
       "players": [
         "betty-bbb",
+        "catty-ccc",
         "adam-aaa"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "betty-bbb",
+        "catty-ccc",
         "adam-aaa"
       ]
     },
     "2026-07-10T11:45": {
       "players": [
         "betty-bbb",
+        "catty-ccc",
         "adam-aaa"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "betty-bbb",
+        "catty-ccc",
         "adam-aaa"
       ]
     }
@@ -233,6 +254,16 @@
       "type": "allocate",
       "text": "Allocated July Longbourn",
       "at": "2026-07-08T17:10:58.580Z"
+    },
+    {
+      "type": "import",
+      "text": "Imported availability for Catty CCC",
+      "at": "2026-07-08T17:14:59.316Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-08T17:15:07.411Z"
     }
   ]
 }
