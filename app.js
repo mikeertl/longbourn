@@ -12,6 +12,7 @@
 
   var state = createEmptyState();
   var draftAvailability = {};
+  var viewMode = "player";
 
   var el = {};
 
@@ -20,6 +21,7 @@
   function init() {
     cacheElements();
     bindEvents();
+    setMode("player");
     setDefaultMonth();
     var loadedFromHash = loadInitialState();
     loadStoredToken();
@@ -33,6 +35,8 @@
     [
       "monthInput",
       "venueInput",
+      "playerModeButton",
+      "organiserModeButton",
       "createMonthButton",
       "addSlotButton",
       "slotsList",
@@ -45,6 +49,7 @@
       "availabilityGrid",
       "saveAvailabilityButton",
       "copyAvailabilityButton",
+      "availabilityStatus",
       "availabilityMessage",
       "importText",
       "importButton",
@@ -64,6 +69,12 @@
   }
 
   function bindEvents() {
+    el.playerModeButton.addEventListener("click", function () {
+      setMode("player");
+    });
+    el.organiserModeButton.addEventListener("click", function () {
+      setMode("organiser");
+    });
     el.createMonthButton.addEventListener("click", createMonthFromForm);
     el.addSlotButton.addEventListener("click", addManualSlot);
     el.saveTokenButton.addEventListener("click", saveToken);
@@ -97,6 +108,15 @@
       state.venue = el.venueInput.value.trim() || "Longbourn";
       saveAndRender(false);
     });
+  }
+
+  function setMode(mode) {
+    viewMode = mode === "organiser" ? "organiser" : "player";
+    document.body.dataset.mode = viewMode;
+    el.playerModeButton.classList.toggle("active", viewMode === "player");
+    el.organiserModeButton.classList.toggle("active", viewMode === "organiser");
+    el.playerModeButton.setAttribute("aria-pressed", viewMode === "player");
+    el.organiserModeButton.setAttribute("aria-pressed", viewMode === "organiser");
   }
 
   function createEmptyState() {
@@ -1001,6 +1021,7 @@
 
   function setStatus(text) {
     el.importStatus.textContent = text || "";
+    el.availabilityStatus.textContent = text || "";
   }
 
   function setSharedStatus(text) {

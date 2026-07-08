@@ -6,28 +6,48 @@
     <title>Longbourn Allocation</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body data-mode="player">
     <div class="app-shell">
       <header class="topbar">
         <div>
           <p class="eyebrow">Longbourn tennis</p>
           <h1>Friday court allocation</h1>
         </div>
-        <div class="topbar-actions">
-          <button id="loadSharedButton" class="button secondary" type="button">
-            Load shared
-          </button>
-          <button id="copyStateLinkButton" class="button secondary" type="button">
-            Copy app link
-          </button>
-          <button id="resetButton" class="button danger" type="button">
-            Reset
-          </button>
+        <div class="topbar-controls">
+          <div class="mode-toggle" role="group" aria-label="View mode">
+            <button
+              id="playerModeButton"
+              class="mode-button active"
+              type="button"
+              aria-pressed="true"
+            >
+              Player
+            </button>
+            <button
+              id="organiserModeButton"
+              class="mode-button"
+              type="button"
+              aria-pressed="false"
+            >
+              Organiser
+            </button>
+          </div>
+          <div class="topbar-actions organiser-only">
+            <button id="loadSharedButton" class="button secondary" type="button">
+              Load shared
+            </button>
+            <button id="copyStateLinkButton" class="button secondary" type="button">
+              Copy app link
+            </button>
+            <button id="resetButton" class="button danger" type="button">
+              Reset
+            </button>
+          </div>
         </div>
       </header>
 
       <main class="layout">
-        <section class="panel setup-panel" aria-labelledby="setup-title">
+        <section class="panel setup-panel organiser-only" aria-labelledby="setup-title">
           <div class="section-title-row">
             <div>
               <h2 id="setup-title">Month setup</h2>
@@ -64,7 +84,7 @@
           <div id="slotsList" class="slots-list"></div>
         </section>
 
-        <section class="panel storage-panel" aria-labelledby="storage-title">
+        <section class="panel storage-panel organiser-only" aria-labelledby="storage-title">
           <div class="section-title-row">
             <div>
               <h2 id="storage-title">GitHub storage</h2>
@@ -119,13 +139,15 @@
             </button>
           </div>
 
+          <div id="availabilityStatus" class="status-line" role="status"></div>
+
           <label>
             WhatsApp reply
             <textarea id="availabilityMessage" rows="8" readonly></textarea>
           </label>
         </section>
 
-        <section class="panel import-panel" aria-labelledby="import-title">
+        <section class="panel import-panel organiser-only" aria-labelledby="import-title">
           <div class="section-title-row">
             <div>
               <h2 id="import-title">Import WhatsApp</h2>
@@ -150,7 +172,7 @@
           <div id="importStatus" class="status-line" role="status"></div>
         </section>
 
-        <section class="panel allocation-panel" aria-labelledby="allocation-title">
+        <section class="panel allocation-panel organiser-only" aria-labelledby="allocation-title">
           <div class="section-title-row">
             <div>
               <h2 id="allocation-title">Allocation</h2>
@@ -165,7 +187,7 @@
           <div id="allocationList" class="allocation-list"></div>
         </section>
 
-        <section class="panel message-panel" aria-labelledby="message-title">
+        <section class="panel message-panel organiser-only" aria-labelledby="message-title">
           <div class="section-title-row">
             <div>
               <h2 id="message-title">WhatsApp post</h2>

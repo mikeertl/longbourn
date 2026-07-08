@@ -2,6 +2,7 @@
 
 A minimal static web app for allocating Longbourn Friday tennis slots through
 WhatsApp messages.
+- https://mikeertl.github.io/longbourn/
 
 ## Run locally
 
@@ -32,3 +33,4 @@ to the app.
 
 With shared saving enabled, WhatsApp can just contain the app link rather than a
 long encoded state blob.
+

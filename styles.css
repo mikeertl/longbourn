@@ -80,11 +80,44 @@ code {
   text-transform: uppercase;
 }
 
+.topbar-controls,
 .topbar-actions,
 .button-row {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.topbar-controls {
+  justify-content: flex-end;
+}
+
+.mode-toggle {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.mode-button {
+  min-height: 38px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  padding: 8px 12px;
+  font-weight: 900;
+}
+
+.mode-button:last-child {
+  border-right: 0;
+}
+
+.mode-button.active {
+  background: var(--blue);
+  color: #fff;
 }
 
 .layout {
@@ -95,6 +128,15 @@ code {
     );
   gap: 16px;
   align-items: start;
+}
+
+body[data-mode="player"] .layout {
+  grid-template-columns: minmax(0, 720px);
+  justify-content: center;
+}
+
+body[data-mode="player"] .organiser-only {
+  display: none;
 }
 
 .panel {
