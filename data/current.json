@@ -76,48 +76,99 @@
       "enabled": false
     }
   ],
-  "players": {},
-  "availability": {},
+  "players": {
+    "adam-aaa": {
+      "name": "Adam AAA"
+    }
+  },
+  "availability": {
+    "adam-aaa": {
+      "green": [
+        "2026-07-10T10:30",
+        "2026-07-10T11:45",
+        "2026-07-17T10:30",
+        "2026-07-17T11:45",
+        "2026-07-24T10:30",
+        "2026-07-24T11:45",
+        "2026-07-31T10:30",
+        "2026-07-31T11:45"
+      ],
+      "yellow": [],
+      "updatedAt": "2026-07-08T17:06:04.989Z"
+    }
+  },
   "allocations": {
     "2026-07-10T10:30": {
-      "players": [],
+      "players": [
+        "adam-aaa"
+      ],
       "yellowCandidates": [],
-      "confirmed": []
+      "confirmed": [
+        "adam-aaa"
+      ]
     },
     "2026-07-10T11:45": {
-      "players": [],
+      "players": [
+        "adam-aaa"
+      ],
       "yellowCandidates": [],
-      "confirmed": []
+      "confirmed": [
+        "adam-aaa"
+      ]
     },
     "2026-07-17T10:30": {
-      "players": [],
+      "players": [
+        "adam-aaa"
+      ],
       "yellowCandidates": [],
-      "confirmed": []
+      "confirmed": [
+        "adam-aaa"
+      ]
     },
     "2026-07-17T11:45": {
-      "players": [],
+      "players": [
+        "adam-aaa"
+      ],
       "yellowCandidates": [],
-      "confirmed": []
+      "confirmed": [
+        "adam-aaa"
+      ]
     },
     "2026-07-24T10:30": {
-      "players": [],
+      "players": [
+        "adam-aaa"
+      ],
       "yellowCandidates": [],
-      "confirmed": []
+      "confirmed": [
+        "adam-aaa"
+      ]
     },
     "2026-07-24T11:45": {
-      "players": [],
+      "players": [
+        "adam-aaa"
+      ],
       "yellowCandidates": [],
-      "confirmed": []
+      "confirmed": [
+        "adam-aaa"
+      ]
     },
     "2026-07-31T10:30": {
-      "players": [],
+      "players": [
+        "adam-aaa"
+      ],
       "yellowCandidates": [],
-      "confirmed": []
+      "confirmed": [
+        "adam-aaa"
+      ]
     },
     "2026-07-31T11:45": {
-      "players": [],
+      "players": [
+        "adam-aaa"
+      ],
       "yellowCandidates": [],
-      "confirmed": []
+      "confirmed": [
+        "adam-aaa"
+      ]
     }
   },
   "changes": [
@@ -130,6 +181,26 @@
       "type": "allocate",
       "text": "Allocated July Longbourn",
       "at": "2026-07-08T16:11:30.688Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-08T17:00:04.712Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Adam AAA",
+      "at": "2026-07-08T17:05:51.927Z"
+    },
+    {
+      "type": "import",
+      "text": "Imported availability for Adam AAA",
+      "at": "2026-07-08T17:06:04.989Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-08T17:06:14.589Z"
     }
   ]
 }
