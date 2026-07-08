@@ -79,6 +79,9 @@
   "players": {
     "adam-aaa": {
       "name": "Adam AAA"
+    },
+    "betty-bbb": {
+      "name": "Betty BBB"
     }
   },
   "availability": {
@@ -95,27 +98,20 @@
       ],
       "yellow": [],
       "updatedAt": "2026-07-08T17:06:04.989Z"
+    },
+    "betty-bbb": {
+      "green": [
+        "2026-07-10T10:30",
+        "2026-07-10T11:45"
+      ],
+      "yellow": [
+        "2026-07-24T10:30",
+        "2026-07-31T10:30"
+      ],
+      "updatedAt": "2026-07-08T17:10:44.700Z"
     }
   },
   "allocations": {
-    "2026-07-10T10:30": {
-      "players": [
-        "adam-aaa"
-      ],
-      "yellowCandidates": [],
-      "confirmed": [
-        "adam-aaa"
-      ]
-    },
-    "2026-07-10T11:45": {
-      "players": [
-        "adam-aaa"
-      ],
-      "yellowCandidates": [],
-      "confirmed": [
-        "adam-aaa"
-      ]
-    },
     "2026-07-17T10:30": {
       "players": [
         "adam-aaa"
@@ -138,7 +134,9 @@
       "players": [
         "adam-aaa"
       ],
-      "yellowCandidates": [],
+      "yellowCandidates": [
+        "betty-bbb"
+      ],
       "confirmed": [
         "adam-aaa"
       ]
@@ -156,7 +154,9 @@
       "players": [
         "adam-aaa"
       ],
-      "yellowCandidates": [],
+      "yellowCandidates": [
+        "betty-bbb"
+      ],
       "confirmed": [
         "adam-aaa"
       ]
@@ -167,6 +167,28 @@
       ],
       "yellowCandidates": [],
       "confirmed": [
+        "adam-aaa"
+      ]
+    },
+    "2026-07-10T10:30": {
+      "players": [
+        "betty-bbb",
+        "adam-aaa"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "betty-bbb",
+        "adam-aaa"
+      ]
+    },
+    "2026-07-10T11:45": {
+      "players": [
+        "betty-bbb",
+        "adam-aaa"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "betty-bbb",
         "adam-aaa"
       ]
     }
@@ -201,6 +223,16 @@
       "type": "allocate",
       "text": "Allocated July Longbourn",
       "at": "2026-07-08T17:06:14.589Z"
+    },
+    {
+      "type": "import",
+      "text": "Imported availability for Betty BBB",
+      "at": "2026-07-08T17:10:44.700Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-08T17:10:58.580Z"
     }
   ]
 }
