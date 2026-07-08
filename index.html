@@ -28,6 +28,14 @@
               Player
             </button>
             <button
+              id="scheduleModeButton"
+              class="mode-button"
+              type="button"
+              aria-pressed="false"
+            >
+              Schedule
+            </button>
+            <button
               id="organiserModeButton"
               class="mode-button"
               type="button"
@@ -149,6 +157,17 @@
             WhatsApp reply
             <textarea id="availabilityMessage" rows="8" readonly></textarea>
           </label>
+        </section>
+
+        <section class="panel schedule-panel schedule-only" aria-labelledby="schedule-title">
+          <div class="section-title-row">
+            <div>
+              <h2 id="schedule-title">Schedule</h2>
+              <p>Current month followed by next month.</p>
+            </div>
+          </div>
+
+          <div id="scheduleList" class="schedule-list"></div>
         </section>
 
         <section class="panel import-panel organiser-only" aria-labelledby="import-title">

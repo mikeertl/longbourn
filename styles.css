@@ -94,7 +94,7 @@ code {
 
 .mode-toggle {
   display: inline-grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -130,12 +130,17 @@ code {
   align-items: start;
 }
 
-body[data-mode="player"] .layout {
+body[data-mode="player"] .layout,
+body[data-mode="schedule"] .layout {
   grid-template-columns: minmax(0, 720px);
   justify-content: center;
 }
 
-body[data-mode="player"] .organiser-only {
+body[data-mode="player"] .organiser-only,
+body[data-mode="player"] .schedule-only,
+body[data-mode="schedule"] .organiser-only,
+body[data-mode="schedule"] .availability-panel,
+body[data-mode="organiser"] .schedule-only {
   display: none;
 }
 
@@ -287,7 +292,8 @@ textarea:focus {
 
 .slots-list,
 .availability-grid,
-.allocation-list {
+.allocation-list,
+.schedule-list {
   display: grid;
   gap: 10px;
 }
@@ -445,6 +451,57 @@ textarea:focus {
   font-size: 13px;
 }
 
+.schedule-month {
+  display: grid;
+  gap: 10px;
+}
+
+.schedule-month + .schedule-month {
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.schedule-month h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.schedule-row {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.55fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  padding: 12px;
+}
+
+.schedule-row.short {
+  border-color: #d4b25f;
+  background: #fff9e6;
+}
+
+.schedule-time {
+  color: var(--blue);
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.schedule-date {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.schedule-players {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .status-line {
   min-height: 24px;
   color: var(--blue);
@@ -483,7 +540,8 @@ textarea:focus {
 
   .form-grid,
   .slot-row,
-  .availability-row {
+  .availability-row,
+  .schedule-row {
     grid-template-columns: 1fr;
   }
 

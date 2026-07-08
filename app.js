@@ -7,6 +7,7 @@
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
   var GITHUB_DATA_PATH = "data/current.json";
+  var RETENTION_MONTHS = 6;
   var TIMES = ["10:30", "11:45", "13:00"];
   var WEEKDAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -24,6 +25,7 @@
     setMode("player");
     setDefaultMonth();
     var loadedFromHash = loadInitialState();
+    saveState();
     loadStoredToken();
     renderAll();
     if (!loadedFromHash) {
@@ -36,6 +38,7 @@
       "monthInput",
       "venueInput",
       "playerModeButton",
+      "scheduleModeButton",
       "organiserModeButton",
       "createMonthButton",
       "addSlotButton",
@@ -51,6 +54,7 @@
       "copyAvailabilityButton",
       "availabilityStatus",
       "availabilityMessage",
+      "scheduleList",
       "importText",
       "importButton",
       "clearImportButton",
@@ -71,6 +75,9 @@
   function bindEvents() {
     el.playerModeButton.addEventListener("click", function () {
       setMode("player");
+    });
+    el.scheduleModeButton.addEventListener("click", function () {
+      setMode("schedule");
     });
     el.organiserModeButton.addEventListener("click", function () {
       setMode("organiser");
@@ -111,11 +118,13 @@
   }
 
   function setMode(mode) {
-    viewMode = mode === "organiser" ? "organiser" : "player";
+    viewMode = mode === "organiser" || mode === "schedule" ? mode : "player";
     document.body.dataset.mode = viewMode;
     el.playerModeButton.classList.toggle("active", viewMode === "player");
+    el.scheduleModeButton.classList.toggle("active", viewMode === "schedule");
     el.organiserModeButton.classList.toggle("active", viewMode === "organiser");
     el.playerModeButton.setAttribute("aria-pressed", viewMode === "player");
+    el.scheduleModeButton.setAttribute("aria-pressed", viewMode === "schedule");
     el.organiserModeButton.setAttribute("aria-pressed", viewMode === "organiser");
   }
 
@@ -179,7 +188,7 @@
     next.availability = next.availability || {};
     next.allocations = next.allocations || {};
     next.changes = Array.isArray(next.changes) ? next.changes : [];
-    return next;
+    return pruneOldState(next);
   }
 
   function loadStoredToken() {
@@ -259,6 +268,9 @@
     }
 
     saveToken();
+    state = pruneOldState(state);
+    saveState();
+    renderAll();
     setSharedStatus("Saving shared rota...");
     getGitHubFileSha(token)
       .then(function (sha) {
@@ -351,8 +363,21 @@
 
     state.month = month;
     state.venue = el.venueInput.value.trim() || "Longbourn";
-    state.slots = slots;
-    state.allocations = {};
+    var removedMonthSlotIds = {};
+    state.slots.forEach(function (slot) {
+      if (slot.date && slot.date.slice(0, 7) === month) {
+        removedMonthSlotIds[slot.id] = true;
+      }
+    });
+    state.slots = state.slots
+      .filter(function (slot) {
+        return !slot.date || slot.date.slice(0, 7) !== month;
+      })
+      .concat(slots);
+    Object.keys(state.allocations).forEach(function (slotId) {
+      if (removedMonthSlotIds[slotId]) delete state.allocations[slotId];
+    });
+    state = pruneOldState(state);
     state.changes.push(change("month-created", "Created " + month));
     saveAndRender();
   }
@@ -375,10 +400,79 @@
     el.venueInput.value = state.venue || "Longbourn";
     renderSlots();
     renderAvailabilityGrid();
+    renderSchedule();
     renderSummary();
     renderAllocations();
     updateAvailabilityMessage();
     el.monthMessage.value = buildMonthMessage();
+  }
+
+  function renderSchedule() {
+    el.scheduleList.innerHTML = "";
+    scheduleMonthKeys().forEach(function (monthKey) {
+      var section = document.createElement("section");
+      section.className = "schedule-month";
+
+      var heading = document.createElement("h3");
+      heading.textContent = formatMonthHeading(monthKey);
+      section.appendChild(heading);
+
+      var slots = enabledSlots().filter(function (slot) {
+        return slot.date.slice(0, 7) === monthKey;
+      });
+
+      if (!slots.length) {
+        var empty = document.createElement("p");
+        empty.className = "allocation-note";
+        empty.textContent = "No schedule published yet.";
+        section.appendChild(empty);
+      }
+
+      slots.forEach(function (slot) {
+        section.appendChild(scheduleRow(slot));
+      });
+
+      el.scheduleList.appendChild(section);
+    });
+  }
+
+  function scheduleRow(slot) {
+    var allocation = allocationForSlot(slot.id);
+    var row = document.createElement("article");
+    row.className = "schedule-row" + (allocation.players.length < 4 ? " short" : "");
+
+    var slotSummary = document.createElement("div");
+    slotSummary.innerHTML =
+      '<div class="schedule-time">' +
+      escapeHtml(slot.time) +
+      '</div><div class="schedule-date">' +
+      escapeHtml(formatSlotDate(slot.date)) +
+      "</div>";
+    row.appendChild(slotSummary);
+
+    var players = document.createElement("div");
+    players.className = "schedule-players";
+    for (var index = 0; index < 4; index += 1) {
+      var playerId = allocation.players[index];
+      players.appendChild(
+        playerId
+          ? readOnlyChip("player-chip", playerName(playerId))
+          : readOnlyChip("empty-chip", "-")
+      );
+    }
+    allocation.yellowCandidates.forEach(function (playerId) {
+      players.appendChild(readOnlyChip("candidate-chip", "*" + playerName(playerId)));
+    });
+    row.appendChild(players);
+
+    return row;
+  }
+
+  function readOnlyChip(className, text) {
+    var chip = document.createElement("span");
+    chip.className = className;
+    chip.textContent = text;
+    return chip;
   }
 
   function renderSlots() {
@@ -497,11 +591,7 @@
     }
 
     enabledSlots().forEach(function (slot) {
-      var allocation = state.allocations[slot.id] || {
-        players: [],
-        yellowCandidates: [],
-        confirmed: [],
-      };
+      var allocation = allocationForSlot(slot.id);
       var card = document.createElement("article");
       card.className =
         "allocation-card" + (allocation.players.length < 4 ? " short" : "");
@@ -796,19 +886,29 @@
   }
 
   function buildMonthMessage() {
-    var lines = [formatMonthLabel() + ":", ""];
-    enabledSlots().forEach(function (slot) {
-      var allocation = state.allocations[slot.id] || {
-        players: [],
-        yellowCandidates: [],
-      };
-      var names = allocation.players.map(playerName);
-      while (names.length < 4) names.push("-");
-      var yellow = allocation.yellowCandidates.map(function (playerId) {
-        return "*" + playerName(playerId);
+    var lines = [];
+    scheduleMonthKeys().forEach(function (monthKey) {
+      var slots = enabledSlots().filter(function (slot) {
+        return slot.date.slice(0, 7) === monthKey;
       });
-      lines.push(formatSlotShort(slot) + ": " + names.join(", ") + (yellow.length ? " (" + yellow.join(", ") + ")" : ""));
+      if (!slots.length) return;
+
+      if (lines.length) lines.push("");
+      lines.push(formatMonthHeading(monthKey) + " " + (state.venue || "Longbourn") + ":", "");
+      slots.forEach(function (slot) {
+        var allocation = allocationForSlot(slot.id);
+        var names = allocation.players.map(playerName);
+        while (names.length < 4) names.push("-");
+        var yellow = allocation.yellowCandidates.map(function (playerId) {
+          return "*" + playerName(playerId);
+        });
+        lines.push(formatSlotShort(slot) + ": " + names.join(", ") + (yellow.length ? " (" + yellow.join(", ") + ")" : ""));
+      });
     });
+
+    if (!lines.length) {
+      lines.push(formatMonthLabel() + ":", "", "No schedule published yet.");
+    }
 
     lines.push("");
     lines.push("* means yellow/conditional availability. Ask before confirming.");
@@ -845,6 +945,7 @@
   }
 
   function saveAndRender(shouldRender) {
+    state = pruneOldState(state);
     saveState();
     if (shouldRender === false) {
       el.monthMessage.value = buildMonthMessage();
@@ -890,6 +991,77 @@
     saveAndRender();
   }
 
+  function pruneOldState(input) {
+    var next = input || createEmptyState();
+    var cutoff = retentionCutoffDate();
+    var keptSlotIds = {};
+
+    next.slots = (next.slots || []).filter(function (slot) {
+      if (!slot || !slot.date || !isValidDateKey(slot.date)) return false;
+      return parseDateKey(slot.date) >= cutoff;
+    });
+
+    next.slots.forEach(function (slot) {
+      keptSlotIds[slot.id] = true;
+    });
+
+    var allocations = {};
+    Object.keys(next.allocations || {}).forEach(function (slotId) {
+      if (keptSlotIds[slotId]) {
+        allocations[slotId] = next.allocations[slotId];
+      }
+    });
+    next.allocations = allocations;
+
+    Object.keys(next.availability || {}).forEach(function (playerId) {
+      var availability = next.availability[playerId] || {};
+      availability.green = (availability.green || []).filter(function (slotId) {
+        return keptSlotIds[slotId];
+      });
+      availability.yellow = (availability.yellow || []).filter(function (slotId) {
+        return keptSlotIds[slotId];
+      });
+      next.availability[playerId] = availability;
+      if (
+        !availability.green.length &&
+        !availability.yellow.length &&
+        isOlderThanCutoff(availability.updatedAt, cutoff) &&
+        !playerHasAllocation(playerId, next.allocations)
+      ) {
+        delete next.availability[playerId];
+        delete next.players[playerId];
+      }
+    });
+
+    next.changes = (next.changes || []).filter(function (entry) {
+      return !entry.at || !isOlderThanCutoff(entry.at, cutoff);
+    });
+
+    return next;
+  }
+
+  function retentionCutoffDate() {
+    var cutoff = startOfDay(new Date());
+    cutoff.setMonth(cutoff.getMonth() - RETENTION_MONTHS);
+    return cutoff;
+  }
+
+  function isOlderThanCutoff(value, cutoff) {
+    if (!value) return true;
+    var time = Date.parse(value);
+    return Number.isNaN(time) ? false : time < cutoff.getTime();
+  }
+
+  function playerHasAllocation(playerId, allocations) {
+    return Object.keys(allocations || {}).some(function (slotId) {
+      var allocation = allocations[slotId] || {};
+      return (
+        (allocation.players || []).indexOf(playerId) >= 0 ||
+        (allocation.yellowCandidates || []).indexOf(playerId) >= 0
+      );
+    });
+  }
+
   function refreshSlotIds() {
     var idMap = {};
     state.slots.forEach(function (slot) {
@@ -910,6 +1082,17 @@
     return state.slots.filter(function (slot) {
       return slot.enabled !== false;
     }).sort(compareSlots);
+  }
+
+  function allocationForSlot(slotId) {
+    var allocation = state.allocations[slotId] || {};
+    return {
+      players: Array.isArray(allocation.players) ? allocation.players : [],
+      yellowCandidates: Array.isArray(allocation.yellowCandidates)
+        ? allocation.yellowCandidates
+        : [],
+      confirmed: Array.isArray(allocation.confirmed) ? allocation.confirmed : [],
+    };
   }
 
   function getSlot(slotId) {
@@ -946,6 +1129,23 @@
     return monthName(date) + " " + (state.venue || "Longbourn");
   }
 
+  function formatMonthHeading(monthKey) {
+    var parts = monthKey.split("-");
+    var date = new Date(Number(parts[0]), Number(parts[1]) - 1, 1);
+    return monthName(date) + " " + parts[0];
+  }
+
+  function scheduleMonthKeys() {
+    var month = currentMonthKey();
+    return [month, addMonthsToMonthKey(month, 1)];
+  }
+
+  function addMonthsToMonthKey(monthKey, offset) {
+    var parts = monthKey.split("-").map(Number);
+    var date = new Date(parts[0], parts[1] - 1 + offset, 1);
+    return date.getFullYear() + "-" + pad(date.getMonth() + 1);
+  }
+
   function playerName(playerId) {
     return (state.players[playerId] && state.players[playerId].name) || playerId;
   }
@@ -967,6 +1167,11 @@
   function parseDateKey(dateKey) {
     var parts = dateKey.split("-").map(Number);
     return new Date(parts[0], parts[1] - 1, parts[2]);
+  }
+
+  function isValidDateKey(dateKey) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(dateKey))) return false;
+    return !Number.isNaN(parseDateKey(dateKey).getTime());
   }
 
   function toDateKey(date) {
