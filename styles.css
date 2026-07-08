@@ -43,6 +43,14 @@ textarea {
   resize: vertical;
 }
 
+code {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface-soft);
+  padding: 1px 4px;
+  color: var(--blue);
+}
+
 .app-shell {
   max-width: 1480px;
   margin: 0 auto;
@@ -90,6 +98,7 @@ textarea {
 }
 
 .panel {
+  min-width: 0;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -243,7 +252,7 @@ textarea:focus {
 
 .slot-row {
   display: grid;
-  grid-template-columns: 1fr 110px auto auto;
+  grid-template-columns: minmax(0, 1fr) minmax(86px, 0.6fr);
   gap: 8px;
   align-items: end;
   border: 1px solid var(--line);
@@ -252,12 +261,20 @@ textarea:focus {
   padding: 10px;
 }
 
+.slot-row input {
+  min-width: 0;
+}
+
 .slot-enabled {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   color: var(--text);
   font-size: 13px;
+}
+
+.slot-remove {
+  justify-self: end;
 }
 
 .slot-enabled input {

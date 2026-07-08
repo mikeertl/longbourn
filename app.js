@@ -2,6 +2,11 @@
   "use strict";
 
   var STORAGE_KEY = "longbourn-state-v1";
+  var TOKEN_STORAGE_KEY = "longbourn-github-token";
+  var GITHUB_OWNER = "mikeertl";
+  var GITHUB_REPO = "longbourn";
+  var GITHUB_BRANCH = "main";
+  var GITHUB_DATA_PATH = "data/current.json";
   var TIMES = ["10:30", "11:45", "13:00"];
   var WEEKDAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -16,8 +21,12 @@
     cacheElements();
     bindEvents();
     setDefaultMonth();
-    loadInitialState();
+    var loadedFromHash = loadInitialState();
+    loadStoredToken();
     renderAll();
+    if (!loadedFromHash) {
+      loadSharedState(true);
+    }
   }
 
   function cacheElements() {
@@ -27,6 +36,11 @@
       "createMonthButton",
       "addSlotButton",
       "slotsList",
+      "githubTokenInput",
+      "saveTokenButton",
+      "loadSharedButton",
+      "saveSharedButton",
+      "sharedStatus",
       "playerNameInput",
       "availabilityGrid",
       "saveAvailabilityButton",
@@ -52,6 +66,11 @@
   function bindEvents() {
     el.createMonthButton.addEventListener("click", createMonthFromForm);
     el.addSlotButton.addEventListener("click", addManualSlot);
+    el.saveTokenButton.addEventListener("click", saveToken);
+    el.loadSharedButton.addEventListener("click", function () {
+      loadSharedState(false);
+    });
+    el.saveSharedButton.addEventListener("click", saveSharedState);
     el.saveAvailabilityButton.addEventListener("click", saveAvailability);
     el.copyAvailabilityButton.addEventListener("click", function () {
       copyText(el.availabilityMessage.value, "Availability reply copied");
@@ -70,7 +89,7 @@
     });
     el.shareWhatsAppButton.addEventListener("click", shareWhatsApp);
     el.copyStateLinkButton.addEventListener("click", function () {
-      copyText(buildStateLink(), "State link copied");
+      copyText(buildCleanAppLink(), "App link copied");
     });
     el.resetButton.addEventListener("click", resetApp);
     el.playerNameInput.addEventListener("input", updateAvailabilityMessage);
@@ -107,6 +126,7 @@
     }
     el.monthInput.value = state.month;
     el.venueInput.value = state.venue || "Longbourn";
+    return !!hashState;
   }
 
   function readStateFromHash() {
@@ -140,6 +160,151 @@
     next.allocations = next.allocations || {};
     next.changes = Array.isArray(next.changes) ? next.changes : [];
     return next;
+  }
+
+  function loadStoredToken() {
+    try {
+      el.githubTokenInput.value =
+        window.localStorage.getItem(TOKEN_STORAGE_KEY) || "";
+    } catch (error) {
+      console.warn("Could not read GitHub token", error);
+    }
+  }
+
+  function saveToken() {
+    try {
+      window.localStorage.setItem(
+        TOKEN_STORAGE_KEY,
+        el.githubTokenInput.value.trim()
+      );
+      setSharedStatus("Token remembered in this browser.");
+    } catch (error) {
+      setSharedStatus("Could not remember token.");
+      console.warn("Could not save GitHub token", error);
+    }
+  }
+
+  function loadSharedState(silent) {
+    setSharedStatus(silent ? "" : "Loading shared rota...");
+    return fetchSharedState()
+      .then(function (sharedState) {
+        if (!sharedState) {
+          if (!silent) setSharedStatus("No shared rota found yet.");
+          return;
+        }
+        state = normalizeState(sharedState);
+        saveState();
+        renderAll();
+        setSharedStatus("Loaded shared rota.");
+      })
+      .catch(function (error) {
+        if (!silent) setSharedStatus("Could not load shared rota.");
+        console.warn("Could not load shared rota", error);
+      });
+  }
+
+  function fetchSharedState() {
+    var relativeUrl = GITHUB_DATA_PATH + "?v=" + Date.now();
+    var rawUrl =
+      "https://raw.githubusercontent.com/" +
+      GITHUB_OWNER +
+      "/" +
+      GITHUB_REPO +
+      "/" +
+      GITHUB_BRANCH +
+      "/" +
+      GITHUB_DATA_PATH +
+      "?v=" +
+      Date.now();
+
+    return fetch(relativeUrl, { cache: "no-store" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("Relative fetch failed");
+        return response.json();
+      })
+      .catch(function () {
+        return fetch(rawUrl, { cache: "no-store" }).then(function (response) {
+          if (!response.ok) return null;
+          return response.json();
+        });
+      });
+  }
+
+  function saveSharedState() {
+    var token = el.githubTokenInput.value.trim();
+    if (!token) {
+      setSharedStatus("Paste an organiser token before saving.");
+      el.githubTokenInput.focus();
+      return;
+    }
+
+    saveToken();
+    setSharedStatus("Saving shared rota...");
+    getGitHubFileSha(token)
+      .then(function (sha) {
+        var body = {
+          message: "Update Longbourn shared rota",
+          content: base64Encode(JSON.stringify(state, null, 2) + "\n"),
+          branch: GITHUB_BRANCH,
+        };
+        if (sha) body.sha = sha;
+
+        return fetch(gitHubContentsUrl(), {
+          method: "PUT",
+          headers: gitHubHeaders(token),
+          body: JSON.stringify(body),
+        });
+      })
+      .then(function (response) {
+        if (!response.ok) {
+          return response.text().then(function (text) {
+            throw new Error(text || "GitHub save failed");
+          });
+        }
+        setSharedStatus("Saved shared rota to GitHub.");
+        el.monthMessage.value = buildMonthMessage();
+      })
+      .catch(function (error) {
+        setSharedStatus("Could not save. Check token permissions.");
+        console.warn("Could not save shared rota", error);
+      });
+  }
+
+  function getGitHubFileSha(token) {
+    return fetch(gitHubContentsUrl() + "?ref=" + encodeURIComponent(GITHUB_BRANCH), {
+      headers: gitHubHeaders(token),
+      cache: "no-store",
+    }).then(function (response) {
+      if (response.status === 404) return null;
+      if (!response.ok) {
+        return response.text().then(function (text) {
+          throw new Error(text || "Could not read GitHub file");
+        });
+      }
+      return response.json().then(function (data) {
+        return data.sha;
+      });
+    });
+  }
+
+  function gitHubContentsUrl() {
+    return (
+      "https://api.github.com/repos/" +
+      GITHUB_OWNER +
+      "/" +
+      GITHUB_REPO +
+      "/contents/" +
+      GITHUB_DATA_PATH
+    );
+  }
+
+  function gitHubHeaders(token) {
+    return {
+      Accept: "application/vnd.github+json",
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+      "X-GitHub-Api-Version": "2022-11-28",
+    };
   }
 
   function createMonthFromForm() {
@@ -628,10 +793,8 @@
     lines.push("");
     lines.push("* means yellow/conditional availability. Ask before confirming.");
     lines.push("");
-    lines.push("Latest state:");
-    lines.push(buildStateLink());
-    lines.push("");
-    lines.push("Data: " + buildStateDataLine());
+    lines.push("Open/update here:");
+    lines.push(buildCleanAppLink());
     return lines.join("\n");
   }
 
@@ -647,6 +810,13 @@
       ? window.location.href.split("#")[0]
       : window.location.origin + window.location.pathname;
     return base + "#state=" + encoded;
+  }
+
+  function buildCleanAppLink() {
+    if (window.location.origin === "null") {
+      return window.location.href.split("#")[0];
+    }
+    return window.location.origin + window.location.pathname;
   }
 
   function shareWhatsApp() {
@@ -833,6 +1003,10 @@
     el.importStatus.textContent = text || "";
   }
 
+  function setSharedStatus(text) {
+    el.sharedStatus.textContent = text || "";
+  }
+
   function copyText(text, successMessage) {
     if (!text) {
       setStatus("Nothing to copy yet.");
@@ -855,6 +1029,15 @@
       binary += String.fromCharCode(byte);
     });
     return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+
+  function base64Encode(text) {
+    var bytes = new TextEncoder().encode(text);
+    var binary = "";
+    bytes.forEach(function (byte) {
+      binary += String.fromCharCode(byte);
+    });
+    return btoa(binary);
   }
 
   function base64UrlDecode(value) {

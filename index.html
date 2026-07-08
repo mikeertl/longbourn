@@ -14,8 +14,11 @@
           <h1>Friday court allocation</h1>
         </div>
         <div class="topbar-actions">
+          <button id="loadSharedButton" class="button secondary" type="button">
+            Load shared
+          </button>
           <button id="copyStateLinkButton" class="button secondary" type="button">
-            Copy state link
+            Copy app link
           </button>
           <button id="resetButton" class="button danger" type="button">
             Reset
@@ -59,6 +62,37 @@
           </div>
 
           <div id="slotsList" class="slots-list"></div>
+        </section>
+
+        <section class="panel storage-panel" aria-labelledby="storage-title">
+          <div class="section-title-row">
+            <div>
+              <h2 id="storage-title">GitHub storage</h2>
+              <p>Read and save the shared current rota.</p>
+            </div>
+          </div>
+
+          <p class="allocation-note">
+            The app reads <code>data/current.json</code> publicly. To save, paste
+            an organiser token with write access to this repo; it stays in this
+            browser only.
+          </p>
+
+          <label>
+            Organiser token
+            <input id="githubTokenInput" type="password" autocomplete="off" placeholder="github_pat_..." />
+          </label>
+
+          <div class="button-row">
+            <button id="saveTokenButton" class="button secondary" type="button">
+              Remember token
+            </button>
+            <button id="saveSharedButton" class="button primary" type="button">
+              Save shared
+            </button>
+          </div>
+
+          <div id="sharedStatus" class="status-line" role="status"></div>
         </section>
 
         <section class="panel availability-panel" aria-labelledby="availability-title">
