@@ -91,6 +91,9 @@
     },
     "ertl-e": {
       "name": "Ertl E"
+    },
+    "goran-g": {
+      "name": "Goran G"
     }
   },
   "availability": {
@@ -153,6 +156,19 @@
       ],
       "yellow": [],
       "updatedAt": "2026-07-08T19:09:10.466Z"
+    },
+    "goran-g": {
+      "green": [
+        "2026-07-10T11:45",
+        "2026-07-17T10:30",
+        "2026-07-17T11:45",
+        "2026-07-24T10:30",
+        "2026-07-24T11:45",
+        "2026-07-31T10:30",
+        "2026-07-31T11:45"
+      ],
+      "yellow": [],
+      "updatedAt": "2026-07-08T19:53:09.424Z"
     }
   },
   "allocations": {
@@ -337,6 +353,21 @@
       "type": "allocate",
       "text": "Allocated July Longbourn",
       "at": "2026-07-08T19:09:30.916Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Goran G",
+      "at": "2026-07-08T19:52:52.238Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Goran G",
+      "at": "2026-07-08T19:52:53.550Z"
+    },
+    {
+      "type": "import",
+      "text": "Imported availability for Goran G",
+      "at": "2026-07-08T19:53:09.424Z"
     }
   ]
 }
