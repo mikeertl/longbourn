@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Longbourn Allocation</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Longbourn tennis</p>
+          <h1>Friday court allocation</h1>
+        </div>
+        <div class="topbar-actions">
+          <button id="copyStateLinkButton" class="button secondary" type="button">
+            Copy state link
+          </button>
+          <button id="resetButton" class="button danger" type="button">
+            Reset
+          </button>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel setup-panel" aria-labelledby="setup-title">
+          <div class="section-title-row">
+            <div>
+              <h2 id="setup-title">Month setup</h2>
+              <p>Create the remaining Fridays, then collect availability.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Month
+              <input id="monthInput" type="month" />
+            </label>
+            <label>
+              Venue
+              <input id="venueInput" type="text" value="Longbourn" />
+            </label>
+          </div>
+
+          <div class="button-row">
+            <button id="createMonthButton" class="button primary" type="button">
+              Create remaining Fridays
+            </button>
+            <button id="addSlotButton" class="button secondary" type="button">
+              Add slot
+            </button>
+          </div>
+
+          <div class="legend" aria-label="Availability legend">
+            <span><b class="dot green"></b> Green: happy to play</span>
+            <span><b class="dot yellow"></b> Yellow: ask first</span>
+            <span><b class="dot blank"></b> Blank: unavailable</span>
+          </div>
+
+          <div id="slotsList" class="slots-list"></div>
+        </section>
+
+        <section class="panel availability-panel" aria-labelledby="availability-title">
+          <div class="section-title-row">
+            <div>
+              <h2 id="availability-title">Availability</h2>
+              <p>Add a player, then copy their WhatsApp reply.</p>
+            </div>
+          </div>
+
+          <label>
+            Player name
+            <input id="playerNameInput" type="text" placeholder="John Smith" />
+          </label>
+
+          <div id="availabilityGrid" class="availability-grid"></div>
+
+          <div class="button-row">
+            <button id="saveAvailabilityButton" class="button primary" type="button">
+              Save availability
+            </button>
+            <button id="copyAvailabilityButton" class="button secondary" type="button">
+              Copy reply
+            </button>
+          </div>
+
+          <label>
+            WhatsApp reply
+            <textarea id="availabilityMessage" rows="8" readonly></textarea>
+          </label>
+        </section>
+
+        <section class="panel import-panel" aria-labelledby="import-title">
+          <div class="section-title-row">
+            <div>
+              <h2 id="import-title">Import WhatsApp</h2>
+              <p>Paste availability, cancellation, or state messages here.</p>
+            </div>
+          </div>
+
+          <label>
+            Messages
+            <textarea id="importText" rows="9" placeholder="Paste messages containing Data: ..."></textarea>
+          </label>
+
+          <div class="button-row">
+            <button id="importButton" class="button primary" type="button">
+              Import messages
+            </button>
+            <button id="clearImportButton" class="button secondary" type="button">
+              Clear
+            </button>
+          </div>
+
+          <div id="importStatus" class="status-line" role="status"></div>
+        </section>
+
+        <section class="panel allocation-panel" aria-labelledby="allocation-title">
+          <div class="section-title-row">
+            <div>
+              <h2 id="allocation-title">Allocation</h2>
+              <p>Green players are allocated. Yellow players are shown as ask-first candidates.</p>
+            </div>
+            <button id="allocateButton" class="button primary" type="button">
+              Allocate
+            </button>
+          </div>
+
+          <div id="summaryBar" class="summary-bar"></div>
+          <div id="allocationList" class="allocation-list"></div>
+        </section>
+
+        <section class="panel message-panel" aria-labelledby="message-title">
+          <div class="section-title-row">
+            <div>
+              <h2 id="message-title">WhatsApp post</h2>
+              <p>Copy the current month allocation back to the group.</p>
+            </div>
+          </div>
+
+          <label>
+            Monthly message
+            <textarea id="monthMessage" rows="15" readonly></textarea>
+          </label>
+
+          <div class="button-row">
+            <button id="copyMonthMessageButton" class="button primary" type="button">
+              Copy month message
+            </button>
+            <button id="shareWhatsAppButton" class="button secondary" type="button">
+              Share to WhatsApp
+            </button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="slotTemplate">
+      <div class="slot-row">
+        <input class="slot-date" type="date" />
+        <input class="slot-time" type="time" />
+        <label class="slot-enabled">
+          <input class="slot-enabled-input" type="checkbox" />
+          Enabled
+        </label>
+        <button class="button text slot-remove" type="button">Remove</button>
+      </div>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
