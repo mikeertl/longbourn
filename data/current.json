@@ -160,12 +160,6 @@
       "enabled": false
     },
     {
-      "id": "2026-08-14T08:00",
-      "date": "2026-08-14",
-      "time": "08:00",
-      "enabled": false
-    },
-    {
       "id": "2026-08-14T09:00",
       "date": "2026-08-14",
       "time": "09:00",
@@ -967,9 +961,14 @@
       "type": "slot-removed",
       "text": "Removed 2026-08-07T10:30",
       "at": "2026-07-09T17:01:06.375Z"
+    },
+    {
+      "type": "slot-removed",
+      "text": "Removed 2026-08-14T08:00",
+      "at": "2026-07-09T17:01:08.508Z"
     }
   ],
-  "updatedAt": "2026-07-09T17:01:06.375Z",
+  "updatedAt": "2026-07-09T17:01:08.508Z",
   "updatedBy": "mike-ertl",
   "manualEditedAt": "2026-07-09T17:00:02.684Z"
 }
