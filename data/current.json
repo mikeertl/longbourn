@@ -410,6 +410,15 @@
         "jo-tr",
         "phil-charles"
       ]
+    },
+    "2026-07-24T10:30": {
+      "players": [
+        "anthea"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "anthea"
+      ]
     }
   },
   "changes": [
@@ -832,9 +841,14 @@
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-07-17T11:45",
       "at": "2026-07-09T16:55:20.801Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Anthea to 2026-07-24T10:30",
+      "at": "2026-07-09T16:57:05.233Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:55:58.719Z",
+  "updatedAt": "2026-07-09T16:57:05.233Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:55:20.800Z"
+  "manualEditedAt": "2026-07-09T16:57:05.233Z"
 }
