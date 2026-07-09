@@ -593,7 +593,9 @@
   }
 
   function renderAvailabilityGrid() {
-    el.availabilityTitle.textContent = "Availability - " + availabilityTitleRange();
+    var name = session.userId ? playerName(session.userId) : "Player";
+    el.availabilityTitle.textContent =
+      "Availability - " + name + " - " + availabilityTitleRange();
     el.availabilityGrid.innerHTML = "";
     if (!enabledSlots().length) {
       var empty = document.createElement("p");
