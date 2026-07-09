@@ -445,13 +445,15 @@
       "players": [
         "chris-dalley",
         "jo-tr",
-        "david-taylor"
+        "david-taylor",
+        "richard-moxon"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "chris-dalley",
         "jo-tr",
-        "david-taylor"
+        "david-taylor",
+        "richard-moxon"
       ]
     }
   },
@@ -930,9 +932,14 @@
       "type": "allocation-add",
       "text": "Added David Taylor to 2026-07-31T10:30",
       "at": "2026-07-09T16:58:49.499Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Richard Moxon to 2026-07-31T10:30",
+      "at": "2026-07-09T16:58:57.975Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:58:49.499Z",
+  "updatedAt": "2026-07-09T16:58:57.975Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:58:49.499Z"
+  "manualEditedAt": "2026-07-09T16:58:57.975Z"
 }
