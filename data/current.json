@@ -382,13 +382,15 @@
       "players": [
         "mike-ertl",
         "chris-dalley",
-        "arda"
+        "arda",
+        "phil-charles"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
         "chris-dalley",
-        "arda"
+        "arda",
+        "phil-charles"
       ]
     },
     "2026-07-17T10:30": {
@@ -822,9 +824,14 @@
       "type": "allocation-add",
       "text": "Added Arda to 2026-07-17T11:45",
       "at": "2026-07-09T16:55:12.963Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-07-17T11:45",
+      "at": "2026-07-09T16:55:20.801Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:55:12.963Z",
+  "updatedAt": "2026-07-09T16:55:20.801Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:55:12.963Z"
+  "manualEditedAt": "2026-07-09T16:55:20.800Z"
 }
