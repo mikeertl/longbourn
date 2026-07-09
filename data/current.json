@@ -429,12 +429,14 @@
     "2026-07-24T11:45": {
       "players": [
         "akiko",
-        "mike-ertl"
+        "mike-ertl",
+        "arda"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "akiko",
-        "mike-ertl"
+        "mike-ertl",
+        "arda"
       ]
     }
   },
@@ -888,9 +890,14 @@
       "type": "allocation-add",
       "text": "Added Mike Ertl to 2026-07-24T11:45",
       "at": "2026-07-09T16:58:00.821Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Arda to 2026-07-24T11:45",
+      "at": "2026-07-09T16:58:07.996Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:58:00.821Z",
+  "updatedAt": "2026-07-09T16:58:07.996Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:58:00.821Z"
+  "manualEditedAt": "2026-07-09T16:58:07.996Z"
 }
