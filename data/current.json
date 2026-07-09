@@ -236,7 +236,17 @@
       "updatedAt": "2026-07-08T19:53:09.424Z"
     }
   },
-  "allocations": {},
+  "allocations": {
+    "2026-07-10T08:00": {
+      "players": [
+        "mike-ertl"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "mike-ertl"
+      ]
+    }
+  },
   "changes": [
     {
       "type": "month-created",
@@ -557,6 +567,11 @@
       "type": "slot-added",
       "text": "Added a slot",
       "at": "2026-07-09T11:31:09.537Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Mike Ertl to 2026-07-10T08:00",
+      "at": "2026-07-09T11:32:51.607Z"
     }
   ]
 }
