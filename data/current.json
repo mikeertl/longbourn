@@ -391,13 +391,15 @@
       "players": [
         "richard-moxon",
         "david-taylor",
-        "jo-tr"
+        "jo-tr",
+        "phil-charles"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "richard-moxon",
         "david-taylor",
-        "jo-tr"
+        "jo-tr",
+        "phil-charles"
       ]
     }
   },
@@ -801,9 +803,14 @@
       "type": "allocation-add",
       "text": "Added Jo TR to 2026-07-17T10:30",
       "at": "2026-07-09T16:54:31.746Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-07-17T10:30",
+      "at": "2026-07-09T16:54:36.134Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:54:31.746Z",
+  "updatedAt": "2026-07-09T16:54:36.134Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:54:31.746Z"
+  "manualEditedAt": "2026-07-09T16:54:36.134Z"
 }
