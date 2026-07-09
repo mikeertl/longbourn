@@ -240,12 +240,14 @@
     "2026-07-10T08:00": {
       "players": [
         "mike-ertl",
-        "richard-moxon"
+        "richard-moxon",
+        "arda"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
-        "richard-moxon"
+        "richard-moxon",
+        "arda"
       ]
     },
     "2026-07-10T10:30": {
@@ -644,6 +646,11 @@
       "type": "allocation-add",
       "text": "Added Richard Moxon to 2026-07-10T08:00",
       "at": "2026-07-09T13:19:54.698Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Arda to 2026-07-10T08:00",
+      "at": "2026-07-09T13:21:37.677Z"
     }
   ]
 }
