@@ -367,13 +367,15 @@
       "players": [
         "mike-ertl",
         "chris-danzinger",
-        "arda"
+        "arda",
+        "richard-moxon"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
         "chris-danzinger",
-        "arda"
+        "arda",
+        "richard-moxon"
       ]
     },
     "2026-07-17T11:45": {
@@ -766,9 +768,14 @@
       "type": "allocation-add",
       "text": "Added Arda to 2026-07-10T08:00",
       "at": "2026-07-09T16:52:45.576Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Richard Moxon to 2026-07-10T08:00",
+      "at": "2026-07-09T16:52:58.038Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:52:45.576Z",
+  "updatedAt": "2026-07-09T16:52:58.038Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:52:45.576Z"
+  "manualEditedAt": "2026-07-09T16:52:58.038Z"
 }
