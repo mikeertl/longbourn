@@ -7,7 +7,7 @@
   var TOKEN_STORAGE_KEY = "longbourn-github-token";
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
-  var APP_VERSION = "2026.07.09.5";
+  var APP_VERSION = "2026.07.09.6";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
@@ -884,6 +884,7 @@
       empty.className = "allocation-note";
       empty.textContent = "No games have been set up for next month yet.";
       el.availabilityGrid.appendChild(empty);
+      updateAvailabilitySubmitState();
       return;
     }
 
@@ -904,6 +905,7 @@
       });
       el.availabilityGrid.appendChild(section);
     });
+    updateAvailabilitySubmitState();
   }
 
   function availabilityRow(slot) {
@@ -944,6 +946,11 @@
       setStatus("availability", "Choose your name in My Profile first.");
       return;
     }
+    if (!availabilityIsDirty()) {
+      updateAvailabilitySubmitState();
+      setStatus("availability", "Availability already submitted.");
+      return;
+    }
     var green = [];
     var yellow = [];
     var visibleSlotIds = {};
@@ -970,6 +977,50 @@
     };
     state.changes.push(change("availability", "Saved availability for " + playerName(session.userId)));
     saveCurrentState("availability", "Availability submitted.");
+  }
+
+  function updateAvailabilitySubmitState() {
+    el.submitAvailabilityButton.disabled =
+      !hasSession() || !session.userId || !availabilitySlots().length || !availabilityIsDirty();
+  }
+
+  function availabilityIsDirty() {
+    if (!session.userId) return false;
+    return JSON.stringify(visibleDraftAvailability()) !== JSON.stringify(visibleSavedAvailability());
+  }
+
+  function visibleDraftAvailability() {
+    var result = { green: [], yellow: [] };
+    var visibleSlotIds = visibleAvailabilitySlotIds();
+    Object.keys(draftAvailability).forEach(function (slotId) {
+      if (!visibleSlotIds[slotId]) return;
+      if (draftAvailability[slotId] === "green") result.green.push(slotId);
+      if (draftAvailability[slotId] === "yellow") result.yellow.push(slotId);
+    });
+    result.green.sort();
+    result.yellow.sort();
+    return result;
+  }
+
+  function visibleSavedAvailability() {
+    var result = { green: [], yellow: [] };
+    var visibleSlotIds = visibleAvailabilitySlotIds();
+    var availability = state.availability[session.userId] || {};
+    result.green = (availability.green || []).filter(function (slotId) {
+      return visibleSlotIds[slotId];
+    }).sort();
+    result.yellow = (availability.yellow || []).filter(function (slotId) {
+      return visibleSlotIds[slotId];
+    }).sort();
+    return result;
+  }
+
+  function visibleAvailabilitySlotIds() {
+    var visibleSlotIds = {};
+    availabilitySlots().forEach(function (slot) {
+      visibleSlotIds[slot.id] = true;
+    });
+    return visibleSlotIds;
   }
 
   function loadDraftForSession() {
