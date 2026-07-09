@@ -31,24 +31,13 @@ body {
 
 button,
 input,
+select,
 textarea {
   font: inherit;
 }
 
 button {
   cursor: pointer;
-}
-
-textarea {
-  resize: vertical;
-}
-
-code {
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  background: var(--surface-soft);
-  padding: 1px 4px;
-  color: var(--blue);
 }
 
 .app-shell {
@@ -61,8 +50,23 @@ code {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 18px;
   padding: 16px 0 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
 }
 
 .topbar h1 {
@@ -81,10 +85,11 @@ code {
 }
 
 .topbar-controls,
-.topbar-actions,
+.session-actions,
 .button-row {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
 }
 
@@ -92,7 +97,13 @@ code {
   justify-content: flex-end;
 }
 
-.mode-toggle {
+.session-name {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.tab-nav {
   display: inline-grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   overflow: hidden;
@@ -101,47 +112,59 @@ code {
   background: var(--surface-soft);
 }
 
-.mode-button {
+.tab-button {
   min-height: 38px;
   border: 0;
   border-right: 1px solid var(--line);
   background: transparent;
   color: var(--muted);
-  padding: 8px 12px;
+  padding: 8px 14px;
   font-weight: 900;
 }
 
-.mode-button:last-child {
+.tab-button:last-child {
   border-right: 0;
 }
 
-.mode-button.active {
+.tab-button.active {
   background: var(--blue);
   color: #fff;
 }
 
-.layout {
+body[data-auth="signed-out"] .signed-in-only,
+body[data-auth="signed-in"] .signed-out-only {
+  display: none;
+}
+
+.tab-panel {
+  display: none;
+}
+
+body[data-tab="games"] [data-tab-panel="games"],
+body[data-tab="availability"] [data-tab-panel="availability"],
+body[data-tab="admin"] [data-tab-panel="admin"] {
+  display: block;
+}
+
+.tab-shell,
+.sign-in-panel {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.admin-grid {
+  max-width: none;
+}
+
+body[data-tab="admin"] .tab-shell {
+  max-width: 1480px;
+}
+
+body[data-tab="admin"] [data-tab-panel="admin"] {
   display: grid;
-  grid-template-columns: minmax(290px, 0.85fr) minmax(320px, 1fr) minmax(
-      360px,
-      1.25fr
-    );
+  grid-template-columns: minmax(360px, 1.1fr) minmax(300px, 0.9fr);
   gap: 16px;
   align-items: start;
-}
-
-body[data-mode="player"] .layout,
-body[data-mode="schedule"] .layout {
-  grid-template-columns: minmax(0, 720px);
-  justify-content: center;
-}
-
-body[data-mode="player"] .organiser-only,
-body[data-mode="player"] .schedule-only,
-body[data-mode="schedule"] .organiser-only,
-body[data-mode="schedule"] .availability-panel,
-body[data-mode="organiser"] .schedule-only {
-  display: none;
 }
 
 .panel {
@@ -153,9 +176,8 @@ body[data-mode="organiser"] .schedule-only {
   padding: 16px;
 }
 
-.allocation-panel,
-.message-panel {
-  grid-column: span 2;
+.allocation-panel {
+  grid-column: 1 / -1;
 }
 
 .section-title-row {
@@ -166,10 +188,18 @@ body[data-mode="organiser"] .schedule-only {
   margin-bottom: 14px;
 }
 
-h2 {
+h2,
+h3 {
   margin: 0;
-  font-size: 18px;
   line-height: 1.2;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 16px;
 }
 
 .section-title-row p {
@@ -187,6 +217,7 @@ label {
 }
 
 input,
+select,
 textarea {
   width: 100%;
   border: 1px solid var(--line);
@@ -198,16 +229,33 @@ textarea {
 }
 
 input:focus,
+select:focus,
 textarea:focus {
   border-color: var(--blue);
   box-shadow: 0 0 0 3px rgba(36, 91, 143, 0.14);
 }
 
-.form-grid {
+.form-grid,
+.allocation-add-row,
+.user-add-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 10px;
+  align-items: end;
+}
+
+.form-grid {
+  grid-template-columns: 1fr 1fr;
   margin-bottom: 12px;
+}
+
+.allocation-add-row {
+  grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr) auto;
+  margin-bottom: 14px;
+}
+
+.user-add-row {
+  grid-template-columns: minmax(180px, 1fr) auto;
+  margin-bottom: 14px;
 }
 
 .button {
@@ -293,20 +341,27 @@ textarea:focus {
 .slots-list,
 .availability-grid,
 .allocation-list,
-.schedule-list {
+.schedule-list,
+.users-list {
   display: grid;
   gap: 10px;
 }
 
-.slot-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(86px, 0.6fr);
-  gap: 8px;
-  align-items: end;
+.slot-row,
+.availability-row,
+.schedule-row,
+.user-row {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface-soft);
   padding: 10px;
+}
+
+.slot-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(86px, 0.6fr) auto auto;
+  gap: 8px;
+  align-items: end;
 }
 
 .slot-row input {
@@ -321,39 +376,56 @@ textarea:focus {
   font-size: 13px;
 }
 
-.slot-remove {
-  justify-self: end;
-}
-
 .slot-enabled input {
   width: auto;
 }
 
-.availability-row {
+.availability-month,
+.schedule-month {
   display: grid;
-  grid-template-columns: minmax(120px, 1fr) auto;
   gap: 10px;
+}
+
+.availability-month + .availability-month,
+.schedule-month + .schedule-month {
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.availability-row,
+.schedule-row {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.55fr) minmax(0, 1fr);
+  gap: 12px;
   align-items: center;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface-soft);
-  padding: 10px;
 }
 
-.slot-name {
-  font-weight: 800;
+.schedule-row.short {
+  border-color: #d4b25f;
+  background: #fff9e6;
 }
 
-.slot-subtitle {
+.slot-name,
+.schedule-time {
+  color: var(--blue);
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.slot-subtitle,
+.schedule-date {
   color: var(--muted);
   font-size: 12px;
+  font-weight: 700;
 }
 
 .segmented {
   display: grid;
   grid-template-columns: repeat(3, minmax(44px, 1fr));
   gap: 4px;
-  width: 178px;
+  width: 210px;
 }
 
 .segment {
@@ -397,11 +469,11 @@ textarea:focus {
 
 .allocation-card h3 {
   margin: 0 0 10px;
-  font-size: 16px;
 }
 
 .player-list,
-.candidate-list {
+.candidate-list,
+.schedule-players {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -451,55 +523,15 @@ textarea:focus {
   font-size: 13px;
 }
 
-.schedule-month {
+.user-row {
   display: grid;
-  gap: 10px;
-}
-
-.schedule-month + .schedule-month {
-  margin-top: 8px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-}
-
-.schedule-month h3 {
-  margin: 0;
-  font-size: 16px;
-}
-
-.schedule-row {
-  display: grid;
-  grid-template-columns: minmax(130px, 0.55fr) minmax(0, 1fr);
-  gap: 12px;
-  align-items: start;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface-soft);
-  padding: 12px;
-}
-
-.schedule-row.short {
-  border-color: #d4b25f;
-  background: #fff9e6;
-}
-
-.schedule-time {
-  color: var(--blue);
-  font-size: 18px;
-  font-weight: 900;
-  line-height: 1.1;
-}
-
-.schedule-date {
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.schedule-players {
-  display: flex;
-  flex-wrap: wrap;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 8px;
+  align-items: center;
+}
+
+.user-name {
+  font-weight: 800;
 }
 
 .status-line {
@@ -509,14 +541,23 @@ textarea:focus {
   font-weight: 800;
 }
 
-@media (max-width: 1160px) {
-  .layout {
-    grid-template-columns: 1fr 1fr;
+@media (max-width: 940px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
-  .allocation-panel,
-  .message-panel {
-    grid-column: span 2;
+  .topbar-controls {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  body[data-tab="admin"] [data-tab-panel="admin"] {
+    grid-template-columns: 1fr;
+  }
+
+  .allocation-panel {
+    grid-column: span 1;
   }
 }
 
@@ -525,27 +566,35 @@ textarea:focus {
     padding: 12px;
   }
 
-  .topbar,
+  .topbar h1 {
+    font-size: 24px;
+  }
+
+  .brand-icon {
+    width: 38px;
+    height: 38px;
+  }
+
   .section-title-row {
     display: grid;
   }
 
-  .layout,
-  .allocation-panel,
-  .message-panel {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-column: span 1;
-  }
-
   .form-grid,
+  .allocation-add-row,
+  .user-add-row,
   .slot-row,
   .availability-row,
-  .schedule-row {
+  .schedule-row,
+  .user-row {
     grid-template-columns: 1fr;
   }
 
+  .tab-nav,
   .segmented {
+    width: 100%;
+  }
+
+  .session-actions {
     width: 100%;
   }
 }

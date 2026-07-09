@@ -1,36 +1,33 @@
 # Longbourn
 
-A minimal static web app for allocating Longbourn Friday tennis slots through
-WhatsApp messages.
+A minimal static web app for collecting Longbourn Friday tennis availability
+and allocating games from shared JSON files in this repository.
+
 - https://mikeertl.github.io/longbourn/
 
 ## Run locally
 
 Open `index.html` in a browser, or serve the folder with any static file server.
-There is no build step and no database.
+There is no build step and no paid database.
 
 ## GitHub Pages
 
 This app is designed to be hosted directly from the repository root with GitHub
 Pages.
 
-The app stores shared working state in:
+The app stores shared working data in:
 
-- `data/current.json` in this GitHub repository;
-- browser `localStorage` for convenience.
+- `data/current.json` for slots, availability, and allocations;
+- `data/users.json` for the shared user list;
+- browser `localStorage` for the signed-in name and token.
 
-Yellow availability means "ask first", not a normal reserve. A yellow slot
-should only become a confirmed allocation after a WhatsApp exchange.
+Players sign in by selecting their name and pasting a GitHub fine-grained
+personal access token with `Contents: Read and write` permission for this
+repository. The token is stored only in that browser.
 
-## Shared saving
+## Allocation
 
-Anyone can read the shared rota. To save changes back to GitHub, an organiser
-needs to paste a GitHub fine-grained personal access token into the app. The
-token needs `Contents: Read and write` permission for this repository only.
-
-The token is stored only in that browser's `localStorage`; it is not committed
-to the app.
-
-With shared saving enabled, WhatsApp can just contain the app link rather than a
-long encoded state blob.
-
+Green availability means preferred. Yellow availability means willing to play if
+it helps fill the court. A yellow player is allocated automatically unless that
+would make them play twice on the same day, in which case the Admin allocation
+screen shows them as needing confirmation.

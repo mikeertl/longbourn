@@ -10,228 +10,248 @@
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body data-mode="player">
+  <body data-auth="signed-out" data-tab="games">
     <div class="app-shell">
       <header class="topbar">
-        <div>
-          <p class="eyebrow">Longbourn tennis</p>
-          <h1>Friday court allocation</h1>
+        <div class="brand">
+          <img
+            class="brand-icon"
+            src="icons/longbourn-racquets.svg"
+            alt=""
+            aria-hidden="true"
+          />
+          <div>
+            <p class="eyebrow">Longbourn tennis</p>
+            <h1>Friday court allocation</h1>
+          </div>
         </div>
-        <div class="topbar-controls">
-          <div class="mode-toggle" role="group" aria-label="View mode">
-            <button
-              id="playerModeButton"
-              class="mode-button active"
-              type="button"
-              aria-pressed="true"
-            >
-              Player
-            </button>
-            <button
-              id="scheduleModeButton"
-              class="mode-button"
-              type="button"
-              aria-pressed="false"
-            >
+
+        <div class="topbar-controls signed-in-only">
+          <nav class="tab-nav" aria-label="Main sections">
+            <button id="gamesTabButton" class="tab-button active" type="button">
               Games
             </button>
-            <button
-              id="organiserModeButton"
-              class="mode-button"
-              type="button"
-              aria-pressed="false"
-            >
-              Organiser
+            <button id="availabilityTabButton" class="tab-button" type="button">
+              Availability
             </button>
-          </div>
-          <div class="topbar-actions organiser-only">
-            <button id="loadSharedButton" class="button secondary" type="button">
-              Load shared
+            <button id="adminTabButton" class="tab-button" type="button">
+              Admin
             </button>
-            <button id="copyStateLinkButton" class="button secondary" type="button">
-              Copy app link
+          </nav>
+          <div class="session-actions">
+            <span id="sessionName" class="session-name"></span>
+            <button id="refreshButton" class="button secondary" type="button">
+              Refresh
             </button>
-            <button id="resetButton" class="button danger" type="button">
-              Reset
+            <button id="signOutButton" class="button secondary" type="button">
+              Sign out
             </button>
           </div>
         </div>
       </header>
 
-      <main class="layout">
-        <section class="panel setup-panel organiser-only" aria-labelledby="setup-title">
+      <main>
+        <section class="panel sign-in-panel signed-out-only" aria-labelledby="signin-title">
           <div class="section-title-row">
             <div>
-              <h2 id="setup-title">Month setup</h2>
-              <p>Create the remaining Fridays, then collect availability.</p>
+              <h2 id="signin-title">Sign in</h2>
+              <p>Select your name and paste the shared GitHub token.</p>
             </div>
           </div>
 
           <div class="form-grid">
             <label>
-              Month
-              <input id="monthInput" type="month" />
+              Name
+              <select id="signInUserSelect"></select>
             </label>
             <label>
-              Venue
-              <input id="venueInput" type="text" value="Longbourn" />
+              GitHub token
+              <input
+                id="signInTokenInput"
+                type="password"
+                autocomplete="off"
+                placeholder="github_pat_..."
+              />
             </label>
           </div>
 
           <div class="button-row">
-            <button id="createMonthButton" class="button primary" type="button">
-              Create remaining Fridays
-            </button>
-            <button id="addSlotButton" class="button secondary" type="button">
-              Add slot
+            <button id="signInButton" class="button primary" type="button">
+              Sign in
             </button>
           </div>
 
-          <div class="legend" aria-label="Availability legend">
-            <span><b class="dot green"></b> Green: happy to play</span>
-            <span><b class="dot yellow"></b> Yellow: ask first</span>
-            <span><b class="dot blank"></b> Blank: unavailable</span>
-          </div>
-
-          <div id="slotsList" class="slots-list"></div>
+          <div id="signInStatus" class="status-line" role="status"></div>
         </section>
 
-        <section class="panel storage-panel organiser-only" aria-labelledby="storage-title">
-          <div class="section-title-row">
-            <div>
-              <h2 id="storage-title">GitHub storage</h2>
-              <p>Read and save the shared current rota.</p>
+        <div class="tab-shell signed-in-only">
+          <section
+            class="panel tab-panel games-panel"
+            data-tab-panel="games"
+            aria-labelledby="games-title"
+          >
+            <div class="section-title-row">
+              <div>
+                <h2 id="games-title">Games</h2>
+                <p>Current month followed by next month.</p>
+              </div>
             </div>
-          </div>
 
-          <p class="allocation-note">
-            The app reads <code>data/current.json</code> publicly. To save, paste
-            an organiser token with write access to this repo; it stays in this
-            browser only.
-          </p>
+            <div id="gamesList" class="schedule-list"></div>
+            <div id="gamesStatus" class="status-line" role="status"></div>
+          </section>
 
-          <label>
-            Organiser token
-            <input id="githubTokenInput" type="password" autocomplete="off" placeholder="github_pat_..." />
-          </label>
-
-          <div class="button-row">
-            <button id="saveTokenButton" class="button secondary" type="button">
-              Remember token
-            </button>
-            <button id="saveSharedButton" class="button primary" type="button">
-              Save shared
-            </button>
-          </div>
-
-          <div id="sharedStatus" class="status-line" role="status"></div>
-        </section>
-
-        <section class="panel availability-panel" aria-labelledby="availability-title">
-          <div class="section-title-row">
-            <div>
-              <h2 id="availability-title">Availability</h2>
-              <p>Add a player, then copy their WhatsApp reply.</p>
+          <section
+            class="panel tab-panel availability-panel"
+            data-tab-panel="availability"
+            aria-labelledby="availabilityTitle"
+          >
+            <div class="section-title-row">
+              <div>
+                <h2 id="availabilityTitle">Availability</h2>
+                <p>Green is preferred. Yellow means willing if useful.</p>
+              </div>
             </div>
-          </div>
 
-          <label>
-            Player name
-            <input id="playerNameInput" type="text" placeholder="John Smith" />
-          </label>
+            <div id="availabilityGrid" class="availability-grid"></div>
 
-          <div id="availabilityGrid" class="availability-grid"></div>
-
-          <div class="button-row">
-            <button id="saveAvailabilityButton" class="button primary" type="button">
-              Save availability
-            </button>
-            <button id="copyAvailabilityButton" class="button secondary" type="button">
-              Copy reply
-            </button>
-          </div>
-
-          <div id="availabilityStatus" class="status-line" role="status"></div>
-
-          <label>
-            WhatsApp reply
-            <textarea id="availabilityMessage" rows="8" readonly></textarea>
-          </label>
-        </section>
-
-        <section class="panel schedule-panel schedule-only" aria-labelledby="schedule-title">
-          <div class="section-title-row">
-            <div>
-              <h2 id="schedule-title">Schedule</h2>
-              <p>Current month followed by next month.</p>
+            <div class="button-row">
+              <button id="submitAvailabilityButton" class="button primary" type="button">
+                Submit
+              </button>
             </div>
-          </div>
 
-          <div id="scheduleList" class="schedule-list"></div>
-        </section>
+            <div id="availabilityStatus" class="status-line" role="status"></div>
+          </section>
 
-        <section class="panel import-panel organiser-only" aria-labelledby="import-title">
-          <div class="section-title-row">
-            <div>
-              <h2 id="import-title">Import WhatsApp</h2>
-              <p>Paste availability, cancellation, or state messages here.</p>
-            </div>
-          </div>
+          <section
+            class="admin-grid tab-panel"
+            data-tab-panel="admin"
+            aria-label="Admin"
+          >
+            <section class="panel allocation-panel" aria-labelledby="allocation-title">
+              <div class="section-title-row">
+                <div>
+                  <h2 id="allocation-title">Allocation</h2>
+                  <p>Yellow players are used automatically unless they would play twice.</p>
+                </div>
+                <button id="allocateButton" class="button primary" type="button">
+                  Allocate
+                </button>
+              </div>
 
-          <label>
-            Messages
-            <textarea id="importText" rows="9" placeholder="Paste messages containing Data: ..."></textarea>
-          </label>
+              <div class="allocation-add-row">
+                <label>
+                  Date and time
+                  <select id="manualSlotSelect"></select>
+                </label>
+                <label>
+                  Player
+                  <select id="manualUserSelect"></select>
+                </label>
+                <button id="manualAddPlayerButton" class="button secondary" type="button">
+                  Add player
+                </button>
+              </div>
 
-          <div class="button-row">
-            <button id="importButton" class="button primary" type="button">
-              Import messages
-            </button>
-            <button id="clearImportButton" class="button secondary" type="button">
-              Clear
-            </button>
-          </div>
+              <div id="summaryBar" class="summary-bar"></div>
+              <div id="allocationList" class="allocation-list"></div>
+              <div id="allocationStatus" class="status-line" role="status"></div>
+            </section>
 
-          <div id="importStatus" class="status-line" role="status"></div>
-        </section>
+            <section class="panel setup-panel" aria-labelledby="setup-title">
+              <div class="section-title-row">
+                <div>
+                  <h2 id="setup-title">Month setup</h2>
+                  <p>Create the remaining Fridays, then enable the court times.</p>
+                </div>
+              </div>
 
-        <section class="panel allocation-panel organiser-only" aria-labelledby="allocation-title">
-          <div class="section-title-row">
-            <div>
-              <h2 id="allocation-title">Allocation</h2>
-              <p>Green players are allocated. Yellow players are shown as ask-first candidates.</p>
-            </div>
-            <button id="allocateButton" class="button primary" type="button">
-              Allocate
-            </button>
-          </div>
+              <div class="form-grid">
+                <label>
+                  Month
+                  <input id="monthInput" type="month" />
+                </label>
+                <label>
+                  Venue
+                  <input id="venueInput" type="text" value="Longbourn" />
+                </label>
+              </div>
 
-          <div id="summaryBar" class="summary-bar"></div>
-          <div id="allocationList" class="allocation-list"></div>
-        </section>
+              <div class="button-row">
+                <button id="createMonthButton" class="button primary" type="button">
+                  Create remaining Fridays
+                </button>
+                <button id="addSlotButton" class="button secondary" type="button">
+                  Add slot
+                </button>
+              </div>
 
-        <section class="panel message-panel organiser-only" aria-labelledby="message-title">
-          <div class="section-title-row">
-            <div>
-              <h2 id="message-title">WhatsApp post</h2>
-              <p>Copy the current month allocation back to the group.</p>
-            </div>
-          </div>
+              <div class="legend" aria-label="Availability legend">
+                <span><b class="dot green"></b> Green: preferred</span>
+                <span><b class="dot yellow"></b> Yellow: willing</span>
+                <span><b class="dot blank"></b> Blank: unavailable</span>
+              </div>
 
-          <label>
-            Monthly message
-            <textarea id="monthMessage" rows="15" readonly></textarea>
-          </label>
+              <div id="slotsList" class="slots-list"></div>
+              <div id="setupStatus" class="status-line" role="status"></div>
+            </section>
 
-          <div class="button-row">
-            <button id="copyMonthMessageButton" class="button primary" type="button">
-              Copy month message
-            </button>
-            <button id="shareWhatsAppButton" class="button secondary" type="button">
-              Share to WhatsApp
-            </button>
-          </div>
-        </section>
+            <section class="panel users-panel" aria-labelledby="users-title">
+              <div class="section-title-row">
+                <div>
+                  <h2 id="users-title">Users</h2>
+                  <p>Names shown here are used in the sign-in dropdown.</p>
+                </div>
+              </div>
+
+              <div class="user-add-row">
+                <label>
+                  New user
+                  <input id="newUserInput" type="text" placeholder="Name" />
+                </label>
+                <button id="addUserButton" class="button secondary" type="button">
+                  Add user
+                </button>
+              </div>
+
+              <div id="usersList" class="users-list"></div>
+              <div id="usersStatus" class="status-line" role="status"></div>
+            </section>
+
+            <section class="panel profile-panel" aria-labelledby="profile-title">
+              <div class="section-title-row">
+                <div>
+                  <h2 id="profile-title">My Profile</h2>
+                  <p>Your name and token are saved only in this browser.</p>
+                </div>
+              </div>
+
+              <label>
+                Name
+                <select id="profileUserSelect"></select>
+              </label>
+
+              <label>
+                GitHub token
+                <input
+                  id="profileTokenInput"
+                  type="password"
+                  autocomplete="off"
+                  placeholder="github_pat_..."
+                />
+              </label>
+
+              <div class="button-row">
+                <button id="saveProfileButton" class="button primary" type="button">
+                  Save profile
+                </button>
+              </div>
+
+              <div id="profileStatus" class="status-line" role="status"></div>
+            </section>
+          </section>
+        </div>
       </main>
     </div>
 
