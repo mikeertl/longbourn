@@ -128,6 +128,12 @@
       "date": "2026-07-10",
       "time": "10:30",
       "enabled": true
+    },
+    {
+      "id": "2026-07-10T10:30",
+      "date": "2026-07-10",
+      "time": "10:30",
+      "enabled": true
     }
   ],
   "players": {
@@ -546,6 +552,11 @@
       "type": "slot-added",
       "text": "Added a slot",
       "at": "2026-07-09T11:31:02.566Z"
+    },
+    {
+      "type": "slot-added",
+      "text": "Added a slot",
+      "at": "2026-07-09T11:31:09.537Z"
     }
   ]
 }
