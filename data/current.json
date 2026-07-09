@@ -386,6 +386,15 @@
       "confirmed": [
         "mike-ertl"
       ]
+    },
+    "2026-07-17T10:30": {
+      "players": [
+        "richard-moxon"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "richard-moxon"
+      ]
     }
   },
   "changes": [
@@ -773,9 +782,14 @@
       "type": "allocation-add",
       "text": "Added Richard Moxon to 2026-07-10T08:00",
       "at": "2026-07-09T16:52:58.038Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Richard Moxon to 2026-07-17T10:30",
+      "at": "2026-07-09T16:54:05.196Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:52:58.038Z",
+  "updatedAt": "2026-07-09T16:54:05.196Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:52:58.038Z"
+  "manualEditedAt": "2026-07-09T16:54:05.196Z"
 }
