@@ -389,11 +389,13 @@
     },
     "2026-07-17T10:30": {
       "players": [
-        "richard-moxon"
+        "richard-moxon",
+        "david-taylor"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "richard-moxon"
+        "richard-moxon",
+        "david-taylor"
       ]
     }
   },
@@ -787,9 +789,14 @@
       "type": "allocation-add",
       "text": "Added Richard Moxon to 2026-07-17T10:30",
       "at": "2026-07-09T16:54:05.196Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added David Taylor to 2026-07-17T10:30",
+      "at": "2026-07-09T16:54:19.021Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:54:05.196Z",
+  "updatedAt": "2026-07-09T16:54:19.021Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:54:05.196Z"
+  "manualEditedAt": "2026-07-09T16:54:19.021Z"
 }
