@@ -413,11 +413,13 @@
     },
     "2026-07-24T10:30": {
       "players": [
-        "anthea"
+        "anthea",
+        "david-taylor"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "anthea"
+        "anthea",
+        "david-taylor"
       ]
     }
   },
@@ -846,9 +848,14 @@
       "type": "allocation-add",
       "text": "Added Anthea to 2026-07-24T10:30",
       "at": "2026-07-09T16:57:05.233Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added David Taylor to 2026-07-24T10:30",
+      "at": "2026-07-09T16:57:10.283Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:57:05.233Z",
+  "updatedAt": "2026-07-09T16:57:10.283Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:57:05.233Z"
+  "manualEditedAt": "2026-07-09T16:57:10.283Z"
 }
