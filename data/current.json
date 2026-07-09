@@ -254,12 +254,6 @@
       "date": "2026-08-28",
       "time": "11:45",
       "enabled": true
-    },
-    {
-      "id": "2026-08-28T13:00",
-      "date": "2026-08-28",
-      "time": "13:00",
-      "enabled": false
     }
   ],
   "players": {
@@ -972,9 +966,14 @@
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-07-31T11:45",
       "at": "2026-07-09T17:00:02.684Z"
+    },
+    {
+      "type": "slot-removed",
+      "text": "Removed 2026-08-28T13:00",
+      "at": "2026-07-09T17:00:18.546Z"
     }
   ],
-  "updatedAt": "2026-07-09T17:00:02.684Z",
+  "updatedAt": "2026-07-09T17:00:18.546Z",
   "updatedBy": "mike-ertl",
   "manualEditedAt": "2026-07-09T17:00:02.684Z"
 }
