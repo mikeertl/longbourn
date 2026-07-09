@@ -7,7 +7,7 @@
   var TOKEN_STORAGE_KEY = "longbourn-github-token";
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
-  var APP_VERSION = "2026.07.09.3";
+  var APP_VERSION = "2026.07.09.4";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
@@ -774,7 +774,12 @@
     allocation.yellowCandidates.forEach(function (playerId) {
       players.appendChild(readOnlyChip("candidate-chip", "*" + playerName(playerId)));
     });
-    if (hasSession() && allocation.players.indexOf(session.userId) < 0) {
+    if (
+      hasSession() &&
+      allocation.players.length < 4 &&
+      allocation.players.indexOf(session.userId) < 0 &&
+      allocation.yellowCandidates.indexOf(session.userId) < 0
+    ) {
       var addMe = document.createElement("button");
       addMe.type = "button";
       addMe.className = "button secondary schedule-action";
@@ -1095,7 +1100,7 @@
       if (allocation.yellowCandidates.length) {
         var note = document.createElement("p");
         note.className = "allocation-note";
-        note.textContent = "Needs confirmation to play twice:";
+        note.textContent = "Pending confirmation:";
         card.appendChild(note);
         var candidates = document.createElement("div");
         candidates.className = "candidate-list";
@@ -1127,12 +1132,22 @@
     var confirm = document.createElement("button");
     confirm.type = "button";
     confirm.className = "chip-button";
-    confirm.title = "Confirm this extra game";
+    confirm.title = "Confirm this pending player";
     confirm.textContent = "Confirm";
     confirm.addEventListener("click", function () {
       addPlayerToAllocation(slotId, playerId, "allocation", "Player confirmed.");
     });
     chip.appendChild(confirm);
+
+    var remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "chip-button";
+    remove.title = "Remove pending player";
+    remove.textContent = "x";
+    remove.addEventListener("click", function () {
+      removeCandidateFromAllocation(slotId, playerId);
+    });
+    chip.appendChild(remove);
     return chip;
   }
 
@@ -1148,6 +1163,14 @@
 
   function addSelfToGame(slotId) {
     if (!requireToken("games")) return;
+    if (allocationForSlot(slotId).players.length >= 4) {
+      setStatus("games", "This game is full. Ask an admin to change it.");
+      return;
+    }
+    if (allocationForSlot(slotId).yellowCandidates.indexOf(session.userId) >= 0) {
+      setStatus("games", "You are pending for this game. An admin can confirm you.");
+      return;
+    }
     addPlayerToAllocation(slotId, session.userId, "games", "You were added to this game.");
   }
 
@@ -1194,10 +1217,23 @@
     allocation.yellowCandidates = allocation.yellowCandidates.filter(function (id) {
       return id !== playerId;
     });
+    allocation = refreshPendingCandidatesForSlot(slotId, allocation);
     state.allocations[slotId] = allocation;
     markManualAllocationChange();
     state.changes.push(change("allocation-remove", "Removed " + playerName(playerId) + " from " + slotId));
     saveCurrentState(statusTarget, message);
+  }
+
+  function removeCandidateFromAllocation(slotId, playerId) {
+    if (!window.confirm("Remove " + playerName(playerId) + " from pending players?")) return;
+    var allocation = allocationForSlot(slotId);
+    allocation.yellowCandidates = allocation.yellowCandidates.filter(function (id) {
+      return id !== playerId;
+    });
+    state.allocations[slotId] = allocation;
+    markManualAllocationChange();
+    state.changes.push(change("allocation-candidate-remove", "Removed pending " + playerName(playerId) + " from " + slotId));
+    saveCurrentState("allocation", "Pending player removed.");
   }
 
   function handleAllocateClick() {
@@ -1411,6 +1447,71 @@
         (availability.green || []).indexOf(slotId) >= 0 ||
         (availability.yellow || []).indexOf(slotId) >= 0
       );
+    });
+  }
+
+  function refreshPendingCandidatesForSlot(slotId, allocation) {
+    var slot = getSlot(slotId);
+    if (!slot) return allocation;
+
+    allocation.yellowCandidates = allocation.yellowCandidates
+      .filter(isActiveUser)
+      .filter(function (playerId) {
+        return allocation.players.indexOf(playerId) < 0;
+      });
+
+    if (allocation.players.length >= 4) return allocation;
+
+    var existing = {};
+    allocation.players.forEach(function (playerId) {
+      existing[playerId] = true;
+    });
+    allocation.yellowCandidates.forEach(function (playerId) {
+      existing[playerId] = true;
+    });
+
+    pendingCandidatesForOpenSlot(slotId, allocation).forEach(function (playerId) {
+      if (!existing[playerId]) {
+        allocation.yellowCandidates.push(playerId);
+        existing[playerId] = true;
+      }
+    });
+
+    return allocation;
+  }
+
+  function pendingCandidatesForOpenSlot(slotId, allocation) {
+    var slot = getSlot(slotId);
+    if (!slot) return [];
+    return willingCandidates(slotId)
+      .filter(isActiveUser)
+      .filter(function (playerId) {
+        return allocation.players.indexOf(playerId) < 0;
+      })
+      .filter(function (playerId) {
+        return !playerHasDifferentAllocationOnDate(playerId, slot.date, slotId);
+      })
+      .sort(function (a, b) {
+        return (
+          slotAvailabilityRank(a, slotId) - slotAvailabilityRank(b, slotId) ||
+          playerName(a).localeCompare(playerName(b), "en-GB", { sensitivity: "base" })
+        );
+      });
+  }
+
+  function slotAvailabilityRank(playerId, slotId) {
+    var availability = state.availability[playerId] || {};
+    if ((availability.green || []).indexOf(slotId) >= 0) return 0;
+    if ((availability.yellow || []).indexOf(slotId) >= 0) return 1;
+    return 2;
+  }
+
+  function playerHasDifferentAllocationOnDate(playerId, date, slotId) {
+    return Object.keys(state.allocations || {}).some(function (otherSlotId) {
+      if (otherSlotId === slotId) return false;
+      var slot = getSlot(otherSlotId);
+      if (!slot || slot.date !== date) return false;
+      return allocationForSlot(otherSlotId).players.indexOf(playerId) >= 0;
     });
   }
 
