@@ -241,13 +241,11 @@
     },
     "2026-07-24T11:45": {
       "players": [
-        "adam-aaa",
-        "goran-g"
+        "adam-aaa"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "adam-aaa",
-        "goran-g"
+        "adam-aaa"
       ]
     },
     "2026-07-31T10:30": {
@@ -552,6 +550,11 @@
       "type": "allocation-remove",
       "text": "Removed Derek D from 2026-07-24T11:45",
       "at": "2026-07-09T10:54:31.891Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Goran G from 2026-07-24T11:45",
+      "at": "2026-07-09T10:54:34.841Z"
     }
   ]
 }
