@@ -291,6 +291,11 @@
       "green": [],
       "yellow": [],
       "updatedAt": "2026-07-08T19:53:09.424Z"
+    },
+    "mike-ertl": {
+      "green": [],
+      "yellow": [],
+      "updatedAt": "2026-07-09T17:04:37.187Z"
     }
   },
   "allocations": {
@@ -960,9 +965,14 @@
       "type": "slot-removed",
       "text": "Removed 2026-08-21T11:45",
       "at": "2026-07-09T17:02:29.829Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Mike Ertl",
+      "at": "2026-07-09T17:04:37.187Z"
     }
   ],
-  "updatedAt": "2026-07-09T17:03:28.621Z",
+  "updatedAt": "2026-07-09T17:04:37.187Z",
   "updatedBy": "mike-ertl",
   "manualEditedAt": "2026-07-09T17:00:02.684Z"
 }
