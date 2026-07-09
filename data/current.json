@@ -238,15 +238,9 @@
   },
   "allocations": {
     "2026-07-10T08:00": {
-      "players": [
-        "mike-ertl",
-        "akiko"
-      ],
+      "players": [],
       "yellowCandidates": [],
-      "confirmed": [
-        "mike-ertl",
-        "akiko"
-      ]
+      "confirmed": []
     },
     "2026-07-10T10:30": {
       "players": [],
@@ -641,9 +635,9 @@
       "at": "2026-07-09T13:01:23.991Z"
     },
     {
-      "type": "allocation-add",
-      "text": "Added Akiko to 2026-07-10T08:00",
-      "at": "2026-07-09T13:15:43.107Z"
+      "type": "allocation-remove",
+      "text": "Removed Mike Ertl from 2026-07-10T08:00",
+      "at": "2026-07-09T13:16:04.399Z"
     }
   ]
 }
