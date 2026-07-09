@@ -225,13 +225,9 @@
       "confirmed": []
     },
     "2026-07-17T10:30": {
-      "players": [
-        "derek-d"
-      ],
+      "players": [],
       "yellowCandidates": [],
-      "confirmed": [
-        "derek-d"
-      ]
+      "confirmed": []
     },
     "2026-07-17T11:45": {
       "players": [
@@ -489,6 +485,11 @@
       "type": "allocation-remove",
       "text": "Removed Goran G from 2026-07-17T10:30",
       "at": "2026-07-09T10:52:58.470Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Derek D from 2026-07-17T10:30",
+      "at": "2026-07-09T10:53:01.224Z"
     }
   ]
 }
