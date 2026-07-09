@@ -443,11 +443,13 @@
     },
     "2026-07-31T10:30": {
       "players": [
-        "chris-dalley"
+        "chris-dalley",
+        "jo-tr"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "chris-dalley"
+        "chris-dalley",
+        "jo-tr"
       ]
     }
   },
@@ -916,9 +918,14 @@
       "type": "allocation-add",
       "text": "Added Chris Dalley to 2026-07-31T10:30",
       "at": "2026-07-09T16:58:33.137Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Jo TR to 2026-07-31T10:30",
+      "at": "2026-07-09T16:58:42.170Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:58:33.137Z",
+  "updatedAt": "2026-07-09T16:58:42.170Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:58:33.137Z"
+  "manualEditedAt": "2026-07-09T16:58:42.170Z"
 }
