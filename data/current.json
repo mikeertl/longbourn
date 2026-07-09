@@ -440,6 +440,15 @@
         "arda",
         "phil-charles"
       ]
+    },
+    "2026-07-31T10:30": {
+      "players": [
+        "chris-dalley"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "chris-dalley"
+      ]
     }
   },
   "changes": [
@@ -902,9 +911,14 @@
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-07-24T11:45",
       "at": "2026-07-09T16:58:12.817Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Chris Dalley to 2026-07-31T10:30",
+      "at": "2026-07-09T16:58:33.137Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:58:12.817Z",
+  "updatedAt": "2026-07-09T16:58:33.137Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:58:12.817Z"
+  "manualEditedAt": "2026-07-09T16:58:33.137Z"
 }
