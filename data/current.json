@@ -239,11 +239,13 @@
   "allocations": {
     "2026-07-10T08:00": {
       "players": [
-        "mike-ertl"
+        "mike-ertl",
+        "arda"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "mike-ertl"
+        "mike-ertl",
+        "arda"
       ]
     }
   },
@@ -572,6 +574,11 @@
       "type": "allocation-add",
       "text": "Added Mike Ertl to 2026-07-10T08:00",
       "at": "2026-07-09T11:32:51.607Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Arda to 2026-07-10T08:00",
+      "at": "2026-07-09T11:33:04.570Z"
     }
   ]
 }
