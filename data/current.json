@@ -365,11 +365,13 @@
   "allocations": {
     "2026-07-10T08:00": {
       "players": [
-        "mike-ertl"
+        "mike-ertl",
+        "chris-danzinger"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "mike-ertl"
+        "mike-ertl",
+        "chris-danzinger"
       ]
     },
     "2026-07-17T11:45": {
@@ -752,6 +754,11 @@
       "type": "allocation-add",
       "text": "Added Mike Ertl to 2026-07-17T11:45",
       "at": "2026-07-09T14:04:22.588Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Chris Danzinger to 2026-07-10T08:00",
+      "at": "2026-07-09T15:08:44.691Z"
     }
   ]
 }
