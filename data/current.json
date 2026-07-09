@@ -295,7 +295,7 @@
     "mike-ertl": {
       "green": [],
       "yellow": [],
-      "updatedAt": "2026-07-09T17:04:37.187Z"
+      "updatedAt": "2026-07-09T17:06:44.385Z"
     }
   },
   "allocations": {
@@ -970,9 +970,14 @@
       "type": "availability",
       "text": "Saved availability for Mike Ertl",
       "at": "2026-07-09T17:04:37.187Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Mike Ertl",
+      "at": "2026-07-09T17:06:44.386Z"
     }
   ],
-  "updatedAt": "2026-07-09T17:05:36.291Z",
+  "updatedAt": "2026-07-09T17:06:44.386Z",
   "updatedBy": "mike-ertl",
   "manualEditedAt": "2026-07-09T17:00:02.684Z"
 }
