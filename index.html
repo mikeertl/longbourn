@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Longbourn Allocation</title>
     <meta name="theme-color" content="#1f5d42" />
-    <link rel="manifest" href="manifest.webmanifest?v=20260709d" />
-    <link rel="icon" href="icons/longbourn-racquets.svg?v=20260709d" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=20260709d" />
-    <link rel="stylesheet" href="styles.css?v=20260709d" />
+    <link rel="manifest" href="manifest.webmanifest?v=20260709e" />
+    <link rel="icon" href="icons/longbourn-racquets.svg?v=20260709e" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=20260709e" />
+    <link rel="stylesheet" href="styles.css?v=20260709e" />
   </head>
   <body data-auth="signed-out" data-admin="false" data-menu="closed" data-refreshing="false" data-tab="games">
     <div class="app-shell">
@@ -152,91 +152,148 @@
             data-tab-panel="admin"
             aria-label="Admin"
           >
-            <section class="panel allocation-panel" aria-labelledby="allocation-title">
+            <section
+              id="allocationPanel"
+              class="panel allocation-panel collapsible-panel"
+              data-collapsed="true"
+              aria-labelledby="allocation-title"
+            >
               <div class="section-title-row">
                 <div>
                   <h2 id="allocation-title">Allocation</h2>
-                  <p>Yellow players are used automatically unless they would play twice.</p>
+                  <p>Current-month games can be edited here.</p>
                 </div>
-                <button id="allocateButton" class="button primary" type="button">
-                  Auto Allocate
-                </button>
+                <div class="button-row">
+                  <button
+                    class="button secondary collapse-button"
+                    type="button"
+                    data-collapse-target="allocationPanel"
+                  >
+                    Expand
+                  </button>
+                  <button id="allocateButton" class="button primary" type="button">
+                    Allocate
+                  </button>
+                </div>
               </div>
 
-              <div class="allocation-add-row">
-                <label>
-                  Date and time
-                  <select id="manualSlotSelect"></select>
-                </label>
-                <label>
-                  Player
-                  <select id="manualUserSelect"></select>
-                </label>
-                <button id="manualAddPlayerButton" class="button secondary" type="button">
-                  Add player
-                </button>
-              </div>
+              <div class="panel-content">
+                <p id="allocationAutoNote" class="allocation-note"></p>
 
-              <div id="summaryBar" class="summary-bar"></div>
-              <div id="allocationList" class="allocation-list"></div>
-              <div id="allocationStatus" class="status-line" role="status"></div>
+                <div class="allocation-add-row">
+                  <label>
+                    Date and time
+                    <select id="manualSlotSelect"></select>
+                  </label>
+                  <label>
+                    Player
+                    <select id="manualUserSelect"></select>
+                  </label>
+                  <button id="manualAddPlayerButton" class="button secondary" type="button">
+                    Add player
+                  </button>
+                </div>
+
+                <div id="summaryBar" class="summary-bar"></div>
+                <div id="allocationList" class="allocation-list"></div>
+                <div id="allocationStatus" class="status-line" role="status"></div>
+              </div>
             </section>
 
-            <section class="panel setup-panel" aria-labelledby="setup-title">
+            <section class="panel responses-panel" aria-labelledby="responses-title">
+              <div class="section-title-row">
+                <div>
+                  <h2 id="responses-title">Responses so far</h2>
+                  <p>Next-month green and yellow availability.</p>
+                </div>
+              </div>
+
+              <div id="responsesList" class="responses-list"></div>
+            </section>
+
+            <section
+              id="setupPanel"
+              class="panel setup-panel collapsible-panel"
+              data-collapsed="false"
+              aria-labelledby="setup-title"
+            >
               <div class="section-title-row">
                 <div>
                   <h2 id="setup-title">Month setup</h2>
                   <p>Create the remaining Fridays, then enable the court times.</p>
                 </div>
-              </div>
-
-              <div class="form-grid">
-                <label>
-                  Month
-                  <input id="monthInput" type="month" />
-                </label>
-                <label>
-                  Venue
-                  <input id="venueInput" type="text" value="Longbourn" />
-                </label>
-              </div>
-
-              <div class="button-row">
-                <button id="createMonthButton" class="button primary" type="button">
-                  Create remaining Fridays
+                <button
+                  class="button secondary collapse-button"
+                  type="button"
+                  data-collapse-target="setupPanel"
+                >
+                  Collapse
                 </button>
               </div>
 
-              <div class="legend" aria-label="Availability legend">
-                <span><b class="dot green"></b> Green: preferred</span>
-                <span><b class="dot yellow"></b> Yellow: willing</span>
-                <span><b class="dot blank"></b> Blank: unavailable</span>
-              </div>
+              <div class="panel-content">
+                <div class="form-grid">
+                  <label>
+                    Month
+                    <input id="monthInput" type="month" />
+                  </label>
+                  <label>
+                    Venue
+                    <input id="venueInput" type="text" value="Longbourn" />
+                  </label>
+                </div>
 
-              <div id="slotsList" class="slots-list"></div>
-              <div id="setupStatus" class="status-line" role="status"></div>
+                <div class="button-row">
+                  <button id="createMonthButton" class="button primary" type="button">
+                    Create/update default slots
+                  </button>
+                </div>
+
+                <div class="legend" aria-label="Availability legend">
+                  <span><b class="dot green"></b> Green: preferred</span>
+                  <span><b class="dot yellow"></b> Yellow: willing</span>
+                  <span><b class="dot blank"></b> Blank: unavailable</span>
+                </div>
+
+                <div id="slotsList" class="slots-list"></div>
+                <div id="setupStatus" class="status-line" role="status"></div>
+              </div>
             </section>
 
-            <section class="panel users-panel" aria-labelledby="users-title">
+            <section
+              id="usersPanel"
+              class="panel users-panel collapsible-panel"
+              data-collapsed="false"
+              aria-labelledby="users-title"
+            >
               <div class="section-title-row">
                 <div>
                   <h2 id="users-title">Users</h2>
                   <p>Names shown here are used in the sign-in dropdown.</p>
                 </div>
-              </div>
-
-              <div class="user-add-row">
-                <label>
-                  New user
-                  <input id="newUserInput" type="text" placeholder="Name" />
-                </label>
-                <button id="addUserButton" class="button secondary" type="button">
-                  Add user
+                <button
+                  class="button secondary collapse-button"
+                  type="button"
+                  data-collapse-target="usersPanel"
+                >
+                  Collapse
                 </button>
               </div>
 
-              <div id="usersList" class="users-list"></div>
-              <div id="usersStatus" class="status-line" role="status"></div>
+              <div class="panel-content">
+                <div class="user-add-row">
+                  <label>
+                    New user
+                    <input id="newUserInput" type="text" placeholder="Name" />
+                  </label>
+                  <button id="addUserButton" class="button secondary" type="button">
+                    Add user
+                  </button>
+                </div>
+
+                <div id="usersList" class="users-list"></div>
+                <div id="usersStatus" class="status-line" role="status"></div>
+              </div>
             </section>
 
             <section class="panel profile-panel" aria-labelledby="profile-title">
@@ -279,7 +336,7 @@
         </div>
       </main>
       <footer class="app-footer">
-        Version <span id="appVersion">2026.07.09.4</span>
+        Version <span id="appVersion">2026.07.09.5</span>
       </footer>
     </div>
 
@@ -291,10 +348,10 @@
           <input class="slot-enabled-input" type="checkbox" />
           Enabled
         </label>
-        <button class="button text slot-remove" type="button">Remove</button>
+        <button class="button text slot-remove" type="button">Delete slot</button>
       </div>
     </template>
 
-    <script src="app.js?v=20260709d"></script>
+    <script src="app.js?v=20260709e"></script>
   </body>
 </html>

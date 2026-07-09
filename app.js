@@ -7,13 +7,12 @@
   var TOKEN_STORAGE_KEY = "longbourn-github-token";
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
-  var APP_VERSION = "2026.07.09.4";
+  var APP_VERSION = "2026.07.09.5";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
   var STATE_PATH = "data/current.json";
   var USERS_PATH = "data/users.json";
-  var RETENTION_MONTHS = 6;
   var PENDING_TTL_MS = 24 * 60 * 60 * 1000;
   var TIMES = ["08:00", "09:00", "10:30", "11:45", "13:00"];
   var DEFAULT_ENABLED_TIMES = ["10:30", "11:45"];
@@ -106,12 +105,14 @@
       "submitAvailabilityButton",
       "availabilityStatus",
       "allocateButton",
+      "allocationAutoNote",
       "manualSlotSelect",
       "manualUserSelect",
       "manualAddPlayerButton",
       "summaryBar",
       "allocationList",
       "allocationStatus",
+      "responsesList",
       "monthInput",
       "venueInput",
       "createMonthButton",
@@ -170,6 +171,7 @@
     });
     el.addUserButton.addEventListener("click", addUser);
     el.saveProfileButton.addEventListener("click", saveProfile);
+    bindCollapseButtons();
   }
 
   function signIn() {
@@ -251,6 +253,25 @@
     if (el.menuButton) el.menuButton.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
   }
 
+  function bindCollapseButtons() {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-collapse-target]"), function (button) {
+      button.addEventListener("click", function () {
+        var panel = document.getElementById(button.dataset.collapseTarget);
+        if (!panel) return;
+        var isCollapsed = panel.dataset.collapsed === "true";
+        panel.dataset.collapsed = isCollapsed ? "false" : "true";
+        updateCollapseButton(button, !isCollapsed);
+      });
+      var panel = document.getElementById(button.dataset.collapseTarget);
+      updateCollapseButton(button, panel && panel.dataset.collapsed === "true");
+    });
+  }
+
+  function updateCollapseButton(button, isCollapsed) {
+    button.textContent = isCollapsed ? "Expand" : "Collapse";
+    button.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
+  }
+
   function hasSession() {
     return !!(session.token && session.userId);
   }
@@ -269,6 +290,8 @@
 
   function setDefaultMonth() {
     el.monthInput.value = addMonthsToMonthKey(currentMonthKey(), 1);
+    el.monthInput.min = currentMonthKey();
+    el.monthInput.max = addMonthsToMonthKey(currentMonthKey(), 1);
   }
 
   function storeSession() {
@@ -290,6 +313,7 @@
       players: {},
       availability: {},
       allocations: {},
+      allocatedMonths: {},
       changes: [],
       updatedAt: "",
       updatedBy: "",
@@ -303,10 +327,12 @@
     next.players = next.players || {};
     next.availability = next.availability || {};
     next.allocations = next.allocations || {};
+    next.allocatedMonths = next.allocatedMonths || {};
     next.changes = Array.isArray(next.changes) ? next.changes : [];
     next.updatedAt = next.updatedAt || latestChangeAt(next.changes) || "";
     next.updatedBy = next.updatedBy || "";
     next.manualEditedAt = next.manualEditedAt || "";
+    inferAllocatedMonths(next);
     return pruneOldState(next);
   }
 
@@ -321,6 +347,26 @@
         return name ? { id: uniqueUserId(id, seen), name: String(name).trim() } : null;
       })
       .filter(Boolean));
+  }
+
+  function inferAllocatedMonths(next) {
+    Object.keys(next.allocations || {}).forEach(function (slotId) {
+      var allocation = next.allocations[slotId] || {};
+      if (!(allocation.players || []).length && !(allocation.yellowCandidates || []).length) return;
+      var slot = (next.slots || []).find(function (item) {
+        return item.id === slotId;
+      });
+      if (!slot || !slot.date) return;
+      var monthKey = slot.date.slice(0, 7);
+      if (!next.allocatedMonths[monthKey]) {
+        next.allocatedMonths[monthKey] = {
+          allocatedAt: next.updatedAt || latestChangeAt(next.changes) || nowIso(),
+          allocatedBy: next.updatedBy || "",
+          automatic: false,
+          inferred: true,
+        };
+      }
+    });
   }
 
   function uniqueUserId(id, seen) {
@@ -680,6 +726,13 @@
   function renderAll() {
     el.sessionName.textContent = session.userId ? playerName(session.userId) : "";
     el.appVersion.textContent = APP_VERSION;
+    el.allocateButton.textContent = "Allocate for " + monthOnlyName(autoAllocationMonthKey());
+    el.allocationAutoNote.textContent =
+      "Allocation of " +
+      formatMonthHeading(autoAllocationMonthKey()) +
+      " will occur automatically on " +
+      formatDateLong(allocationDateForMonth(autoAllocationMonthKey())) +
+      ".";
     el.monthInput.value = el.monthInput.value || state.month || addMonthsToMonthKey(currentMonthKey(), 1);
     el.venueInput.value = state.venue || "Longbourn";
     renderUserSelects();
@@ -690,6 +743,7 @@
     renderAllocationControls();
     renderSummary();
     renderAllocations();
+    renderResponses();
     renderUsers();
   }
 
@@ -742,10 +796,20 @@
         empty.className = "allocation-note";
         empty.textContent = "No games published yet.";
         section.appendChild(empty);
+      } else if (!isMonthAllocated(monthKey)) {
+        var awaiting = document.createElement("p");
+        awaiting.className = "awaiting-note";
+        awaiting.textContent =
+          "Awaiting all responses. This will show the allocation on " +
+          formatDateLong(allocationDateForMonth(monthKey)) +
+          ".";
+        section.appendChild(awaiting);
       }
-      slots.forEach(function (slot) {
-        section.appendChild(scheduleRow(slot));
-      });
+      if (slots.length && isMonthAllocated(monthKey)) {
+        slots.forEach(function (slot) {
+          section.appendChild(scheduleRow(slot));
+        });
+      }
       el.gamesList.appendChild(section);
     });
   }
@@ -776,6 +840,7 @@
     });
     if (
       hasSession() &&
+      isMonthAllocated(slot.date.slice(0, 7)) &&
       allocation.players.length < 4 &&
       allocation.players.indexOf(session.userId) < 0 &&
       allocation.yellowCandidates.indexOf(session.userId) < 0
@@ -921,105 +986,87 @@
 
   function renderSlots() {
     el.slotsList.innerHTML = "";
-    if (!state.slots.length) {
-      var empty = document.createElement("p");
-      empty.className = "allocation-note";
-      empty.textContent = "No slots yet. Create the remaining Fridays to begin.";
-      el.slotsList.appendChild(empty);
-      return;
-    }
+    [
+      { label: "This month", monthKey: currentMonthKey() },
+      { label: "Next month", monthKey: addMonthsToMonthKey(currentMonthKey(), 1) },
+    ].forEach(function (group) {
+      var section = document.createElement("section");
+      section.className = "slot-month";
+      var heading = document.createElement("h3");
+      heading.textContent = group.label + " - " + formatMonthHeading(group.monthKey);
+      section.appendChild(heading);
 
-    state.slots
-      .slice()
-      .sort(compareSlots)
-      .forEach(function (slot) {
-        var row = document.getElementById("slotTemplate").content.cloneNode(true);
-        var root = row.querySelector(".slot-row");
-        var dateInput = row.querySelector(".slot-date");
-        var timeInput = row.querySelector(".slot-time");
-        var enabledInput = row.querySelector(".slot-enabled-input");
-        var removeButton = row.querySelector(".slot-remove");
-        root.dataset.slotId = slot.id;
-        dateInput.value = slot.date;
-        timeInput.value = slot.time;
-        enabledInput.checked = slot.enabled !== false;
+      var note = document.createElement("p");
+      note.className = "allocation-note";
+      note.textContent = "Disable a slot to hide it from games. Delete slot removes that date/time and its saved responses.";
+      section.appendChild(note);
 
-        dateInput.addEventListener("change", function () {
-          slot.date = dateInput.value;
-          refreshSlotIds();
-          saveCurrentState("setup", "Slot saved.");
-        });
-        timeInput.addEventListener("change", function () {
-          slot.time = timeInput.value;
-          refreshSlotIds();
-          saveCurrentState("setup", "Slot saved.");
-        });
-        enabledInput.addEventListener("change", function () {
-          slot.enabled = enabledInput.checked;
-          saveCurrentState("setup", "Slot saved.");
-        });
-        removeButton.addEventListener("click", function () {
-          removeSlot(slot.id);
-        });
-        el.slotsList.appendChild(row);
+      var slots = slotsForMonth(group.monthKey, false);
+      if (!slots.length) {
+        var empty = document.createElement("p");
+        empty.className = "allocation-note";
+        empty.textContent = "No slots yet. Use Create/update default slots for this month.";
+        section.appendChild(empty);
+      }
+      slots.forEach(function (slot) {
+        section.appendChild(slotRow(slot));
       });
+      el.slotsList.appendChild(section);
+    });
+  }
+
+  function slotRow(slot) {
+    var row = document.getElementById("slotTemplate").content.cloneNode(true);
+    var root = row.querySelector(".slot-row");
+    var dateInput = row.querySelector(".slot-date");
+    var timeInput = row.querySelector(".slot-time");
+    var enabledInput = row.querySelector(".slot-enabled-input");
+    var removeButton = row.querySelector(".slot-remove");
+    root.dataset.slotId = slot.id;
+    root.classList.toggle("disabled", slot.enabled === false);
+    dateInput.value = slot.date;
+    timeInput.value = slot.time;
+    enabledInput.checked = slot.enabled !== false;
+
+    dateInput.addEventListener("change", function () {
+      slot.date = dateInput.value;
+      refreshSlotIds();
+      saveCurrentState("setup", "Slot saved.");
+    });
+    timeInput.addEventListener("change", function () {
+      slot.time = timeInput.value;
+      refreshSlotIds();
+      saveCurrentState("setup", "Slot saved.");
+    });
+    enabledInput.addEventListener("change", function () {
+      slot.enabled = enabledInput.checked;
+      saveCurrentState("setup", "Slot saved.");
+    });
+    removeButton.addEventListener("click", function () {
+      removeSlot(slot.id);
+    });
+    return row;
   }
 
   function createMonthFromForm() {
     if (!requireToken("setup")) return;
     var month = el.monthInput.value || addMonthsToMonthKey(currentMonthKey(), 1);
-    var parts = month.split("-").map(Number);
-    var year = parts[0];
-    var monthIndex = parts[1] - 1;
-    var today = startOfDay(new Date());
-    var slots = [];
-    var daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
-
-    for (var day = 1; day <= daysInMonth; day += 1) {
-      var date = new Date(year, monthIndex, day);
-      if (date.getDay() !== 5 || date < today) continue;
-      TIMES.forEach(function (time) {
-        slots.push({
-          id: makeSlotId(toDateKey(date), time),
-          date: toDateKey(date),
-          time: time,
-          enabled: DEFAULT_ENABLED_TIMES.indexOf(time) >= 0,
-        });
-      });
+    if (activeMonthKeys().indexOf(month) < 0) {
+      setStatus("setup", "Only this month and next month can be edited.");
+      return;
     }
-
-    state.month = month;
     state.venue = el.venueInput.value.trim() || "Longbourn";
-    replaceMonthSlots(month, slots);
-    state.changes.push(change("month-created", "Created " + month));
+    if (!ensureDefaultMonthSlots(month)) {
+      setStatus("setup", "Default slots already exist for " + formatMonthHeading(month) + ".");
+      return;
+    }
+    state.month = month;
+    state.changes.push(change("month-created", "Created/updated " + month));
     saveCurrentState("setup", "Month saved.");
   }
 
-  function replaceMonthSlots(month, slots) {
-    var removed = {};
-    state.slots.forEach(function (slot) {
-      if (slot.date && slot.date.slice(0, 7) === month) removed[slot.id] = true;
-    });
-    state.slots = state.slots
-      .filter(function (slot) {
-        return !slot.date || slot.date.slice(0, 7) !== month;
-      })
-      .concat(slots);
-    Object.keys(state.allocations).forEach(function (slotId) {
-      if (removed[slotId]) delete state.allocations[slotId];
-    });
-    Object.keys(state.availability).forEach(function (playerId) {
-      state.availability[playerId].green = (state.availability[playerId].green || []).filter(function (slotId) {
-        return !removed[slotId];
-      });
-      state.availability[playerId].yellow = (state.availability[playerId].yellow || []).filter(function (slotId) {
-        return !removed[slotId];
-      });
-    });
-  }
-
   function removeSlot(slotId) {
-    if (!window.confirm("Remove this slot?")) return;
+    if (!window.confirm("Delete this slot? Any saved responses and allocations for this date/time will also be removed.")) return;
     state.slots = state.slots.filter(function (slot) {
       return slot.id !== slotId;
     });
@@ -1044,7 +1091,7 @@
   function fillSlotSelect(select, selectedId) {
     var current = selectedId || select.value;
     select.innerHTML = "";
-    enabledSlots().forEach(function (slot) {
+    adminAllocationSlots().forEach(function (slot) {
       var option = document.createElement("option");
       option.value = slot.id;
       option.textContent = formatSlotDate(slot.date) + " " + slot.time;
@@ -1055,8 +1102,8 @@
 
   function renderSummary() {
     var playerCount = Object.keys(state.players).length;
-    var slotCount = enabledSlots().length;
-    var shortCount = enabledSlots().filter(function (slot) {
+    var slotCount = adminAllocationSlots().length;
+    var shortCount = adminAllocationSlots().filter(function (slot) {
       var allocation = allocationForSlot(slot.id);
       return allocation.players.length < 4;
     }).length;
@@ -1071,14 +1118,14 @@
 
   function renderAllocations() {
     el.allocationList.innerHTML = "";
-    if (!enabledSlots().length) {
+    if (!adminAllocationSlots().length) {
       var empty = document.createElement("p");
       empty.className = "allocation-note";
-      empty.textContent = "Create slots and add availability before allocating.";
+      empty.textContent = "No enabled games for this month.";
       el.allocationList.appendChild(empty);
       return;
     }
-    enabledSlots().forEach(function (slot) {
+    adminAllocationSlots().forEach(function (slot) {
       var allocation = allocationForSlot(slot.id);
       var card = document.createElement("article");
       card.className = "allocation-card" + (allocation.players.length < 4 ? " short" : "");
@@ -1111,6 +1158,63 @@
       }
       el.allocationList.appendChild(card);
     });
+  }
+
+  function renderResponses() {
+    el.responsesList.innerHTML = "";
+    var monthKey = autoAllocationMonthKey();
+    document.getElementById("responses-title").textContent =
+      monthOnlyName(monthKey) + " - Responses so far";
+    var slots = availabilitySlots();
+    if (!slots.length) {
+      var empty = document.createElement("p");
+      empty.className = "allocation-note";
+      empty.textContent = "No next-month slots have been set up yet.";
+      el.responsesList.appendChild(empty);
+      return;
+    }
+    slots.forEach(function (slot) {
+      var row = document.createElement("article");
+      row.className = "response-row";
+      var heading = document.createElement("h3");
+      heading.textContent = formatSlotFull(slot);
+      row.appendChild(heading);
+
+      var green = responsePlayers(slot.id, "green");
+      var yellow = responsePlayers(slot.id, "yellow");
+      row.appendChild(responseGroup("Green", green, "green"));
+      row.appendChild(responseGroup("Yellow", yellow, "yellow"));
+      el.responsesList.appendChild(row);
+    });
+  }
+
+  function responseGroup(label, playerIds, type) {
+    var group = document.createElement("div");
+    group.className = "response-group";
+    var title = document.createElement("span");
+    title.className = "response-label";
+    title.textContent = label;
+    group.appendChild(title);
+    if (!playerIds.length) {
+      group.appendChild(readOnlyChip("empty-chip", "-"));
+      return group;
+    }
+    playerIds.forEach(function (playerId) {
+      group.appendChild(readOnlyChip("response-chip " + type, playerName(playerId)));
+    });
+    return group;
+  }
+
+  function responsePlayers(slotId, type) {
+    return Object.keys(state.availability || {})
+      .filter(function (playerId) {
+        var availability = state.availability[playerId] || {};
+        return (availability[type] || []).indexOf(slotId) >= 0;
+      })
+      .filter(isActiveUser)
+      .sort(function (a, b) {
+        return playerName(a).localeCompare(playerName(b), "en-GB", { sensitivity: "base" });
+      });
   }
 
   function playerChip(slotId, playerId) {
@@ -1190,6 +1294,7 @@
     });
     state.allocations[slotId] = allocation;
     state.players[playerId] = { name: playerName(playerId) };
+    if (getSlot(slotId)) markMonthAllocated(getSlot(slotId).date.slice(0, 7), false);
     markManualAllocationChange();
     state.changes.push(change("allocation-add", "Added " + playerName(playerId) + " to " + slotId));
     saveCurrentState(statusTarget, message);
@@ -1237,16 +1342,16 @@
   }
 
   function handleAllocateClick() {
-    var lastFriday = lastFridayOfMonth(currentMonthKey());
-    if (startOfDay(new Date()) < lastFriday) {
+    var targetMonth = autoAllocationMonthKey();
+    var allocationDate = allocationDateForMonth(targetMonth);
+    if (startOfDay(new Date()) < allocationDate) {
       var message =
-        "Allocation automatically happens on the last Friday of the month (" +
-        formatDateLong(lastFriday) +
-        "). Are you sure?";
+        "Allocation is automatically done on the last Friday of the previous month. Do you want to force an early allocation?";
       if (!window.confirm(message)) return;
     }
+    ensureDefaultMonthSlots(targetMonth);
     var keepExisting = true;
-    if (hasAllocationsInMonth(autoAllocationMonthKey())) {
+    if (hasAllocationsInMonth(targetMonth)) {
       keepExisting = window.confirm(
         "Manual allocation changes already exist.\n\nOK keeps manual edits and auto allocates around them.\nCancel lets you auto allocate from scratch."
       );
@@ -1261,10 +1366,14 @@
 
   function autoAllocateIfDue() {
     if (!hasSession()) return Promise.resolve(false);
-    var month = currentMonthKey();
-    var lastFriday = lastFridayOfMonth(month);
-    if (startOfDay(new Date()) < lastFriday) return Promise.resolve(false);
-    if (!autoAllocationSlots().length) return Promise.resolve(false);
+    var targetMonth = autoAllocationMonthKey();
+    var allocationDate = allocationDateForMonth(targetMonth);
+    if (startOfDay(new Date()) < allocationDate) return Promise.resolve(false);
+    var changed = ensureDefaultMonthSlots(targetMonth);
+    if (isMonthAllocated(targetMonth)) {
+      if (changed) return saveCurrentState("games", "Next month setup updated.");
+      return Promise.resolve(false);
+    }
     return runAllocationAndSave("Automatic allocation updated.", "Automatic allocation", true, {
       keepExisting: true,
     });
@@ -1287,8 +1396,13 @@
   }
 
   function allocate(reason, options) {
+    var monthKey = autoAllocationMonthKey();
+    var beforeMarker = JSON.stringify(state.allocatedMonths[monthKey] || null);
     var nextAllocations = buildAllocations(options || {});
-    var changed = JSON.stringify(nextAllocations) !== JSON.stringify(state.allocations || {});
+    markMonthAllocated(monthKey, reason === "Automatic allocation");
+    var changed =
+      JSON.stringify(nextAllocations) !== JSON.stringify(state.allocations || {}) ||
+      beforeMarker !== JSON.stringify(state.allocatedMonths[monthKey] || null);
     state.allocations = nextAllocations;
     if (changed) state.changes.push(change("allocate", reason || "Allocated games"));
     return changed;
@@ -1641,12 +1755,12 @@
 
   function pruneOldState(input) {
     var next = input || createEmptyState();
-    var cutoff = retentionCutoffDate();
+    var activeMonths = activeMonthMap();
     var keptSlotIds = {};
 
     next.slots = (next.slots || []).filter(function (slot) {
       if (!slot || !slot.date || !isValidDateKey(slot.date)) return false;
-      return parseDateKey(slot.date) >= cutoff;
+      return !!activeMonths[slot.date.slice(0, 7)];
     });
     next.slots.forEach(function (slot) {
       keptSlotIds[slot.id] = true;
@@ -1657,6 +1771,12 @@
       if (keptSlotIds[slotId]) allocations[slotId] = next.allocations[slotId];
     });
     next.allocations = allocations;
+
+    var allocatedMonths = {};
+    Object.keys(next.allocatedMonths || {}).forEach(function (monthKey) {
+      if (activeMonths[monthKey]) allocatedMonths[monthKey] = next.allocatedMonths[monthKey];
+    });
+    next.allocatedMonths = allocatedMonths;
 
     Object.keys(next.availability || {}).forEach(function (playerId) {
       var availability = next.availability[playerId] || {};
@@ -1670,7 +1790,6 @@
       if (
         !availability.green.length &&
         !availability.yellow.length &&
-        isOlderThanCutoff(availability.updatedAt, cutoff) &&
         !playerHasAllocation(playerId, next.allocations)
       ) {
         delete next.availability[playerId];
@@ -1678,22 +1797,8 @@
       }
     });
 
-    next.changes = (next.changes || []).filter(function (entry) {
-      return !entry.at || !isOlderThanCutoff(entry.at, cutoff);
-    });
+    next.changes = (next.changes || []).slice(-60);
     return next;
-  }
-
-  function retentionCutoffDate() {
-    var cutoff = startOfDay(new Date());
-    cutoff.setMonth(cutoff.getMonth() - RETENTION_MONTHS);
-    return cutoff;
-  }
-
-  function isOlderThanCutoff(value, cutoff) {
-    if (!value) return true;
-    var time = Date.parse(value);
-    return Number.isNaN(time) ? false : time < cutoff.getTime();
   }
 
   function playerHasAllocation(playerId, allocations) {
@@ -1728,10 +1833,90 @@
     });
   }
 
+  function activeMonthKeys() {
+    var month = currentMonthKey();
+    return [month, addMonthsToMonthKey(month, 1)];
+  }
+
+  function activeMonthMap() {
+    var map = {};
+    activeMonthKeys().forEach(function (monthKey) {
+      map[monthKey] = true;
+    });
+    return map;
+  }
+
   function enabledSlots() {
     return state.slots.filter(function (slot) {
       return slot.enabled !== false;
     }).sort(compareSlots);
+  }
+
+  function slotsForMonth(monthKey, enabledOnly) {
+    return state.slots
+      .filter(function (slot) {
+        return slot.date && slot.date.slice(0, 7) === monthKey;
+      })
+      .filter(function (slot) {
+        return !enabledOnly || slot.enabled !== false;
+      })
+      .sort(compareSlots);
+  }
+
+  function adminAllocationSlots() {
+    return slotsForMonth(currentMonthKey(), true);
+  }
+
+  function ensureDefaultMonthSlots(monthKey) {
+    if (activeMonthKeys().indexOf(monthKey) < 0) return false;
+    var existing = {};
+    state.slots.forEach(function (slot) {
+      existing[slot.id] = true;
+    });
+    var changed = false;
+    defaultSlotsForMonth(monthKey).forEach(function (slot) {
+      if (existing[slot.id]) return;
+      state.slots.push(slot);
+      existing[slot.id] = true;
+      changed = true;
+    });
+    if (changed) state.slots.sort(compareSlots);
+    return changed;
+  }
+
+  function defaultSlotsForMonth(monthKey) {
+    var parts = monthKey.split("-").map(Number);
+    var year = parts[0];
+    var monthIndex = parts[1] - 1;
+    var today = startOfDay(new Date());
+    var slots = [];
+    var daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+
+    for (var day = 1; day <= daysInMonth; day += 1) {
+      var date = new Date(year, monthIndex, day);
+      if (date.getDay() !== 5 || date < today) continue;
+      TIMES.forEach(function (time) {
+        slots.push({
+          id: makeSlotId(toDateKey(date), time),
+          date: toDateKey(date),
+          time: time,
+          enabled: DEFAULT_ENABLED_TIMES.indexOf(time) >= 0,
+        });
+      });
+    }
+    return slots;
+  }
+
+  function isMonthAllocated(monthKey) {
+    return !!(state.allocatedMonths && state.allocatedMonths[monthKey]) || hasAllocationsInMonth(monthKey);
+  }
+
+  function markMonthAllocated(monthKey, automatic) {
+    state.allocatedMonths[monthKey] = {
+      allocatedAt: nowIso(),
+      allocatedBy: session.userId || "",
+      automatic: !!automatic,
+    };
   }
 
   function allocationForSlot(slotId) {
@@ -1788,6 +1973,11 @@
     return monthName(date) + " " + parts[0];
   }
 
+  function monthOnlyName(monthKey) {
+    var parts = monthKey.split("-");
+    return monthName(new Date(Number(parts[0]), Number(parts[1]) - 1, 1));
+  }
+
   function availabilityTitleRange() {
     var months = availabilityMonthKeys().filter(function (monthKey) {
       return availabilitySlots().some(function (slot) {
@@ -1799,8 +1989,7 @@
   }
 
   function scheduleMonthKeys() {
-    var month = currentMonthKey();
-    return [month, addMonthsToMonthKey(month, 1)];
+    return activeMonthKeys();
   }
 
   function availabilityMonthKeys() {
@@ -1831,6 +2020,10 @@
       var allocation = allocationForSlot(slot.id);
       return allocation.players.length || allocation.yellowCandidates.length;
     });
+  }
+
+  function allocationDateForMonth(monthKey) {
+    return lastFridayOfMonth(addMonthsToMonthKey(monthKey, -1));
   }
 
   function addMonthsToMonthKey(monthKey, offset) {
