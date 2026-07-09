@@ -274,13 +274,11 @@
     },
     "2026-07-31T11:45": {
       "players": [
-        "ertl-e",
-        "adam-aaa"
+        "ertl-e"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "ertl-e",
-        "adam-aaa"
+        "ertl-e"
       ]
     }
   },
@@ -539,6 +537,11 @@
       "type": "allocation-remove",
       "text": "Removed Goran G from 2026-07-31T11:45",
       "at": "2026-07-09T10:54:14.212Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Adam AAA from 2026-07-31T11:45",
+      "at": "2026-07-09T10:54:18.599Z"
     }
   ]
 }
