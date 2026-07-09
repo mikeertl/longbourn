@@ -238,9 +238,13 @@
   },
   "allocations": {
     "2026-07-10T08:00": {
-      "players": [],
+      "players": [
+        "mike-ertl"
+      ],
       "yellowCandidates": [],
-      "confirmed": []
+      "confirmed": [
+        "mike-ertl"
+      ]
     },
     "2026-07-10T10:30": {
       "players": [],
@@ -628,6 +632,11 @@
       "type": "allocate",
       "text": "Manual allocation",
       "at": "2026-07-09T11:34:02.279Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Mike Ertl to 2026-07-10T08:00",
+      "at": "2026-07-09T12:58:55.113Z"
     }
   ]
 }
