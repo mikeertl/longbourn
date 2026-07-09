@@ -220,13 +220,9 @@
   },
   "allocations": {
     "2026-07-10T10:30": {
-      "players": [
-        "catty-ccc"
-      ],
+      "players": [],
       "yellowCandidates": [],
-      "confirmed": [
-        "catty-ccc"
-      ]
+      "confirmed": []
     },
     "2026-07-17T10:30": {
       "players": [
@@ -472,6 +468,11 @@
       "type": "allocation-remove",
       "text": "Removed Derek D from 2026-07-10T10:30",
       "at": "2026-07-09T10:52:30.363Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Catty CCC from 2026-07-10T10:30",
+      "at": "2026-07-09T10:52:33.222Z"
     }
   ]
 }
