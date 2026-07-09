@@ -238,9 +238,15 @@
   },
   "allocations": {
     "2026-07-10T08:00": {
-      "players": [],
+      "players": [
+        "mike-ertl",
+        "richard-moxon"
+      ],
       "yellowCandidates": [],
-      "confirmed": []
+      "confirmed": [
+        "mike-ertl",
+        "richard-moxon"
+      ]
     },
     "2026-07-10T10:30": {
       "players": [],
@@ -635,9 +641,9 @@
       "at": "2026-07-09T13:01:23.991Z"
     },
     {
-      "type": "allocation-remove",
-      "text": "Removed Mike Ertl from 2026-07-10T08:00",
-      "at": "2026-07-09T13:16:04.399Z"
+      "type": "allocation-add",
+      "text": "Added Richard Moxon to 2026-07-10T08:00",
+      "at": "2026-07-09T13:19:54.698Z"
     }
   ]
 }
