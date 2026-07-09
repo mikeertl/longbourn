@@ -134,6 +134,12 @@
       "date": "2026-07-10",
       "time": "10:30",
       "enabled": true
+    },
+    {
+      "id": "2026-07-10T10:30",
+      "date": "2026-07-10",
+      "time": "10:30",
+      "enabled": true
     }
   ],
   "players": {
@@ -236,59 +242,7 @@
       "updatedAt": "2026-07-08T19:53:09.424Z"
     }
   },
-  "allocations": {
-    "2026-07-10T08:00": {
-      "players": [
-        "mike-ertl",
-        "chris-danzinger"
-      ],
-      "yellowCandidates": [],
-      "confirmed": [
-        "mike-ertl",
-        "chris-danzinger"
-      ]
-    },
-    "2026-07-10T10:30": {
-      "players": [],
-      "yellowCandidates": [],
-      "confirmed": []
-    },
-    "2026-07-10T11:45": {
-      "players": [],
-      "yellowCandidates": [],
-      "confirmed": []
-    },
-    "2026-07-17T10:30": {
-      "players": [],
-      "yellowCandidates": [],
-      "confirmed": []
-    },
-    "2026-07-17T11:45": {
-      "players": [],
-      "yellowCandidates": [],
-      "confirmed": []
-    },
-    "2026-07-24T10:30": {
-      "players": [],
-      "yellowCandidates": [],
-      "confirmed": []
-    },
-    "2026-07-24T11:45": {
-      "players": [],
-      "yellowCandidates": [],
-      "confirmed": []
-    },
-    "2026-07-31T10:30": {
-      "players": [],
-      "yellowCandidates": [],
-      "confirmed": []
-    },
-    "2026-07-31T11:45": {
-      "players": [],
-      "yellowCandidates": [],
-      "confirmed": []
-    }
-  },
+  "allocations": {},
   "changes": [
     {
       "type": "month-created",
@@ -641,9 +595,9 @@
       "at": "2026-07-09T13:01:23.991Z"
     },
     {
-      "type": "allocation-add",
-      "text": "Added Chris Danzinger to 2026-07-10T08:00",
-      "at": "2026-07-09T13:23:55.231Z"
+      "type": "slot-added",
+      "text": "Added a slot",
+      "at": "2026-07-09T13:24:52.397Z"
     }
   ]
 }
