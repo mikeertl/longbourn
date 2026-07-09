@@ -455,6 +455,15 @@
         "david-taylor",
         "richard-moxon"
       ]
+    },
+    "2026-07-31T11:45": {
+      "players": [
+        "akiko"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "akiko"
+      ]
     }
   },
   "changes": [
@@ -937,9 +946,14 @@
       "type": "allocation-add",
       "text": "Added Richard Moxon to 2026-07-31T10:30",
       "at": "2026-07-09T16:58:57.975Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Akiko to 2026-07-31T11:45",
+      "at": "2026-07-09T16:59:47.375Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:58:57.975Z",
+  "updatedAt": "2026-07-09T16:59:47.375Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:58:57.975Z"
+  "manualEditedAt": "2026-07-09T16:59:47.375Z"
 }
