@@ -79,12 +79,74 @@
   "players": {
     "adam-aaa": {
       "name": "Adam AAA"
+    },
+    "betty-bbb": {
+      "name": "Betty BBB"
+    },
+    "catty-ccc": {
+      "name": "Catty CCC"
+    },
+    "derek-d": {
+      "name": "Derek D"
+    },
+    "ertl-e": {
+      "name": "Ertl E"
+    },
+    "goran-g": {
+      "name": "Goran G"
+    },
+    "mike-ertl": {
+      "name": "Mike Ertl"
+    },
+    "phil-charles": {
+      "name": "Phil Charles"
+    },
+    "akiko": {
+      "name": "Akiko"
+    },
+    "arda": {
+      "name": "Arda"
+    },
+    "chris-danzinger": {
+      "name": "Chris Danzinger"
+    },
+    "chris-dalley": {
+      "name": "Chris Dalley"
+    },
+    "ellen": {
+      "name": "Ellen"
+    },
+    "jude-zur": {
+      "name": "Jude Zur"
+    },
+    "michael-w-m": {
+      "name": "Michael W-M"
+    },
+    "peter-miell": {
+      "name": "Peter Miell"
+    },
+    "rachel": {
+      "name": "Rachel"
+    },
+    "jo-tr": {
+      "name": "Jo TR"
+    },
+    "richard-moxon": {
+      "name": "Richard Moxon"
+    },
+    "david-taylor": {
+      "name": "David Taylor"
+    },
+    "ian-thomas": {
+      "name": "Ian Thomas"
+    },
+    "gina-williams": {
+      "name": "Gina Williams"
     }
   },
   "availability": {
     "adam-aaa": {
       "green": [
-        "2026-07-10T10:30",
         "2026-07-10T11:45",
         "2026-07-17T10:30",
         "2026-07-17T11:45",
@@ -95,80 +157,107 @@
       ],
       "yellow": [],
       "updatedAt": "2026-07-08T17:06:04.989Z"
+    },
+    "betty-bbb": {
+      "green": [
+        "2026-07-10T10:30",
+        "2026-07-10T11:45",
+        "2026-07-31T10:30"
+      ],
+      "yellow": [
+        "2026-07-24T10:30"
+      ],
+      "updatedAt": "2026-07-08T17:10:44.700Z"
+    },
+    "catty-ccc": {
+      "green": [
+        "2026-07-10T10:30",
+        "2026-07-10T11:45",
+        "2026-07-24T10:30",
+        "2026-07-31T11:45"
+      ],
+      "yellow": [],
+      "updatedAt": "2026-07-08T17:14:59.316Z"
+    },
+    "derek-d": {
+      "green": [
+        "2026-07-10T10:30",
+        "2026-07-17T10:30",
+        "2026-07-24T10:30",
+        "2026-07-31T10:30",
+        "2026-07-31T11:45",
+        "2026-07-24T11:45",
+        "2026-07-17T11:45"
+      ],
+      "yellow": [
+        "2026-07-10T11:45"
+      ],
+      "updatedAt": "2026-07-08T18:55:17.871Z"
+    },
+    "ertl-e": {
+      "green": [
+        "2026-07-10T11:45",
+        "2026-07-17T11:45",
+        "2026-07-24T11:45",
+        "2026-07-31T11:45"
+      ],
+      "yellow": [],
+      "updatedAt": "2026-07-08T19:09:10.466Z"
+    },
+    "goran-g": {
+      "green": [
+        "2026-07-10T11:45",
+        "2026-07-17T10:30",
+        "2026-07-17T11:45",
+        "2026-07-24T10:30",
+        "2026-07-24T11:45",
+        "2026-07-31T10:30",
+        "2026-07-31T11:45"
+      ],
+      "yellow": [],
+      "updatedAt": "2026-07-08T19:53:09.424Z"
     }
   },
   "allocations": {
     "2026-07-10T10:30": {
-      "players": [
-        "adam-aaa"
-      ],
+      "players": [],
       "yellowCandidates": [],
-      "confirmed": [
-        "adam-aaa"
-      ]
-    },
-    "2026-07-10T11:45": {
-      "players": [
-        "adam-aaa"
-      ],
-      "yellowCandidates": [],
-      "confirmed": [
-        "adam-aaa"
-      ]
+      "confirmed": []
     },
     "2026-07-17T10:30": {
-      "players": [
-        "adam-aaa"
-      ],
+      "players": [],
       "yellowCandidates": [],
-      "confirmed": [
-        "adam-aaa"
-      ]
+      "confirmed": []
     },
     "2026-07-17T11:45": {
-      "players": [
-        "adam-aaa"
-      ],
+      "players": [],
       "yellowCandidates": [],
-      "confirmed": [
-        "adam-aaa"
-      ]
+      "confirmed": []
     },
     "2026-07-24T10:30": {
-      "players": [
-        "adam-aaa"
-      ],
+      "players": [],
       "yellowCandidates": [],
-      "confirmed": [
-        "adam-aaa"
-      ]
+      "confirmed": []
     },
     "2026-07-24T11:45": {
-      "players": [
-        "adam-aaa"
-      ],
+      "players": [],
       "yellowCandidates": [],
-      "confirmed": [
-        "adam-aaa"
-      ]
+      "confirmed": []
     },
     "2026-07-31T10:30": {
-      "players": [
-        "adam-aaa"
-      ],
+      "players": [],
       "yellowCandidates": [],
-      "confirmed": [
-        "adam-aaa"
-      ]
+      "confirmed": []
+    },
+    "2026-07-10T11:45": {
+      "players": [],
+      "yellowCandidates": [],
+      "confirmed": []
     },
     "2026-07-31T11:45": {
-      "players": [
-        "adam-aaa"
-      ],
+      "players": [],
       "yellowCandidates": [],
-      "confirmed": [
-        "adam-aaa"
-      ]
+      "confirmed": []
     }
   },
   "changes": [
@@ -201,6 +290,276 @@
       "type": "allocate",
       "text": "Allocated July Longbourn",
       "at": "2026-07-08T17:06:14.589Z"
+    },
+    {
+      "type": "import",
+      "text": "Imported availability for Betty BBB",
+      "at": "2026-07-08T17:10:44.700Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-08T17:10:58.580Z"
+    },
+    {
+      "type": "import",
+      "text": "Imported availability for Catty CCC",
+      "at": "2026-07-08T17:14:59.316Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-08T17:15:07.411Z"
+    },
+    {
+      "type": "import",
+      "text": "Imported availability for Derek D",
+      "at": "2026-07-08T18:55:17.871Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-08T18:55:29.896Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Ertl E",
+      "at": "2026-07-08T19:09:10.468Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-08T19:09:30.916Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Goran G",
+      "at": "2026-07-08T19:52:52.238Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Goran G",
+      "at": "2026-07-08T19:52:53.550Z"
+    },
+    {
+      "type": "import",
+      "text": "Imported availability for Goran G",
+      "at": "2026-07-08T19:53:09.424Z"
+    },
+    {
+      "type": "cancel",
+      "text": "Cancelled Adam AAA from 2026-07-10T10:30",
+      "at": "2026-07-09T05:52:35.561Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-09T05:52:35.565Z"
+    },
+    {
+      "type": "confirm-yellow",
+      "text": "Confirmed Derek D for 2026-07-24T11:45",
+      "at": "2026-07-09T05:52:47.257Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-09T05:52:47.258Z"
+    },
+    {
+      "type": "confirm-yellow",
+      "text": "Confirmed Betty BBB for 2026-07-31T10:30",
+      "at": "2026-07-09T05:52:48.691Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-09T05:52:48.693Z"
+    },
+    {
+      "type": "confirm-yellow",
+      "text": "Confirmed Derek D for 2026-07-17T11:45",
+      "at": "2026-07-09T05:52:51.065Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-09T05:52:51.067Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Allocated July Longbourn",
+      "at": "2026-07-09T05:53:02.428Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Betty BBB from 2026-07-10T10:30",
+      "at": "2026-07-09T10:52:27.825Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Derek D from 2026-07-10T10:30",
+      "at": "2026-07-09T10:52:30.363Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Catty CCC from 2026-07-10T10:30",
+      "at": "2026-07-09T10:52:33.222Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Ertl E from 2026-07-10T11:45",
+      "at": "2026-07-09T10:52:44.626Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Betty BBB from 2026-07-10T11:45",
+      "at": "2026-07-09T10:52:47.193Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Goran G from 2026-07-10T11:45",
+      "at": "2026-07-09T10:52:49.735Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Catty CCC from 2026-07-10T11:45",
+      "at": "2026-07-09T10:52:52.332Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Adam AAA from 2026-07-17T10:30",
+      "at": "2026-07-09T10:52:55.440Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Goran G from 2026-07-17T10:30",
+      "at": "2026-07-09T10:52:58.470Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Derek D from 2026-07-17T10:30",
+      "at": "2026-07-09T10:53:01.224Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Ertl E from 2026-07-17T11:45",
+      "at": "2026-07-09T10:53:04.119Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Goran G from 2026-07-17T11:45",
+      "at": "2026-07-09T10:53:07.002Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Adam AAA from 2026-07-17T11:45",
+      "at": "2026-07-09T10:53:09.805Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Derek D from 2026-07-17T11:45",
+      "at": "2026-07-09T10:53:12.681Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Catty CCC from 2026-07-24T10:30",
+      "at": "2026-07-09T10:53:15.694Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Goran G from 2026-07-24T10:30",
+      "at": "2026-07-09T10:53:18.872Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Mike Ertl to 2026-07-10T10:30",
+      "at": "2026-07-09T10:53:29.424Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Mike Ertl from 2026-07-10T10:30",
+      "at": "2026-07-09T10:53:37.666Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Mike Ertl to 2026-07-10T10:30",
+      "at": "2026-07-09T10:53:42.841Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Mike Ertl from 2026-07-10T10:30",
+      "at": "2026-07-09T10:53:49.122Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Adam AAA from 2026-07-24T10:30",
+      "at": "2026-07-09T10:54:01.044Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Derek D from 2026-07-24T10:30",
+      "at": "2026-07-09T10:54:03.812Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Ertl E from 2026-07-24T11:45",
+      "at": "2026-07-09T10:54:07.653Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Catty CCC from 2026-07-31T11:45",
+      "at": "2026-07-09T10:54:11.086Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Goran G from 2026-07-31T11:45",
+      "at": "2026-07-09T10:54:14.212Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Adam AAA from 2026-07-31T11:45",
+      "at": "2026-07-09T10:54:18.599Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Ertl E from 2026-07-31T11:45",
+      "at": "2026-07-09T10:54:22.545Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Betty BBB from 2026-07-31T10:30",
+      "at": "2026-07-09T10:54:25.828Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Derek D from 2026-07-31T10:30",
+      "at": "2026-07-09T10:54:29.016Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Derek D from 2026-07-24T11:45",
+      "at": "2026-07-09T10:54:31.891Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Goran G from 2026-07-24T11:45",
+      "at": "2026-07-09T10:54:34.841Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Adam AAA from 2026-07-24T11:45",
+      "at": "2026-07-09T10:54:37.636Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Goran G from 2026-07-31T10:30",
+      "at": "2026-07-09T10:54:40.465Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Adam AAA from 2026-07-31T10:30",
+      "at": "2026-07-09T10:54:43.821Z"
     }
   ]
 }
