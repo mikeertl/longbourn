@@ -94,6 +94,54 @@
     },
     "goran-g": {
       "name": "Goran G"
+    },
+    "mike-ertl": {
+      "name": "Mike Ertl"
+    },
+    "phil-charles": {
+      "name": "Phil Charles"
+    },
+    "akiko": {
+      "name": "Akiko"
+    },
+    "arda": {
+      "name": "Arda"
+    },
+    "chris-danzinger": {
+      "name": "Chris Danzinger"
+    },
+    "chris-dalley": {
+      "name": "Chris Dalley"
+    },
+    "ellen": {
+      "name": "Ellen"
+    },
+    "jude-zur": {
+      "name": "Jude Zur"
+    },
+    "michael-w-m": {
+      "name": "Michael W-M"
+    },
+    "peter-miell": {
+      "name": "Peter Miell"
+    },
+    "rachel": {
+      "name": "Rachel"
+    },
+    "jo-tr": {
+      "name": "Jo TR"
+    },
+    "richard-moxon": {
+      "name": "Richard Moxon"
+    },
+    "david-taylor": {
+      "name": "David Taylor"
+    },
+    "ian-thomas": {
+      "name": "Ian Thomas"
+    },
+    "gina-williams": {
+      "name": "Gina Williams"
     }
   },
   "availability": {
@@ -174,14 +222,12 @@
     "2026-07-10T10:30": {
       "players": [
         "catty-ccc",
-        "derek-d",
-        "betty-bbb"
+        "derek-d"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "catty-ccc",
-        "derek-d",
-        "betty-bbb"
+        "derek-d"
       ]
     },
     "2026-07-17T10:30": {
@@ -418,6 +464,11 @@
       "type": "allocate",
       "text": "Allocated July Longbourn",
       "at": "2026-07-09T05:53:02.428Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Betty BBB from 2026-07-10T10:30",
+      "at": "2026-07-09T10:52:27.825Z"
     }
   ]
 }
