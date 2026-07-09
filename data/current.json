@@ -230,13 +230,9 @@
       "confirmed": []
     },
     "2026-07-17T11:45": {
-      "players": [
-        "derek-d"
-      ],
+      "players": [],
       "yellowCandidates": [],
-      "confirmed": [
-        "derek-d"
-      ]
+      "confirmed": []
     },
     "2026-07-24T10:30": {
       "players": [
@@ -499,6 +495,11 @@
       "type": "allocation-remove",
       "text": "Removed Adam AAA from 2026-07-17T11:45",
       "at": "2026-07-09T10:53:09.805Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Derek D from 2026-07-17T11:45",
+      "at": "2026-07-09T10:53:12.681Z"
     }
   ]
 }
