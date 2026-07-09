@@ -2,14 +2,6 @@
   "version": 1,
   "users": [
     {
-      "id": "mike-ertl",
-      "name": "Mike Ertl"
-    },
-    {
-      "id": "phil-charles",
-      "name": "Phil Charles"
-    },
-    {
       "id": "akiko",
       "name": "Akiko"
     },
@@ -18,16 +10,32 @@
       "name": "Arda"
     },
     {
-      "id": "chris-danzinger",
-      "name": "Chris Danzinger"
-    },
-    {
       "id": "chris-dalley",
       "name": "Chris Dalley"
     },
     {
+      "id": "chris-danzinger",
+      "name": "Chris Danzinger"
+    },
+    {
+      "id": "david-taylor",
+      "name": "David Taylor"
+    },
+    {
       "id": "ellen",
       "name": "Ellen"
+    },
+    {
+      "id": "gina-williams",
+      "name": "Gina Williams"
+    },
+    {
+      "id": "ian-thomas",
+      "name": "Ian Thomas"
+    },
+    {
+      "id": "jo-tr",
+      "name": "Jo TR"
     },
     {
       "id": "jude-zur",
@@ -38,32 +46,24 @@
       "name": "Michael W-M"
     },
     {
+      "id": "mike-ertl",
+      "name": "Mike Ertl"
+    },
+    {
       "id": "peter-miell",
       "name": "Peter Miell"
+    },
+    {
+      "id": "phil-charles",
+      "name": "Phil Charles"
     },
     {
       "id": "rachel",
       "name": "Rachel"
     },
     {
-      "id": "jo-tr",
-      "name": "Jo TR"
-    },
-    {
       "id": "richard-moxon",
       "name": "Richard Moxon"
-    },
-    {
-      "id": "david-taylor",
-      "name": "David Taylor"
-    },
-    {
-      "id": "ian-thomas",
-      "name": "Ian Thomas"
-    },
-    {
-      "id": "gina-williams",
-      "name": "Gina Williams"
     }
   ]
 }

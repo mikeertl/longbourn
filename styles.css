@@ -47,11 +47,26 @@ button {
 }
 
 .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  padding: 16px 0 20px;
+  margin: 0 -20px;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(215, 222, 215, 0.86);
+  background: rgba(244, 241, 234, 0.96);
+  backdrop-filter: blur(12px);
+}
+
+.nav-left {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
 }
 
 .brand {
@@ -59,6 +74,11 @@ button {
   align-items: center;
   gap: 12px;
   min-width: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  text-align: left;
 }
 
 .brand-icon {
@@ -69,7 +89,20 @@ button {
   box-shadow: var(--shadow);
 }
 
-.topbar h1 {
+.brand-wordmark {
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.page-title {
+  padding: 26px 0 18px;
+}
+
+.page-title h1 {
   margin: 0;
   font-size: 28px;
   line-height: 1.1;
@@ -84,8 +117,6 @@ button {
   text-transform: uppercase;
 }
 
-.topbar-controls,
-.session-actions,
 .button-row {
   display: flex;
   flex-wrap: wrap;
@@ -93,14 +124,11 @@ button {
   gap: 8px;
 }
 
-.topbar-controls {
-  justify-content: flex-end;
-}
-
 .session-name {
   color: var(--muted);
   font-size: 13px;
   font-weight: 800;
+  padding: 8px 10px 4px;
 }
 
 .tab-nav {
@@ -131,9 +159,100 @@ button {
   color: #fff;
 }
 
+.menu-shell {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.menu-button {
+  display: grid;
+  gap: 4px;
+  width: 42px;
+  height: 42px;
+  place-content: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.menu-button span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--text);
+}
+
+.user-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  display: none;
+  min-width: 190px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 8px;
+}
+
+body[data-menu="open"] .user-menu {
+  display: grid;
+  gap: 8px;
+}
+
+.refresh-progress {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: -1px;
+  display: none;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.refresh-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--green);
+  transform-origin: left center;
+}
+
+body[data-refreshing="true"] .refresh-progress {
+  display: block;
+}
+
+body[data-refreshing="true"] .refresh-progress span {
+  animation: refresh-progress 820ms ease-out both;
+}
+
+@keyframes refresh-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
 body[data-auth="signed-out"] .signed-in-only,
 body[data-auth="signed-in"] .signed-out-only {
   display: none;
+}
+
+body[data-auth="signed-out"] .tab-nav,
+body[data-admin="false"] .admin-only {
+  display: none;
+}
+
+body[data-admin="false"] .tab-nav {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .tab-panel {
@@ -214,6 +333,17 @@ label {
   color: var(--muted);
   font-size: 13px;
   font-weight: 700;
+}
+
+.check-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+}
+
+.check-label input {
+  width: auto;
 }
 
 input,
@@ -541,15 +671,21 @@ textarea:focus {
   font-weight: 800;
 }
 
+.app-footer {
+  padding: 20px 0 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+
 @media (max-width: 940px) {
   .topbar {
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
   }
 
-  .topbar-controls {
-    width: 100%;
-    justify-content: flex-start;
+  .nav-left {
+    flex-wrap: wrap;
   }
 
   body[data-tab="admin"] [data-tab-panel="admin"] {
@@ -566,7 +702,12 @@ textarea:focus {
     padding: 12px;
   }
 
-  .topbar h1 {
+  .topbar {
+    margin: 0 -12px;
+    padding: 8px 12px;
+  }
+
+  .page-title h1 {
     font-size: 24px;
   }
 
@@ -594,7 +735,9 @@ textarea:focus {
     width: 100%;
   }
 
-  .session-actions {
-    width: 100%;
+  .brand-wordmark {
+    max-width: 122px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

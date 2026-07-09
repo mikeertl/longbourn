@@ -3,14 +3,18 @@
 
   var STATE_STORAGE_KEY = "longbourn-state-v2";
   var USERS_STORAGE_KEY = "longbourn-users-v1";
+  var PENDING_STATE_STORAGE_KEY = "longbourn-pending-state-v1";
   var TOKEN_STORAGE_KEY = "longbourn-github-token";
   var USER_STORAGE_KEY = "longbourn-user-id";
+  var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
+  var APP_VERSION = "2026.07.09.3";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
   var STATE_PATH = "data/current.json";
   var USERS_PATH = "data/users.json";
   var RETENTION_MONTHS = 6;
+  var PENDING_TTL_MS = 24 * 60 * 60 * 1000;
   var TIMES = ["08:00", "09:00", "10:30", "11:45", "13:00"];
   var DEFAULT_ENABLED_TIMES = ["10:30", "11:45"];
   var WEEKDAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -38,7 +42,7 @@
   var state = createEmptyState();
   var users = DEFAULT_USERS.slice();
   var draftAvailability = {};
-  var session = { token: "", userId: "" };
+  var session = { token: "", userId: "", isAdmin: false };
   var activeTab = "games";
   var saveChain = Promise.resolve();
   var el = {};
@@ -49,8 +53,9 @@
     cacheElements();
     bindEvents();
     setDefaultMonth();
-    users = readStoredUsers() || DEFAULT_USERS.slice();
+    users = readStoredUsers() || sortUsersByName(DEFAULT_USERS);
     state = normalizeState(readStoredState() || createEmptyState());
+    state = newestState(state, readStoredPendingState());
     loadStoredSession();
     syncStatePlayersWithUsers();
     renderUserSelects();
@@ -82,11 +87,16 @@
       "gamesTabButton",
       "availabilityTabButton",
       "adminTabButton",
+      "brandHomeButton",
+      "menuButton",
+      "userMenu",
       "refreshButton",
       "signOutButton",
+      "refreshProgress",
       "sessionName",
       "signInUserSelect",
       "signInTokenInput",
+      "signInAdminCheckbox",
       "signInButton",
       "signInStatus",
       "gamesList",
@@ -105,7 +115,6 @@
       "monthInput",
       "venueInput",
       "createMonthButton",
-      "addSlotButton",
       "slotsList",
       "setupStatus",
       "newUserInput",
@@ -114,14 +123,28 @@
       "usersStatus",
       "profileUserSelect",
       "profileTokenInput",
+      "profileAdminCheckbox",
       "saveProfileButton",
       "profileStatus",
+      "appVersion",
     ].forEach(function (id) {
       el[id] = document.getElementById(id);
     });
   }
 
   function bindEvents() {
+    el.brandHomeButton.addEventListener("click", function () {
+      setTab("games", true);
+    });
+    el.menuButton.addEventListener("click", function (event) {
+      event.stopPropagation();
+      toggleMenu();
+    });
+    document.addEventListener("click", function (event) {
+      if (!el.userMenu.contains(event.target) && !el.menuButton.contains(event.target)) {
+        toggleMenu(false);
+      }
+    });
     el.signInButton.addEventListener("click", signIn);
     el.gamesTabButton.addEventListener("click", function () {
       setTab("games", true);
@@ -133,6 +156,7 @@
       setTab("admin", true);
     });
     el.refreshButton.addEventListener("click", function () {
+      toggleMenu(false);
       refreshSharedData(false);
     });
     el.signOutButton.addEventListener("click", signOut);
@@ -140,7 +164,6 @@
     el.allocateButton.addEventListener("click", handleAllocateClick);
     el.manualAddPlayerButton.addEventListener("click", addManualPlayerToSlot);
     el.createMonthButton.addEventListener("click", createMonthFromForm);
-    el.addSlotButton.addEventListener("click", addManualSlot);
     el.venueInput.addEventListener("change", function () {
       state.venue = el.venueInput.value.trim() || "Longbourn";
       saveCurrentState("setup", "Venue saved.");
@@ -158,6 +181,7 @@
     }
     session.token = token;
     session.userId = userId;
+    session.isAdmin = el.signInAdminCheckbox.checked;
     storeSession();
     setAuth(true);
     syncProfileInputs();
@@ -168,14 +192,16 @@
   }
 
   function signOut() {
-    session = { token: "", userId: "" };
+    session = { token: "", userId: "", isAdmin: false };
     try {
       window.localStorage.removeItem(TOKEN_STORAGE_KEY);
       window.localStorage.removeItem(USER_STORAGE_KEY);
+      window.localStorage.removeItem(ADMIN_STORAGE_KEY);
     } catch (error) {
       console.warn("Could not clear session", error);
     }
     draftAvailability = {};
+    toggleMenu(false);
     setAuth(false);
     renderAll();
   }
@@ -189,6 +215,7 @@
     }
     session.token = token;
     session.userId = userId;
+    session.isAdmin = el.profileAdminCheckbox.checked;
     storeSession();
     loadDraftForSession();
     setAuth(true);
@@ -198,17 +225,30 @@
 
   function setAuth(isSignedIn) {
     document.body.dataset.auth = isSignedIn ? "signed-in" : "signed-out";
+    document.body.dataset.admin = isSignedIn && session.isAdmin ? "true" : "false";
+    if ((!isSignedIn || !session.isAdmin) && activeTab === "admin") {
+      setTab("games", false);
+    }
   }
 
   function setTab(tab, shouldRefresh) {
     activeTab = ["games", "availability", "admin"].indexOf(tab) >= 0 ? tab : "games";
+    if (activeTab === "admin" && !session.isAdmin) activeTab = "games";
     document.body.dataset.tab = activeTab;
     el.gamesTabButton.classList.toggle("active", activeTab === "games");
     el.availabilityTabButton.classList.toggle("active", activeTab === "availability");
     el.adminTabButton.classList.toggle("active", activeTab === "admin");
+    toggleMenu(false);
     if (hasSession() && shouldRefresh) {
       refreshSharedData(true);
     }
+  }
+
+  function toggleMenu(forceOpen) {
+    var shouldOpen =
+      typeof forceOpen === "boolean" ? forceOpen : document.body.dataset.menu !== "open";
+    document.body.dataset.menu = shouldOpen ? "open" : "closed";
+    if (el.menuButton) el.menuButton.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
   }
 
   function hasSession() {
@@ -219,20 +259,23 @@
     try {
       session.token = window.localStorage.getItem(TOKEN_STORAGE_KEY) || "";
       session.userId = window.localStorage.getItem(USER_STORAGE_KEY) || "";
+      session.isAdmin = window.localStorage.getItem(ADMIN_STORAGE_KEY) === "true";
       el.signInTokenInput.value = session.token;
+      el.signInAdminCheckbox.checked = session.isAdmin;
     } catch (error) {
       console.warn("Could not read session", error);
     }
   }
 
   function setDefaultMonth() {
-    el.monthInput.value = currentMonthKey();
+    el.monthInput.value = addMonthsToMonthKey(currentMonthKey(), 1);
   }
 
   function storeSession() {
     try {
       window.localStorage.setItem(TOKEN_STORAGE_KEY, session.token);
       window.localStorage.setItem(USER_STORAGE_KEY, session.userId);
+      window.localStorage.setItem(ADMIN_STORAGE_KEY, session.isAdmin ? "true" : "false");
     } catch (error) {
       console.warn("Could not store session", error);
     }
@@ -248,6 +291,9 @@
       availability: {},
       allocations: {},
       changes: [],
+      updatedAt: "",
+      updatedBy: "",
+      manualEditedAt: "",
     };
   }
 
@@ -258,6 +304,9 @@
     next.availability = next.availability || {};
     next.allocations = next.allocations || {};
     next.changes = Array.isArray(next.changes) ? next.changes : [];
+    next.updatedAt = next.updatedAt || latestChangeAt(next.changes) || "";
+    next.updatedBy = next.updatedBy || "";
+    next.manualEditedAt = next.manualEditedAt || "";
     return pruneOldState(next);
   }
 
@@ -265,13 +314,13 @@
     var list = input && Array.isArray(input.users) ? input.users : input;
     if (!Array.isArray(list) || !list.length) list = DEFAULT_USERS;
     var seen = {};
-    return list
+    return sortUsersByName(list
       .map(function (user) {
         var name = typeof user === "string" ? user : user && user.name;
         var id = typeof user === "object" && user.id ? user.id : slugify(name);
         return name ? { id: uniqueUserId(id, seen), name: String(name).trim() } : null;
       })
-      .filter(Boolean);
+      .filter(Boolean));
   }
 
   function uniqueUserId(id, seen) {
@@ -297,6 +346,22 @@
     }
   }
 
+  function readStoredPendingState() {
+    try {
+      var stored = window.localStorage.getItem(PENDING_STATE_STORAGE_KEY);
+      if (!stored) return null;
+      var pending = JSON.parse(stored);
+      if (!pending || !pending.state || isPendingExpired(pending.savedAt)) {
+        window.localStorage.removeItem(PENDING_STATE_STORAGE_KEY);
+        return null;
+      }
+      return normalizeState(pending.state);
+    } catch (error) {
+      console.warn("Could not read pending state", error);
+      return null;
+    }
+  }
+
   function readStoredUsers() {
     try {
       var stored = window.localStorage.getItem(USERS_STORAGE_KEY);
@@ -315,6 +380,76 @@
     }
   }
 
+  function savePendingStateLocal() {
+    try {
+      window.localStorage.setItem(
+        PENDING_STATE_STORAGE_KEY,
+        JSON.stringify({ savedAt: nowIso(), state: state })
+      );
+    } catch (error) {
+      console.warn("Could not save pending state", error);
+    }
+  }
+
+  function clearPendingStateLocal() {
+    try {
+      window.localStorage.removeItem(PENDING_STATE_STORAGE_KEY);
+    } catch (error) {
+      console.warn("Could not clear pending state", error);
+    }
+  }
+
+  function startRefreshFeedback() {
+    if (el.refreshButton) el.refreshButton.disabled = true;
+    document.body.dataset.refreshing = "true";
+  }
+
+  function finishRefreshFeedback() {
+    window.setTimeout(function () {
+      if (el.refreshButton) el.refreshButton.disabled = false;
+      document.body.dataset.refreshing = "false";
+    }, 250);
+  }
+
+  function stampStateUpdate() {
+    state.updatedAt = nowIso();
+    state.updatedBy = session.userId || "";
+  }
+
+  function markManualAllocationChange() {
+    state.manualEditedAt = nowIso();
+  }
+
+  function newestState(first, second) {
+    if (!first) return second;
+    if (!second) return first;
+    return compareStateTimes(second, first) > 0 ? second : first;
+  }
+
+  function compareStateTimes(first, second) {
+    return stateTime(first) - stateTime(second);
+  }
+
+  function stateTime(value) {
+    var time = Date.parse((value && value.updatedAt) || "");
+    return Number.isNaN(time) ? 0 : time;
+  }
+
+  function latestChangeAt(changes) {
+    var latest = "";
+    (changes || []).forEach(function (entry) {
+      if (entry && entry.at && (!latest || Date.parse(entry.at) > Date.parse(latest))) {
+        latest = entry.at;
+      }
+    });
+    return latest;
+  }
+
+  function isPendingExpired(savedAt) {
+    var time = Date.parse(savedAt || "");
+    return Number.isNaN(time) || Date.now() - time > PENDING_TTL_MS;
+  }
+
   function saveUsersLocal() {
     try {
       window.localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify({ users: users }));
@@ -324,10 +459,11 @@
   }
 
   function refreshSharedData(silent) {
+    startRefreshFeedback();
     if (!silent) setStatus(activeTab, "Loading latest data...");
     return Promise.all([fetchStateFile(), fetchUsersFile()])
       .then(function (results) {
-        if (results[0]) state = normalizeState(results[0]);
+        var refreshResult = applyIncomingState(results[0] ? normalizeState(results[0]) : null, !silent);
         if (results[1]) users = normalizeUsers(results[1]);
         syncStatePlayersWithUsers();
         saveStateLocal();
@@ -336,13 +472,57 @@
         syncProfileInputs();
         loadDraftForSession();
         renderAll();
-        if (!silent) setStatus(activeTab, "Latest data loaded.");
+        if (!silent) {
+          setStatus(activeTab, refreshResult.message || "Latest data loaded.");
+        }
         return autoAllocateIfDue();
       })
       .catch(function (error) {
         if (!silent) setStatus(activeTab, "Could not load latest data.");
         console.warn("Could not refresh shared data", error);
+      })
+      .then(function (result) {
+        finishRefreshFeedback();
+        return result;
+      }, function (error) {
+        finishRefreshFeedback();
+        throw error;
       });
+  }
+
+  function applyIncomingState(incoming, alertIfChangedByOthers) {
+    if (!incoming) return { applied: false, message: "No shared rota found yet." };
+
+    var pending = readStoredPendingState();
+    if (pending && compareStateTimes(incoming, pending) < 0) {
+      state = newestState(state, pending);
+      return {
+        applied: false,
+        message: "Your latest change is saved locally while GitHub catches up.",
+      };
+    }
+
+    if (pending) clearPendingStateLocal();
+
+    if (!pending && compareStateTimes(incoming, state) < 0) {
+      return {
+        applied: false,
+        message: "Kept your newer local changes.",
+      };
+    }
+
+    if (
+      alertIfChangedByOthers &&
+      state.updatedAt &&
+      compareStateTimes(incoming, state) > 0 &&
+      incoming.updatedBy &&
+      incoming.updatedBy !== session.userId
+    ) {
+      window.alert("Changes made by other players. Press OK to continue with refreshed data.");
+    }
+
+    state = incoming;
+    return { applied: true, message: "Latest data loaded." };
   }
 
   function fetchStateFile() {
@@ -383,8 +563,10 @@
   function saveCurrentState(statusTarget, successMessage) {
     if (!requireToken(statusTarget)) return Promise.resolve(false);
     syncStatePlayersWithUsers();
+    stampStateUpdate();
     state = pruneOldState(state);
     saveStateLocal();
+    savePendingStateLocal();
     renderAll();
     setStatus(statusTarget, "Saving...");
     return saveJsonFile(STATE_PATH, state, "Update Longbourn shared rota")
@@ -401,6 +583,7 @@
 
   function saveUsersFile(statusTarget, successMessage) {
     if (!requireToken(statusTarget)) return Promise.resolve(false);
+    users = sortUsersByName(users);
     saveUsersLocal();
     renderUserSelects();
     syncProfileInputs();
@@ -496,7 +679,8 @@
 
   function renderAll() {
     el.sessionName.textContent = session.userId ? playerName(session.userId) : "";
-    el.monthInput.value = state.month || el.monthInput.value;
+    el.appVersion.textContent = APP_VERSION;
+    el.monthInput.value = el.monthInput.value || state.month || addMonthsToMonthKey(currentMonthKey(), 1);
     el.venueInput.value = state.venue || "Longbourn";
     renderUserSelects();
     syncProfileInputs();
@@ -512,14 +696,14 @@
   function renderUserSelects() {
     fillUserSelect(el.signInUserSelect, session.userId);
     fillUserSelect(el.profileUserSelect, session.userId);
-    fillUserSelect(el.manualUserSelect, session.userId);
+    fillUserSelect(el.manualUserSelect, el.manualUserSelect.value || session.userId);
   }
 
   function fillUserSelect(select, selectedId) {
     if (!select) return;
     var current = selectedId || select.value;
     select.innerHTML = "";
-    users.forEach(function (user) {
+    sortUsersByName(users).forEach(function (user) {
       var option = document.createElement("option");
       option.value = user.id;
       option.textContent = user.name;
@@ -533,6 +717,8 @@
   function syncProfileInputs() {
     el.signInTokenInput.value = session.token || el.signInTokenInput.value || "";
     el.profileTokenInput.value = session.token || "";
+    el.signInAdminCheckbox.checked = session.isAdmin;
+    el.profileAdminCheckbox.checked = session.isAdmin;
     if (session.userId) {
       el.signInUserSelect.value = session.userId;
       el.profileUserSelect.value = session.userId;
@@ -580,7 +766,7 @@
     var players = document.createElement("div");
     players.className = "schedule-players";
     allocation.players.forEach(function (playerId) {
-      players.appendChild(readOnlyChip("player-chip", playerName(playerId)));
+      players.appendChild(schedulePlayerChip(slot.id, playerId));
     });
     for (var index = allocation.players.length; index < 4; index += 1) {
       players.appendChild(readOnlyChip("empty-chip", "-"));
@@ -588,8 +774,34 @@
     allocation.yellowCandidates.forEach(function (playerId) {
       players.appendChild(readOnlyChip("candidate-chip", "*" + playerName(playerId)));
     });
+    if (hasSession() && allocation.players.indexOf(session.userId) < 0) {
+      var addMe = document.createElement("button");
+      addMe.type = "button";
+      addMe.className = "button secondary schedule-action";
+      addMe.textContent = "Add me";
+      addMe.addEventListener("click", function () {
+        addSelfToGame(slot.id);
+      });
+      players.appendChild(addMe);
+    }
     row.appendChild(players);
     return row;
+  }
+
+  function schedulePlayerChip(slotId, playerId) {
+    var chip = readOnlyChip("player-chip", playerName(playerId));
+    if (hasSession() && playerId === session.userId) {
+      var remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "chip-button";
+      remove.title = "Remove yourself from this game";
+      remove.textContent = "x";
+      remove.addEventListener("click", function () {
+        removeSelfFromGame(slotId);
+      });
+      chip.appendChild(remove);
+    }
+    return chip;
   }
 
   function renderAvailabilityGrid() {
@@ -597,16 +809,16 @@
     el.availabilityTitle.textContent =
       "Availability - " + name + " - " + availabilityTitleRange();
     el.availabilityGrid.innerHTML = "";
-    if (!enabledSlots().length) {
+    if (!availabilitySlots().length) {
       var empty = document.createElement("p");
       empty.className = "allocation-note";
-      empty.textContent = "No games have been set up yet.";
+      empty.textContent = "No games have been set up for next month yet.";
       el.availabilityGrid.appendChild(empty);
       return;
     }
 
-    scheduleMonthKeys().forEach(function (monthKey) {
-      var slots = enabledSlots().filter(function (slot) {
+    availabilityMonthKeys().forEach(function (monthKey) {
+      var slots = availabilitySlots().filter(function (slot) {
         return slot.date.slice(0, 7) === monthKey;
       });
       if (!slots.length) return;
@@ -664,7 +876,19 @@
     }
     var green = [];
     var yellow = [];
+    var visibleSlotIds = {};
+    availabilitySlots().forEach(function (slot) {
+      visibleSlotIds[slot.id] = true;
+    });
+    var existing = state.availability[session.userId] || {};
+    green = (existing.green || []).filter(function (slotId) {
+      return !visibleSlotIds[slotId];
+    });
+    yellow = (existing.yellow || []).filter(function (slotId) {
+      return !visibleSlotIds[slotId];
+    });
     Object.keys(draftAvailability).forEach(function (slotId) {
+      if (!visibleSlotIds[slotId]) return;
       if (draftAvailability[slotId] === "green") green.push(slotId);
       if (draftAvailability[slotId] === "yellow") yellow.push(slotId);
     });
@@ -738,7 +962,7 @@
 
   function createMonthFromForm() {
     if (!requireToken("setup")) return;
-    var month = el.monthInput.value || currentMonthKey();
+    var month = el.monthInput.value || addMonthsToMonthKey(currentMonthKey(), 1);
     var parts = month.split("-").map(Number);
     var year = parts[0];
     var monthIndex = parts[1] - 1;
@@ -789,20 +1013,6 @@
     });
   }
 
-  function addManualSlot() {
-    if (!requireToken("setup")) return;
-    var date = state.slots[0] ? state.slots[0].date : firstFridayInMonth();
-    state.slots.push({
-      id: makeSlotId(date, "10:30"),
-      date: date,
-      time: "10:30",
-      enabled: true,
-    });
-    refreshSlotIds();
-    state.changes.push(change("slot-added", "Added a slot"));
-    saveCurrentState("setup", "Slot added.");
-  }
-
   function removeSlot(slotId) {
     if (!window.confirm("Remove this slot?")) return;
     state.slots = state.slots.filter(function (slot) {
@@ -822,11 +1032,12 @@
   }
 
   function renderAllocationControls() {
-    fillSlotSelect(el.manualSlotSelect);
+    fillSlotSelect(el.manualSlotSelect, el.manualSlotSelect.value);
     fillUserSelect(el.manualUserSelect, el.manualUserSelect.value || session.userId);
   }
 
-  function fillSlotSelect(select) {
+  function fillSlotSelect(select, selectedId) {
+    var current = selectedId || select.value;
     select.innerHTML = "";
     enabledSlots().forEach(function (slot) {
       var option = document.createElement("option");
@@ -834,6 +1045,7 @@
       option.textContent = formatSlotDate(slot.date) + " " + slot.time;
       select.appendChild(option);
     });
+    if (current && getSlot(current)) select.value = current;
   }
 
   function renderSummary() {
@@ -934,6 +1146,11 @@
     addPlayerToAllocation(slotId, playerId, "allocation", "Player added.");
   }
 
+  function addSelfToGame(slotId) {
+    if (!requireToken("games")) return;
+    addPlayerToAllocation(slotId, session.userId, "games", "You were added to this game.");
+  }
+
   function addPlayerToAllocation(slotId, playerId, statusTarget, message) {
     var allocation = allocationForSlot(slotId);
     if (allocation.players.indexOf(playerId) >= 0) {
@@ -950,12 +1167,23 @@
     });
     state.allocations[slotId] = allocation;
     state.players[playerId] = { name: playerName(playerId) };
+    markManualAllocationChange();
     state.changes.push(change("allocation-add", "Added " + playerName(playerId) + " to " + slotId));
     saveCurrentState(statusTarget, message);
   }
 
   function removePlayerFromAllocation(slotId, playerId) {
     if (!window.confirm("Remove " + playerName(playerId) + " from this game?")) return;
+    removePlayerFromSlot(slotId, playerId, "allocation", "Player removed from this game.");
+  }
+
+  function removeSelfFromGame(slotId) {
+    if (!requireToken("games")) return;
+    if (!window.confirm("Remove yourself from this game?")) return;
+    removePlayerFromSlot(slotId, session.userId, "games", "You were removed from this game.");
+  }
+
+  function removePlayerFromSlot(slotId, playerId, statusTarget, message) {
     var allocation = allocationForSlot(slotId);
     allocation.players = allocation.players.filter(function (id) {
       return id !== playerId;
@@ -967,8 +1195,9 @@
       return id !== playerId;
     });
     state.allocations[slotId] = allocation;
+    markManualAllocationChange();
     state.changes.push(change("allocation-remove", "Removed " + playerName(playerId) + " from " + slotId));
-    saveCurrentState("allocation", "Player removed from this game.");
+    saveCurrentState(statusTarget, message);
   }
 
   function handleAllocateClick() {
@@ -980,7 +1209,18 @@
         "). Are you sure?";
       if (!window.confirm(message)) return;
     }
-    runAllocationAndSave("Allocation saved.", "Manual allocation");
+    var keepExisting = true;
+    if (hasAllocationsInMonth(autoAllocationMonthKey())) {
+      keepExisting = window.confirm(
+        "Manual allocation changes already exist.\n\nOK keeps manual edits and auto allocates around them.\nCancel lets you auto allocate from scratch."
+      );
+      if (!keepExisting) {
+        if (!window.confirm("Manual changes will be deleted. Are you sure?")) return;
+      }
+    }
+    runAllocationAndSave("Auto allocation saved.", "Auto allocation", false, {
+      keepExisting: keepExisting,
+    });
   }
 
   function autoAllocateIfDue() {
@@ -988,15 +1228,19 @@
     var month = currentMonthKey();
     var lastFriday = lastFridayOfMonth(month);
     if (startOfDay(new Date()) < lastFriday) return Promise.resolve(false);
-    var hasCurrentSlots = enabledSlots().some(function (slot) {
-      return slot.date.slice(0, 7) === month;
+    if (!autoAllocationSlots().length) return Promise.resolve(false);
+    return runAllocationAndSave("Automatic allocation updated.", "Automatic allocation", true, {
+      keepExisting: true,
     });
-    if (!hasCurrentSlots) return Promise.resolve(false);
-    return runAllocationAndSave("Automatic allocation updated.", "Automatic allocation", true);
   }
 
-  function runAllocationAndSave(successMessage, reason, onlyIfChanged) {
-    var changed = allocate(reason);
+  function runAllocationAndSave(successMessage, reason, onlyIfChanged, options) {
+    options = options || {};
+    if (!autoAllocationSlots().length) {
+      setStatus("allocation", "No enabled games for " + formatMonthHeading(autoAllocationMonthKey()) + ".");
+      return Promise.resolve(false);
+    }
+    var changed = allocate(reason, options);
     renderAll();
     if (!changed && onlyIfChanged) return Promise.resolve(false);
     if (!changed) {
@@ -1006,29 +1250,65 @@
     return saveCurrentState(activeTab === "games" ? "games" : "allocation", successMessage);
   }
 
-  function allocate(reason) {
-    var nextAllocations = buildAllocations();
+  function allocate(reason, options) {
+    var nextAllocations = buildAllocations(options || {});
     var changed = JSON.stringify(nextAllocations) !== JSON.stringify(state.allocations || {});
     state.allocations = nextAllocations;
     if (changed) state.changes.push(change("allocate", reason || "Allocated games"));
     return changed;
   }
 
-  function buildAllocations() {
+  function buildAllocations(options) {
+    options = options || {};
+    var targetSlots = autoAllocationSlots();
+    var targetSlotIds = {};
     var allocations = {};
     var allocationCount = {};
+    Object.keys(state.allocations || {}).forEach(function (slotId) {
+      var allocation = allocationForSlot(slotId);
+      var slot = getSlot(slotId);
+      if (slot && targetSlots.some(function (targetSlot) { return targetSlot.id === slotId; })) {
+        targetSlotIds[slotId] = true;
+        if (options.keepExisting) {
+          allocations[slotId] = allocation;
+        }
+        return;
+      }
+      if (allocation.players.length || allocation.yellowCandidates.length) {
+        allocations[slotId] = allocation;
+      }
+    });
+
+    targetSlots.forEach(function (slot) {
+      targetSlotIds[slot.id] = true;
+      if (!allocations[slot.id]) {
+        allocations[slot.id] = { players: [], yellowCandidates: [], confirmed: [] };
+      }
+    });
+
     users.forEach(function (user) {
       allocationCount[user.id] = 0;
     });
 
-    uniqueDates(enabledSlots()).forEach(function (date) {
-      var daySlots = enabledSlots().filter(function (slot) {
+    Object.keys(targetSlotIds).forEach(function (slotId) {
+      (allocations[slotId].players || []).forEach(function (playerId) {
+        allocationCount[playerId] = (allocationCount[playerId] || 0) + 1;
+      });
+    });
+
+    uniqueDates(targetSlots).forEach(function (date) {
+      var daySlots = targetSlots.filter(function (slot) {
         return slot.date === date;
       });
       var dayAssigned = {};
 
       daySlots.forEach(function (slot) {
-        allocations[slot.id] = { players: [], yellowCandidates: [], confirmed: [] };
+        allocations[slot.id].players = allocations[slot.id].players.filter(isActiveUser);
+        allocations[slot.id].confirmed = allocations[slot.id].players.slice();
+        allocations[slot.id].yellowCandidates = [];
+        allocations[slot.id].players.forEach(function (playerId) {
+          dayAssigned[playerId] = slot.id;
+        });
       });
 
       daySlots
@@ -1044,8 +1324,8 @@
             })
             .sort(function (a, b) {
               return (
-                dayYellowOptions(a, date).length - dayYellowOptions(b, date).length ||
-                dayGreenOptions(a, date).length - dayGreenOptions(b, date).length ||
+                dayYellowOptions(a, date, targetSlots).length - dayYellowOptions(b, date, targetSlots).length ||
+                dayGreenOptions(a, date, targetSlots).length - dayGreenOptions(b, date, targetSlots).length ||
                 (allocationCount[a] || 0) - (allocationCount[b] || 0) ||
                 stableHash(a + slot.id) - stableHash(b + slot.id)
               );
@@ -1071,7 +1351,7 @@
             .sort(function (a, b) {
               return (
                 (allocationCount[a] || 0) - (allocationCount[b] || 0) ||
-                dayGreenOptions(a, date).length - dayGreenOptions(b, date).length ||
+                dayGreenOptions(a, date, targetSlots).length - dayGreenOptions(b, date, targetSlots).length ||
                 stableHash(a + slot.id + "yellow") - stableHash(b + slot.id + "yellow")
               );
             })
@@ -1134,16 +1414,16 @@
     });
   }
 
-  function dayGreenOptions(playerId, date) {
+  function dayGreenOptions(playerId, date, slots) {
     var availability = state.availability[playerId] || {};
-    return enabledSlots().filter(function (slot) {
+    return (slots || enabledSlots()).filter(function (slot) {
       return slot.date === date && (availability.green || []).indexOf(slot.id) >= 0;
     });
   }
 
-  function dayYellowOptions(playerId, date) {
+  function dayYellowOptions(playerId, date, slots) {
     var availability = state.availability[playerId] || {};
-    return enabledSlots().filter(function (slot) {
+    return (slots || enabledSlots()).filter(function (slot) {
       return slot.date === date && (availability.yellow || []).indexOf(slot.id) >= 0;
     });
   }
@@ -1182,6 +1462,7 @@
     });
     var user = { id: uniqueUserId(slugify(name), seen), name: name };
     users.push(user);
+    users = sortUsersByName(users);
     state.players[user.id] = { name: user.name };
     el.newUserInput.value = "";
     saveUsersFile("users", "User added.").then(function () {
@@ -1196,6 +1477,7 @@
     users = users.filter(function (item) {
       return item.id !== userId;
     });
+    users = sortUsersByName(users);
     delete state.players[userId];
     delete state.availability[userId];
     Object.keys(state.allocations).forEach(function (slotId) {
@@ -1227,6 +1509,14 @@
   function isActiveUser(userId) {
     return users.some(function (user) {
       return user.id === userId;
+    });
+  }
+
+  function sortUsersByName(list) {
+    return (list || []).slice().sort(function (a, b) {
+      return String(a.name || "").localeCompare(String(b.name || ""), "en-GB", {
+        sensitivity: "base",
+      });
     });
   }
 
@@ -1398,18 +1688,48 @@
   }
 
   function availabilityTitleRange() {
-    var months = scheduleMonthKeys().filter(function (monthKey) {
-      return enabledSlots().some(function (slot) {
+    var months = availabilityMonthKeys().filter(function (monthKey) {
+      return availabilitySlots().some(function (slot) {
         return slot.date.slice(0, 7) === monthKey;
       });
     });
-    if (!months.length) months = [currentMonthKey()];
+    if (!months.length) months = availabilityMonthKeys();
     return months.map(formatMonthHeading).join(" and ");
   }
 
   function scheduleMonthKeys() {
     var month = currentMonthKey();
     return [month, addMonthsToMonthKey(month, 1)];
+  }
+
+  function availabilityMonthKeys() {
+    return [addMonthsToMonthKey(currentMonthKey(), 1)];
+  }
+
+  function availabilitySlots() {
+    var months = availabilityMonthKeys();
+    return enabledSlots().filter(function (slot) {
+      return months.indexOf(slot.date.slice(0, 7)) >= 0;
+    });
+  }
+
+  function autoAllocationMonthKey() {
+    return addMonthsToMonthKey(currentMonthKey(), 1);
+  }
+
+  function autoAllocationSlots() {
+    var month = autoAllocationMonthKey();
+    return enabledSlots().filter(function (slot) {
+      return slot.date.slice(0, 7) === month;
+    });
+  }
+
+  function hasAllocationsInMonth(monthKey) {
+    return enabledSlots().some(function (slot) {
+      if (slot.date.slice(0, 7) !== monthKey) return false;
+      var allocation = allocationForSlot(slot.id);
+      return allocation.players.length || allocation.yellowCandidates.length;
+    });
   }
 
   function addMonthsToMonthKey(monthKey, offset) {
@@ -1421,15 +1741,6 @@
   function currentMonthKey() {
     var now = new Date();
     return now.getFullYear() + "-" + pad(now.getMonth() + 1);
-  }
-
-  function firstFridayInMonth() {
-    var parts = (state.month || currentMonthKey()).split("-").map(Number);
-    for (var day = 1; day <= 7; day += 1) {
-      var date = new Date(parts[0], parts[1] - 1, day);
-      if (date.getDay() === 5) return toDateKey(date);
-    }
-    return toDateKey(new Date());
   }
 
   function lastFridayOfMonth(monthKey) {

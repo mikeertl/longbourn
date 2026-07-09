@@ -5,28 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Longbourn Allocation</title>
     <meta name="theme-color" content="#1f5d42" />
-    <link rel="manifest" href="manifest.webmanifest?v=20260709b" />
-    <link rel="icon" href="icons/longbourn-racquets.svg?v=20260709b" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=20260709b" />
-    <link rel="stylesheet" href="styles.css?v=20260709b" />
+    <link rel="manifest" href="manifest.webmanifest?v=20260709c" />
+    <link rel="icon" href="icons/longbourn-racquets.svg?v=20260709c" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=20260709c" />
+    <link rel="stylesheet" href="styles.css?v=20260709c" />
   </head>
-  <body data-auth="signed-out" data-tab="games">
+  <body data-auth="signed-out" data-admin="false" data-menu="closed" data-refreshing="false" data-tab="games">
     <div class="app-shell">
       <header class="topbar">
-        <div class="brand">
+        <div class="nav-left">
+        <button id="brandHomeButton" class="brand" type="button">
           <img
             class="brand-icon"
             src="icons/longbourn-racquets.svg"
             alt=""
             aria-hidden="true"
           />
-          <div>
-            <p class="eyebrow">Longbourn tennis</p>
-            <h1>Friday court allocation</h1>
-          </div>
-        </div>
+          <span class="brand-wordmark">Longbourn tennis</span>
+        </button>
 
-        <div class="topbar-controls signed-in-only">
           <nav class="tab-nav" aria-label="Main sections">
             <button id="gamesTabButton" class="tab-button active" type="button">
               Games
@@ -34,11 +31,25 @@
             <button id="availabilityTabButton" class="tab-button" type="button">
               Availability
             </button>
-            <button id="adminTabButton" class="tab-button" type="button">
+            <button id="adminTabButton" class="tab-button admin-only" type="button">
               Admin
             </button>
           </nav>
-          <div class="session-actions">
+        </div>
+
+        <div class="menu-shell signed-in-only">
+          <button
+            id="menuButton"
+            class="menu-button"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div id="userMenu" class="user-menu">
             <span id="sessionName" class="session-name"></span>
             <button id="refreshButton" class="button secondary" type="button">
               Refresh
@@ -48,9 +59,17 @@
             </button>
           </div>
         </div>
+        <div id="refreshProgress" class="refresh-progress" aria-hidden="true">
+          <span></span>
+        </div>
       </header>
 
       <main>
+        <section class="page-title">
+          <p class="eyebrow">Longbourn tennis</p>
+          <h1>Friday court allocation</h1>
+        </section>
+
         <section class="panel sign-in-panel signed-out-only" aria-labelledby="signin-title">
           <div class="section-title-row">
             <div>
@@ -72,6 +91,10 @@
                 autocomplete="off"
                 placeholder="github_pat_..."
               />
+            </label>
+            <label class="check-label admin-choice">
+              <input id="signInAdminCheckbox" type="checkbox" />
+              Admin
             </label>
           </div>
 
@@ -136,7 +159,7 @@
                   <p>Yellow players are used automatically unless they would play twice.</p>
                 </div>
                 <button id="allocateButton" class="button primary" type="button">
-                  Allocate
+                  Auto Allocate
                 </button>
               </div>
 
@@ -181,9 +204,6 @@
               <div class="button-row">
                 <button id="createMonthButton" class="button primary" type="button">
                   Create remaining Fridays
-                </button>
-                <button id="addSlotButton" class="button secondary" type="button">
-                  Add slot
                 </button>
               </div>
 
@@ -242,6 +262,11 @@
                 />
               </label>
 
+              <label class="check-label">
+                <input id="profileAdminCheckbox" type="checkbox" />
+                Show Admin tab
+              </label>
+
               <div class="button-row">
                 <button id="saveProfileButton" class="button primary" type="button">
                   Save profile
@@ -253,6 +278,9 @@
           </section>
         </div>
       </main>
+      <footer class="app-footer">
+        Version <span id="appVersion">2026.07.09.3</span>
+      </footer>
     </div>
 
     <template id="slotTemplate">
@@ -267,6 +295,6 @@
       </div>
     </template>
 
-    <script src="app.js?v=20260709b"></script>
+    <script src="app.js?v=20260709c"></script>
   </body>
 </html>
