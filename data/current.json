@@ -194,12 +194,6 @@
       "date": "2026-08-28",
       "time": "09:00",
       "enabled": false
-    },
-    {
-      "id": "2026-08-28T11:45",
-      "date": "2026-08-28",
-      "time": "11:45",
-      "enabled": true
     }
   ],
   "players": {
@@ -962,9 +956,14 @@
       "type": "slot-removed",
       "text": "Removed 2026-08-21T10:30",
       "at": "2026-07-09T17:01:55.387Z"
+    },
+    {
+      "type": "slot-removed",
+      "text": "Removed 2026-08-28T11:45",
+      "at": "2026-07-09T17:01:57.705Z"
     }
   ],
-  "updatedAt": "2026-07-09T17:01:55.387Z",
+  "updatedAt": "2026-07-09T17:01:57.705Z",
   "updatedBy": "mike-ertl",
   "manualEditedAt": "2026-07-09T17:00:02.684Z"
 }
