@@ -231,14 +231,12 @@
     },
     "2026-07-17T11:45": {
       "players": [
-        "ertl-e",
         "goran-g",
         "adam-aaa",
         "derek-d"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "ertl-e",
         "goran-g",
         "adam-aaa",
         "derek-d"
@@ -490,6 +488,11 @@
       "type": "allocation-remove",
       "text": "Removed Derek D from 2026-07-17T10:30",
       "at": "2026-07-09T10:53:01.224Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Ertl E from 2026-07-17T11:45",
+      "at": "2026-07-09T10:53:04.119Z"
     }
   ]
 }
