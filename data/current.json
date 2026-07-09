@@ -444,12 +444,14 @@
     "2026-07-31T10:30": {
       "players": [
         "chris-dalley",
-        "jo-tr"
+        "jo-tr",
+        "david-taylor"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "chris-dalley",
-        "jo-tr"
+        "jo-tr",
+        "david-taylor"
       ]
     }
   },
@@ -923,9 +925,14 @@
       "type": "allocation-add",
       "text": "Added Jo TR to 2026-07-31T10:30",
       "at": "2026-07-09T16:58:42.170Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added David Taylor to 2026-07-31T10:30",
+      "at": "2026-07-09T16:58:49.499Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:58:42.170Z",
+  "updatedAt": "2026-07-09T16:58:49.499Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:58:42.170Z"
+  "manualEditedAt": "2026-07-09T16:58:49.499Z"
 }
