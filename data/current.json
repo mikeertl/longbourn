@@ -425,6 +425,15 @@
         "chris-dalley",
         "phil-charles"
       ]
+    },
+    "2026-07-24T11:45": {
+      "players": [
+        "akiko"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "akiko"
+      ]
     }
   },
   "changes": [
@@ -867,9 +876,14 @@
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-07-24T10:30",
       "at": "2026-07-09T16:57:36.962Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Akiko to 2026-07-24T11:45",
+      "at": "2026-07-09T16:57:54.412Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:57:36.962Z",
+  "updatedAt": "2026-07-09T16:57:54.412Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:57:36.962Z"
+  "manualEditedAt": "2026-07-09T16:57:54.412Z"
 }
