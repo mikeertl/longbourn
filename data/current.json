@@ -414,12 +414,14 @@
     "2026-07-24T10:30": {
       "players": [
         "anthea",
-        "david-taylor"
+        "david-taylor",
+        "chris-dalley"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "anthea",
-        "david-taylor"
+        "david-taylor",
+        "chris-dalley"
       ]
     }
   },
@@ -853,9 +855,14 @@
       "type": "allocation-add",
       "text": "Added David Taylor to 2026-07-24T10:30",
       "at": "2026-07-09T16:57:10.283Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Chris Dalley to 2026-07-24T10:30",
+      "at": "2026-07-09T16:57:17.092Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:57:10.283Z",
+  "updatedAt": "2026-07-09T16:57:17.092Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:57:10.283Z"
+  "manualEditedAt": "2026-07-09T16:57:17.092Z"
 }
