@@ -300,13 +300,11 @@
     "2026-07-10T11:45": {
       "players": [
         "catty-ccc",
-        "betty-bbb",
         "goran-g"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "catty-ccc",
-        "betty-bbb",
         "goran-g"
       ]
     },
@@ -476,6 +474,11 @@
       "type": "allocation-remove",
       "text": "Removed Ertl E from 2026-07-10T11:45",
       "at": "2026-07-09T10:52:44.626Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Betty BBB from 2026-07-10T11:45",
+      "at": "2026-07-09T10:52:47.193Z"
     }
   ]
 }
