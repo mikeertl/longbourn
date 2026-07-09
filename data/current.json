@@ -365,9 +365,13 @@
       "updatedAt": "2026-07-08T19:53:09.424Z"
     },
     "mike-ertl": {
-      "green": [],
+      "green": [
+        "2026-08-07T11:45",
+        "2026-08-14T11:45",
+        "2026-08-21T11:45"
+      ],
       "yellow": [],
-      "updatedAt": "2026-07-09T17:06:44.385Z"
+      "updatedAt": "2026-07-09T18:21:16.717Z"
     }
   },
   "allocations": {
@@ -1052,9 +1056,14 @@
       "type": "month-created",
       "text": "Created 2026-08",
       "at": "2026-07-09T17:07:21.069Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Mike Ertl",
+      "at": "2026-07-09T18:21:16.718Z"
     }
   ],
-  "updatedAt": "2026-07-09T17:07:21.069Z",
+  "updatedAt": "2026-07-09T18:21:16.718Z",
   "updatedBy": "mike-ertl",
   "manualEditedAt": "2026-07-09T17:00:02.684Z"
 }
