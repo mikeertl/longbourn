@@ -221,13 +221,11 @@
   "allocations": {
     "2026-07-10T10:30": {
       "players": [
-        "catty-ccc",
-        "derek-d"
+        "catty-ccc"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "catty-ccc",
-        "derek-d"
+        "catty-ccc"
       ]
     },
     "2026-07-17T10:30": {
@@ -469,6 +467,11 @@
       "type": "allocation-remove",
       "text": "Removed Betty BBB from 2026-07-10T10:30",
       "at": "2026-07-09T10:52:27.825Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Derek D from 2026-07-10T10:30",
+      "at": "2026-07-09T10:52:30.363Z"
     }
   ]
 }
