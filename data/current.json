@@ -460,13 +460,15 @@
       "players": [
         "akiko",
         "mike-ertl",
-        "arda"
+        "arda",
+        "phil-charles"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "akiko",
         "mike-ertl",
-        "arda"
+        "arda",
+        "phil-charles"
       ]
     }
   },
@@ -965,9 +967,14 @@
       "type": "allocation-add",
       "text": "Added Arda to 2026-07-31T11:45",
       "at": "2026-07-09T16:59:57.230Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-07-31T11:45",
+      "at": "2026-07-09T17:00:02.684Z"
     }
   ],
-  "updatedAt": "2026-07-09T16:59:57.230Z",
+  "updatedAt": "2026-07-09T17:00:02.684Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T16:59:57.230Z"
+  "manualEditedAt": "2026-07-09T17:00:02.684Z"
 }
