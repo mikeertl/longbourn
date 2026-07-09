@@ -366,12 +366,14 @@
     "2026-07-10T08:00": {
       "players": [
         "mike-ertl",
-        "chris-danzinger"
+        "chris-danzinger",
+        "arda"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
-        "chris-danzinger"
+        "chris-danzinger",
+        "arda"
       ]
     },
     "2026-07-17T11:45": {
@@ -759,6 +761,14 @@
       "type": "allocation-add",
       "text": "Added Chris Danzinger to 2026-07-10T08:00",
       "at": "2026-07-09T15:08:44.691Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Arda to 2026-07-10T08:00",
+      "at": "2026-07-09T16:52:45.576Z"
     }
-  ]
+  ],
+  "updatedAt": "2026-07-09T16:52:45.576Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-07-09T16:52:45.576Z"
 }
