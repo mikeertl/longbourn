@@ -7,7 +7,7 @@
       "id": "2026-07-10T08:00",
       "date": "2026-07-10",
       "time": "08:00",
-      "enabled": true
+      "enabled": false
     },
     {
       "id": "2026-07-10T09:00",
@@ -37,7 +37,7 @@
       "id": "2026-07-17T08:00",
       "date": "2026-07-17",
       "time": "08:00",
-      "enabled": true
+      "enabled": false
     },
     {
       "id": "2026-07-17T09:00",
@@ -530,6 +530,11 @@
       "type": "month-created",
       "text": "Created 2026-07",
       "at": "2026-07-09T11:29:55.133Z"
+    },
+    {
+      "type": "month-created",
+      "text": "Created 2026-07",
+      "at": "2026-07-09T11:30:44.424Z"
     }
   ]
 }
