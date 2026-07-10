@@ -373,13 +373,15 @@
       "players": [
         "mike-ertl",
         "arda",
-        "phil-charles"
+        "phil-charles",
+        "ellen"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
         "arda",
-        "phil-charles"
+        "phil-charles",
+        "ellen"
       ]
     },
     "2026-07-31T10:30": {
@@ -420,17 +422,12 @@
   },
   "allocatedMonths": {
     "2026-07": {
-      "allocatedAt": "2026-07-10T13:55:49.875Z",
+      "allocatedAt": "2026-07-10T14:01:50.701Z",
       "allocatedBy": "mike-ertl",
       "automatic": false
     }
   },
   "changes": [
-    {
-      "type": "slot-added",
-      "text": "Added a slot",
-      "at": "2026-07-09T11:31:09.537Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Mike Ertl to 2026-07-10T08:00",
@@ -725,9 +722,14 @@
       "type": "allocation-remove",
       "text": "Removed Akiko from 2026-07-24T11:45",
       "at": "2026-07-10T14:01:21.811Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Ellen to 2026-07-24T11:45",
+      "at": "2026-07-10T14:01:50.701Z"
     }
   ],
-  "updatedAt": "2026-07-10T14:01:21.811Z",
+  "updatedAt": "2026-07-10T14:01:50.701Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-10T14:01:21.811Z"
+  "manualEditedAt": "2026-07-10T14:01:50.701Z"
 }
