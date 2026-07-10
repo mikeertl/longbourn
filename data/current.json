@@ -358,13 +358,15 @@
       "players": [
         "anthea",
         "david-taylor",
-        "chris-dalley"
+        "chris-dalley",
+        "rachel"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "anthea",
         "david-taylor",
-        "chris-dalley"
+        "chris-dalley",
+        "rachel"
       ]
     },
     "2026-07-24T11:45": {
@@ -420,17 +422,12 @@
   },
   "allocatedMonths": {
     "2026-07": {
-      "allocatedAt": "2026-07-10T13:55:27.763Z",
+      "allocatedAt": "2026-07-10T13:55:49.875Z",
       "allocatedBy": "mike-ertl",
       "automatic": false
     }
   },
   "changes": [
-    {
-      "type": "month-created",
-      "text": "Created 2026-07",
-      "at": "2026-07-09T11:30:44.424Z"
-    },
     {
       "type": "slot-added",
       "text": "Added a slot",
@@ -725,9 +722,14 @@
       "type": "allocation-add",
       "text": "Added Michael W-M to 2026-07-17T11:45",
       "at": "2026-07-10T13:55:27.763Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Rachel to 2026-07-24T10:30",
+      "at": "2026-07-10T13:55:49.875Z"
     }
   ],
-  "updatedAt": "2026-07-10T13:55:27.763Z",
+  "updatedAt": "2026-07-10T13:55:49.875Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-10T13:55:27.763Z"
+  "manualEditedAt": "2026-07-10T13:55:49.875Z"
 }
