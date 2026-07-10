@@ -31,3 +31,7 @@ Green availability means preferred. Yellow availability means willing to play if
 it helps fill the court. A yellow player is allocated automatically unless that
 would make them play twice on the same day, in which case the Admin allocation
 screen shows them as needing confirmation.
+
+In Admin Allocation, each unfilled player position has an `Add player` button.
+The button opens a player picker inside that game, so manual changes remain
+visible even when the organiser has scrolled down the allocation list.

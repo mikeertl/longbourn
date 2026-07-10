@@ -8,7 +8,7 @@
     <link rel="manifest" href="manifest.webmanifest?v=20260710b" />
     <link rel="icon" href="icons/longbourn-racquets.svg?v=20260710b" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=20260710b" />
-    <link rel="stylesheet" href="styles.css?v=20260710b" />
+    <link rel="stylesheet" href="styles.css?v=20260710c" />
   </head>
   <body data-auth="signed-out" data-admin="false" data-menu="closed" data-refreshing="false" data-tab="games">
     <div class="app-shell">
@@ -169,7 +169,7 @@
                 </button>
                 <div>
                   <h2 id="allocation-title">Allocation</h2>
-                  <p>Current-month games can be edited here.</p>
+                  <p>Use Add player in any open position.</p>
                 </div>
                 <div class="button-row">
                   <button id="allocateButton" class="button primary" type="button">
@@ -180,20 +180,6 @@
 
               <div class="panel-content">
                 <p id="allocationAutoNote" class="allocation-note"></p>
-
-                <div class="allocation-add-row">
-                  <label>
-                    Date and time
-                    <select id="manualSlotSelect"></select>
-                  </label>
-                  <label>
-                    Player
-                    <select id="manualUserSelect"></select>
-                  </label>
-                  <button id="manualAddPlayerButton" class="button secondary" type="button">
-                    Add player
-                  </button>
-                </div>
 
                 <div id="summaryBar" class="summary-bar"></div>
                 <div id="allocationList" class="allocation-list"></div>
@@ -369,7 +355,7 @@
         </div>
       </main>
       <footer class="app-footer">
-        Version <span id="appVersion">2026.07.10.2</span>
+        Version <span id="appVersion">2026.07.10.3</span>
       </footer>
     </div>
 
@@ -385,6 +371,6 @@
       </div>
     </template>
 
-    <script src="app.js?v=20260710b"></script>
+    <script src="app.js?v=20260710c"></script>
   </body>
 </html>

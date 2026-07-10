@@ -400,7 +400,6 @@ textarea:focus {
 }
 
 .form-grid,
-.allocation-add-row,
 .user-add-row {
   display: grid;
   gap: 10px;
@@ -410,11 +409,6 @@ textarea:focus {
 .form-grid {
   grid-template-columns: 1fr 1fr;
   margin-bottom: 12px;
-}
-
-.allocation-add-row {
-  grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr) auto;
-  margin-bottom: 14px;
 }
 
 .user-add-row {
@@ -703,6 +697,29 @@ textarea:focus {
   color: var(--muted);
 }
 
+.allocation-slot-add {
+  min-height: 30px;
+  border: 1px dashed var(--green);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--green);
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.allocation-player-picker {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto;
+  align-items: end;
+  gap: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px;
+}
+
 .chip-button {
   border: 0;
   background: transparent;
@@ -870,7 +887,7 @@ textarea:focus {
   }
 
   .form-grid,
-  .allocation-add-row,
+  .allocation-player-picker,
   .user-add-row,
   .slot-row,
   .availability-row,

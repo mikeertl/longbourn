@@ -7,7 +7,7 @@
   var TOKEN_STORAGE_KEY = "longbourn-github-token";
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
-  var APP_VERSION = "2026.07.10.2";
+  var APP_VERSION = "2026.07.10.3";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
@@ -106,9 +106,6 @@
       "availabilityStatus",
       "allocateButton",
       "allocationAutoNote",
-      "manualSlotSelect",
-      "manualUserSelect",
-      "manualAddPlayerButton",
       "summaryBar",
       "allocationList",
       "allocationStatus",
@@ -163,7 +160,6 @@
     el.signOutButton.addEventListener("click", signOut);
     el.submitAvailabilityButton.addEventListener("click", submitAvailability);
     el.allocateButton.addEventListener("click", handleAllocateClick);
-    el.manualAddPlayerButton.addEventListener("click", addManualPlayerToSlot);
     el.createMonthButton.addEventListener("click", createMonthFromForm);
     el.venueInput.addEventListener("change", function () {
       state.venue = el.venueInput.value.trim() || "Longbourn";
@@ -745,7 +741,6 @@
     renderGames();
     renderAvailabilityGrid();
     renderSlots();
-    renderAllocationControls();
     renderSummary();
     renderAllocations();
     renderResponses();
@@ -755,7 +750,6 @@
   function renderUserSelects() {
     fillUserSelect(el.signInUserSelect, session.userId);
     fillUserSelect(el.profileUserSelect, session.userId);
-    fillUserSelect(el.manualUserSelect, el.manualUserSelect.value || session.userId);
   }
 
   function fillUserSelect(select, selectedId) {
@@ -1171,23 +1165,6 @@
     saveCurrentState("setup", "Slot removed.");
   }
 
-  function renderAllocationControls() {
-    fillSlotSelect(el.manualSlotSelect, el.manualSlotSelect.value);
-    fillUserSelect(el.manualUserSelect, el.manualUserSelect.value || session.userId);
-  }
-
-  function fillSlotSelect(select, selectedId) {
-    var current = selectedId || select.value;
-    select.innerHTML = "";
-    adminAllocationSlots().forEach(function (slot) {
-      var option = document.createElement("option");
-      option.value = slot.id;
-      option.textContent = formatSlotDate(slot.date) + " " + slot.time;
-      select.appendChild(option);
-    });
-    if (current && getSlot(current)) select.value = current;
-  }
-
   function renderSummary() {
     var playerCount = Object.keys(state.players).length;
     var slotCount = adminAllocationSlots().length;
@@ -1228,7 +1205,7 @@
         players.appendChild(playerChip(slot.id, playerId));
       });
       for (var index = allocation.players.length; index < 4; index += 1) {
-        players.appendChild(readOnlyChip("empty-chip", "-"));
+        players.appendChild(allocationAddButton(slot, index + 1));
       }
       card.appendChild(players);
 
@@ -1319,6 +1296,97 @@
     return chip;
   }
 
+  function allocationAddButton(slot, position) {
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "allocation-slot-add";
+    button.textContent = "+ Add player";
+    button.setAttribute(
+      "aria-label",
+      "Add player in position " + position + " to " + formatSlotFull(slot)
+    );
+    button.addEventListener("click", function () {
+      showAllocationPlayerPicker(slot, button);
+    });
+    return button;
+  }
+
+  function showAllocationPlayerPicker(slot, sourceButton) {
+    var playerList = sourceButton.parentNode;
+    var card = sourceButton.closest(".allocation-card");
+    if (!card || !playerList) return;
+
+    var existingPicker = card.querySelector(".allocation-player-picker");
+    if (existingPicker) {
+      existingPicker.querySelector("select").focus();
+      return;
+    }
+
+    var allocation = allocationForSlot(slot.id);
+    var availableUsers = sortUsersByName(users).filter(function (user) {
+      return allocation.players.indexOf(user.id) < 0;
+    });
+    if (!availableUsers.length) {
+      setStatus("allocation", "There are no other players to add to this game.");
+      return;
+    }
+
+    var picker = document.createElement("div");
+    picker.className = "allocation-player-picker";
+
+    var label = document.createElement("label");
+    label.textContent = "Player";
+    var select = document.createElement("select");
+    select.setAttribute("aria-label", "Player to add to " + formatSlotFull(slot));
+
+    var placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Choose player";
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    select.appendChild(placeholder);
+
+    availableUsers.forEach(function (user) {
+      var option = document.createElement("option");
+      option.value = user.id;
+      option.textContent = user.name;
+      select.appendChild(option);
+    });
+    label.appendChild(select);
+    picker.appendChild(label);
+
+    var actions = document.createElement("div");
+    actions.className = "button-row";
+
+    var add = document.createElement("button");
+    add.type = "button";
+    add.className = "button primary";
+    add.textContent = "Add player";
+    add.disabled = true;
+    select.addEventListener("change", function () {
+      add.disabled = !select.value;
+    });
+    add.addEventListener("click", function () {
+      if (!select.value) return;
+      addPlayerToAllocation(slot.id, select.value, "allocation", "Player added.");
+    });
+    actions.appendChild(add);
+
+    var cancel = document.createElement("button");
+    cancel.type = "button";
+    cancel.className = "button secondary";
+    cancel.textContent = "Cancel";
+    cancel.addEventListener("click", function () {
+      picker.remove();
+      sourceButton.focus();
+    });
+    actions.appendChild(cancel);
+    picker.appendChild(actions);
+
+    card.insertBefore(picker, playerList.nextSibling);
+    select.focus();
+  }
+
   function candidateChip(slotId, playerId) {
     var chip = readOnlyChip("candidate-chip", "*" + playerName(playerId));
     var confirm = document.createElement("button");
@@ -1341,16 +1409,6 @@
     });
     chip.appendChild(remove);
     return chip;
-  }
-
-  function addManualPlayerToSlot() {
-    var slotId = el.manualSlotSelect.value;
-    var playerId = el.manualUserSelect.value;
-    if (!slotId || !playerId) {
-      setStatus("allocation", "Choose a game and player.");
-      return;
-    }
-    addPlayerToAllocation(slotId, playerId, "allocation", "Player added.");
   }
 
   function addSelfToGame(slotId) {
