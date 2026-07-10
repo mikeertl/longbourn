@@ -431,22 +431,25 @@
         "arda",
         "phil-charles"
       ]
+    },
+    "2026-07-10T10:30": {
+      "players": [
+        "mike-ertl"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "mike-ertl"
+      ]
     }
   },
   "allocatedMonths": {
     "2026-07": {
-      "allocatedAt": "2026-07-09T18:21:16.718Z",
+      "allocatedAt": "2026-07-10T06:15:29.068Z",
       "allocatedBy": "mike-ertl",
-      "automatic": false,
-      "inferred": true
+      "automatic": false
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed Goran G from 2026-07-24T11:45",
-      "at": "2026-07-09T10:54:34.841Z"
-    },
     {
       "type": "allocation-remove",
       "text": "Removed Adam AAA from 2026-07-24T11:45",
@@ -741,9 +744,14 @@
       "type": "availability",
       "text": "Saved availability for Mike Ertl",
       "at": "2026-07-09T18:21:16.718Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Mike Ertl to 2026-07-10T10:30",
+      "at": "2026-07-10T06:15:29.068Z"
     }
   ],
-  "updatedAt": "2026-07-10T06:13:17.613Z",
+  "updatedAt": "2026-07-10T06:15:29.068Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-09T17:00:02.684Z"
+  "manualEditedAt": "2026-07-10T06:15:29.068Z"
 }
