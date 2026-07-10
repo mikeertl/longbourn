@@ -7,7 +7,7 @@
   var TOKEN_STORAGE_KEY = "longbourn-github-token";
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
-  var APP_VERSION = "2026.07.10.1";
+  var APP_VERSION = "2026.07.10.2";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
@@ -2002,7 +2002,20 @@
   }
 
   function adminAllocationSlots() {
-    return slotsForMonth(currentMonthKey(), true);
+    var currentMonth = currentMonthKey();
+    var nextMonth = autoAllocationMonthKey();
+    if (!isMonthAllocated(nextMonth)) return slotsForMonth(currentMonth, true);
+    return unstartedAllocationDaySlots(currentMonth, nextMonth)
+      .concat(slotsForMonth(nextMonth, true))
+      .sort(compareSlots);
+  }
+
+  function unstartedAllocationDaySlots(currentMonth, nextMonth) {
+    var now = new Date();
+    if (toDateKey(now) !== toDateKey(allocationDateForMonth(nextMonth))) return [];
+    return slotsForMonth(currentMonth, true).filter(function (slot) {
+      return slot.date === toDateKey(now) && slotStartDate(slot) > now;
+    });
   }
 
   function ensureDefaultMonthSlots(monthKey) {
@@ -2187,6 +2200,12 @@
   function parseDateKey(dateKey) {
     var parts = String(dateKey).split("-").map(Number);
     return new Date(parts[0], parts[1] - 1, parts[2]);
+  }
+
+  function slotStartDate(slot) {
+    var date = parseDateKey(slot.date);
+    var time = String(slot.time || "00:00").split(":").map(Number);
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate(), time[0] || 0, time[1] || 0);
   }
 
   function isValidDateKey(dateKey) {
