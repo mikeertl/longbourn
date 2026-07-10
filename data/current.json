@@ -328,15 +328,13 @@
       "players": [
         "mike-ertl",
         "chris-dalley",
-        "arda",
-        "phil-charles"
+        "arda"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
         "chris-dalley",
-        "arda",
-        "phil-charles"
+        "arda"
       ]
     },
     "2026-07-17T10:30": {
@@ -720,9 +718,14 @@
       "type": "allocation-remove",
       "text": "Removed Phil Charles from 2026-07-24T10:30",
       "at": "2026-07-10T13:47:27.070Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Phil Charles from 2026-07-17T11:45",
+      "at": "2026-07-10T13:47:56.560Z"
     }
   ],
-  "updatedAt": "2026-07-10T13:47:27.070Z",
+  "updatedAt": "2026-07-10T13:47:56.560Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-07-10T13:47:27.070Z"
+  "manualEditedAt": "2026-07-10T13:47:56.560Z"
 }
