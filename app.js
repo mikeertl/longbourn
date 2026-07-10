@@ -7,7 +7,7 @@
   var TOKEN_STORAGE_KEY = "longbourn-github-token";
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
-  var APP_VERSION = "2026.07.09.6";
+  var APP_VERSION = "2026.07.10.1";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
@@ -268,8 +268,13 @@
   }
 
   function updateCollapseButton(button, isCollapsed) {
-    button.textContent = isCollapsed ? "Expand" : "Collapse";
+    var target = document.getElementById(button.dataset.collapseTarget);
+    var titleId = target && target.getAttribute("aria-labelledby");
+    var title = titleId ? document.getElementById(titleId) : null;
+    var name = title ? title.textContent : "section";
+    button.textContent = isCollapsed ? "+" : "-";
     button.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
+    button.setAttribute("aria-label", (isCollapsed ? "Expand " : "Collapse ") + name);
   }
 
   function hasSession() {
@@ -323,7 +328,7 @@
 
   function normalizeState(input) {
     var next = Object.assign(createEmptyState(), input || {});
-    next.slots = Array.isArray(next.slots) ? next.slots : [];
+    next.slots = normalizeSlots(next.slots);
     next.players = next.players || {};
     next.availability = next.availability || {};
     next.allocations = next.allocations || {};
@@ -1043,25 +1048,57 @@
     ].forEach(function (group) {
       var section = document.createElement("section");
       section.className = "slot-month";
+      section.dataset.collapsed = "false";
+      var headingId = "slot-month-" + group.monthKey;
+      var headingRow = document.createElement("div");
+      headingRow.className = "slot-month-heading";
+
+      var toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = "collapse-icon-button small";
+      toggle.textContent = "-";
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-controls", headingId + "-content");
+      toggle.setAttribute("aria-label", "Collapse " + group.label);
+
       var heading = document.createElement("h3");
+      heading.id = headingId;
       heading.textContent = group.label + " - " + formatMonthHeading(group.monthKey);
-      section.appendChild(heading);
+      headingRow.appendChild(toggle);
+      headingRow.appendChild(heading);
+      section.appendChild(headingRow);
+
+      var content = document.createElement("div");
+      content.id = headingId + "-content";
+      content.className = "slot-month-content";
+
+      toggle.addEventListener("click", function () {
+        var isCollapsed = section.dataset.collapsed === "true";
+        section.dataset.collapsed = isCollapsed ? "false" : "true";
+        toggle.textContent = isCollapsed ? "-" : "+";
+        toggle.setAttribute("aria-expanded", isCollapsed ? "true" : "false");
+        toggle.setAttribute(
+          "aria-label",
+          (isCollapsed ? "Collapse " : "Expand ") + group.label
+        );
+      });
 
       var note = document.createElement("p");
       note.className = "allocation-note";
       note.textContent = "Disable a slot to hide it from games. Delete slot removes that date/time and its saved responses.";
-      section.appendChild(note);
+      content.appendChild(note);
 
       var slots = slotsForMonth(group.monthKey, false);
       if (!slots.length) {
         var empty = document.createElement("p");
         empty.className = "allocation-note";
         empty.textContent = "No slots yet. Use Create/update default slots for this month.";
-        section.appendChild(empty);
+        content.appendChild(empty);
       }
       slots.forEach(function (slot) {
-        section.appendChild(slotRow(slot));
+        content.appendChild(slotRow(slot));
       });
+      section.appendChild(content);
       el.slotsList.appendChild(section);
     });
   }
@@ -1809,7 +1846,7 @@
     var activeMonths = activeMonthMap();
     var keptSlotIds = {};
 
-    next.slots = (next.slots || []).filter(function (slot) {
+    next.slots = normalizeSlots(next.slots).filter(function (slot) {
       if (!slot || !slot.date || !isValidDateKey(slot.date)) return false;
       return !!activeMonths[slot.date.slice(0, 7)];
     });
@@ -1831,12 +1868,12 @@
 
     Object.keys(next.availability || {}).forEach(function (playerId) {
       var availability = next.availability[playerId] || {};
-      availability.green = (availability.green || []).filter(function (slotId) {
+      availability.green = uniqueList((availability.green || []).filter(function (slotId) {
         return keptSlotIds[slotId];
-      });
-      availability.yellow = (availability.yellow || []).filter(function (slotId) {
+      }));
+      availability.yellow = uniqueList((availability.yellow || []).filter(function (slotId) {
         return keptSlotIds[slotId];
-      });
+      }));
       next.availability[playerId] = availability;
       if (
         !availability.green.length &&
@@ -1862,25 +1899,75 @@
     });
   }
 
+  function normalizeSlots(slots) {
+    var seen = {};
+    var normalized = [];
+    (Array.isArray(slots) ? slots : []).forEach(function (slot) {
+      if (!slot || !slot.date || !slot.time || !isValidDateKey(slot.date)) return;
+      var time = String(slot.time).slice(0, 5);
+      var id = makeSlotId(slot.date, time);
+      if (seen[id]) {
+        if (slot.enabled !== false) seen[id].enabled = true;
+        return;
+      }
+      var nextSlot = {
+        id: id,
+        date: slot.date,
+        time: time,
+        enabled: slot.enabled !== false,
+      };
+      seen[id] = nextSlot;
+      normalized.push(nextSlot);
+    });
+    return normalized.sort(compareSlots);
+  }
+
   function refreshSlotIds() {
     var idMap = {};
     state.slots.forEach(function (slot) {
       var oldId = slot.id;
+      slot.time = String(slot.time).slice(0, 5);
       slot.id = makeSlotId(slot.date, slot.time);
       idMap[oldId] = slot.id;
     });
     Object.keys(state.availability).forEach(function (playerId) {
       ["green", "yellow"].forEach(function (key) {
-        state.availability[playerId][key] = (state.availability[playerId][key] || []).map(function (id) {
+        state.availability[playerId][key] = uniqueList((state.availability[playerId][key] || []).map(function (id) {
           return idMap[id] || id;
-        });
+        }));
       });
     });
+    var allocations = {};
     Object.keys(state.allocations).forEach(function (slotId) {
-      if (idMap[slotId]) {
-        state.allocations[idMap[slotId]] = state.allocations[slotId];
-        delete state.allocations[slotId];
-      }
+      var nextId = idMap[slotId] || slotId;
+      allocations[nextId] = mergeAllocationRecords(allocations[nextId], state.allocations[slotId]);
+    });
+    state.allocations = allocations;
+    state.slots = normalizeSlots(state.slots);
+  }
+
+  function mergeAllocationRecords(first, second) {
+    var firstAllocation = first || {};
+    var secondAllocation = second || {};
+    return {
+      players: uniqueList(
+        (firstAllocation.players || []).concat(secondAllocation.players || [])
+      ),
+      yellowCandidates: uniqueList(
+        (firstAllocation.yellowCandidates || []).concat(secondAllocation.yellowCandidates || [])
+      ),
+      confirmed: uniqueList(
+        (firstAllocation.confirmed || []).concat(secondAllocation.confirmed || [])
+      ),
+    };
+  }
+
+  function uniqueList(list) {
+    var seen = {};
+    return (list || []).filter(function (item) {
+      if (seen[item]) return false;
+      seen[item] = true;
+      return true;
     });
   }
 

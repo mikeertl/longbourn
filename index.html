@@ -5,24 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Longbourn Allocation</title>
     <meta name="theme-color" content="#1f5d42" />
-    <link rel="manifest" href="manifest.webmanifest?v=20260709f" />
-    <link rel="icon" href="icons/longbourn-racquets.svg?v=20260709f" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=20260709f" />
-    <link rel="stylesheet" href="styles.css?v=20260709f" />
+    <link rel="manifest" href="manifest.webmanifest?v=20260710a" />
+    <link rel="icon" href="icons/longbourn-racquets.svg?v=20260710a" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=20260710a" />
+    <link rel="stylesheet" href="styles.css?v=20260710a" />
   </head>
   <body data-auth="signed-out" data-admin="false" data-menu="closed" data-refreshing="false" data-tab="games">
     <div class="app-shell">
       <header class="topbar">
         <div class="nav-left">
-        <button id="brandHomeButton" class="brand" type="button">
-          <img
-            class="brand-icon"
-            src="icons/longbourn-racquets.svg"
-            alt=""
-            aria-hidden="true"
-          />
-          <span class="brand-wordmark">Longbourn tennis</span>
-        </button>
+          <button id="brandHomeButton" class="brand" type="button">
+            <img
+              class="brand-icon"
+              src="icons/longbourn-racquets.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span class="brand-wordmark">Longbourn tennis</span>
+          </button>
 
           <nav class="tab-nav" aria-label="Main sections">
             <button id="gamesTabButton" class="tab-button active" type="button">
@@ -158,19 +158,20 @@
               data-collapsed="true"
               aria-labelledby="allocation-title"
             >
-              <div class="section-title-row">
+              <div class="section-title-row collapsible-title-row">
+                <button
+                  class="collapse-icon-button"
+                  type="button"
+                  data-collapse-target="allocationPanel"
+                  aria-label="Expand Allocation"
+                >
+                  +
+                </button>
                 <div>
                   <h2 id="allocation-title">Allocation</h2>
                   <p>Current-month games can be edited here.</p>
                 </div>
                 <div class="button-row">
-                  <button
-                    class="button secondary collapse-button"
-                    type="button"
-                    data-collapse-target="allocationPanel"
-                  >
-                    Expand
-                  </button>
                   <button id="allocateButton" class="button primary" type="button">
                     Allocate
                   </button>
@@ -200,15 +201,30 @@
               </div>
             </section>
 
-            <section class="panel responses-panel" aria-labelledby="responses-title">
-              <div class="section-title-row">
+            <section
+              id="responsesPanel"
+              class="panel responses-panel collapsible-panel"
+              data-collapsed="false"
+              aria-labelledby="responses-title"
+            >
+              <div class="section-title-row collapsible-title-row">
+                <button
+                  class="collapse-icon-button"
+                  type="button"
+                  data-collapse-target="responsesPanel"
+                  aria-label="Collapse Responses so far"
+                >
+                  -
+                </button>
                 <div>
                   <h2 id="responses-title">Responses so far</h2>
                   <p>Next-month green and yellow availability.</p>
                 </div>
               </div>
 
-              <div id="responsesList" class="responses-list"></div>
+              <div class="panel-content">
+                <div id="responsesList" class="responses-list"></div>
+              </div>
             </section>
 
             <section
@@ -217,18 +233,19 @@
               data-collapsed="false"
               aria-labelledby="setup-title"
             >
-              <div class="section-title-row">
-                <div>
-                  <h2 id="setup-title">Month setup</h2>
-                  <p>Create the remaining Fridays, then enable the court times.</p>
-                </div>
+              <div class="section-title-row collapsible-title-row">
                 <button
-                  class="button secondary collapse-button"
+                  class="collapse-icon-button"
                   type="button"
                   data-collapse-target="setupPanel"
+                  aria-label="Collapse Month setup"
                 >
-                  Collapse
+                  -
                 </button>
+                <div>
+                  <h2 id="setup-title">Month setup</h2>
+                  <p>This setup repeats month to month and only needs changing when time slots change.</p>
+                </div>
               </div>
 
               <div class="panel-content">
@@ -266,18 +283,19 @@
               data-collapsed="false"
               aria-labelledby="users-title"
             >
-              <div class="section-title-row">
+              <div class="section-title-row collapsible-title-row">
+                <button
+                  class="collapse-icon-button"
+                  type="button"
+                  data-collapse-target="usersPanel"
+                  aria-label="Collapse Users"
+                >
+                  -
+                </button>
                 <div>
                   <h2 id="users-title">Users</h2>
                   <p>Names shown here are used in the sign-in dropdown.</p>
                 </div>
-                <button
-                  class="button secondary collapse-button"
-                  type="button"
-                  data-collapse-target="usersPanel"
-                >
-                  Collapse
-                </button>
               </div>
 
               <div class="panel-content">
@@ -296,47 +314,62 @@
               </div>
             </section>
 
-            <section class="panel profile-panel" aria-labelledby="profile-title">
-              <div class="section-title-row">
+            <section
+              id="profilePanel"
+              class="panel profile-panel collapsible-panel"
+              data-collapsed="false"
+              aria-labelledby="profile-title"
+            >
+              <div class="section-title-row collapsible-title-row">
+                <button
+                  class="collapse-icon-button"
+                  type="button"
+                  data-collapse-target="profilePanel"
+                  aria-label="Collapse My Profile"
+                >
+                  -
+                </button>
                 <div>
                   <h2 id="profile-title">My Profile</h2>
                   <p>Your name and token are saved only in this browser.</p>
                 </div>
               </div>
 
-              <label>
-                Name
-                <select id="profileUserSelect"></select>
-              </label>
+              <div class="panel-content">
+                <label>
+                  Name
+                  <select id="profileUserSelect"></select>
+                </label>
 
-              <label>
-                GitHub token
-                <input
-                  id="profileTokenInput"
-                  type="password"
-                  autocomplete="off"
-                  placeholder="github_pat_..."
-                />
-              </label>
+                <label>
+                  GitHub token
+                  <input
+                    id="profileTokenInput"
+                    type="password"
+                    autocomplete="off"
+                    placeholder="github_pat_..."
+                  />
+                </label>
 
-              <label class="check-label">
-                <input id="profileAdminCheckbox" type="checkbox" />
-                Show Admin tab
-              </label>
+                <label class="check-label">
+                  <input id="profileAdminCheckbox" type="checkbox" />
+                  Show Admin tab
+                </label>
 
-              <div class="button-row">
-                <button id="saveProfileButton" class="button primary" type="button">
-                  Save profile
-                </button>
+                <div class="button-row">
+                  <button id="saveProfileButton" class="button primary" type="button">
+                    Save profile
+                  </button>
+                </div>
+
+                <div id="profileStatus" class="status-line" role="status"></div>
               </div>
-
-              <div id="profileStatus" class="status-line" role="status"></div>
             </section>
           </section>
         </div>
       </main>
       <footer class="app-footer">
-        Version <span id="appVersion">2026.07.09.6</span>
+        Version <span id="appVersion">2026.07.10.1</span>
       </footer>
     </div>
 
@@ -352,6 +385,6 @@
       </div>
     </template>
 
-    <script src="app.js?v=20260709f"></script>
+    <script src="app.js?v=20260710a"></script>
   </body>
 </html>

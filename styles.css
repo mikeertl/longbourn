@@ -311,12 +311,34 @@ body[data-tab="admin"] [data-tab-panel="admin"] {
   margin-bottom: 14px;
 }
 
+.collapsible-title-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+}
+
 .collapsible-panel[data-collapsed="true"] .panel-content {
   display: none;
 }
 
-.collapse-button {
-  min-width: 90px;
+.collapse-icon-button {
+  display: inline-grid;
+  width: 32px;
+  height: 32px;
+  place-content: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-soft);
+  color: var(--blue);
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.collapse-icon-button.small {
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
 }
 
 h2,
@@ -533,6 +555,27 @@ textarea:focus {
 .availability-month,
 .schedule-month,
 .slot-month {
+  display: grid;
+  gap: 10px;
+}
+
+.slot-month-heading {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+.slot-month[data-collapsed="true"] .slot-month-content {
+  display: none;
+}
+
+.slot-month-content {
+  display: grid;
+  gap: 10px;
+}
+
+.profile-panel .panel-content {
   display: grid;
   gap: 10px;
 }
@@ -775,8 +818,33 @@ textarea:focus {
   }
 
   .topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 8px 10px;
     margin: 0 -12px;
     padding: 8px 12px;
+  }
+
+  .nav-left {
+    display: contents;
+  }
+
+  .brand {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  .menu-shell {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  .tab-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 
   .page-title h1 {
@@ -790,6 +858,15 @@ textarea:focus {
 
   .section-title-row {
     display: grid;
+  }
+
+  .collapsible-title-row {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .collapsible-title-row .button-row {
+    grid-column: 1 / -1;
+    margin-top: 4px;
   }
 
   .form-grid,
@@ -809,8 +886,13 @@ textarea:focus {
   }
 
   .brand-wordmark {
-    max-width: 122px;
+    max-width: none;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .tab-button {
+    min-height: 42px;
+    padding: 8px 10px;
   }
 }
