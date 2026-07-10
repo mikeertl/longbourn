@@ -328,13 +328,15 @@
       "players": [
         "mike-ertl",
         "chris-dalley",
-        "arda"
+        "arda",
+        "michael-w-m"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
         "chris-dalley",
-        "arda"
+        "arda",
+        "michael-w-m"
       ]
     },
     "2026-07-17T10:30": {
@@ -418,17 +420,12 @@
   },
   "allocatedMonths": {
     "2026-07": {
-      "allocatedAt": "2026-07-10T06:15:29.068Z",
+      "allocatedAt": "2026-07-10T13:55:27.763Z",
       "allocatedBy": "mike-ertl",
       "automatic": false
     }
   },
   "changes": [
-    {
-      "type": "month-created",
-      "text": "Created 2026-07",
-      "at": "2026-07-09T11:29:55.133Z"
-    },
     {
       "type": "month-created",
       "text": "Created 2026-07",
@@ -723,9 +720,14 @@
       "type": "allocation-remove",
       "text": "Removed Phil Charles from 2026-07-17T11:45",
       "at": "2026-07-10T13:47:56.560Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Michael W-M to 2026-07-17T11:45",
+      "at": "2026-07-10T13:55:27.763Z"
     }
   ],
-  "updatedAt": "2026-07-10T13:47:56.560Z",
-  "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-07-10T13:47:56.560Z"
+  "updatedAt": "2026-07-10T13:55:27.763Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-07-10T13:55:27.763Z"
 }
