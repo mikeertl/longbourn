@@ -371,14 +371,12 @@
     },
     "2026-07-24T11:45": {
       "players": [
-        "akiko",
         "mike-ertl",
         "arda",
         "phil-charles"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "akiko",
         "mike-ertl",
         "arda",
         "phil-charles"
@@ -428,11 +426,6 @@
     }
   },
   "changes": [
-    {
-      "type": "slot-added",
-      "text": "Added a slot",
-      "at": "2026-07-09T11:31:02.566Z"
-    },
     {
       "type": "slot-added",
       "text": "Added a slot",
@@ -727,9 +720,14 @@
       "type": "allocation-add",
       "text": "Added Rachel to 2026-07-24T10:30",
       "at": "2026-07-10T13:55:49.875Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Akiko from 2026-07-24T11:45",
+      "at": "2026-07-10T14:01:21.811Z"
     }
   ],
-  "updatedAt": "2026-07-10T13:55:49.875Z",
+  "updatedAt": "2026-07-10T14:01:21.811Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-10T13:55:49.875Z"
+  "manualEditedAt": "2026-07-10T14:01:21.811Z"
 }
