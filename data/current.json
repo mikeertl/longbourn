@@ -306,6 +306,13 @@
       ],
       "yellow": [],
       "updatedAt": "2026-07-09T18:21:16.717Z"
+    },
+    "jo-tr": {
+      "green": [],
+      "yellow": [
+        "2026-08-28T10:30"
+      ],
+      "updatedAt": "2026-07-13T09:15:30.398Z"
     }
   },
   "allocations": {
@@ -428,11 +435,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Mike Ertl to 2026-07-10T08:00",
-      "at": "2026-07-09T11:32:51.607Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Arda to 2026-07-10T08:00",
@@ -727,9 +729,14 @@
       "type": "allocation-add",
       "text": "Added Ellen to 2026-07-24T11:45",
       "at": "2026-07-10T14:01:50.701Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Jo TR",
+      "at": "2026-07-13T09:15:30.398Z"
     }
   ],
-  "updatedAt": "2026-07-10T14:01:50.701Z",
-  "updatedBy": "mike-ertl",
+  "updatedAt": "2026-07-13T09:15:30.398Z",
+  "updatedBy": "jo-tr",
   "manualEditedAt": "2026-07-10T14:01:50.701Z"
 }
