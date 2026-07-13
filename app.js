@@ -7,7 +7,7 @@
   var TOKEN_STORAGE_KEY = "longbourn-github-token";
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
-  var APP_VERSION = "2026.07.10.3";
+  var APP_VERSION = "2026.07.13.1";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
@@ -815,8 +815,16 @@
 
   function scheduleRow(slot) {
     var allocation = allocationForSlot(slot.id);
+    var isPast = isSlotPast(slot);
     var row = document.createElement("article");
-    row.className = "schedule-row" + (allocation.players.length < 4 ? " short" : "");
+    row.className =
+      "schedule-row" +
+      (allocation.players.length < 4 ? " short" : "") +
+      (isPast ? " past" : "");
+    if (isPast) {
+      row.setAttribute("aria-disabled", "true");
+      row.title = "This game has started and can no longer be edited.";
+    }
     var summary = document.createElement("div");
     summary.innerHTML =
       '<div class="schedule-time">' +
@@ -838,6 +846,7 @@
       players.appendChild(readOnlyChip("candidate-chip", "*" + playerName(playerId)));
     });
     if (
+      !isPast &&
       hasSession() &&
       isMonthAllocated(slot.date.slice(0, 7)) &&
       allocation.players.length < 4 &&
@@ -859,7 +868,7 @@
 
   function schedulePlayerChip(slotId, playerId) {
     var chip = readOnlyChip("player-chip", playerName(playerId));
-    if (hasSession() && playerId === session.userId) {
+    if (hasSession() && playerId === session.userId && !isSlotPast(getSlot(slotId))) {
       var remove = document.createElement("button");
       remove.type = "button";
       remove.className = "chip-button";
@@ -1104,11 +1113,21 @@
     var timeInput = row.querySelector(".slot-time");
     var enabledInput = row.querySelector(".slot-enabled-input");
     var removeButton = row.querySelector(".slot-remove");
+    var isPast = isSlotPast(slot);
     root.dataset.slotId = slot.id;
     root.classList.toggle("disabled", slot.enabled === false);
+    root.classList.toggle("past", isPast);
+    if (isPast) {
+      root.setAttribute("aria-disabled", "true");
+      root.title = "This game has started and can no longer be edited.";
+    }
     dateInput.value = slot.date;
     timeInput.value = slot.time;
     enabledInput.checked = slot.enabled !== false;
+    dateInput.disabled = isPast;
+    timeInput.disabled = isPast;
+    enabledInput.disabled = isPast;
+    removeButton.disabled = isPast;
 
     dateInput.addEventListener("change", function () {
       slot.date = dateInput.value;
@@ -1148,6 +1167,7 @@
   }
 
   function removeSlot(slotId) {
+    if (!canEditSlot(slotId, "setup")) return;
     if (!window.confirm("Delete this slot? Any saved responses and allocations for this date/time will also be removed.")) return;
     state.slots = state.slots.filter(function (slot) {
       return slot.id !== slotId;
@@ -1192,8 +1212,16 @@
     }
     adminAllocationSlots().forEach(function (slot) {
       var allocation = allocationForSlot(slot.id);
+      var isPast = isSlotPast(slot);
       var card = document.createElement("article");
-      card.className = "allocation-card" + (allocation.players.length < 4 ? " short" : "");
+      card.className =
+        "allocation-card" +
+        (allocation.players.length < 4 ? " short" : "") +
+        (isPast ? " past" : "");
+      if (isPast) {
+        card.setAttribute("aria-disabled", "true");
+        card.title = "This game has started and can no longer be edited.";
+      }
 
       var title = document.createElement("h3");
       title.textContent = formatSlotFull(slot);
@@ -1202,10 +1230,12 @@
       var players = document.createElement("div");
       players.className = "player-list";
       allocation.players.forEach(function (playerId) {
-        players.appendChild(playerChip(slot.id, playerId));
+        players.appendChild(playerChip(slot.id, playerId, !isPast));
       });
-      for (var index = allocation.players.length; index < 4; index += 1) {
-        players.appendChild(allocationAddButton(slot, index + 1));
+      if (!isPast) {
+        for (var index = allocation.players.length; index < 4; index += 1) {
+          players.appendChild(allocationAddButton(slot, index + 1));
+        }
       }
       card.appendChild(players);
 
@@ -1217,7 +1247,7 @@
         var candidates = document.createElement("div");
         candidates.className = "candidate-list";
         allocation.yellowCandidates.forEach(function (playerId) {
-          candidates.appendChild(candidateChip(slot.id, playerId));
+          candidates.appendChild(candidateChip(slot.id, playerId, !isPast));
         });
         card.appendChild(candidates);
       }
@@ -1282,8 +1312,9 @@
       });
   }
 
-  function playerChip(slotId, playerId) {
+  function playerChip(slotId, playerId, isEditable) {
     var chip = readOnlyChip("player-chip", playerName(playerId));
+    if (!isEditable) return chip;
     var remove = document.createElement("button");
     remove.type = "button";
     remove.className = "chip-button";
@@ -1387,8 +1418,9 @@
     select.focus();
   }
 
-  function candidateChip(slotId, playerId) {
+  function candidateChip(slotId, playerId, isEditable) {
     var chip = readOnlyChip("candidate-chip", "*" + playerName(playerId));
+    if (!isEditable) return chip;
     var confirm = document.createElement("button");
     confirm.type = "button";
     confirm.className = "chip-button";
@@ -1413,6 +1445,7 @@
 
   function addSelfToGame(slotId) {
     if (!requireToken("games")) return;
+    if (!canEditSlot(slotId, "games")) return;
     if (allocationForSlot(slotId).players.length >= 4) {
       setStatus("games", "This game is full. Ask an admin to change it.");
       return;
@@ -1425,6 +1458,7 @@
   }
 
   function addPlayerToAllocation(slotId, playerId, statusTarget, message) {
+    if (!canEditSlot(slotId, statusTarget)) return;
     var allocation = allocationForSlot(slotId);
     if (allocation.players.indexOf(playerId) >= 0) {
       setStatus(statusTarget, "That player is already in this game.");
@@ -1458,6 +1492,7 @@
   }
 
   function removePlayerFromSlot(slotId, playerId, statusTarget, message) {
+    if (!canEditSlot(slotId, statusTarget)) return;
     var allocation = allocationForSlot(slotId);
     allocation.players = allocation.players.filter(function (id) {
       return id !== playerId;
@@ -1476,6 +1511,7 @@
   }
 
   function removeCandidateFromAllocation(slotId, playerId) {
+    if (!canEditSlot(slotId, "allocation")) return;
     if (!window.confirm("Remove " + playerName(playerId) + " from pending players?")) return;
     var allocation = allocationForSlot(slotId);
     allocation.yellowCandidates = allocation.yellowCandidates.filter(function (id) {
@@ -2264,6 +2300,17 @@
     var date = parseDateKey(slot.date);
     var time = String(slot.time || "00:00").split(":").map(Number);
     return new Date(date.getFullYear(), date.getMonth(), date.getDate(), time[0] || 0, time[1] || 0);
+  }
+
+  function isSlotPast(slot) {
+    return !!slot && slotStartDate(slot) <= new Date();
+  }
+
+  function canEditSlot(slotId, statusTarget) {
+    var slot = getSlot(slotId);
+    if (slot && !isSlotPast(slot)) return true;
+    setStatus(statusTarget, "Past games cannot be edited.");
+    return false;
   }
 
   function isValidDateKey(dateKey) {

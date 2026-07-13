@@ -534,6 +534,25 @@ textarea:focus {
   background: #eef1f2;
 }
 
+.slot-row.past,
+.schedule-row.past,
+.allocation-card.past {
+  border-color: var(--line);
+  background: #e8ecee;
+  color: var(--muted);
+}
+
+.slot-row.past,
+.schedule-row.past > *,
+.allocation-card.past > * {
+  filter: grayscale(1);
+  opacity: 0.68;
+}
+
+.slot-row.past button:disabled {
+  color: var(--muted);
+}
+
 .slot-enabled {
   display: inline-flex;
   align-items: center;
@@ -592,6 +611,11 @@ textarea:focus {
 .schedule-row.short {
   border-color: #d4b25f;
   background: #fff9e6;
+}
+
+.schedule-row.past {
+  border-color: var(--line);
+  background: #e8ecee;
 }
 
 .slot-name,
@@ -653,6 +677,11 @@ textarea:focus {
 .allocation-card.short {
   border-color: #d4b25f;
   background: #fff9e6;
+}
+
+.allocation-card.past {
+  border-color: var(--line);
+  background: #e8ecee;
 }
 
 .allocation-card h3 {
