@@ -313,6 +313,15 @@
         "2026-08-28T10:30"
       ],
       "updatedAt": "2026-07-13T09:15:30.398Z"
+    },
+    "david-taylor": {
+      "green": [
+        "2026-08-07T10:30",
+        "2026-08-21T10:30",
+        "2026-08-28T10:30"
+      ],
+      "yellow": [],
+      "updatedAt": "2026-07-14T18:33:31.247Z"
     }
   },
   "allocations": {
@@ -435,11 +444,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Chris Danzinger to 2026-07-10T08:00",
-      "at": "2026-07-09T11:33:22.170Z"
-    },
     {
       "type": "allocate",
       "text": "Manual allocation",
@@ -734,9 +738,14 @@
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-07-31T10:30",
       "at": "2026-07-14T07:49:34.260Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for David Taylor",
+      "at": "2026-07-14T18:33:31.248Z"
     }
   ],
-  "updatedAt": "2026-07-14T07:49:34.260Z",
-  "updatedBy": "phil-charles",
+  "updatedAt": "2026-07-14T18:33:31.249Z",
+  "updatedBy": "david-taylor",
   "manualEditedAt": "2026-07-14T07:49:34.260Z"
 }
