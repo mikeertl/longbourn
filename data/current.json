@@ -395,13 +395,15 @@
       "players": [
         "chris-dalley",
         "david-taylor",
-        "richard-moxon"
+        "richard-moxon",
+        "phil-charles"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "chris-dalley",
         "david-taylor",
-        "richard-moxon"
+        "richard-moxon",
+        "phil-charles"
       ]
     },
     "2026-07-31T11:45": {
@@ -427,17 +429,12 @@
   },
   "allocatedMonths": {
     "2026-07": {
-      "allocatedAt": "2026-07-10T14:01:50.701Z",
-      "allocatedBy": "mike-ertl",
+      "allocatedAt": "2026-07-14T07:49:34.260Z",
+      "allocatedBy": "phil-charles",
       "automatic": false
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Richard Moxon to 2026-07-10T08:00",
-      "at": "2026-07-09T11:33:16.611Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Chris Danzinger to 2026-07-10T08:00",
@@ -732,9 +729,14 @@
       "type": "allocation-remove",
       "text": "Removed Jo TR from 2026-07-31T10:30",
       "at": "2026-07-13T19:40:31.827Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-07-31T10:30",
+      "at": "2026-07-14T07:49:34.260Z"
     }
   ],
-  "updatedAt": "2026-07-13T19:40:31.827Z",
-  "updatedBy": "jo-tr",
-  "manualEditedAt": "2026-07-13T19:40:31.826Z"
+  "updatedAt": "2026-07-14T07:49:34.260Z",
+  "updatedBy": "phil-charles",
+  "manualEditedAt": "2026-07-14T07:49:34.260Z"
 }
