@@ -7,7 +7,7 @@
   var TOKEN_STORAGE_KEY = "longbourn-github-token";
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
-  var APP_VERSION = "2026.07.13.1";
+  var APP_VERSION = "2026.07.15.1";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
@@ -1835,20 +1835,35 @@
       name.textContent = user.name;
       row.appendChild(name);
 
+      var actions = document.createElement("div");
+      actions.className = "button-row";
+
+      var edit = document.createElement("button");
+      edit.type = "button";
+      edit.className = "button text";
+      edit.textContent = "Edit";
+      edit.setAttribute("aria-label", "Edit " + user.name);
+      edit.addEventListener("click", function () {
+        renameUser(user.id);
+      });
+      actions.appendChild(edit);
+
       var remove = document.createElement("button");
       remove.type = "button";
       remove.className = "button text";
       remove.textContent = "Delete";
+      remove.setAttribute("aria-label", "Delete " + user.name);
       remove.addEventListener("click", function () {
         deleteUser(user.id);
       });
-      row.appendChild(remove);
+      actions.appendChild(remove);
+      row.appendChild(actions);
       el.usersList.appendChild(row);
     });
   }
 
   function addUser() {
-    var name = el.newUserInput.value.trim();
+    var name = normalizeUserName(el.newUserInput.value);
     if (!name) {
       setStatus("users", "Enter a user name.");
       return;
@@ -1864,6 +1879,37 @@
     el.newUserInput.value = "";
     saveUsersFile("users", "User added.").then(function () {
       return saveCurrentState("users", "User added.");
+    });
+  }
+
+  function renameUser(userId) {
+    var user = getUser(userId);
+    if (!user) return;
+    var enteredName = window.prompt("Rename " + user.name + ":", user.name);
+    if (enteredName === null) return;
+
+    var newName = normalizeUserName(enteredName);
+    if (!newName) {
+      setStatus("users", "Enter a user name.");
+      return;
+    }
+    if (userNameExists(newName, userId)) {
+      setStatus("users", "That user name already exists.");
+      return;
+    }
+    if (newName === user.name) {
+      setStatus("users", "Name unchanged.");
+      return;
+    }
+
+    user.name = newName;
+    users = sortUsersByName(users);
+    state.players[userId] = { name: newName };
+    state.changes.push(change("user-renamed", "Renamed player to " + newName));
+    renderAll();
+    saveUsersFile("users", "Player renamed.").then(function (usersSaved) {
+      if (!usersSaved) return false;
+      return saveCurrentState("users", "Player renamed.");
     });
   }
 
@@ -1906,6 +1952,22 @@
   function isActiveUser(userId) {
     return users.some(function (user) {
       return user.id === userId;
+    });
+  }
+
+  function normalizeUserName(name) {
+    return String(name || "").trim().replace(/\s+/g, " ");
+  }
+
+  function userNameExists(name, excludedUserId) {
+    var normalizedName = normalizeUserName(name);
+    return users.some(function (user) {
+      return (
+        user.id !== excludedUserId &&
+        normalizeUserName(user.name).localeCompare(normalizedName, "en-GB", {
+          sensitivity: "base",
+        }) === 0
+      );
     });
   }
 
