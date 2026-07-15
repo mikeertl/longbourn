@@ -7,7 +7,8 @@
   var TOKEN_STORAGE_KEY = "longbourn-github-token";
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
-  var APP_VERSION = "2026.07.15.1";
+  var ADMIN_PANELS_STORAGE_KEY = "longbourn-admin-panels-v1";
+  var APP_VERSION = "2026.07.15.2";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
@@ -250,17 +251,43 @@
   }
 
   function bindCollapseButtons() {
+    var storedStates = readStoredAdminPanelStates();
     Array.prototype.forEach.call(document.querySelectorAll("[data-collapse-target]"), function (button) {
+      var panelId = button.dataset.collapseTarget;
+      var panel = document.getElementById(panelId);
+      if (!panel) return;
+      if (Object.prototype.hasOwnProperty.call(storedStates, panelId)) {
+        panel.dataset.collapsed = storedStates[panelId] ? "true" : "false";
+      }
       button.addEventListener("click", function () {
-        var panel = document.getElementById(button.dataset.collapseTarget);
-        if (!panel) return;
         var isCollapsed = panel.dataset.collapsed === "true";
         panel.dataset.collapsed = isCollapsed ? "false" : "true";
         updateCollapseButton(button, !isCollapsed);
+        saveAdminPanelState(panelId, !isCollapsed);
       });
-      var panel = document.getElementById(button.dataset.collapseTarget);
-      updateCollapseButton(button, panel && panel.dataset.collapsed === "true");
+      updateCollapseButton(button, panel.dataset.collapsed === "true");
     });
+  }
+
+  function readStoredAdminPanelStates() {
+    try {
+      var stored = window.localStorage.getItem(ADMIN_PANELS_STORAGE_KEY);
+      var states = stored ? JSON.parse(stored) : {};
+      return states && typeof states === "object" && !Array.isArray(states) ? states : {};
+    } catch (error) {
+      console.warn("Could not read Admin panel states", error);
+      return {};
+    }
+  }
+
+  function saveAdminPanelState(panelId, isCollapsed) {
+    try {
+      var states = readStoredAdminPanelStates();
+      states[panelId] = isCollapsed;
+      window.localStorage.setItem(ADMIN_PANELS_STORAGE_KEY, JSON.stringify(states));
+    } catch (error) {
+      console.warn("Could not store Admin panel state", error);
+    }
   }
 
   function updateCollapseButton(button, isCollapsed) {
@@ -1045,13 +1072,21 @@
 
   function renderSlots() {
     el.slotsList.innerHTML = "";
+    var storedStates = readStoredAdminPanelStates();
     [
-      { label: "This month", monthKey: currentMonthKey() },
-      { label: "Next month", monthKey: addMonthsToMonthKey(currentMonthKey(), 1) },
+      { label: "This month", monthKey: currentMonthKey(), stateKey: "slotsThisMonth" },
+      {
+        label: "Next month",
+        monthKey: addMonthsToMonthKey(currentMonthKey(), 1),
+        stateKey: "slotsNextMonth",
+      },
     ].forEach(function (group) {
       var section = document.createElement("section");
       section.className = "slot-month";
-      section.dataset.collapsed = "false";
+      var isCollapsed = Object.prototype.hasOwnProperty.call(storedStates, group.stateKey)
+        ? !!storedStates[group.stateKey]
+        : true;
+      section.dataset.collapsed = isCollapsed ? "true" : "false";
       var headingId = "slot-month-" + group.monthKey;
       var headingRow = document.createElement("div");
       headingRow.className = "slot-month-heading";
@@ -1059,10 +1094,10 @@
       var toggle = document.createElement("button");
       toggle.type = "button";
       toggle.className = "collapse-icon-button small";
-      toggle.textContent = "-";
-      toggle.setAttribute("aria-expanded", "true");
+      toggle.textContent = isCollapsed ? "+" : "-";
+      toggle.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
       toggle.setAttribute("aria-controls", headingId + "-content");
-      toggle.setAttribute("aria-label", "Collapse " + group.label);
+      toggle.setAttribute("aria-label", (isCollapsed ? "Expand " : "Collapse ") + group.label);
 
       var heading = document.createElement("h3");
       heading.id = headingId;
@@ -1084,6 +1119,7 @@
           "aria-label",
           (isCollapsed ? "Collapse " : "Expand ") + group.label
         );
+        saveAdminPanelState(group.stateKey, !isCollapsed);
       });
 
       var note = document.createElement("p");
