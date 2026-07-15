@@ -258,7 +258,7 @@
       "name": "Arda"
     },
     "chris-danzinger": {
-      "name": "Chris Danzinger"
+      "name": "Chris Danziger"
     },
     "chris-dalley": {
       "name": "Chris Dalley"
@@ -444,11 +444,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocate",
-      "text": "Manual allocation",
-      "at": "2026-07-09T11:34:02.279Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Mike Ertl to 2026-07-10T08:00",
@@ -743,9 +738,14 @@
       "type": "availability",
       "text": "Saved availability for David Taylor",
       "at": "2026-07-14T18:33:31.248Z"
+    },
+    {
+      "type": "user-renamed",
+      "text": "Renamed player to Chris Danziger",
+      "at": "2026-07-15T08:37:40.275Z"
     }
   ],
-  "updatedAt": "2026-07-14T18:33:31.249Z",
-  "updatedBy": "david-taylor",
+  "updatedAt": "2026-07-15T08:37:41.501Z",
+  "updatedBy": "mike-ertl",
   "manualEditedAt": "2026-07-14T07:49:34.260Z"
 }
