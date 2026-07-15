@@ -308,11 +308,11 @@
       "updatedAt": "2026-07-09T18:21:16.717Z"
     },
     "jo-tr": {
-      "green": [],
-      "yellow": [
+      "green": [
         "2026-08-28T10:30"
       ],
-      "updatedAt": "2026-07-13T09:15:30.398Z"
+      "yellow": [],
+      "updatedAt": "2026-07-15T21:22:43.205Z"
     },
     "david-taylor": {
       "green": [
@@ -444,11 +444,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Mike Ertl to 2026-07-10T08:00",
-      "at": "2026-07-09T13:01:23.991Z"
-    },
     {
       "type": "slot-added",
       "text": "Added a slot",
@@ -743,9 +738,14 @@
       "type": "user-renamed",
       "text": "Renamed player to Chris Danziger",
       "at": "2026-07-15T08:37:40.275Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Jo TR",
+      "at": "2026-07-15T21:22:43.205Z"
     }
   ],
-  "updatedAt": "2026-07-15T08:37:41.501Z",
-  "updatedBy": "mike-ertl",
+  "updatedAt": "2026-07-15T21:22:43.205Z",
+  "updatedBy": "jo-tr",
   "manualEditedAt": "2026-07-14T07:49:34.260Z"
 }
