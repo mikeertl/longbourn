@@ -258,7 +258,7 @@
       "name": "Arda"
     },
     "chris-danzinger": {
-      "name": "Chris Danzinger"
+      "name": "Chris Danziger"
     },
     "chris-dalley": {
       "name": "Chris Dalley"
@@ -404,13 +404,15 @@
       "players": [
         "chris-dalley",
         "david-taylor",
-        "richard-moxon"
+        "richard-moxon",
+        "phil-charles"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "chris-dalley",
         "david-taylor",
-        "richard-moxon"
+        "richard-moxon",
+        "phil-charles"
       ]
     },
     "2026-07-31T11:45": {
@@ -436,17 +438,12 @@
   },
   "allocatedMonths": {
     "2026-07": {
-      "allocatedAt": "2026-07-14T07:49:34.260Z",
+      "allocatedAt": "2026-07-16T07:27:06.648Z",
       "allocatedBy": "phil-charles",
       "automatic": false
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Mike Ertl to 2026-07-10T08:00",
-      "at": "2026-07-09T13:01:23.991Z"
-    },
     {
       "type": "slot-added",
       "text": "Added a slot",
@@ -741,9 +738,14 @@
       "type": "allocation-remove",
       "text": "Removed Phil Charles from 2026-07-31T10:30",
       "at": "2026-07-16T07:24:27.874Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-07-31T10:30",
+      "at": "2026-07-16T07:27:06.648Z"
     }
   ],
-  "updatedAt": "2026-07-16T07:24:27.874Z",
+  "updatedAt": "2026-07-16T07:27:06.648Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-07-16T07:24:27.874Z"
+  "manualEditedAt": "2026-07-16T07:27:06.648Z"
 }
