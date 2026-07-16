@@ -741,6 +741,39 @@ textarea:focus {
   padding: 0;
 }
 
+.player-chip.removable-chip,
+.candidate-chip.removable-chip {
+  gap: 8px;
+  overflow: hidden;
+  border: 1px solid currentColor;
+  padding: 0 0 0 10px;
+}
+
+.chip-remove-button {
+  display: inline-grid;
+  align-self: stretch;
+  min-width: 44px;
+  min-height: 44px;
+  place-items: center;
+  border: 0;
+  border-left: 1px solid currentColor;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.28);
+  font-size: 22px;
+  line-height: 1;
+  padding: 0 11px;
+  touch-action: manipulation;
+}
+
+.chip-remove-button:hover {
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.chip-remove-button:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: -4px;
+}
+
 .allocation-note {
   margin: 8px 0 0;
   color: var(--muted);

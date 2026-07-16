@@ -8,7 +8,7 @@
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
   var ADMIN_PANELS_STORAGE_KEY = "longbourn-admin-panels-v1";
-  var APP_VERSION = "2026.07.15.2";
+  var APP_VERSION = "2026.07.16.1";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
@@ -896,11 +896,13 @@
   function schedulePlayerChip(slotId, playerId) {
     var chip = readOnlyChip("player-chip", playerName(playerId));
     if (hasSession() && playerId === session.userId && !isSlotPast(getSlot(slotId))) {
+      chip.classList.add("removable-chip");
       var remove = document.createElement("button");
       remove.type = "button";
-      remove.className = "chip-button";
-      remove.title = "Remove yourself from this game";
-      remove.textContent = "x";
+      remove.className = "chip-button chip-remove-button";
+      remove.setAttribute("aria-label", removalButtonLabel(slotId, playerId, true));
+      remove.title = removalButtonLabel(slotId, playerId, true);
+      remove.textContent = "×";
       remove.addEventListener("click", function () {
         removeSelfFromGame(slotId);
       });
@@ -1351,11 +1353,13 @@
   function playerChip(slotId, playerId, isEditable) {
     var chip = readOnlyChip("player-chip", playerName(playerId));
     if (!isEditable) return chip;
+    chip.classList.add("removable-chip");
     var remove = document.createElement("button");
     remove.type = "button";
-    remove.className = "chip-button";
-    remove.title = "Remove from this game";
-    remove.textContent = "x";
+    remove.className = "chip-button chip-remove-button";
+    remove.setAttribute("aria-label", removalButtonLabel(slotId, playerId, false));
+    remove.title = removalButtonLabel(slotId, playerId, false);
+    remove.textContent = "×";
     remove.addEventListener("click", function () {
       removePlayerFromAllocation(slotId, playerId);
     });
@@ -1457,6 +1461,7 @@
   function candidateChip(slotId, playerId, isEditable) {
     var chip = readOnlyChip("candidate-chip", "*" + playerName(playerId));
     if (!isEditable) return chip;
+    chip.classList.add("removable-chip");
     var confirm = document.createElement("button");
     confirm.type = "button";
     confirm.className = "chip-button";
@@ -1469,9 +1474,10 @@
 
     var remove = document.createElement("button");
     remove.type = "button";
-    remove.className = "chip-button";
-    remove.title = "Remove pending player";
-    remove.textContent = "x";
+    remove.className = "chip-button chip-remove-button";
+    remove.setAttribute("aria-label", removalButtonLabel(slotId, playerId, false));
+    remove.title = removalButtonLabel(slotId, playerId, false);
+    remove.textContent = "×";
     remove.addEventListener("click", function () {
       removeCandidateFromAllocation(slotId, playerId);
     });
@@ -1517,14 +1523,31 @@
   }
 
   function removePlayerFromAllocation(slotId, playerId) {
-    if (!window.confirm("Remove " + playerName(playerId) + " from this game?")) return;
+    if (!confirmPlayerRemoval(slotId, playerId, false)) return;
     removePlayerFromSlot(slotId, playerId, "allocation", "Player removed from this game.");
   }
 
   function removeSelfFromGame(slotId) {
     if (!requireToken("games")) return;
-    if (!window.confirm("Remove yourself from this game?")) return;
+    if (!confirmPlayerRemoval(slotId, session.userId, true)) return;
     removePlayerFromSlot(slotId, session.userId, "games", "You were removed from this game.");
+  }
+
+  function removalButtonLabel(slotId, playerId, isSelf) {
+    var slot = getSlot(slotId);
+    var subject = isSelf ? "yourself" : playerName(playerId);
+    return (
+      "Remove " +
+      subject +
+      " from " +
+      (slot ? formatSlotFull(slot) : "this slot")
+    );
+  }
+
+  function confirmPlayerRemoval(slotId, playerId, isSelf) {
+    var buttonLabel = removalButtonLabel(slotId, playerId, isSelf);
+    var action = buttonLabel.charAt(0).toLowerCase() + buttonLabel.slice(1);
+    return window.confirm("Are you sure you want to " + action + "?");
   }
 
   function removePlayerFromSlot(slotId, playerId, statusTarget, message) {
@@ -1548,7 +1571,7 @@
 
   function removeCandidateFromAllocation(slotId, playerId) {
     if (!canEditSlot(slotId, "allocation")) return;
-    if (!window.confirm("Remove " + playerName(playerId) + " from pending players?")) return;
+    if (!confirmPlayerRemoval(slotId, playerId, false)) return;
     var allocation = allocationForSlot(slotId);
     allocation.yellowCandidates = allocation.yellowCandidates.filter(function (id) {
       return id !== playerId;
