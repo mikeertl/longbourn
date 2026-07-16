@@ -344,13 +344,15 @@
       "players": [
         "mike-ertl",
         "arda",
-        "michael-w-m"
+        "michael-w-m",
+        "chris-danzinger"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
         "arda",
-        "michael-w-m"
+        "michael-w-m",
+        "chris-danzinger"
       ]
     },
     "2026-07-17T10:30": {
@@ -436,17 +438,12 @@
   },
   "allocatedMonths": {
     "2026-07": {
-      "allocatedAt": "2026-07-16T07:27:06.648Z",
-      "allocatedBy": "phil-charles",
+      "allocatedAt": "2026-07-16T10:35:41.057Z",
+      "allocatedBy": "chris-danzinger",
       "automatic": false
     }
   },
   "changes": [
-    {
-      "type": "month-created",
-      "text": "Created 2026-08",
-      "at": "2026-07-09T13:25:44.672Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Mike Ertl to 2026-07-10T08:00",
@@ -741,9 +738,14 @@
       "type": "allocation-remove",
       "text": "Removed Chris Dalley from 2026-07-17T11:45",
       "at": "2026-07-16T09:37:06.784Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Chris Danziger to 2026-07-17T11:45",
+      "at": "2026-07-16T10:35:41.059Z"
     }
   ],
-  "updatedAt": "2026-07-16T09:37:06.784Z",
-  "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-16T09:37:06.783Z"
+  "updatedAt": "2026-07-16T10:35:41.059Z",
+  "updatedBy": "chris-danzinger",
+  "manualEditedAt": "2026-07-16T10:35:41.059Z"
 }
