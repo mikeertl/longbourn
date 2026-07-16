@@ -258,7 +258,7 @@
       "name": "Arda"
     },
     "chris-danzinger": {
-      "name": "Chris Danziger"
+      "name": "Chris Danzinger"
     },
     "chris-dalley": {
       "name": "Chris Dalley"
@@ -308,11 +308,11 @@
       "updatedAt": "2026-07-09T18:21:16.717Z"
     },
     "jo-tr": {
-      "green": [
+      "green": [],
+      "yellow": [
         "2026-08-28T10:30"
       ],
-      "yellow": [],
-      "updatedAt": "2026-07-15T21:22:43.205Z"
+      "updatedAt": "2026-07-13T09:15:30.398Z"
     },
     "david-taylor": {
       "green": [
@@ -404,15 +404,13 @@
       "players": [
         "chris-dalley",
         "david-taylor",
-        "richard-moxon",
-        "phil-charles"
+        "richard-moxon"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "chris-dalley",
         "david-taylor",
-        "richard-moxon",
-        "phil-charles"
+        "richard-moxon"
       ]
     },
     "2026-07-31T11:45": {
@@ -444,6 +442,11 @@
     }
   },
   "changes": [
+    {
+      "type": "allocation-add",
+      "text": "Added Mike Ertl to 2026-07-10T08:00",
+      "at": "2026-07-09T13:01:23.991Z"
+    },
     {
       "type": "slot-added",
       "text": "Added a slot",
@@ -735,17 +738,12 @@
       "at": "2026-07-14T18:33:31.248Z"
     },
     {
-      "type": "user-renamed",
-      "text": "Renamed player to Chris Danziger",
-      "at": "2026-07-15T08:37:40.275Z"
-    },
-    {
-      "type": "availability",
-      "text": "Saved availability for Jo TR",
-      "at": "2026-07-15T21:22:43.205Z"
+      "type": "allocation-remove",
+      "text": "Removed Phil Charles from 2026-07-31T10:30",
+      "at": "2026-07-16T07:24:27.874Z"
     }
   ],
-  "updatedAt": "2026-07-15T21:22:43.205Z",
-  "updatedBy": "jo-tr",
-  "manualEditedAt": "2026-07-14T07:49:34.260Z"
+  "updatedAt": "2026-07-16T07:24:27.874Z",
+  "updatedBy": "phil-charles",
+  "manualEditedAt": "2026-07-16T07:24:27.874Z"
 }
