@@ -343,14 +343,12 @@
     "2026-07-17T11:45": {
       "players": [
         "mike-ertl",
-        "chris-dalley",
         "arda",
         "michael-w-m"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
-        "chris-dalley",
         "arda",
         "michael-w-m"
       ]
@@ -444,11 +442,6 @@
     }
   },
   "changes": [
-    {
-      "type": "slot-added",
-      "text": "Added a slot",
-      "at": "2026-07-09T13:24:52.397Z"
-    },
     {
       "type": "month-created",
       "text": "Created 2026-08",
@@ -743,9 +736,14 @@
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-07-31T10:30",
       "at": "2026-07-16T07:27:06.648Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Chris Dalley from 2026-07-17T11:45",
+      "at": "2026-07-16T09:37:06.784Z"
     }
   ],
-  "updatedAt": "2026-07-16T07:27:06.648Z",
-  "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-07-16T07:27:06.648Z"
+  "updatedAt": "2026-07-16T09:37:06.784Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-07-16T09:37:06.783Z"
 }
