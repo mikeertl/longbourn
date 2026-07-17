@@ -8,13 +8,15 @@
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
   var ADMIN_PANELS_STORAGE_KEY = "longbourn-admin-panels-v1";
-  var APP_VERSION = "2026.07.16.1";
+  var APP_VERSION = "2026.07.17.1";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
   var STATE_PATH = "data/current.json";
   var USERS_PATH = "data/users.json";
   var PENDING_TTL_MS = 24 * 60 * 60 * 1000;
+  var REFRESH_PROGRESS_MS = 820;
+  var REFRESH_PROGRESS_HOLD_MS = 100;
   var TIMES = ["08:00", "09:00", "10:30", "11:45", "13:00"];
   var DEFAULT_ENABLED_TIMES = ["10:30", "11:45"];
   var WEEKDAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -45,6 +47,8 @@
   var session = { token: "", userId: "", isAdmin: false };
   var activeTab = "games";
   var saveChain = Promise.resolve();
+  var refreshPromise = null;
+  var refreshStartedAt = 0;
   var el = {};
 
   document.addEventListener("DOMContentLoaded", init);
@@ -158,6 +162,7 @@
       toggleMenu(false);
       refreshSharedData(false);
     });
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     el.signOutButton.addEventListener("click", signOut);
     el.submitAvailabilityButton.addEventListener("click", submitAvailability);
     el.allocateButton.addEventListener("click", handleAllocateClick);
@@ -169,6 +174,12 @@
     el.addUserButton.addEventListener("click", addUser);
     el.saveProfileButton.addEventListener("click", saveProfile);
     bindCollapseButtons();
+  }
+
+  function handleVisibilityChange() {
+    if (document.visibilityState === "visible" && hasSession()) {
+      refreshSharedData(true);
+    }
   }
 
   function signIn() {
@@ -474,15 +485,21 @@
   }
 
   function startRefreshFeedback() {
+    refreshStartedAt = Date.now();
     if (el.refreshButton) el.refreshButton.disabled = true;
     document.body.dataset.refreshing = "true";
   }
 
   function finishRefreshFeedback() {
-    window.setTimeout(function () {
-      if (el.refreshButton) el.refreshButton.disabled = false;
-      document.body.dataset.refreshing = "false";
-    }, 250);
+    var elapsed = Date.now() - refreshStartedAt;
+    var delay = Math.max(0, REFRESH_PROGRESS_MS + REFRESH_PROGRESS_HOLD_MS - elapsed);
+    return new Promise(function (resolve) {
+      window.setTimeout(function () {
+        if (el.refreshButton) el.refreshButton.disabled = false;
+        document.body.dataset.refreshing = "false";
+        resolve();
+      }, delay);
+    });
   }
 
   function stampStateUpdate() {
@@ -533,9 +550,10 @@
   }
 
   function refreshSharedData(silent) {
+    if (refreshPromise) return refreshPromise;
     startRefreshFeedback();
     if (!silent) setStatus(activeTab, "Loading latest data...");
-    return Promise.all([fetchStateFile(), fetchUsersFile()])
+    refreshPromise = Promise.all([fetchStateFile(), fetchUsersFile()])
       .then(function (results) {
         var refreshResult = applyIncomingState(results[0] ? normalizeState(results[0]) : null, !silent);
         if (results[1]) users = normalizeUsers(results[1]);
@@ -556,12 +574,22 @@
         console.warn("Could not refresh shared data", error);
       })
       .then(function (result) {
-        finishRefreshFeedback();
+        return finishRefreshFeedback().then(function () {
+          return result;
+        });
+      }, function (error) {
+        return finishRefreshFeedback().then(function () {
+          throw error;
+        });
+      })
+      .then(function (result) {
+        refreshPromise = null;
         return result;
       }, function (error) {
-        finishRefreshFeedback();
+        refreshPromise = null;
         throw error;
       });
+    return refreshPromise;
   }
 
   function applyIncomingState(incoming, alertIfChangedByOthers) {
