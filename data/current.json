@@ -322,6 +322,19 @@
       ],
       "yellow": [],
       "updatedAt": "2026-07-14T18:33:31.247Z"
+    },
+    "chris-dalley": {
+      "green": [
+        "2026-08-07T10:30",
+        "2026-08-14T10:30",
+        "2026-08-14T11:45",
+        "2026-08-21T10:30",
+        "2026-08-21T11:45",
+        "2026-08-28T10:30",
+        "2026-08-28T11:45"
+      ],
+      "yellow": [],
+      "updatedAt": "2026-07-17T10:53:51.199Z"
     }
   },
   "allocations": {
@@ -388,31 +401,31 @@
     "2026-07-24T11:45": {
       "players": [
         "mike-ertl",
-        "arda",
         "phil-charles",
-        "ellen"
+        "ellen",
+        "peter-miell"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
-        "arda",
         "phil-charles",
-        "ellen"
+        "ellen",
+        "peter-miell"
       ]
     },
     "2026-07-31T10:30": {
       "players": [
         "chris-dalley",
-        "david-taylor",
         "richard-moxon",
-        "phil-charles"
+        "phil-charles",
+        "david-taylor"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "chris-dalley",
-        "david-taylor",
         "richard-moxon",
-        "phil-charles"
+        "phil-charles",
+        "david-taylor"
       ]
     },
     "2026-07-31T11:45": {
@@ -438,37 +451,12 @@
   },
   "allocatedMonths": {
     "2026-07": {
-      "allocatedAt": "2026-07-16T10:35:41.057Z",
-      "allocatedBy": "chris-danzinger",
+      "allocatedAt": "2026-07-17T10:46:48.657Z",
+      "allocatedBy": "david-taylor",
       "automatic": false
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Mike Ertl to 2026-07-10T08:00",
-      "at": "2026-07-09T14:04:05.571Z"
-    },
-    {
-      "type": "allocation-add",
-      "text": "Added Mike Ertl to 2026-07-17T11:45",
-      "at": "2026-07-09T14:04:22.588Z"
-    },
-    {
-      "type": "allocation-add",
-      "text": "Added Chris Danzinger to 2026-07-10T08:00",
-      "at": "2026-07-09T15:08:44.691Z"
-    },
-    {
-      "type": "allocation-add",
-      "text": "Added Arda to 2026-07-10T08:00",
-      "at": "2026-07-09T16:52:45.576Z"
-    },
-    {
-      "type": "allocation-add",
-      "text": "Added Richard Moxon to 2026-07-10T08:00",
-      "at": "2026-07-09T16:52:58.038Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Richard Moxon to 2026-07-17T10:30",
@@ -743,9 +731,34 @@
       "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-07-17T11:45",
       "at": "2026-07-16T10:35:41.059Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Arda from 2026-07-24T11:45",
+      "at": "2026-07-17T07:50:17.185Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Peter Miell to 2026-07-24T11:45",
+      "at": "2026-07-17T08:09:46.551Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed David Taylor from 2026-07-31T10:30",
+      "at": "2026-07-17T10:46:45.934Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added David Taylor to 2026-07-31T10:30",
+      "at": "2026-07-17T10:46:48.657Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Chris Dalley",
+      "at": "2026-07-17T10:53:51.200Z"
     }
   ],
-  "updatedAt": "2026-07-16T10:35:41.059Z",
-  "updatedBy": "chris-danzinger",
-  "manualEditedAt": "2026-07-16T10:35:41.059Z"
+  "updatedAt": "2026-07-17T10:53:51.200Z",
+  "updatedBy": "chris-dalley",
+  "manualEditedAt": "2026-07-17T10:46:48.657Z"
 }
