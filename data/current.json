@@ -322,6 +322,19 @@
       ],
       "yellow": [],
       "updatedAt": "2026-07-14T18:33:31.247Z"
+    },
+    "chris-dalley": {
+      "green": [
+        "2026-08-07T10:30",
+        "2026-08-14T10:30",
+        "2026-08-14T11:45",
+        "2026-08-21T10:30",
+        "2026-08-21T11:45",
+        "2026-08-28T10:30",
+        "2026-08-28T11:45"
+      ],
+      "yellow": [],
+      "updatedAt": "2026-07-17T10:53:51.199Z"
     }
   },
   "allocations": {
@@ -444,11 +457,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Richard Moxon to 2026-07-10T08:00",
-      "at": "2026-07-09T16:52:58.038Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Richard Moxon to 2026-07-17T10:30",
@@ -743,9 +751,14 @@
       "type": "allocation-add",
       "text": "Added David Taylor to 2026-07-31T10:30",
       "at": "2026-07-17T10:46:48.657Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Chris Dalley",
+      "at": "2026-07-17T10:53:51.200Z"
     }
   ],
-  "updatedAt": "2026-07-17T10:46:48.657Z",
-  "updatedBy": "david-taylor",
+  "updatedAt": "2026-07-17T10:53:51.200Z",
+  "updatedBy": "chris-dalley",
   "manualEditedAt": "2026-07-17T10:46:48.657Z"
 }
