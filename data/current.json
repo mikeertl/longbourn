@@ -389,13 +389,15 @@
       "players": [
         "mike-ertl",
         "phil-charles",
-        "ellen"
+        "ellen",
+        "peter-miell"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
         "phil-charles",
-        "ellen"
+        "ellen",
+        "peter-miell"
       ]
     },
     "2026-07-31T10:30": {
@@ -436,17 +438,12 @@
   },
   "allocatedMonths": {
     "2026-07": {
-      "allocatedAt": "2026-07-16T10:35:41.057Z",
-      "allocatedBy": "chris-danzinger",
+      "allocatedAt": "2026-07-17T08:09:46.546Z",
+      "allocatedBy": "peter-miell",
       "automatic": false
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Mike Ertl to 2026-07-17T11:45",
-      "at": "2026-07-09T14:04:22.588Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Chris Danzinger to 2026-07-10T08:00",
@@ -741,9 +738,14 @@
       "type": "allocation-remove",
       "text": "Removed Arda from 2026-07-24T11:45",
       "at": "2026-07-17T07:50:17.185Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Peter Miell to 2026-07-24T11:45",
+      "at": "2026-07-17T08:09:46.551Z"
     }
   ],
-  "updatedAt": "2026-07-17T07:50:17.186Z",
-  "updatedBy": "arda",
-  "manualEditedAt": "2026-07-17T07:50:17.179Z"
+  "updatedAt": "2026-07-17T08:09:46.551Z",
+  "updatedBy": "peter-miell",
+  "manualEditedAt": "2026-07-17T08:09:46.551Z"
 }
