@@ -388,14 +388,12 @@
     "2026-07-24T11:45": {
       "players": [
         "mike-ertl",
-        "arda",
         "phil-charles",
         "ellen"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
-        "arda",
         "phil-charles",
         "ellen"
       ]
@@ -444,11 +442,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Mike Ertl to 2026-07-10T08:00",
-      "at": "2026-07-09T14:04:05.571Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Mike Ertl to 2026-07-17T11:45",
@@ -743,9 +736,14 @@
       "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-07-17T11:45",
       "at": "2026-07-16T10:35:41.059Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Arda from 2026-07-24T11:45",
+      "at": "2026-07-17T07:50:17.185Z"
     }
   ],
-  "updatedAt": "2026-07-16T10:35:41.059Z",
-  "updatedBy": "chris-danzinger",
-  "manualEditedAt": "2026-07-16T10:35:41.059Z"
+  "updatedAt": "2026-07-17T07:50:17.186Z",
+  "updatedBy": "arda",
+  "manualEditedAt": "2026-07-17T07:50:17.179Z"
 }
