@@ -404,13 +404,15 @@
       "players": [
         "chris-dalley",
         "richard-moxon",
-        "phil-charles"
+        "phil-charles",
+        "david-taylor"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "chris-dalley",
         "richard-moxon",
-        "phil-charles"
+        "phil-charles",
+        "david-taylor"
       ]
     },
     "2026-07-31T11:45": {
@@ -436,17 +438,12 @@
   },
   "allocatedMonths": {
     "2026-07": {
-      "allocatedAt": "2026-07-17T08:09:46.546Z",
-      "allocatedBy": "peter-miell",
+      "allocatedAt": "2026-07-17T10:46:48.657Z",
+      "allocatedBy": "david-taylor",
       "automatic": false
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Arda to 2026-07-10T08:00",
-      "at": "2026-07-09T16:52:45.576Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Richard Moxon to 2026-07-10T08:00",
@@ -741,9 +738,14 @@
       "type": "allocation-remove",
       "text": "Removed David Taylor from 2026-07-31T10:30",
       "at": "2026-07-17T10:46:45.934Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added David Taylor to 2026-07-31T10:30",
+      "at": "2026-07-17T10:46:48.657Z"
     }
   ],
-  "updatedAt": "2026-07-17T10:46:45.934Z",
+  "updatedAt": "2026-07-17T10:46:48.657Z",
   "updatedBy": "david-taylor",
-  "manualEditedAt": "2026-07-17T10:46:45.932Z"
+  "manualEditedAt": "2026-07-17T10:46:48.657Z"
 }
