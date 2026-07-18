@@ -387,15 +387,13 @@
       "players": [
         "anthea",
         "david-taylor",
-        "chris-dalley",
-        "rachel"
+        "chris-dalley"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "anthea",
         "david-taylor",
-        "chris-dalley",
-        "rachel"
+        "chris-dalley"
       ]
     },
     "2026-07-24T11:45": {
@@ -457,11 +455,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Richard Moxon to 2026-07-17T10:30",
-      "at": "2026-07-09T16:54:05.196Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added David Taylor to 2026-07-17T10:30",
@@ -756,9 +749,14 @@
       "type": "availability",
       "text": "Saved availability for Chris Dalley",
       "at": "2026-07-17T10:53:51.200Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Rachel from 2026-07-24T10:30",
+      "at": "2026-07-18T14:06:28.193Z"
     }
   ],
-  "updatedAt": "2026-07-17T10:53:51.200Z",
-  "updatedBy": "chris-dalley",
-  "manualEditedAt": "2026-07-17T10:46:48.657Z"
+  "updatedAt": "2026-07-18T14:06:28.195Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-07-18T14:06:28.190Z"
 }
