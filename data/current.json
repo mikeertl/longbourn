@@ -402,13 +402,15 @@
       "players": [
         "mike-ertl",
         "ellen",
-        "peter-miell"
+        "peter-miell",
+        "rachel"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
         "ellen",
-        "peter-miell"
+        "peter-miell",
+        "rachel"
       ]
     },
     "2026-07-31T10:30": {
@@ -449,17 +451,12 @@
   },
   "allocatedMonths": {
     "2026-07": {
-      "allocatedAt": "2026-07-18T21:13:32.285Z",
+      "allocatedAt": "2026-07-18T21:14:56.333Z",
       "allocatedBy": "phil-charles",
       "automatic": false
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Phil Charles to 2026-07-17T10:30",
-      "at": "2026-07-09T16:54:36.134Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Chris Dalley to 2026-07-17T11:45",
@@ -754,9 +751,14 @@
       "type": "allocation-remove",
       "text": "Removed Phil Charles from 2026-07-24T11:45",
       "at": "2026-07-18T21:13:39.838Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Rachel to 2026-07-24T11:45",
+      "at": "2026-07-18T21:14:56.333Z"
     }
   ],
-  "updatedAt": "2026-07-18T21:13:39.838Z",
+  "updatedAt": "2026-07-18T21:14:56.333Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-07-18T21:13:39.838Z"
+  "manualEditedAt": "2026-07-18T21:14:56.333Z"
 }
