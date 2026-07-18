@@ -401,14 +401,12 @@
     "2026-07-24T11:45": {
       "players": [
         "mike-ertl",
-        "phil-charles",
         "ellen",
         "peter-miell"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
-        "phil-charles",
         "ellen",
         "peter-miell"
       ]
@@ -457,11 +455,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Jo TR to 2026-07-17T10:30",
-      "at": "2026-07-09T16:54:31.746Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-07-17T10:30",
@@ -756,9 +749,14 @@
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-07-24T10:30",
       "at": "2026-07-18T21:13:32.285Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Phil Charles from 2026-07-24T11:45",
+      "at": "2026-07-18T21:13:39.838Z"
     }
   ],
-  "updatedAt": "2026-07-18T21:13:32.285Z",
+  "updatedAt": "2026-07-18T21:13:39.838Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-07-18T21:13:32.285Z"
+  "manualEditedAt": "2026-07-18T21:13:39.838Z"
 }
