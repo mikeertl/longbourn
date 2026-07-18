@@ -387,13 +387,15 @@
       "players": [
         "anthea",
         "david-taylor",
-        "chris-dalley"
+        "chris-dalley",
+        "phil-charles"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "anthea",
         "david-taylor",
-        "chris-dalley"
+        "chris-dalley",
+        "phil-charles"
       ]
     },
     "2026-07-24T11:45": {
@@ -449,17 +451,12 @@
   },
   "allocatedMonths": {
     "2026-07": {
-      "allocatedAt": "2026-07-17T10:46:48.657Z",
-      "allocatedBy": "david-taylor",
+      "allocatedAt": "2026-07-18T21:13:32.285Z",
+      "allocatedBy": "phil-charles",
       "automatic": false
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added David Taylor to 2026-07-17T10:30",
-      "at": "2026-07-09T16:54:19.021Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Jo TR to 2026-07-17T10:30",
@@ -754,9 +751,14 @@
       "type": "allocation-remove",
       "text": "Removed Rachel from 2026-07-24T10:30",
       "at": "2026-07-18T14:06:28.193Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-07-24T10:30",
+      "at": "2026-07-18T21:13:32.285Z"
     }
   ],
-  "updatedAt": "2026-07-18T14:06:28.195Z",
-  "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-18T14:06:28.190Z"
+  "updatedAt": "2026-07-18T21:13:32.285Z",
+  "updatedBy": "phil-charles",
+  "manualEditedAt": "2026-07-18T21:13:32.285Z"
 }
