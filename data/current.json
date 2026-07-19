@@ -335,6 +335,17 @@
       ],
       "yellow": [],
       "updatedAt": "2026-07-17T10:53:51.199Z"
+    },
+    "chris-danzinger": {
+      "green": [
+        "2026-08-21T11:45",
+        "2026-08-28T10:30"
+      ],
+      "yellow": [
+        "2026-08-28T11:45",
+        "2026-08-21T10:30"
+      ],
+      "updatedAt": "2026-07-19T20:40:17.401Z"
     }
   },
   "allocations": {
@@ -457,11 +468,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Chris Dalley to 2026-07-17T11:45",
-      "at": "2026-07-09T16:54:56.892Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Arda to 2026-07-17T11:45",
@@ -756,9 +762,14 @@
       "type": "allocation-add",
       "text": "Added Rachel to 2026-07-24T11:45",
       "at": "2026-07-18T21:14:56.333Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Chris Danziger",
+      "at": "2026-07-19T20:40:17.452Z"
     }
   ],
-  "updatedAt": "2026-07-18T21:14:56.333Z",
-  "updatedBy": "phil-charles",
+  "updatedAt": "2026-07-19T20:40:17.453Z",
+  "updatedBy": "chris-danzinger",
   "manualEditedAt": "2026-07-18T21:14:56.333Z"
 }
