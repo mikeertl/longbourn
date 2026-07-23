@@ -346,6 +346,14 @@
         "2026-08-21T10:30"
       ],
       "updatedAt": "2026-07-19T20:40:17.401Z"
+    },
+    "akiko": {
+      "green": [],
+      "yellow": [
+        "2026-08-21T11:45",
+        "2026-08-21T10:30"
+      ],
+      "updatedAt": "2026-07-23T07:28:18.683Z"
     }
   },
   "allocations": {
@@ -468,11 +476,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Arda to 2026-07-17T11:45",
-      "at": "2026-07-09T16:55:12.963Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-07-17T11:45",
@@ -767,9 +770,14 @@
       "type": "availability",
       "text": "Saved availability for Chris Danziger",
       "at": "2026-07-19T20:40:17.452Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Akiko",
+      "at": "2026-07-23T07:28:18.684Z"
     }
   ],
-  "updatedAt": "2026-07-19T20:40:17.453Z",
-  "updatedBy": "chris-danzinger",
+  "updatedAt": "2026-07-23T07:28:18.684Z",
+  "updatedBy": "akiko",
   "manualEditedAt": "2026-07-18T21:14:56.333Z"
 }
