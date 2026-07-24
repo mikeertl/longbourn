@@ -353,6 +353,18 @@
         "2026-08-21T10:30"
       ],
       "updatedAt": "2026-07-23T07:28:18.683Z"
+    },
+    "phil-charles": {
+      "green": [
+        "2026-08-07T10:30",
+        "2026-08-14T10:30",
+        "2026-08-28T10:30"
+      ],
+      "yellow": [
+        "2026-08-07T11:45",
+        "2026-08-28T11:45"
+      ],
+      "updatedAt": "2026-07-24T08:00:14.769Z"
     }
   },
   "allocations": {
@@ -475,11 +487,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Anthea to 2026-07-24T10:30",
-      "at": "2026-07-09T16:57:05.233Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added David Taylor to 2026-07-24T10:30",
@@ -774,9 +781,14 @@
       "type": "availability",
       "text": "Saved availability for Chris Dalley",
       "at": "2026-07-23T09:32:14.400Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Phil Charles",
+      "at": "2026-07-24T08:00:14.769Z"
     }
   ],
-  "updatedAt": "2026-07-23T09:32:14.400Z",
-  "updatedBy": "chris-dalley",
+  "updatedAt": "2026-07-24T08:00:14.769Z",
+  "updatedBy": "phil-charles",
   "manualEditedAt": "2026-07-18T21:14:56.333Z"
 }
