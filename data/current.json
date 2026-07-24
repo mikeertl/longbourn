@@ -365,6 +365,13 @@
         "2026-08-28T11:45"
       ],
       "updatedAt": "2026-07-24T08:00:14.769Z"
+    },
+    "rachel": {
+      "green": [
+        "2026-08-07T10:30"
+      ],
+      "yellow": [],
+      "updatedAt": "2026-07-24T10:47:59.176Z"
     }
   },
   "allocations": {
@@ -487,11 +494,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added David Taylor to 2026-07-24T10:30",
-      "at": "2026-07-09T16:57:10.283Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Chris Dalley to 2026-07-24T10:30",
@@ -786,9 +788,14 @@
       "type": "availability",
       "text": "Saved availability for Phil Charles",
       "at": "2026-07-24T08:00:14.769Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Rachel",
+      "at": "2026-07-24T10:47:59.178Z"
     }
   ],
-  "updatedAt": "2026-07-24T08:00:14.769Z",
-  "updatedBy": "phil-charles",
+  "updatedAt": "2026-07-24T10:47:59.178Z",
+  "updatedBy": "rachel",
   "manualEditedAt": "2026-07-18T21:14:56.333Z"
 }
