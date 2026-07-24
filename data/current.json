@@ -368,10 +368,10 @@
     },
     "rachel": {
       "green": [
-        "2026-08-28T11:45"
+        "2026-08-28T10:30"
       ],
       "yellow": [],
-      "updatedAt": "2026-07-24T12:03:02.457Z"
+      "updatedAt": "2026-07-24T12:03:16.682Z"
     }
   },
   "allocations": {
@@ -494,11 +494,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Phil Charles to 2026-07-24T10:30",
-      "at": "2026-07-09T16:57:36.962Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Akiko to 2026-07-24T11:45",
@@ -793,9 +788,14 @@
       "type": "availability",
       "text": "Saved availability for Rachel",
       "at": "2026-07-24T12:03:02.459Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Rachel",
+      "at": "2026-07-24T12:03:16.682Z"
     }
   ],
-  "updatedAt": "2026-07-24T12:03:02.459Z",
+  "updatedAt": "2026-07-24T12:03:16.682Z",
   "updatedBy": "rachel",
   "manualEditedAt": "2026-07-18T21:14:56.333Z"
 }
