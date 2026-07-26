@@ -32,6 +32,24 @@ it helps fill the court. A yellow player is allocated automatically unless that
 would make them play twice on the same day, in which case the Admin allocation
 screen shows them as needing confirmation.
 
+Allocation normally runs on the last Friday before the playing month. Because
+the site is static, the first signed-in refresh performs the allocation. If no
+one opens the app on that Friday, the first later refresh catches up the
+unallocated current month without changing games that have already started.
+
+Each completed allocation preserves the green and yellow responses and its
+original selections. During the playing month, Admin Responses shows that
+read-only history beneath the upcoming responses so organisers can compare the
+original result with any manual rearrangement.
+
 In Admin Allocation, each unfilled player position has an `Add player` button.
 The button opens a player picker inside that game, so manual changes remain
 visible even when the organiser has scrolled down the allocation list.
+
+## Checks
+
+Run the allocation rollover and response-history regression checks with:
+
+```sh
+node tests/allocation.test.js
+```

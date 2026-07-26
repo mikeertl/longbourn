@@ -8,7 +8,7 @@
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
   var ADMIN_PANELS_STORAGE_KEY = "longbourn-admin-panels-v1";
-  var APP_VERSION = "2026.07.17.1";
+  var APP_VERSION = "2026.07.26.1";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
@@ -366,7 +366,7 @@
     next.players = next.players || {};
     next.availability = next.availability || {};
     next.allocations = next.allocations || {};
-    next.allocatedMonths = next.allocatedMonths || {};
+    next.allocatedMonths = normalizeAllocatedMonths(next.allocatedMonths);
     next.changes = Array.isArray(next.changes) ? next.changes : [];
     next.updatedAt = next.updatedAt || latestChangeAt(next.changes) || "";
     next.updatedBy = next.updatedBy || "";
@@ -402,10 +402,52 @@
           allocatedAt: next.updatedAt || latestChangeAt(next.changes) || nowIso(),
           allocatedBy: next.updatedBy || "",
           automatic: false,
+          completed: true,
           inferred: true,
         };
       }
     });
+  }
+
+  function normalizeAllocatedMonths(input) {
+    var normalized = {};
+    Object.keys(input || {}).forEach(function (monthKey) {
+      var value = input[monthKey];
+      if (!value || typeof value !== "object") return;
+      var record = Object.assign({}, value);
+      if (typeof record.completed !== "boolean") record.completed = true;
+      record.responses = normalizeResponseSnapshot(record.responses);
+      record.originalAllocations = normalizeOriginalAllocations(record.originalAllocations);
+      record.playerNames =
+        record.playerNames && typeof record.playerNames === "object"
+          ? Object.assign({}, record.playerNames)
+          : {};
+      normalized[monthKey] = record;
+    });
+    return normalized;
+  }
+
+  function normalizeResponseSnapshot(input) {
+    var normalized = {};
+    Object.keys(input || {}).forEach(function (slotId) {
+      var value = input[slotId];
+      if (!value || typeof value !== "object") return;
+      normalized[slotId] = {
+        date: String(value.date || slotId.slice(0, 10)),
+        time: String(value.time || slotId.slice(11, 16)),
+        green: uniqueList(Array.isArray(value.green) ? value.green : []),
+        yellow: uniqueList(Array.isArray(value.yellow) ? value.yellow : []),
+      };
+    });
+    return normalized;
+  }
+
+  function normalizeOriginalAllocations(input) {
+    var normalized = {};
+    Object.keys(input || {}).forEach(function (slotId) {
+      normalized[slotId] = uniqueList(Array.isArray(input[slotId]) ? input[slotId] : []);
+    });
+    return normalized;
   }
 
   function uniqueUserId(id, seen) {
@@ -628,11 +670,18 @@
   }
 
   function fetchStateFile() {
-    return fetchJsonFile(STATE_PATH);
+    return fetchSharedJsonFile(STATE_PATH);
   }
 
   function fetchUsersFile() {
-    return fetchJsonFile(USERS_PATH);
+    return fetchSharedJsonFile(USERS_PATH);
+  }
+
+  function fetchSharedJsonFile(path) {
+    if (!hasSession()) return fetchJsonFile(path);
+    return fetchGitHubJsonFile(path).catch(function () {
+      return fetchJsonFile(path);
+    });
   }
 
   function fetchJsonFile(path) {
@@ -662,7 +711,8 @@
       });
   }
 
-  function saveCurrentState(statusTarget, successMessage) {
+  function saveCurrentState(statusTarget, successMessage, options) {
+    options = options || {};
     if (!requireToken(statusTarget)) return Promise.resolve(false);
     syncStatePlayersWithUsers();
     stampStateUpdate();
@@ -677,8 +727,48 @@
         return true;
       })
       .catch(function (error) {
+        if (
+          options.allocationMonth &&
+          options.retryOnConflict &&
+          (error.status === 409 || error.status === 422)
+        ) {
+          return reconcileAllocationConflict(options.allocationMonth, statusTarget);
+        }
+        if (options.allocationMonth) {
+          markAllocationSavePending(options.allocationMonth);
+        }
         setStatus(statusTarget, "Could not save. Check token permissions.");
         console.warn("Could not save state", error);
+        return false;
+      });
+  }
+
+  function reconcileAllocationConflict(monthKey, statusTarget) {
+    return fetchGitHubJsonFile(STATE_PATH)
+      .then(function (sharedState) {
+        var incoming = normalizeState(sharedState);
+        clearPendingStateLocal();
+        state = incoming;
+        syncStatePlayersWithUsers();
+        saveStateLocal();
+        renderAll();
+        if (isMonthAllocationComplete(monthKey)) {
+          setStatus(
+            statusTarget,
+            monthOnlyName(monthKey) + " was already allocated by another player."
+          );
+          return true;
+        }
+        setStatus(
+          statusTarget,
+          "Shared responses changed while allocating. Refresh to use the latest responses."
+        );
+        return false;
+      })
+      .catch(function (error) {
+        markAllocationSavePending(monthKey);
+        setStatus(statusTarget, "Could not confirm the shared allocation. Please refresh.");
+        console.warn("Could not reconcile allocation save", error);
         return false;
       });
   }
@@ -722,7 +812,9 @@
         }).then(function (response) {
           if (!response.ok) {
             return response.text().then(function (text) {
-              throw new Error(text || "GitHub save failed");
+              var error = new Error(text || "GitHub save failed");
+              error.status = response.status;
+              throw error;
             });
           }
           return response.json();
@@ -749,6 +841,24 @@
       }
       return response.json().then(function (data) {
         return data.sha;
+      });
+    });
+  }
+
+  function fetchGitHubJsonFile(path) {
+    return fetch(gitHubContentsUrl(path) + "?ref=" + encodeURIComponent(GITHUB_BRANCH), {
+      headers: gitHubHeaders(),
+      cache: "no-store",
+    }).then(function (response) {
+      if (!response.ok) {
+        return response.text().then(function (text) {
+          var error = new Error(text || "Could not read GitHub file");
+          error.status = response.status;
+          throw error;
+        });
+      }
+      return response.json().then(function (data) {
+        return JSON.parse(base64Decode(String(data.content || "").replace(/\s/g, "")));
       });
     });
   }
@@ -1332,21 +1442,22 @@
       empty.className = "allocation-note";
       empty.textContent = "No next-month slots have been set up yet.";
       el.responsesList.appendChild(empty);
-      return;
-    }
-    slots.forEach(function (slot) {
-      var row = document.createElement("article");
-      row.className = "response-row";
-      var heading = document.createElement("h3");
-      heading.textContent = formatSlotFull(slot);
-      row.appendChild(heading);
+    } else {
+      slots.forEach(function (slot) {
+        var row = document.createElement("article");
+        row.className = "response-row";
+        var heading = document.createElement("h3");
+        heading.textContent = formatSlotFull(slot);
+        row.appendChild(heading);
 
-      var green = responsePlayers(slot.id, "green");
-      var yellow = responsePlayers(slot.id, "yellow");
-      row.appendChild(responseGroup("Green", green, "green"));
-      row.appendChild(responseGroup("Yellow", yellow, "yellow"));
-      el.responsesList.appendChild(row);
-    });
+        var green = responsePlayers(slot.id, "green");
+        var yellow = responsePlayers(slot.id, "yellow");
+        row.appendChild(responseGroup("Green", green, "green"));
+        row.appendChild(responseGroup("Yellow", yellow, "yellow"));
+        el.responsesList.appendChild(row);
+      });
+    }
+    renderResponseHistory(monthKey);
   }
 
   function responseGroup(label, playerIds, type) {
@@ -1376,6 +1487,161 @@
       .sort(function (a, b) {
         return playerName(a).localeCompare(playerName(b), "en-GB", { sensitivity: "base" });
       });
+  }
+
+  function renderResponseHistory(liveMonthKey) {
+    responseHistoryMonthKeys(liveMonthKey).forEach(function (monthKey) {
+      var record = state.allocatedMonths[monthKey];
+      var history = document.createElement("details");
+      history.className = "response-history";
+
+      var summary = document.createElement("summary");
+      var summaryText = document.createElement("span");
+      summaryText.textContent = formatMonthHeading(monthKey) + " - Responses used for allocation";
+      summary.appendChild(summaryText);
+      summary.appendChild(readOnlyChip("response-history-badge", "Read only"));
+      history.appendChild(summary);
+
+      var note = document.createElement("p");
+      note.className = "response-history-note";
+      note.textContent = record.catchUp
+        ? "This allocation was completed after its due date. Original responses and selections are preserved below."
+        : "Original responses and selections are preserved below.";
+      history.appendChild(note);
+
+      responseSnapshotSlots(record).forEach(function (slot) {
+        var row = document.createElement("article");
+        row.className = "response-row response-history-row";
+        var heading = document.createElement("h3");
+        heading.textContent = formatSlotFull(slot);
+        row.appendChild(heading);
+        row.appendChild(historicalResponseGroup("Green", slot.green, "green", slot.date, record));
+        row.appendChild(historicalResponseGroup("Yellow", slot.yellow, "yellow", slot.date, record));
+        history.appendChild(row);
+      });
+      el.responsesList.appendChild(history);
+    });
+  }
+
+  function responseHistoryMonthKeys(liveMonthKey) {
+    return Object.keys(state.allocatedMonths || {})
+      .filter(function (monthKey) {
+        var record = state.allocatedMonths[monthKey] || {};
+        return (
+          monthKey !== liveMonthKey &&
+          monthKey <= currentMonthKey() &&
+          Object.keys(record.responses || {}).length > 0
+        );
+      })
+      .sort()
+      .reverse()
+      .slice(0, 1);
+  }
+
+  function responseSnapshotSlots(record) {
+    return Object.keys(record.responses || {})
+      .map(function (slotId) {
+        var response = record.responses[slotId] || {};
+        return {
+          id: slotId,
+          date: response.date || slotId.slice(0, 10),
+          time: response.time || slotId.slice(11, 16),
+          green: uniqueList(response.green || []).sort(function (a, b) {
+            return historicalPlayerName(record, a).localeCompare(
+              historicalPlayerName(record, b),
+              "en-GB",
+              { sensitivity: "base" }
+            );
+          }),
+          yellow: uniqueList(response.yellow || []).sort(function (a, b) {
+            return historicalPlayerName(record, a).localeCompare(
+              historicalPlayerName(record, b),
+              "en-GB",
+              { sensitivity: "base" }
+            );
+          }),
+        };
+      })
+      .sort(compareSlots);
+  }
+
+  function historicalResponseGroup(label, playerIds, type, date, record) {
+    var group = document.createElement("div");
+    group.className = "response-group";
+    var title = document.createElement("span");
+    title.className = "response-label";
+    title.textContent = label;
+    group.appendChild(title);
+    if (!playerIds.length) {
+      group.appendChild(readOnlyChip("empty-chip", "-"));
+      return group;
+    }
+    playerIds.forEach(function (playerId) {
+      var chip = document.createElement("span");
+      chip.className = "response-chip historical-response-chip " + type;
+      chip.appendChild(readOnlyChip("historical-response-name", historicalPlayerName(record, playerId)));
+      chip.appendChild(
+        readOnlyChip(
+          "historical-response-status",
+          historicalAllocationStatus(playerId, date, record)
+        )
+      );
+      group.appendChild(chip);
+    });
+    return group;
+  }
+
+  function historicalPlayerName(record, playerId) {
+    var user = getUser(playerId);
+    if (user && user.name) return user.name;
+    if (state.players[playerId] && state.players[playerId].name) {
+      return state.players[playerId].name;
+    }
+    return (record.playerNames && record.playerNames[playerId]) || playerId;
+  }
+
+  function historicalAllocationStatus(playerId, date, record) {
+    var originalTime = allocationTimeForPlayer(
+      playerId,
+      date,
+      record.originalAllocations || {},
+      record.responses || {}
+    );
+    var currentTime = currentAllocationTimeForPlayer(playerId, date);
+    if (originalTime && currentTime === originalTime) return "Allocated at " + originalTime;
+    if (originalTime && currentTime) {
+      return "Originally " + originalTime + "; now " + currentTime;
+    }
+    if (originalTime) return "Originally " + originalTime + "; now not allocated";
+    if (currentTime) return "Not originally selected; now " + currentTime;
+    return "Not selected";
+  }
+
+  function allocationTimeForPlayer(playerId, date, allocations, responses) {
+    var slotId = Object.keys(allocations || {}).find(function (candidateSlotId) {
+      var response = responses[candidateSlotId] || {};
+      var slotDate = response.date || candidateSlotId.slice(0, 10);
+      return (
+        slotDate === date &&
+        (allocations[candidateSlotId] || []).indexOf(playerId) >= 0
+      );
+    });
+    if (!slotId) return "";
+    return (responses[slotId] && responses[slotId].time) || slotId.slice(11, 16);
+  }
+
+  function currentAllocationTimeForPlayer(playerId, date) {
+    var slotId = Object.keys(state.allocations || {}).find(function (candidateSlotId) {
+      var slot = getSlot(candidateSlotId);
+      var slotDate = slot ? slot.date : candidateSlotId.slice(0, 10);
+      return (
+        slotDate === date &&
+        allocationForSlot(candidateSlotId).players.indexOf(playerId) >= 0
+      );
+    });
+    if (!slotId) return "";
+    var slot = getSlot(slotId);
+    return slot ? slot.time : slotId.slice(11, 16);
   }
 
   function playerChip(slotId, playerId, isEditable) {
@@ -1544,7 +1810,9 @@
     });
     state.allocations[slotId] = allocation;
     state.players[playerId] = { name: playerName(playerId) };
-    if (getSlot(slotId)) markMonthAllocated(getSlot(slotId).date.slice(0, 7), false);
+    if (getSlot(slotId)) {
+      markMonthAllocationStarted(getSlot(slotId).date.slice(0, 7));
+    }
     markManualAllocationChange();
     state.changes.push(change("allocation-add", "Added " + playerName(playerId) + " to " + slotId));
     saveCurrentState(statusTarget, message);
@@ -1628,47 +1896,100 @@
         if (!window.confirm("Manual changes will be deleted. Are you sure?")) return;
       }
     }
-    runAllocationAndSave("Auto allocation saved.", "Auto allocation", false, {
+    runAllocationAndSave(targetMonth, "Auto allocation saved.", "Auto allocation", false, {
       keepExisting: keepExisting,
+      automatic: false,
     });
   }
 
   function autoAllocateIfDue() {
     if (!hasSession()) return Promise.resolve(false);
-    var targetMonth = autoAllocationMonthKey();
-    var allocationDate = allocationDateForMonth(targetMonth);
-    if (startOfDay(new Date()) < allocationDate) return Promise.resolve(false);
+    return allocateDueMonths({});
+  }
+
+  function allocateDueMonths(attemptedMonths) {
+    var targetMonth = dueAllocationMonthKeys().find(function (monthKey) {
+      return !attemptedMonths[monthKey];
+    });
+    if (!targetMonth) return Promise.resolve(false);
+    attemptedMonths[targetMonth] = true;
+
     var changed = ensureDefaultMonthSlots(targetMonth);
-    if (isMonthAllocated(targetMonth)) {
-      if (changed) return saveCurrentState("games", "Next month setup updated.");
-      return Promise.resolve(false);
+    if (isMonthAllocationComplete(targetMonth)) {
+      if (changed) {
+        return saveCurrentState("games", "Month setup updated.").then(function (saved) {
+          return allocateDueMonths(attemptedMonths).then(function (allocated) {
+            return saved || allocated;
+          });
+        });
+      }
+      return allocateDueMonths(attemptedMonths);
     }
-    return runAllocationAndSave("Automatic allocation updated.", "Automatic allocation", true, {
+
+    if (!allocationSlotsForMonth(targetMonth, true).length) {
+      return allocateDueMonths(attemptedMonths);
+    }
+
+    var catchUp = startOfDay(new Date()) > allocationDateForMonth(targetMonth);
+    var successMessage = catchUp
+      ? monthOnlyName(targetMonth) + " allocation was overdue and has now been completed."
+      : "Automatic allocation updated.";
+    var reason = catchUp ? "Automatic catch-up allocation" : "Automatic allocation";
+    return runAllocationAndSave(targetMonth, successMessage, reason, true, {
       keepExisting: true,
+      automatic: true,
+      catchUp: catchUp,
+      retryOnConflict: true,
+    }).then(function (allocated) {
+      return allocateDueMonths(attemptedMonths).then(function (laterAllocation) {
+        return allocated || laterAllocation;
+      });
     });
   }
 
-  function runAllocationAndSave(successMessage, reason, onlyIfChanged, options) {
+  function dueAllocationMonthKeys() {
+    var today = startOfDay(new Date());
+    return activeMonthKeys()
+      .filter(function (monthKey) {
+        return allocationDateForMonth(monthKey) <= today;
+      })
+      .filter(function (monthKey) {
+        return !isMonthAllocationComplete(monthKey);
+      })
+      .sort();
+  }
+
+  function runAllocationAndSave(targetMonth, successMessage, reason, onlyIfChanged, options) {
     options = options || {};
-    if (!autoAllocationSlots().length) {
-      setStatus("allocation", "No enabled games for " + formatMonthHeading(autoAllocationMonthKey()) + ".");
+    if (!allocationSlotsForMonth(targetMonth, true).length) {
+      setStatus("allocation", "No unstarted enabled games for " + formatMonthHeading(targetMonth) + ".");
       return Promise.resolve(false);
     }
-    var changed = allocate(reason, options);
+    var changed = allocate(targetMonth, reason, options);
     renderAll();
     if (!changed && onlyIfChanged) return Promise.resolve(false);
     if (!changed) {
       setStatus("allocation", "Allocation already up to date.");
       return Promise.resolve(false);
     }
-    return saveCurrentState(activeTab === "games" ? "games" : "allocation", successMessage);
+    return saveCurrentState(
+      activeTab === "games" ? "games" : "allocation",
+      successMessage,
+      {
+        allocationMonth: targetMonth,
+        retryOnConflict: !!options.retryOnConflict,
+      }
+    );
   }
 
-  function allocate(reason, options) {
-    var monthKey = autoAllocationMonthKey();
+  function allocate(monthKey, reason, options) {
+    options = options || {};
     var beforeMarker = JSON.stringify(state.allocatedMonths[monthKey] || null);
-    var nextAllocations = buildAllocations(options || {});
-    markMonthAllocated(monthKey, reason === "Automatic allocation");
+    var nextAllocations = buildAllocations(monthKey, options);
+    markMonthAllocated(monthKey, !!options.automatic, {
+      catchUp: !!options.catchUp,
+      allocations: nextAllocations,
+    });
     var changed =
       JSON.stringify(nextAllocations) !== JSON.stringify(state.allocations || {}) ||
       beforeMarker !== JSON.stringify(state.allocatedMonths[monthKey] || null);
@@ -1677,17 +1998,15 @@
     return changed;
   }
 
-  function buildAllocations(options) {
+  function buildAllocations(monthKey, options) {
     options = options || {};
-    var targetSlots = autoAllocationSlots();
-    var targetSlotIds = {};
+    var targetSlots = allocationSlotsForMonth(monthKey, true);
     var allocations = {};
     var allocationCount = {};
     Object.keys(state.allocations || {}).forEach(function (slotId) {
       var allocation = allocationForSlot(slotId);
       var slot = getSlot(slotId);
       if (slot && targetSlots.some(function (targetSlot) { return targetSlot.id === slotId; })) {
-        targetSlotIds[slotId] = true;
         if (options.keepExisting) {
           allocations[slotId] = allocation;
         }
@@ -1699,7 +2018,6 @@
     });
 
     targetSlots.forEach(function (slot) {
-      targetSlotIds[slot.id] = true;
       if (!allocations[slot.id]) {
         allocations[slot.id] = { players: [], yellowCandidates: [], confirmed: [] };
       }
@@ -1709,8 +2027,9 @@
       allocationCount[user.id] = 0;
     });
 
-    Object.keys(targetSlotIds).forEach(function (slotId) {
-      (allocations[slotId].players || []).forEach(function (playerId) {
+    slotsForMonth(monthKey, true).forEach(function (slot) {
+      var allocation = allocations[slot.id] || { players: [] };
+      (allocation.players || []).forEach(function (playerId) {
         allocationCount[playerId] = (allocationCount[playerId] || 0) + 1;
       });
     });
@@ -1720,6 +2039,17 @@
         return slot.date === date;
       });
       var dayAssigned = {};
+
+      slotsForMonth(monthKey, true)
+        .filter(function (slot) {
+          return slot.date === date;
+        })
+        .forEach(function (slot) {
+          var allocation = allocations[slot.id] || { players: [] };
+          (allocation.players || []).forEach(function (playerId) {
+            dayAssigned[playerId] = slot.id;
+          });
+        });
 
       daySlots.forEach(function (slot) {
         allocations[slot.id].players = allocations[slot.id].players.filter(isActiveUser);
@@ -2305,12 +2635,94 @@
     return !!(state.allocatedMonths && state.allocatedMonths[monthKey]) || hasAllocationsInMonth(monthKey);
   }
 
-  function markMonthAllocated(monthKey, automatic) {
+  function isMonthAllocationComplete(monthKey) {
+    var record = state.allocatedMonths && state.allocatedMonths[monthKey];
+    return !!record && record.completed !== false;
+  }
+
+  function markMonthAllocationStarted(monthKey) {
+    if (state.allocatedMonths[monthKey]) return;
     state.allocatedMonths[monthKey] = {
-      allocatedAt: nowIso(),
+      startedAt: nowIso(),
       allocatedBy: session.userId || "",
-      automatic: !!automatic,
+      automatic: false,
+      completed: false,
     };
+  }
+
+  function markMonthAllocated(monthKey, automatic, details) {
+    details = details || {};
+    var existing = state.allocatedMonths[monthKey] || {};
+    var wasComplete = existing.completed !== false && Object.keys(existing).length > 0;
+    var snapshot =
+      Object.keys(existing.responses || {}).length > 0
+        ? {
+            responses: existing.responses,
+            originalAllocations: existing.originalAllocations || {},
+            playerNames: existing.playerNames || {},
+          }
+        : captureAllocationSnapshot(monthKey, details.allocations || state.allocations);
+
+    state.allocatedMonths[monthKey] = Object.assign({}, existing, {
+      allocatedAt: wasComplete && existing.allocatedAt ? existing.allocatedAt : nowIso(),
+      allocatedBy: wasComplete ? existing.allocatedBy || "" : session.userId || "",
+      automatic: wasComplete ? !!existing.automatic : !!automatic,
+      completed: true,
+      savePending: false,
+      dueDate: existing.dueDate || toDateKey(allocationDateForMonth(monthKey)),
+      catchUp: wasComplete ? !!existing.catchUp : !!details.catchUp,
+      responses: snapshot.responses,
+      originalAllocations: snapshot.originalAllocations,
+      playerNames: snapshot.playerNames,
+    });
+  }
+
+  function markAllocationSavePending(monthKey) {
+    var record = state.allocatedMonths[monthKey];
+    if (!record) return;
+    record.completed = false;
+    record.savePending = true;
+    state.allocatedMonths[monthKey] = record;
+    saveStateLocal();
+    savePendingStateLocal();
+    renderAll();
+  }
+
+  function captureAllocationSnapshot(monthKey, allocations) {
+    allocations = allocations || {};
+    var responses = {};
+    var originalAllocations = {};
+    var playerNames = {};
+    slotsForMonth(monthKey, true).forEach(function (slot) {
+      var green = greenCandidates(slot.id)
+        .filter(isActiveUser)
+        .sort(comparePlayerNames);
+      var yellow = yellowCandidates(slot.id)
+        .filter(isActiveUser)
+        .sort(comparePlayerNames);
+      var originalPlayers = uniqueList(
+        (allocations[slot.id] && allocations[slot.id].players) || []
+      ).filter(isActiveUser);
+      responses[slot.id] = {
+        date: slot.date,
+        time: slot.time,
+        green: green,
+        yellow: yellow,
+      };
+      originalAllocations[slot.id] = originalPlayers;
+      green.concat(yellow, originalPlayers).forEach(function (playerId) {
+        playerNames[playerId] = playerName(playerId);
+      });
+    });
+    return {
+      responses: responses,
+      originalAllocations: originalAllocations,
+      playerNames: playerNames,
+    };
+  }
+
+  function comparePlayerNames(a, b) {
+    return playerName(a).localeCompare(playerName(b), "en-GB", { sensitivity: "base" });
   }
 
   function allocationForSlot(slotId) {
@@ -2401,10 +2813,9 @@
     return addMonthsToMonthKey(currentMonthKey(), 1);
   }
 
-  function autoAllocationSlots() {
-    var month = autoAllocationMonthKey();
+  function allocationSlotsForMonth(monthKey, unstartedOnly) {
     return enabledSlots().filter(function (slot) {
-      return slot.date.slice(0, 7) === month;
+      return slot.date.slice(0, 7) === monthKey && (!unstartedOnly || !isSlotPast(slot));
     });
   }
 
@@ -2547,6 +2958,15 @@
       binary += String.fromCharCode(byte);
     });
     return btoa(binary);
+  }
+
+  function base64Decode(value) {
+    var binary = atob(value);
+    var bytes = new Uint8Array(binary.length);
+    for (var index = 0; index < binary.length; index += 1) {
+      bytes[index] = binary.charCodeAt(index);
+    }
+    return new TextDecoder().decode(bytes);
   }
 
   function escapeHtml(value) {
