@@ -469,13 +469,15 @@
       "players": [
         "akiko",
         "mike-ertl",
-        "arda"
+        "arda",
+        "peter-miell"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "akiko",
         "mike-ertl",
-        "arda"
+        "arda",
+        "peter-miell"
       ]
     },
     "2026-07-10T10:30": {
@@ -496,11 +498,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Mike Ertl to 2026-07-24T11:45",
-      "at": "2026-07-09T16:58:00.821Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Arda to 2026-07-24T11:45",
@@ -795,9 +792,14 @@
       "type": "allocation-remove",
       "text": "Removed Phil Charles from 2026-07-31T11:45",
       "at": "2026-07-27T14:38:16.074Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Peter Miell to 2026-07-31T11:45",
+      "at": "2026-07-27T14:38:39.280Z"
     }
   ],
-  "updatedAt": "2026-07-27T14:38:16.074Z",
+  "updatedAt": "2026-07-27T14:38:39.280Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-07-27T14:38:16.074Z"
+  "manualEditedAt": "2026-07-27T14:38:39.280Z"
 }
