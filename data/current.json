@@ -469,15 +469,13 @@
       "players": [
         "akiko",
         "mike-ertl",
-        "arda",
-        "phil-charles"
+        "arda"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "akiko",
         "mike-ertl",
-        "arda",
-        "phil-charles"
+        "arda"
       ]
     },
     "2026-07-10T10:30": {
@@ -490,15 +488,14 @@
     "2026-07": {
       "allocatedAt": "2026-07-18T21:14:56.333Z",
       "allocatedBy": "phil-charles",
-      "automatic": false
+      "automatic": false,
+      "completed": true,
+      "responses": {},
+      "originalAllocations": {},
+      "playerNames": {}
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Akiko to 2026-07-24T11:45",
-      "at": "2026-07-09T16:57:54.412Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Mike Ertl to 2026-07-24T11:45",
@@ -793,9 +790,14 @@
       "type": "availability",
       "text": "Saved availability for Rachel",
       "at": "2026-07-24T12:03:16.682Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Phil Charles from 2026-07-31T11:45",
+      "at": "2026-07-27T14:38:16.074Z"
     }
   ],
-  "updatedAt": "2026-07-24T12:03:16.682Z",
-  "updatedBy": "rachel",
-  "manualEditedAt": "2026-07-18T21:14:56.333Z"
+  "updatedAt": "2026-07-27T14:38:16.074Z",
+  "updatedBy": "phil-charles",
+  "manualEditedAt": "2026-07-27T14:38:16.074Z"
 }
