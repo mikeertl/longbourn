@@ -454,14 +454,12 @@
       "players": [
         "chris-dalley",
         "richard-moxon",
-        "phil-charles",
         "david-taylor"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "chris-dalley",
         "richard-moxon",
-        "phil-charles",
         "david-taylor"
       ]
     },
@@ -498,11 +496,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Arda to 2026-07-24T11:45",
-      "at": "2026-07-09T16:58:07.996Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-07-24T11:45",
@@ -797,9 +790,14 @@
       "type": "allocation-add",
       "text": "Added Peter Miell to 2026-07-31T11:45",
       "at": "2026-07-27T14:38:39.280Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Phil Charles from 2026-07-31T10:30",
+      "at": "2026-07-29T13:16:48.489Z"
     }
   ],
-  "updatedAt": "2026-07-27T14:38:39.280Z",
-  "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-07-27T14:38:39.280Z"
+  "updatedAt": "2026-07-29T13:16:48.490Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-07-29T13:16:48.488Z"
 }
