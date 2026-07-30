@@ -316,12 +316,11 @@
     },
     "david-taylor": {
       "green": [
-        "2026-08-07T10:30",
         "2026-08-21T10:30",
         "2026-08-28T10:30"
       ],
       "yellow": [],
-      "updatedAt": "2026-07-14T18:33:31.247Z"
+      "updatedAt": "2026-07-30T15:36:14.628Z"
     },
     "chris-dalley": {
       "green": [
@@ -495,11 +494,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Jo TR to 2026-07-31T10:30",
-      "at": "2026-07-09T16:58:42.170Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added David Taylor to 2026-07-31T10:30",
@@ -794,9 +788,14 @@
       "type": "availability",
       "text": "Saved availability for Phil Charles",
       "at": "2026-07-29T21:06:11.465Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for David Taylor",
+      "at": "2026-07-30T15:36:14.628Z"
     }
   ],
-  "updatedAt": "2026-07-29T21:06:11.465Z",
-  "updatedBy": "phil-charles",
+  "updatedAt": "2026-07-30T15:36:14.628Z",
+  "updatedBy": "david-taylor",
   "manualEditedAt": "2026-07-29T13:17:09.485Z"
 }
