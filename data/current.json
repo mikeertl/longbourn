@@ -476,10 +476,98 @@
         "peter-miell"
       ]
     },
-    "2026-07-10T10:30": {
-      "players": [],
+    "2026-08-07T10:30": {
+      "players": [
+        "chris-dalley"
+      ],
       "yellowCandidates": [],
-      "confirmed": []
+      "confirmed": [
+        "chris-dalley"
+      ]
+    },
+    "2026-08-07T11:45": {
+      "players": [
+        "mike-ertl"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "mike-ertl"
+      ]
+    },
+    "2026-08-14T10:30": {
+      "players": [
+        "chris-dalley"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "chris-dalley"
+      ]
+    },
+    "2026-08-14T11:45": {
+      "players": [
+        "mike-ertl"
+      ],
+      "yellowCandidates": [
+        "chris-dalley"
+      ],
+      "confirmed": [
+        "mike-ertl"
+      ]
+    },
+    "2026-08-21T10:30": {
+      "players": [
+        "david-taylor",
+        "chris-dalley",
+        "akiko"
+      ],
+      "yellowCandidates": [
+        "chris-danzinger"
+      ],
+      "confirmed": [
+        "david-taylor",
+        "chris-dalley",
+        "akiko"
+      ]
+    },
+    "2026-08-21T11:45": {
+      "players": [
+        "mike-ertl",
+        "chris-danzinger"
+      ],
+      "yellowCandidates": [
+        "akiko"
+      ],
+      "confirmed": [
+        "mike-ertl",
+        "chris-danzinger"
+      ]
+    },
+    "2026-08-28T10:30": {
+      "players": [
+        "rachel",
+        "david-taylor",
+        "phil-charles",
+        "chris-danzinger"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "rachel",
+        "david-taylor",
+        "phil-charles",
+        "chris-danzinger"
+      ]
+    },
+    "2026-08-28T11:45": {
+      "players": [
+        "chris-dalley"
+      ],
+      "yellowCandidates": [
+        "phil-charles",
+        "chris-danzinger"
+      ],
+      "confirmed": [
+        "chris-dalley"
+      ]
     }
   },
   "allocatedMonths": {
@@ -491,14 +579,143 @@
       "responses": {},
       "originalAllocations": {},
       "playerNames": {}
+    },
+    "2026-08": {
+      "allocatedAt": "2026-07-31T06:24:26.718Z",
+      "allocatedBy": "jo-tr",
+      "automatic": true,
+      "completed": true,
+      "savePending": false,
+      "dueDate": "2026-07-31",
+      "catchUp": false,
+      "responses": {
+        "2026-08-07T10:30": {
+          "date": "2026-08-07",
+          "time": "10:30",
+          "green": [
+            "chris-dalley"
+          ],
+          "yellow": []
+        },
+        "2026-08-07T11:45": {
+          "date": "2026-08-07",
+          "time": "11:45",
+          "green": [
+            "mike-ertl"
+          ],
+          "yellow": []
+        },
+        "2026-08-14T10:30": {
+          "date": "2026-08-14",
+          "time": "10:30",
+          "green": [
+            "chris-dalley"
+          ],
+          "yellow": []
+        },
+        "2026-08-14T11:45": {
+          "date": "2026-08-14",
+          "time": "11:45",
+          "green": [
+            "chris-dalley",
+            "mike-ertl"
+          ],
+          "yellow": []
+        },
+        "2026-08-21T10:30": {
+          "date": "2026-08-21",
+          "time": "10:30",
+          "green": [
+            "chris-dalley",
+            "david-taylor"
+          ],
+          "yellow": [
+            "akiko",
+            "chris-danzinger"
+          ]
+        },
+        "2026-08-21T11:45": {
+          "date": "2026-08-21",
+          "time": "11:45",
+          "green": [
+            "chris-danzinger",
+            "mike-ertl"
+          ],
+          "yellow": [
+            "akiko"
+          ]
+        },
+        "2026-08-28T10:30": {
+          "date": "2026-08-28",
+          "time": "10:30",
+          "green": [
+            "chris-dalley",
+            "chris-danzinger",
+            "david-taylor",
+            "phil-charles",
+            "rachel"
+          ],
+          "yellow": [
+            "jo-tr"
+          ]
+        },
+        "2026-08-28T11:45": {
+          "date": "2026-08-28",
+          "time": "11:45",
+          "green": [
+            "chris-dalley"
+          ],
+          "yellow": [
+            "chris-danzinger",
+            "phil-charles"
+          ]
+        }
+      },
+      "originalAllocations": {
+        "2026-08-07T10:30": [
+          "chris-dalley"
+        ],
+        "2026-08-07T11:45": [
+          "mike-ertl"
+        ],
+        "2026-08-14T10:30": [
+          "chris-dalley"
+        ],
+        "2026-08-14T11:45": [
+          "mike-ertl"
+        ],
+        "2026-08-21T10:30": [
+          "david-taylor",
+          "chris-dalley",
+          "akiko"
+        ],
+        "2026-08-21T11:45": [
+          "mike-ertl",
+          "chris-danzinger"
+        ],
+        "2026-08-28T10:30": [
+          "rachel",
+          "david-taylor",
+          "phil-charles",
+          "chris-danzinger"
+        ],
+        "2026-08-28T11:45": [
+          "chris-dalley"
+        ]
+      },
+      "playerNames": {
+        "chris-dalley": "Chris Dalley",
+        "mike-ertl": "Mike Ertl",
+        "david-taylor": "David Taylor",
+        "akiko": "Akiko",
+        "chris-danzinger": "Chris Danziger",
+        "phil-charles": "Phil Charles",
+        "rachel": "Rachel",
+        "jo-tr": "Jo TR"
+      }
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added David Taylor to 2026-07-31T10:30",
-      "at": "2026-07-09T16:58:49.499Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Richard Moxon to 2026-07-31T10:30",
@@ -793,9 +1010,14 @@
       "type": "availability",
       "text": "Saved availability for David Taylor",
       "at": "2026-07-30T15:36:14.628Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Automatic allocation",
+      "at": "2026-07-31T06:24:26.718Z"
     }
   ],
-  "updatedAt": "2026-07-30T15:36:14.628Z",
-  "updatedBy": "david-taylor",
+  "updatedAt": "2026-07-31T06:24:26.756Z",
+  "updatedBy": "jo-tr",
   "manualEditedAt": "2026-07-29T13:17:09.485Z"
 }
