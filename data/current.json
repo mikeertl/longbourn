@@ -559,14 +559,16 @@
     },
     "2026-08-28T11:45": {
       "players": [
-        "chris-dalley"
+        "chris-dalley",
+        "jo-tr"
       ],
       "yellowCandidates": [
         "phil-charles",
         "chris-danzinger"
       ],
       "confirmed": [
-        "chris-dalley"
+        "chris-dalley",
+        "jo-tr"
       ]
     }
   },
@@ -716,11 +718,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Mike Ertl to 2026-07-31T11:45",
-      "at": "2026-07-09T16:59:52.217Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Arda to 2026-07-31T11:45",
@@ -1015,9 +1012,14 @@
       "type": "allocation-remove",
       "text": "Removed Jo TR from 2026-08-28T11:45",
       "at": "2026-07-31T06:25:25.707Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Jo TR to 2026-08-28T11:45",
+      "at": "2026-07-31T06:28:14.562Z"
     }
   ],
-  "updatedAt": "2026-07-31T06:25:25.707Z",
+  "updatedAt": "2026-07-31T06:28:14.562Z",
   "updatedBy": "jo-tr",
-  "manualEditedAt": "2026-07-31T06:25:25.707Z"
+  "manualEditedAt": "2026-07-31T06:28:14.562Z"
 }
