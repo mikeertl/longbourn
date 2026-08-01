@@ -37,6 +37,12 @@ the site is static, the first signed-in refresh performs the allocation. If no
 one opens the app on that Friday, the first later refresh catches up the
 unallocated current month without changing games that have already started.
 
+The same rollover also creates Friday slots for the following response month.
+For example, the August allocation opens September availability with 10:30 and
+11:45 enabled by default. If nobody opens the app on the last Friday, the first
+later signed-in refresh creates them. Existing month setup is left unchanged so
+an admin can customise its slots during the month.
+
 Each completed allocation preserves the green and yellow responses and its
 original selections. During the playing month, Admin Responses shows that
 read-only history beneath the upcoming responses so organisers can compare the

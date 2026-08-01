@@ -8,7 +8,7 @@
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
   var ADMIN_PANELS_STORAGE_KEY = "longbourn-admin-panels-v1";
-  var APP_VERSION = "2026.07.26.1";
+  var APP_VERSION = "2026.08.01.1";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
@@ -1904,7 +1904,21 @@
 
   function autoAllocateIfDue() {
     if (!hasSession()) return Promise.resolve(false);
-    return allocateDueMonths({});
+    var setupMonths = ensureDueDefaultMonthSlots();
+    return allocateDueMonths({}).then(function (allocated) {
+      var recoveredSetupMonths = ensureDueDefaultMonthSlots();
+      setupMonths = uniqueList(setupMonths.concat(recoveredSetupMonths));
+      if (!setupMonths.length || (allocated && !recoveredSetupMonths.length)) {
+        return allocated;
+      }
+      var monthNames = setupMonths.map(monthOnlyName).join(" and ");
+      return saveCurrentState(
+        "games",
+        monthNames + " default slots were created automatically."
+      ).then(function (saved) {
+        return allocated || saved;
+      });
+    });
   }
 
   function allocateDueMonths(attemptedMonths) {
@@ -1957,6 +1971,31 @@
         return !isMonthAllocationComplete(monthKey);
       })
       .sort();
+  }
+
+  function dueDefaultSetupMonthKeys() {
+    var today = startOfDay(new Date());
+    var dueMonths = {};
+    activeMonthKeys().forEach(function (playingMonthKey) {
+      if (allocationDateForMonth(playingMonthKey) > today) return;
+      var setupMonthKey = addMonthsToMonthKey(playingMonthKey, 1);
+      if (!slotsForMonth(setupMonthKey, false).length) {
+        dueMonths[setupMonthKey] = true;
+      }
+    });
+    return Object.keys(dueMonths).sort();
+  }
+
+  function ensureDueDefaultMonthSlots() {
+    var setupMonths = [];
+    dueDefaultSetupMonthKeys().forEach(function (monthKey) {
+      if (!ensureDefaultMonthSlots(monthKey)) return;
+      state.changes.push(
+        change("month-created", "Automatically created default slots for " + monthKey)
+      );
+      setupMonths.push(monthKey);
+    });
+    return setupMonths;
   }
 
   function runAllocationAndSave(targetMonth, successMessage, reason, onlyIfChanged, options) {
@@ -2417,11 +2456,12 @@
   function pruneOldState(input) {
     var next = input || createEmptyState();
     var activeMonths = activeMonthMap();
+    var retainedSlotMonths = retainedSlotMonthMap();
     var keptSlotIds = {};
 
     next.slots = normalizeSlots(next.slots).filter(function (slot) {
       if (!slot || !slot.date || !isValidDateKey(slot.date)) return false;
-      return !!activeMonths[slot.date.slice(0, 7)];
+      return !!retainedSlotMonths[slot.date.slice(0, 7)];
     });
     next.slots.forEach(function (slot) {
       keptSlotIds[slot.id] = true;
@@ -2557,6 +2597,19 @@
     return map;
   }
 
+  function retainedSlotMonthKeys() {
+    var month = currentMonthKey();
+    return [month, addMonthsToMonthKey(month, 1), addMonthsToMonthKey(month, 2)];
+  }
+
+  function retainedSlotMonthMap() {
+    var map = {};
+    retainedSlotMonthKeys().forEach(function (monthKey) {
+      map[monthKey] = true;
+    });
+    return map;
+  }
+
   function enabledSlots() {
     return state.slots.filter(function (slot) {
       return slot.enabled !== false;
@@ -2592,7 +2645,7 @@
   }
 
   function ensureDefaultMonthSlots(monthKey) {
-    if (activeMonthKeys().indexOf(monthKey) < 0) return false;
+    if (retainedSlotMonthKeys().indexOf(monthKey) < 0) return false;
     var existing = {};
     state.slots.forEach(function (slot) {
       existing[slot.id] = true;

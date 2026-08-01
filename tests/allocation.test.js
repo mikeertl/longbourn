@@ -9,7 +9,6 @@ process.env.TZ = "Europe/London";
 
 const root = path.resolve(__dirname, "..");
 const appSource = fs.readFileSync(path.join(root, "app.js"), "utf8");
-const sharedState = JSON.parse(fs.readFileSync(path.join(root, "data/current.json"), "utf8"));
 const sharedUsers = JSON.parse(fs.readFileSync(path.join(root, "data/users.json"), "utf8")).users;
 
 class FakeElement {
@@ -45,6 +44,8 @@ function createHarness(now) {
       setSession: function (value) { session = value; },
       getState: function () { return state; },
       dueAllocationMonthKeys: dueAllocationMonthKeys,
+      dueDefaultSetupMonthKeys: dueDefaultSetupMonthKeys,
+      ensureDueDefaultMonthSlots: ensureDueDefaultMonthSlots,
       ensureDefaultMonthSlots: ensureDefaultMonthSlots,
       allocationSlotsForMonth: allocationSlotsForMonth,
       allocate: allocate,
@@ -79,6 +80,65 @@ function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
 
+function allocationFixture() {
+  return {
+    version: 1,
+    month: "2026-08",
+    venue: "Longbourn",
+    slots: [
+      {
+        id: "2026-08-28T10:30",
+        date: "2026-08-28",
+        time: "10:30",
+        enabled: true,
+      },
+      {
+        id: "2026-08-28T11:45",
+        date: "2026-08-28",
+        time: "11:45",
+        enabled: true,
+      },
+    ],
+    players: {},
+    availability: {
+      "chris-dalley": {
+        green: ["2026-08-28T10:30", "2026-08-28T11:45"],
+        yellow: [],
+      },
+      "chris-danzinger": {
+        green: ["2026-08-28T10:30"],
+        yellow: ["2026-08-28T11:45"],
+      },
+      "david-taylor": {
+        green: ["2026-08-28T10:30"],
+        yellow: [],
+      },
+      "phil-charles": {
+        green: ["2026-08-28T10:30"],
+        yellow: ["2026-08-28T11:45"],
+      },
+      rachel: {
+        green: ["2026-08-28T10:30"],
+        yellow: [],
+      },
+      "jo-tr": {
+        green: [],
+        yellow: ["2026-08-28T10:30"],
+      },
+    },
+    allocations: {},
+    allocatedMonths: {
+      "2026-07": {
+        allocatedAt: "2026-06-26T08:00:00.000Z",
+        allocatedBy: "test",
+        automatic: true,
+        completed: true,
+      },
+    },
+    changes: [],
+  };
+}
+
 function elementText(element) {
   return [element.textContent]
     .concat(element.children.map(elementText))
@@ -88,7 +148,7 @@ function elementText(element) {
 
 function testAllocationRunsOnDueDateOnlyOnce() {
   const app = createHarness("2026-07-31T08:00:00+01:00");
-  app.setState(clone(sharedState));
+  app.setState(allocationFixture());
   assert.deepStrictEqual(Array.from(app.dueAllocationMonthKeys()), ["2026-08"]);
   app.ensureDefaultMonthSlots("2026-08");
   app.allocate("2026-08", "Automatic allocation", {
@@ -102,9 +162,82 @@ function testAllocationRunsOnDueDateOnlyOnce() {
   assert.deepStrictEqual(Array.from(app.dueAllocationMonthKeys()), []);
 }
 
+function testLastFridayOpensFollowingResponseMonth() {
+  const app = createHarness("2026-07-31T08:00:00+01:00");
+  app.setState(allocationFixture());
+
+  assert.deepStrictEqual(Array.from(app.dueDefaultSetupMonthKeys()), ["2026-09"]);
+  assert.deepStrictEqual(Array.from(app.ensureDueDefaultMonthSlots()), ["2026-09"]);
+
+  const septemberSlots = app.getState().slots.filter((slot) =>
+    slot.date.startsWith("2026-09")
+  );
+  assert.strictEqual(septemberSlots.length, 20);
+  assert.deepStrictEqual(
+    Array.from(
+      new Set(septemberSlots.filter((slot) => slot.enabled).map((slot) => slot.time))
+    ),
+    ["10:30", "11:45"]
+  );
+  assert.deepStrictEqual(Array.from(app.dueDefaultSetupMonthKeys()), []);
+  assert.deepStrictEqual(Array.from(app.ensureDueDefaultMonthSlots()), []);
+
+  app.setState(clone(app.getState()));
+  assert.strictEqual(
+    app.getState().slots.filter((slot) => slot.date.startsWith("2026-09")).length,
+    20,
+    "pre-created slots must survive pruning before September becomes active"
+  );
+}
+
+function testResponseMonthDoesNotOpenBeforeLastFriday() {
+  const app = createHarness("2026-07-30T08:00:00+01:00");
+  app.setState(allocationFixture());
+
+  assert.deepStrictEqual(Array.from(app.dueDefaultSetupMonthKeys()), []);
+  assert.deepStrictEqual(Array.from(app.ensureDueDefaultMonthSlots()), []);
+}
+
+function testMissedLastFridayCreatesDefaultsOnNextRefresh() {
+  const app = createHarness("2026-08-01T09:00:00+01:00");
+  app.setState(allocationFixture());
+
+  assert.deepStrictEqual(Array.from(app.dueDefaultSetupMonthKeys()), ["2026-09"]);
+  assert.deepStrictEqual(Array.from(app.ensureDueDefaultMonthSlots()), ["2026-09"]);
+  assert.strictEqual(
+    app.getState().slots.filter(
+      (slot) => slot.date.startsWith("2026-09") && slot.enabled
+    ).length,
+    8
+  );
+}
+
+function testExistingMonthSetupIsNotOverwritten() {
+  const app = createHarness("2026-08-01T09:00:00+01:00");
+  const customState = allocationFixture();
+  customState.slots.push({
+    id: "2026-09-04T09:15",
+    date: "2026-09-04",
+    time: "09:15",
+    enabled: true,
+  });
+  app.setState(customState);
+
+  assert.deepStrictEqual(Array.from(app.dueDefaultSetupMonthKeys()), []);
+  assert.deepStrictEqual(Array.from(app.ensureDueDefaultMonthSlots()), []);
+  assert.deepStrictEqual(
+    Array.from(
+      app.getState().slots
+        .filter((slot) => slot.date.startsWith("2026-09"))
+        .map((slot) => slot.id)
+    ),
+    ["2026-09-04T09:15"]
+  );
+}
+
 function testMissedAugustCatchUp() {
   const app = createHarness("2026-08-02T09:00:00+01:00");
-  app.setState(clone(sharedState));
+  app.setState(allocationFixture());
 
   assert.deepStrictEqual(
     Array.from(app.dueAllocationMonthKeys()),
@@ -129,8 +262,8 @@ function testMissedAugustCatchUp() {
   assert.strictEqual(marker.catchUp, true);
   assert.strictEqual(marker.dueDate, "2026-07-31");
   assert.deepStrictEqual(
-    Array.from(state.allocations["2026-08-28T10:30"].players),
-    ["rachel", "david-taylor", "chris-danzinger", "phil-charles"]
+    Array.from(state.allocations["2026-08-28T10:30"].players).sort(),
+    ["chris-danzinger", "david-taylor", "phil-charles", "rachel"]
   );
   assert.deepStrictEqual(
     Array.from(marker.responses["2026-08-28T10:30"].green),
@@ -174,7 +307,7 @@ function testMissedAugustCatchUp() {
 
 function testManualStartDoesNotBlockDueAllocation() {
   const app = createHarness("2026-08-02T09:00:00+01:00");
-  app.setState(clone(sharedState));
+  app.setState(allocationFixture());
   app.getState().allocations["2026-08-28T10:30"] = {
     players: ["jo-tr"],
     confirmed: ["jo-tr"],
@@ -271,6 +404,10 @@ function testLegacyCompletedMarkerRemainsComplete() {
 }
 
 testAllocationRunsOnDueDateOnlyOnce();
+testLastFridayOpensFollowingResponseMonth();
+testResponseMonthDoesNotOpenBeforeLastFriday();
+testMissedLastFridayCreatesDefaultsOnNextRefresh();
+testExistingMonthSetupIsNotOverwritten();
 testMissedAugustCatchUp();
 testManualStartDoesNotBlockDueAllocation();
 testLateCatchUpLeavesPastGamesUntouched();
