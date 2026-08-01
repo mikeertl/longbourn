@@ -314,11 +314,16 @@
       "updatedAt": "2026-08-01T11:41:39.617Z"
     },
     "jo-tr": {
-      "green": [],
+      "green": [
+        "2026-09-04T10:30",
+        "2026-09-11T10:30",
+        "2026-09-18T10:30",
+        "2026-09-25T10:30"
+      ],
       "yellow": [
         "2026-08-28T10:30"
       ],
-      "updatedAt": "2026-07-13T09:15:30.398Z"
+      "updatedAt": "2026-08-01T21:08:53.400Z"
     },
     "david-taylor": {
       "green": [
@@ -619,11 +624,6 @@
   "changes": [
     {
       "type": "slot-removed",
-      "text": "Removed 2026-08-14T11:45",
-      "at": "2026-07-09T17:01:10.592Z"
-    },
-    {
-      "type": "slot-removed",
       "text": "Removed 2026-08-14T10:30",
       "at": "2026-07-09T17:01:12.871Z"
     },
@@ -916,9 +916,14 @@
       "type": "availability",
       "text": "Saved availability for Mike Ertl",
       "at": "2026-08-01T11:41:39.618Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Jo TR",
+      "at": "2026-08-01T21:08:53.400Z"
     }
   ],
-  "updatedAt": "2026-08-01T11:41:39.619Z",
-  "updatedBy": "mike-ertl",
+  "updatedAt": "2026-08-01T21:08:53.400Z",
+  "updatedBy": "jo-tr",
   "manualEditedAt": "2026-08-01T10:42:06.187Z"
 }
