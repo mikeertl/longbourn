@@ -373,11 +373,13 @@
   "allocations": {
     "2026-08-07T10:30": {
       "players": [
-        "chris-dalley"
+        "chris-dalley",
+        "anthea"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "chris-dalley"
+        "chris-dalley",
+        "anthea"
       ]
     },
     "2026-08-07T11:45": {
@@ -604,11 +606,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Phil Charles to 2026-07-31T11:45",
-      "at": "2026-07-09T17:00:02.684Z"
-    },
     {
       "type": "slot-removed",
       "text": "Removed 2026-08-28T13:00",
@@ -903,9 +900,14 @@
       "type": "month-created",
       "text": "Created/updated 2026-09",
       "at": "2026-08-01T09:15:10.513Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Anthea to 2026-08-07T10:30",
+      "at": "2026-08-01T10:40:32.831Z"
     }
   ],
-  "updatedAt": "2026-08-01T09:15:10.513Z",
-  "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-07-31T06:28:14.562Z"
+  "updatedAt": "2026-08-01T10:40:32.831Z",
+  "updatedBy": "phil-charles",
+  "manualEditedAt": "2026-08-01T10:40:32.831Z"
 }
