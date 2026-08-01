@@ -447,13 +447,15 @@
       "players": [
         "rachel",
         "david-taylor",
-        "chris-danzinger"
+        "chris-danzinger",
+        "anthea"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "rachel",
         "david-taylor",
-        "chris-danzinger"
+        "chris-danzinger",
+        "anthea"
       ]
     },
     "2026-08-28T11:45": {
@@ -609,11 +611,6 @@
     }
   },
   "changes": [
-    {
-      "type": "slot-removed",
-      "text": "Removed 2026-08-07T10:30",
-      "at": "2026-07-09T17:01:06.375Z"
-    },
     {
       "type": "slot-removed",
       "text": "Removed 2026-08-14T08:00",
@@ -908,9 +905,14 @@
       "type": "allocation-remove",
       "text": "Removed Phil Charles from 2026-08-28T10:30",
       "at": "2026-08-01T10:41:57.959Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Anthea to 2026-08-28T10:30",
+      "at": "2026-08-01T10:42:06.187Z"
     }
   ],
-  "updatedAt": "2026-08-01T10:41:57.959Z",
+  "updatedAt": "2026-08-01T10:42:06.187Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-08-01T10:41:57.959Z"
+  "manualEditedAt": "2026-08-01T10:42:06.187Z"
 }
