@@ -447,14 +447,12 @@
       "players": [
         "rachel",
         "david-taylor",
-        "phil-charles",
         "chris-danzinger"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "rachel",
         "david-taylor",
-        "phil-charles",
         "chris-danzinger"
       ]
     },
@@ -611,11 +609,6 @@
     }
   },
   "changes": [
-    {
-      "type": "slot-removed",
-      "text": "Removed 2026-08-07T08:00",
-      "at": "2026-07-09T17:01:04.517Z"
-    },
     {
       "type": "slot-removed",
       "text": "Removed 2026-08-07T10:30",
@@ -910,9 +903,14 @@
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-08-28T11:45",
       "at": "2026-08-01T10:41:45.696Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Phil Charles from 2026-08-28T10:30",
+      "at": "2026-08-01T10:41:57.959Z"
     }
   ],
-  "updatedAt": "2026-08-01T10:41:45.696Z",
+  "updatedAt": "2026-08-01T10:41:57.959Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-08-01T10:41:45.695Z"
+  "manualEditedAt": "2026-08-01T10:41:57.959Z"
 }
