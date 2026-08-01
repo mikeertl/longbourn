@@ -402,13 +402,15 @@
     },
     "2026-08-14T11:45": {
       "players": [
-        "mike-ertl"
+        "mike-ertl",
+        "anthea"
       ],
       "yellowCandidates": [
         "chris-dalley"
       ],
       "confirmed": [
-        "mike-ertl"
+        "mike-ertl",
+        "anthea"
       ]
     },
     "2026-08-21T10:30": {
@@ -606,11 +608,6 @@
     }
   },
   "changes": [
-    {
-      "type": "slot-removed",
-      "text": "Removed 2026-08-28T13:00",
-      "at": "2026-07-09T17:00:18.546Z"
-    },
     {
       "type": "slot-removed",
       "text": "Removed 2026-08-28T10:30",
@@ -905,9 +902,14 @@
       "type": "allocation-add",
       "text": "Added Anthea to 2026-08-07T10:30",
       "at": "2026-08-01T10:40:32.831Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Anthea to 2026-08-14T11:45",
+      "at": "2026-08-01T10:40:53.974Z"
     }
   ],
-  "updatedAt": "2026-08-01T10:40:32.831Z",
+  "updatedAt": "2026-08-01T10:40:53.974Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-08-01T10:40:32.831Z"
+  "manualEditedAt": "2026-08-01T10:40:53.974Z"
 }
