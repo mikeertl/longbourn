@@ -461,15 +461,16 @@
     "2026-08-28T11:45": {
       "players": [
         "chris-dalley",
-        "jo-tr"
+        "jo-tr",
+        "phil-charles"
       ],
       "yellowCandidates": [
-        "phil-charles",
         "chris-danzinger"
       ],
       "confirmed": [
         "chris-dalley",
-        "jo-tr"
+        "jo-tr",
+        "phil-charles"
       ]
     }
   },
@@ -610,11 +611,6 @@
     }
   },
   "changes": [
-    {
-      "type": "slot-removed",
-      "text": "Removed 2026-08-28T08:00",
-      "at": "2026-07-09T17:00:25.913Z"
-    },
     {
       "type": "slot-removed",
       "text": "Removed 2026-08-07T08:00",
@@ -909,9 +905,14 @@
       "type": "allocation-add",
       "text": "Added Anthea to 2026-08-21T11:45",
       "at": "2026-08-01T10:41:06.341Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-08-28T11:45",
+      "at": "2026-08-01T10:41:45.696Z"
     }
   ],
-  "updatedAt": "2026-08-01T10:41:06.341Z",
+  "updatedAt": "2026-08-01T10:41:45.696Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-08-01T10:41:06.341Z"
+  "manualEditedAt": "2026-08-01T10:41:45.695Z"
 }
