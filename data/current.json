@@ -431,14 +431,16 @@
     "2026-08-21T11:45": {
       "players": [
         "mike-ertl",
-        "chris-danzinger"
+        "chris-danzinger",
+        "anthea"
       ],
       "yellowCandidates": [
         "akiko"
       ],
       "confirmed": [
         "mike-ertl",
-        "chris-danzinger"
+        "chris-danzinger",
+        "anthea"
       ]
     },
     "2026-08-28T10:30": {
@@ -608,11 +610,6 @@
     }
   },
   "changes": [
-    {
-      "type": "slot-removed",
-      "text": "Removed 2026-08-28T10:30",
-      "at": "2026-07-09T17:00:22.605Z"
-    },
     {
       "type": "slot-removed",
       "text": "Removed 2026-08-28T08:00",
@@ -907,9 +904,14 @@
       "type": "allocation-add",
       "text": "Added Anthea to 2026-08-14T11:45",
       "at": "2026-08-01T10:40:53.974Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Anthea to 2026-08-21T11:45",
+      "at": "2026-08-01T10:41:06.341Z"
     }
   ],
-  "updatedAt": "2026-08-01T10:40:53.974Z",
+  "updatedAt": "2026-08-01T10:41:06.341Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-08-01T10:40:53.974Z"
+  "manualEditedAt": "2026-08-01T10:41:06.341Z"
 }
