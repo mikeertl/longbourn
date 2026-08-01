@@ -305,10 +305,13 @@
       "green": [
         "2026-08-07T11:45",
         "2026-08-14T11:45",
-        "2026-08-21T11:45"
+        "2026-08-21T11:45",
+        "2026-09-11T11:45",
+        "2026-09-18T11:45",
+        "2026-09-25T11:45"
       ],
       "yellow": [],
-      "updatedAt": "2026-07-09T18:21:16.717Z"
+      "updatedAt": "2026-08-01T11:41:39.617Z"
     },
     "jo-tr": {
       "green": [],
@@ -616,11 +619,6 @@
   "changes": [
     {
       "type": "slot-removed",
-      "text": "Removed 2026-08-14T08:00",
-      "at": "2026-07-09T17:01:08.508Z"
-    },
-    {
-      "type": "slot-removed",
       "text": "Removed 2026-08-14T11:45",
       "at": "2026-07-09T17:01:10.592Z"
     },
@@ -913,9 +911,14 @@
       "type": "allocation-add",
       "text": "Added Anthea to 2026-08-28T10:30",
       "at": "2026-08-01T10:42:06.187Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Mike Ertl",
+      "at": "2026-08-01T11:41:39.618Z"
     }
   ],
-  "updatedAt": "2026-08-01T10:55:53.591Z",
-  "updatedBy": "phil-charles",
+  "updatedAt": "2026-08-01T11:41:39.619Z",
+  "updatedBy": "mike-ertl",
   "manualEditedAt": "2026-08-01T10:42:06.187Z"
 }
