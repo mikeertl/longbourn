@@ -443,8 +443,7 @@
       "players": [
         "mike-ertl",
         "chris-danzinger",
-        "anthea",
-        "jo-tr"
+        "anthea"
       ],
       "yellowCandidates": [
         "akiko"
@@ -452,8 +451,7 @@
       "confirmed": [
         "mike-ertl",
         "chris-danzinger",
-        "anthea",
-        "jo-tr"
+        "anthea"
       ]
     },
     "2026-08-28T10:30": {
@@ -624,11 +622,6 @@
     }
   },
   "changes": [
-    {
-      "type": "slot-removed",
-      "text": "Removed 2026-08-07T11:45",
-      "at": "2026-07-09T17:01:51.605Z"
-    },
     {
       "type": "slot-removed",
       "text": "Removed 2026-08-21T10:30",
@@ -923,9 +916,14 @@
       "type": "allocation-add",
       "text": "Added Jo TR to 2026-08-21T11:45",
       "at": "2026-08-03T06:49:14.680Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Jo TR from 2026-08-21T11:45",
+      "at": "2026-08-03T06:49:24.161Z"
     }
   ],
-  "updatedAt": "2026-08-03T06:49:14.680Z",
+  "updatedAt": "2026-08-03T06:49:24.161Z",
   "updatedBy": "jo-tr",
-  "manualEditedAt": "2026-08-03T06:49:14.680Z"
+  "manualEditedAt": "2026-08-03T06:49:24.161Z"
 }
