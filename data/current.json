@@ -414,14 +414,16 @@
     "2026-08-14T11:45": {
       "players": [
         "mike-ertl",
-        "anthea"
+        "anthea",
+        "peter-miell"
       ],
       "yellowCandidates": [
         "chris-dalley"
       ],
       "confirmed": [
         "mike-ertl",
-        "anthea"
+        "anthea",
+        "peter-miell"
       ]
     },
     "2026-08-21T10:30": {
@@ -622,11 +624,6 @@
     }
   },
   "changes": [
-    {
-      "type": "slot-removed",
-      "text": "Removed 2026-08-21T10:30",
-      "at": "2026-07-09T17:01:55.387Z"
-    },
     {
       "type": "slot-removed",
       "text": "Removed 2026-08-28T11:45",
@@ -921,9 +918,14 @@
       "type": "allocation-remove",
       "text": "Removed Jo TR from 2026-08-21T11:45",
       "at": "2026-08-03T06:49:24.161Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Peter Miell to 2026-08-14T11:45",
+      "at": "2026-08-03T15:36:43.997Z"
     }
   ],
-  "updatedAt": "2026-08-03T06:49:24.161Z",
-  "updatedBy": "jo-tr",
-  "manualEditedAt": "2026-08-03T06:49:24.161Z"
+  "updatedAt": "2026-08-03T15:36:43.998Z",
+  "updatedBy": "peter-miell",
+  "manualEditedAt": "2026-08-03T15:36:43.992Z"
 }
