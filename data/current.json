@@ -429,16 +429,15 @@
     "2026-08-21T10:30": {
       "players": [
         "david-taylor",
-        "chris-dalley",
-        "akiko"
+        "chris-dalley"
       ],
       "yellowCandidates": [
-        "chris-danzinger"
+        "chris-danzinger",
+        "akiko"
       ],
       "confirmed": [
         "david-taylor",
-        "chris-dalley",
-        "akiko"
+        "chris-dalley"
       ]
     },
     "2026-08-21T11:45": {
@@ -624,11 +623,6 @@
     }
   },
   "changes": [
-    {
-      "type": "slot-removed",
-      "text": "Removed 2026-08-28T11:45",
-      "at": "2026-07-09T17:01:57.705Z"
-    },
     {
       "type": "slot-removed",
       "text": "Removed 2026-08-21T11:45",
@@ -923,9 +917,14 @@
       "type": "allocation-add",
       "text": "Added Peter Miell to 2026-08-14T11:45",
       "at": "2026-08-03T15:36:43.997Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Akiko from 2026-08-21T10:30",
+      "at": "2026-08-05T08:22:53.250Z"
     }
   ],
-  "updatedAt": "2026-08-03T15:36:43.998Z",
-  "updatedBy": "peter-miell",
-  "manualEditedAt": "2026-08-03T15:36:43.992Z"
+  "updatedAt": "2026-08-05T08:22:53.251Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-08-05T08:22:53.250Z"
 }
