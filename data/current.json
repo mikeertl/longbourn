@@ -446,9 +446,7 @@
         "chris-danzinger",
         "anthea"
       ],
-      "yellowCandidates": [
-        "akiko"
-      ],
+      "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
         "chris-danzinger",
@@ -623,11 +621,6 @@
     }
   },
   "changes": [
-    {
-      "type": "slot-removed",
-      "text": "Removed 2026-08-21T11:45",
-      "at": "2026-07-09T17:02:29.829Z"
-    },
     {
       "type": "availability",
       "text": "Saved availability for Mike Ertl",
@@ -922,9 +915,14 @@
       "type": "allocation-remove",
       "text": "Removed Akiko from 2026-08-21T10:30",
       "at": "2026-08-05T08:22:53.250Z"
+    },
+    {
+      "type": "allocation-candidate-remove",
+      "text": "Removed pending Akiko from 2026-08-21T11:45",
+      "at": "2026-08-05T08:23:04.711Z"
     }
   ],
-  "updatedAt": "2026-08-05T08:22:53.251Z",
+  "updatedAt": "2026-08-05T08:23:04.711Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-08-05T08:22:53.250Z"
+  "manualEditedAt": "2026-08-05T08:23:04.711Z"
 }
