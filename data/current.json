@@ -432,8 +432,7 @@
         "chris-dalley"
       ],
       "yellowCandidates": [
-        "chris-danzinger",
-        "akiko"
+        "chris-danzinger"
       ],
       "confirmed": [
         "david-taylor",
@@ -621,11 +620,6 @@
     }
   },
   "changes": [
-    {
-      "type": "availability",
-      "text": "Saved availability for Mike Ertl",
-      "at": "2026-07-09T17:04:37.187Z"
-    },
     {
       "type": "availability",
       "text": "Saved availability for Mike Ertl",
@@ -920,9 +914,14 @@
       "type": "allocation-candidate-remove",
       "text": "Removed pending Akiko from 2026-08-21T11:45",
       "at": "2026-08-05T08:23:04.711Z"
+    },
+    {
+      "type": "allocation-candidate-remove",
+      "text": "Removed pending Akiko from 2026-08-21T10:30",
+      "at": "2026-08-05T08:23:38.646Z"
     }
   ],
-  "updatedAt": "2026-08-05T08:23:04.711Z",
+  "updatedAt": "2026-08-05T08:23:38.646Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-08-05T08:23:04.711Z"
+  "manualEditedAt": "2026-08-05T08:23:38.646Z"
 }
