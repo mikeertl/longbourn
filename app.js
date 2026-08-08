@@ -8,7 +8,7 @@
   var USER_STORAGE_KEY = "longbourn-user-id";
   var ADMIN_STORAGE_KEY = "longbourn-admin-mode";
   var ADMIN_PANELS_STORAGE_KEY = "longbourn-admin-panels-v1";
-  var APP_VERSION = "2026.08.01.1";
+  var APP_VERSION = "2026.08.08.1";
   var GITHUB_OWNER = "mikeertl";
   var GITHUB_REPO = "longbourn";
   var GITHUB_BRANCH = "main";
@@ -1002,15 +1002,36 @@
     var players = document.createElement("div");
     players.className = "schedule-players";
     allocation.players.forEach(function (playerId) {
-      players.appendChild(schedulePlayerChip(slot.id, playerId));
+      players.appendChild(schedulePlayerChip(playerId));
     });
     for (var index = allocation.players.length; index < 4; index += 1) {
       players.appendChild(readOnlyChip("empty-chip", "-"));
     }
     allocation.yellowCandidates.forEach(function (playerId) {
-      players.appendChild(readOnlyChip("candidate-chip", "*" + playerName(playerId)));
+      players.appendChild(scheduleCandidateChip(playerId));
     });
-    if (
+    if (!isPast && hasSession() && allocation.players.indexOf(session.userId) >= 0) {
+      players.appendChild(
+        scheduleActionButton("Remove me", function () {
+          removeSelfFromGame(slot.id);
+        })
+      );
+    } else if (
+      !isPast &&
+      hasSession() &&
+      allocation.yellowCandidates.indexOf(session.userId) >= 0
+    ) {
+      players.appendChild(
+        scheduleActionButton("Confirm my slot", function () {
+          confirmSelfInGame(slot.id);
+        })
+      );
+      players.appendChild(
+        scheduleActionButton("Remove me", function () {
+          removeSelfCandidateFromGame(slot.id);
+        })
+      );
+    } else if (
       !isPast &&
       hasSession() &&
       isMonthAllocated(slot.date.slice(0, 7)) &&
@@ -1018,35 +1039,35 @@
       allocation.players.indexOf(session.userId) < 0 &&
       allocation.yellowCandidates.indexOf(session.userId) < 0
     ) {
-      var addMe = document.createElement("button");
-      addMe.type = "button";
-      addMe.className = "button secondary schedule-action";
-      addMe.textContent = "Add me";
-      addMe.addEventListener("click", function () {
-        addSelfToGame(slot.id);
-      });
-      players.appendChild(addMe);
+      players.appendChild(
+        scheduleActionButton("Add me", function () {
+          addSelfToGame(slot.id);
+        })
+      );
     }
     row.appendChild(players);
     return row;
   }
 
-  function schedulePlayerChip(slotId, playerId) {
+  function schedulePlayerChip(playerId) {
     var chip = readOnlyChip("player-chip", playerName(playerId));
-    if (hasSession() && playerId === session.userId && !isSlotPast(getSlot(slotId))) {
-      chip.classList.add("removable-chip");
-      var remove = document.createElement("button");
-      remove.type = "button";
-      remove.className = "chip-button chip-remove-button";
-      remove.setAttribute("aria-label", removalButtonLabel(slotId, playerId, true));
-      remove.title = removalButtonLabel(slotId, playerId, true);
-      remove.textContent = "×";
-      remove.addEventListener("click", function () {
-        removeSelfFromGame(slotId);
-      });
-      chip.appendChild(remove);
-    }
+    if (hasSession() && playerId === session.userId) chip.classList.add("my-player-chip");
     return chip;
+  }
+
+  function scheduleCandidateChip(playerId) {
+    var chip = readOnlyChip("candidate-chip", "*" + playerName(playerId));
+    if (hasSession() && playerId === session.userId) chip.classList.add("my-player-chip");
+    return chip;
+  }
+
+  function scheduleActionButton(label, action) {
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "button schedule-action";
+    button.textContent = label;
+    button.addEventListener("click", action);
+    return button;
   }
 
   function renderAvailabilityGrid() {
@@ -1793,6 +1814,15 @@
     addPlayerToAllocation(slotId, session.userId, "games", "You were added to this game.");
   }
 
+  function confirmSelfInGame(slotId) {
+    if (!requireToken("games")) return;
+    if (allocationForSlot(slotId).yellowCandidates.indexOf(session.userId) < 0) {
+      setStatus("games", "Your slot no longer needs confirmation. Refresh to see the latest games.");
+      return;
+    }
+    addPlayerToAllocation(slotId, session.userId, "games", "Your slot was confirmed.");
+  }
+
   function addPlayerToAllocation(slotId, playerId, statusTarget, message) {
     if (!canEditSlot(slotId, statusTarget)) return;
     var allocation = allocationForSlot(slotId);
@@ -1827,6 +1857,17 @@
     if (!requireToken("games")) return;
     if (!confirmPlayerRemoval(slotId, session.userId, true)) return;
     removePlayerFromSlot(slotId, session.userId, "games", "You were removed from this game.");
+  }
+
+  function removeSelfCandidateFromGame(slotId) {
+    if (!requireToken("games")) return;
+    removeCandidateFromSlot(
+      slotId,
+      session.userId,
+      "games",
+      "You were removed from this game.",
+      true
+    );
   }
 
   function removalButtonLabel(slotId, playerId, isSelf) {
@@ -1866,8 +1907,18 @@
   }
 
   function removeCandidateFromAllocation(slotId, playerId) {
-    if (!canEditSlot(slotId, "allocation")) return;
-    if (!confirmPlayerRemoval(slotId, playerId, false)) return;
+    removeCandidateFromSlot(
+      slotId,
+      playerId,
+      "allocation",
+      "Pending player removed.",
+      false
+    );
+  }
+
+  function removeCandidateFromSlot(slotId, playerId, statusTarget, message, isSelf) {
+    if (!canEditSlot(slotId, statusTarget)) return;
+    if (!confirmPlayerRemoval(slotId, playerId, isSelf)) return;
     var allocation = allocationForSlot(slotId);
     allocation.yellowCandidates = allocation.yellowCandidates.filter(function (id) {
       return id !== playerId;
@@ -1875,7 +1926,7 @@
     state.allocations[slotId] = allocation;
     markManualAllocationChange();
     state.changes.push(change("allocation-candidate-remove", "Removed pending " + playerName(playerId) + " from " + slotId));
-    saveCurrentState("allocation", "Pending player removed.");
+    saveCurrentState(statusTarget, message);
   }
 
   function handleAllocateClick() {

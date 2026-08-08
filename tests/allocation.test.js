@@ -17,11 +17,29 @@ class FakeElement {
     this.children = [];
     this.className = "";
     this.textContent = "";
+    this.attributes = {};
+    this.listeners = {};
+    this.classList = {
+      add: (...names) => {
+        const classes = new Set(this.className.split(/\s+/).filter(Boolean));
+        names.forEach((name) => classes.add(name));
+        this.className = Array.from(classes).join(" ");
+      },
+      contains: (name) => this.className.split(/\s+/).includes(name),
+    };
   }
 
   appendChild(child) {
     this.children.push(child);
     return child;
+  }
+
+  addEventListener(type, listener) {
+    this.listeners[type] = listener;
+  }
+
+  setAttribute(name, value) {
+    this.attributes[name] = String(value);
   }
 }
 
@@ -53,7 +71,9 @@ function createHarness(now) {
       responseHistoryMonthKeys: responseHistoryMonthKeys,
       historicalAllocationStatus: historicalAllocationStatus,
       setResponsesList: function (value) { el.responsesList = value; },
-      renderResponseHistory: renderResponseHistory
+      renderResponseHistory: renderResponseHistory,
+      scheduleRow: scheduleRow,
+      candidateChip: candidateChip
     };
   })();`
   );
@@ -144,6 +164,18 @@ function elementText(element) {
     .concat(element.children.map(elementText))
     .filter(Boolean)
     .join(" ");
+}
+
+function elementsByTag(element, tagName) {
+  return (element.tagName === tagName ? [element] : []).concat(
+    element.children.flatMap((child) => elementsByTag(child, tagName))
+  );
+}
+
+function elementsByClass(element, className) {
+  return (element.classList && element.classList.contains(className) ? [element] : []).concat(
+    element.children.flatMap((child) => elementsByClass(child, className))
+  );
 }
 
 function testAllocationRunsOnDueDateOnlyOnce() {
@@ -403,6 +435,47 @@ function testLegacyCompletedMarkerRemainsComplete() {
   assert.strictEqual(app.getState().allocatedMonths["2026-09"].completed, true);
 }
 
+function testGamesSelfServiceControls() {
+  const app = createHarness("2026-08-02T09:00:00+01:00");
+  const fixture = allocationFixture();
+  const slot = fixture.slots[0];
+  fixture.allocations[slot.id] = {
+    players: ["jo-tr", "chris-dalley", "chris-danzinger"],
+    confirmed: ["jo-tr", "chris-dalley", "chris-danzinger"],
+    yellowCandidates: [],
+  };
+  app.setSession({ token: "test", userId: "jo-tr", isAdmin: false });
+  app.setState(fixture);
+
+  let row = app.scheduleRow(slot);
+  assert.deepStrictEqual(
+    elementsByTag(row, "button").map((button) => button.textContent),
+    ["Remove me"]
+  );
+  assert.strictEqual(elementsByClass(row, "my-player-chip").length, 1);
+  assert.strictEqual(elementsByClass(row, "my-player-chip")[0].textContent, "Jo TR");
+
+  fixture.allocations[slot.id] = {
+    players: ["chris-dalley", "chris-danzinger", "david-taylor"],
+    confirmed: ["chris-dalley", "chris-danzinger", "david-taylor"],
+    yellowCandidates: ["jo-tr"],
+  };
+  app.setState(fixture);
+  row = app.scheduleRow(slot);
+  assert.deepStrictEqual(
+    elementsByTag(row, "button").map((button) => button.textContent),
+    ["Confirm my slot", "Remove me"]
+  );
+  assert.strictEqual(elementsByClass(row, "my-player-chip").length, 1);
+  assert.strictEqual(elementsByClass(row, "my-player-chip")[0].textContent, "*Jo TR");
+
+  const adminCandidate = app.candidateChip(slot.id, "jo-tr", true);
+  assert.deepStrictEqual(
+    elementsByTag(adminCandidate, "button").map((button) => button.textContent),
+    ["Confirm", "×"]
+  );
+}
+
 testAllocationRunsOnDueDateOnlyOnce();
 testLastFridayOpensFollowingResponseMonth();
 testResponseMonthDoesNotOpenBeforeLastFriday();
@@ -412,5 +485,6 @@ testMissedAugustCatchUp();
 testManualStartDoesNotBlockDueAllocation();
 testLateCatchUpLeavesPastGamesUntouched();
 testLegacyCompletedMarkerRemainsComplete();
+testGamesSelfServiceControls();
 
-console.log("Allocation catch-up and response-history tests passed.");
+console.log("Allocation, response-history, and Games self-service tests passed.");

@@ -741,6 +741,15 @@ textarea:focus {
   padding: 0;
 }
 
+.my-player-chip {
+  border: 1px solid currentColor;
+}
+
+.button.schedule-action {
+  border-color: var(--line);
+  background: #fff;
+}
+
 .player-chip.removable-chip,
 .candidate-chip.removable-chip {
   gap: 8px;
