@@ -331,10 +331,12 @@
     "david-taylor": {
       "green": [
         "2026-08-21T10:30",
-        "2026-08-28T10:30"
+        "2026-08-28T10:30",
+        "2026-09-04T10:30",
+        "2026-09-11T10:30"
       ],
       "yellow": [],
-      "updatedAt": "2026-07-30T15:36:14.628Z"
+      "updatedAt": "2026-08-10T13:26:25.179Z"
     },
     "chris-dalley": {
       "green": [
@@ -625,11 +627,6 @@
     }
   },
   "changes": [
-    {
-      "type": "month-created",
-      "text": "Created 2026-08",
-      "at": "2026-07-09T17:07:21.069Z"
-    },
     {
       "type": "availability",
       "text": "Saved availability for Mike Ertl",
@@ -924,9 +921,14 @@
       "type": "allocation-add",
       "text": "Added Eyal to 2026-08-07T11:45",
       "at": "2026-08-06T16:58:24.769Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for David Taylor",
+      "at": "2026-08-10T13:26:25.180Z"
     }
   ],
-  "updatedAt": "2026-08-06T16:58:24.770Z",
-  "updatedBy": "mike-ertl",
+  "updatedAt": "2026-08-10T13:26:25.180Z",
+  "updatedBy": "david-taylor",
   "manualEditedAt": "2026-08-06T16:58:24.769Z"
 }
