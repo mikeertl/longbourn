@@ -426,9 +426,7 @@
     },
     "2026-08-14T11:45": {
       "players": [],
-      "yellowCandidates": [
-        "chris-dalley"
-      ],
+      "yellowCandidates": [],
       "confirmed": []
     },
     "2026-08-21T10:30": {
@@ -625,11 +623,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Ellen to 2026-07-24T11:45",
-      "at": "2026-07-10T14:01:50.701Z"
-    },
     {
       "type": "availability",
       "text": "Saved availability for Jo TR",
@@ -924,9 +917,14 @@
       "type": "allocation-candidate-remove",
       "text": "Removed pending Mike Ertl from 2026-08-14T11:45",
       "at": "2026-08-13T17:29:09.330Z"
+    },
+    {
+      "type": "allocation-candidate-remove",
+      "text": "Removed pending Chris Dalley from 2026-08-14T11:45",
+      "at": "2026-08-13T17:29:12.286Z"
     }
   ],
-  "updatedAt": "2026-08-13T17:29:09.330Z",
+  "updatedAt": "2026-08-13T17:29:12.286Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-08-13T17:29:09.330Z"
+  "manualEditedAt": "2026-08-13T17:29:12.286Z"
 }
