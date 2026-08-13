@@ -411,11 +411,13 @@
     },
     "2026-08-14T10:30": {
       "players": [
-        "chris-dalley"
+        "chris-dalley",
+        "michael-w-m"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "chris-dalley"
+        "chris-dalley",
+        "michael-w-m"
       ]
     },
     "2026-08-14T11:45": {
@@ -625,11 +627,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed Mike Ertl from 2026-07-10T10:30",
-      "at": "2026-07-10T06:15:40.211Z"
-    },
     {
       "type": "allocation-remove",
       "text": "Removed Phil Charles from 2026-07-24T10:30",
@@ -924,9 +921,14 @@
       "type": "allocation-candidate-remove",
       "text": "Removed pending Mike Ertl from 2026-08-14T11:45",
       "at": "2026-08-13T10:33:58.902Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Michael W-M to 2026-08-14T10:30",
+      "at": "2026-08-13T17:28:29.843Z"
     }
   ],
-  "updatedAt": "2026-08-13T10:33:58.902Z",
+  "updatedAt": "2026-08-13T17:28:29.844Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-08-13T10:33:58.902Z"
+  "manualEditedAt": "2026-08-13T17:28:29.843Z"
 }
