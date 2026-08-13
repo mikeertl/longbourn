@@ -426,14 +426,13 @@
     },
     "2026-08-14T11:45": {
       "players": [
-        "anthea",
         "peter-miell"
       ],
       "yellowCandidates": [
-        "chris-dalley"
+        "chris-dalley",
+        "mike-ertl"
       ],
       "confirmed": [
-        "anthea",
         "peter-miell"
       ]
     },
@@ -631,11 +630,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Michael W-M to 2026-07-17T11:45",
-      "at": "2026-07-10T13:55:27.763Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Rachel to 2026-07-24T10:30",
@@ -930,9 +924,14 @@
       "type": "allocation-add",
       "text": "Added Anthea to 2026-08-14T10:30",
       "at": "2026-08-13T17:28:52.590Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Anthea from 2026-08-14T11:45",
+      "at": "2026-08-13T17:29:00.265Z"
     }
   ],
-  "updatedAt": "2026-08-13T17:28:52.590Z",
+  "updatedAt": "2026-08-13T17:29:00.265Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-08-13T17:28:52.590Z"
+  "manualEditedAt": "2026-08-13T17:29:00.265Z"
 }
