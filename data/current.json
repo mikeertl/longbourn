@@ -420,15 +420,14 @@
     },
     "2026-08-14T11:45": {
       "players": [
-        "mike-ertl",
         "anthea",
         "peter-miell"
       ],
       "yellowCandidates": [
-        "chris-dalley"
+        "chris-dalley",
+        "mike-ertl"
       ],
       "confirmed": [
-        "mike-ertl",
         "anthea",
         "peter-miell"
       ]
@@ -627,11 +626,6 @@
     }
   },
   "changes": [
-    {
-      "type": "availability",
-      "text": "Saved availability for Mike Ertl",
-      "at": "2026-07-09T18:21:16.718Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Mike Ertl to 2026-07-10T10:30",
@@ -926,9 +920,14 @@
       "type": "availability",
       "text": "Saved availability for David Taylor",
       "at": "2026-08-10T13:26:25.180Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Mike Ertl from 2026-08-14T11:45",
+      "at": "2026-08-13T10:33:32.369Z"
     }
   ],
-  "updatedAt": "2026-08-10T13:26:25.180Z",
-  "updatedBy": "david-taylor",
-  "manualEditedAt": "2026-08-06T16:58:24.769Z"
+  "updatedAt": "2026-08-13T10:33:32.369Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-08-13T10:33:32.367Z"
 }
