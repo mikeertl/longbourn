@@ -425,16 +425,12 @@
       ]
     },
     "2026-08-14T11:45": {
-      "players": [
-        "peter-miell"
-      ],
+      "players": [],
       "yellowCandidates": [
         "chris-dalley",
         "mike-ertl"
       ],
-      "confirmed": [
-        "peter-miell"
-      ]
+      "confirmed": []
     },
     "2026-08-21T10:30": {
       "players": [
@@ -630,11 +626,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Rachel to 2026-07-24T10:30",
-      "at": "2026-07-10T13:55:49.875Z"
-    },
     {
       "type": "allocation-remove",
       "text": "Removed Akiko from 2026-07-24T11:45",
@@ -929,9 +920,14 @@
       "type": "allocation-remove",
       "text": "Removed Anthea from 2026-08-14T11:45",
       "at": "2026-08-13T17:29:00.265Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Peter Miell from 2026-08-14T11:45",
+      "at": "2026-08-13T17:29:05.004Z"
     }
   ],
-  "updatedAt": "2026-08-13T17:29:00.265Z",
+  "updatedAt": "2026-08-13T17:29:05.004Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-08-13T17:29:00.265Z"
+  "manualEditedAt": "2026-08-13T17:29:05.004Z"
 }
