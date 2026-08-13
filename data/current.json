@@ -413,13 +413,15 @@
       "players": [
         "chris-dalley",
         "michael-w-m",
-        "peter-miell"
+        "peter-miell",
+        "anthea"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "chris-dalley",
         "michael-w-m",
-        "peter-miell"
+        "peter-miell",
+        "anthea"
       ]
     },
     "2026-08-14T11:45": {
@@ -629,11 +631,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed Phil Charles from 2026-07-17T11:45",
-      "at": "2026-07-10T13:47:56.560Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Michael W-M to 2026-07-17T11:45",
@@ -928,9 +925,14 @@
       "type": "allocation-add",
       "text": "Added Peter Miell to 2026-08-14T10:30",
       "at": "2026-08-13T17:28:43.087Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Anthea to 2026-08-14T10:30",
+      "at": "2026-08-13T17:28:52.590Z"
     }
   ],
-  "updatedAt": "2026-08-13T17:28:43.087Z",
+  "updatedAt": "2026-08-13T17:28:52.590Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-08-13T17:28:43.086Z"
+  "manualEditedAt": "2026-08-13T17:28:52.590Z"
 }
