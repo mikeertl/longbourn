@@ -432,14 +432,14 @@
     "2026-08-21T10:30": {
       "players": [
         "david-taylor",
-        "chris-dalley"
-      ],
-      "yellowCandidates": [
+        "chris-dalley",
         "chris-danzinger"
       ],
+      "yellowCandidates": [],
       "confirmed": [
         "david-taylor",
-        "chris-dalley"
+        "chris-dalley",
+        "chris-danzinger"
       ]
     },
     "2026-08-21T11:45": {
@@ -625,11 +625,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed Jo TR from 2026-07-31T10:30",
-      "at": "2026-07-13T19:40:31.827Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-07-31T10:30",
@@ -924,9 +919,14 @@
       "type": "allocation-add",
       "text": "Added Peter Miell to 2026-08-21T11:45",
       "at": "2026-08-14T16:54:07.758Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Chris Danziger to 2026-08-21T10:30",
+      "at": "2026-08-15T18:13:54.415Z"
     }
   ],
-  "updatedAt": "2026-08-14T16:54:07.758Z",
-  "updatedBy": "peter-miell",
-  "manualEditedAt": "2026-08-14T16:54:07.755Z"
+  "updatedAt": "2026-08-15T18:13:54.415Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-08-15T18:13:54.413Z"
 }
