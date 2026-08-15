@@ -433,13 +433,15 @@
       "players": [
         "david-taylor",
         "chris-dalley",
-        "chris-danzinger"
+        "chris-danzinger",
+        "anthea"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "david-taylor",
         "chris-dalley",
-        "chris-danzinger"
+        "chris-danzinger",
+        "anthea"
       ]
     },
     "2026-08-21T11:45": {
@@ -625,11 +627,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Phil Charles to 2026-07-31T10:30",
-      "at": "2026-07-14T07:49:34.260Z"
-    },
     {
       "type": "availability",
       "text": "Saved availability for David Taylor",
@@ -924,9 +921,14 @@
       "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-08-21T10:30",
       "at": "2026-08-15T18:13:54.415Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Anthea to 2026-08-21T10:30",
+      "at": "2026-08-15T18:14:00.311Z"
     }
   ],
-  "updatedAt": "2026-08-15T18:13:54.415Z",
+  "updatedAt": "2026-08-15T18:14:00.311Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-08-15T18:13:54.413Z"
+  "manualEditedAt": "2026-08-15T18:14:00.310Z"
 }
