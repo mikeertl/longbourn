@@ -436,9 +436,7 @@
         "anthea",
         "michael-w-m"
       ],
-      "yellowCandidates": [
-        "akiko"
-      ],
+      "yellowCandidates": [],
       "confirmed": [
         "david-taylor",
         "chris-dalley",
@@ -629,11 +627,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Phil Charles to 2026-07-31T10:30",
-      "at": "2026-07-16T07:27:06.648Z"
-    },
     {
       "type": "allocation-remove",
       "text": "Removed Chris Dalley from 2026-07-17T11:45",
@@ -928,9 +921,14 @@
       "type": "allocation-add",
       "text": "Added Michael W-M to 2026-08-21T10:30",
       "at": "2026-08-18T18:35:42.344Z"
+    },
+    {
+      "type": "allocation-candidate-remove",
+      "text": "Removed pending Akiko from 2026-08-21T10:30",
+      "at": "2026-08-18T19:08:23.429Z"
     }
   ],
-  "updatedAt": "2026-08-18T18:35:42.345Z",
+  "updatedAt": "2026-08-18T19:08:23.430Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-08-18T18:35:42.344Z"
+  "manualEditedAt": "2026-08-18T19:08:23.429Z"
 }
