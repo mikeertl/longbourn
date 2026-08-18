@@ -433,7 +433,8 @@
       "players": [
         "david-taylor",
         "chris-dalley",
-        "anthea"
+        "anthea",
+        "michael-w-m"
       ],
       "yellowCandidates": [
         "akiko"
@@ -441,7 +442,8 @@
       "confirmed": [
         "david-taylor",
         "chris-dalley",
-        "anthea"
+        "anthea",
+        "michael-w-m"
       ]
     },
     "2026-08-21T11:45": {
@@ -627,11 +629,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed Phil Charles from 2026-07-31T10:30",
-      "at": "2026-07-16T07:24:27.874Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-07-31T10:30",
@@ -926,9 +923,14 @@
       "type": "allocation-remove",
       "text": "Removed Chris Danziger from 2026-08-21T10:30",
       "at": "2026-08-18T18:08:11.698Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Michael W-M to 2026-08-21T10:30",
+      "at": "2026-08-18T18:35:42.344Z"
     }
   ],
-  "updatedAt": "2026-08-18T18:08:11.699Z",
+  "updatedAt": "2026-08-18T18:35:42.345Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-08-18T18:08:11.698Z"
+  "manualEditedAt": "2026-08-18T18:35:42.344Z"
 }
