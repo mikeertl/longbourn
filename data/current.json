@@ -486,13 +486,15 @@
       "players": [
         "chris-dalley",
         "jo-tr",
-        "phil-charles"
+        "phil-charles",
+        "michael-w-m"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "chris-dalley",
         "jo-tr",
-        "phil-charles"
+        "phil-charles",
+        "michael-w-m"
       ]
     }
   },
@@ -633,11 +635,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed Arda from 2026-07-24T11:45",
-      "at": "2026-07-17T07:50:17.185Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Peter Miell to 2026-07-24T11:45",
@@ -932,9 +929,14 @@
       "type": "allocation-candidate-remove",
       "text": "Removed pending Chris Danziger from 2026-08-28T11:45",
       "at": "2026-08-26T10:48:38.755Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Michael W-M to 2026-08-28T11:45",
+      "at": "2026-08-26T10:48:49.518Z"
     }
   ],
-  "updatedAt": "2026-08-26T10:48:38.755Z",
+  "updatedAt": "2026-08-26T10:48:49.518Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-08-26T10:48:38.755Z"
+  "manualEditedAt": "2026-08-26T10:48:49.518Z"
 }
