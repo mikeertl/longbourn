@@ -371,12 +371,20 @@
     },
     "phil-charles": {
       "green": [
-        "2026-08-28T10:30"
+        "2026-08-28T10:30",
+        "2026-09-04T10:30",
+        "2026-09-11T10:30",
+        "2026-09-18T10:30",
+        "2026-09-25T10:30"
       ],
       "yellow": [
-        "2026-08-28T11:45"
+        "2026-08-28T11:45",
+        "2026-09-04T11:45",
+        "2026-09-11T11:45",
+        "2026-09-18T11:45",
+        "2026-09-25T11:45"
       ],
-      "updatedAt": "2026-07-29T21:06:11.465Z"
+      "updatedAt": "2026-08-26T10:40:27.754Z"
     },
     "rachel": {
       "green": [
@@ -627,11 +635,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed Chris Dalley from 2026-07-17T11:45",
-      "at": "2026-07-16T09:37:06.784Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-07-17T11:45",
@@ -926,9 +929,14 @@
       "type": "allocation-candidate-remove",
       "text": "Removed pending Akiko from 2026-08-21T10:30",
       "at": "2026-08-18T19:08:23.429Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Phil Charles",
+      "at": "2026-08-26T10:40:27.754Z"
     }
   ],
-  "updatedAt": "2026-08-18T19:08:23.430Z",
-  "updatedBy": "mike-ertl",
+  "updatedAt": "2026-08-26T10:40:27.754Z",
+  "updatedBy": "phil-charles",
   "manualEditedAt": "2026-08-18T19:08:23.429Z"
 }
