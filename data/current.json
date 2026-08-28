@@ -695,14 +695,14 @@
     "2026-09-11T11:45": {
       "players": [
         "mike-ertl",
-        "chris-danzinger"
-      ],
-      "yellowCandidates": [
+        "chris-danzinger",
         "phil-charles"
       ],
+      "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
-        "chris-danzinger"
+        "chris-danzinger",
+        "phil-charles"
       ]
     },
     "2026-09-18T10:30": {
@@ -1034,11 +1034,6 @@
   },
   "changes": [
     {
-      "type": "allocation-remove",
-      "text": "Removed Phil Charles from 2026-07-31T11:45",
-      "at": "2026-07-27T14:38:16.074Z"
-    },
-    {
       "type": "allocation-add",
       "text": "Added Peter Miell to 2026-07-31T11:45",
       "at": "2026-07-27T14:38:39.280Z"
@@ -1332,9 +1327,14 @@
       "type": "allocation-add",
       "text": "Added Anthea to 2026-09-04T10:30",
       "at": "2026-08-28T14:41:39.591Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-09-11T11:45",
+      "at": "2026-08-28T14:42:47.897Z"
     }
   ],
-  "updatedAt": "2026-08-28T14:41:39.592Z",
+  "updatedAt": "2026-08-28T14:42:47.897Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-08-28T14:41:39.591Z"
+  "manualEditedAt": "2026-08-28T14:42:47.897Z"
 }
