@@ -242,6 +242,156 @@
       "date": "2026-09-25",
       "time": "13:00",
       "enabled": false
+    },
+    {
+      "id": "2026-10-02T08:00",
+      "date": "2026-10-02",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-02T09:00",
+      "date": "2026-10-02",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-02T10:30",
+      "date": "2026-10-02",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2026-10-02T11:45",
+      "date": "2026-10-02",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2026-10-02T13:00",
+      "date": "2026-10-02",
+      "time": "13:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-09T08:00",
+      "date": "2026-10-09",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-09T09:00",
+      "date": "2026-10-09",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-09T10:30",
+      "date": "2026-10-09",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2026-10-09T11:45",
+      "date": "2026-10-09",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2026-10-09T13:00",
+      "date": "2026-10-09",
+      "time": "13:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-16T08:00",
+      "date": "2026-10-16",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-16T09:00",
+      "date": "2026-10-16",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-16T10:30",
+      "date": "2026-10-16",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2026-10-16T11:45",
+      "date": "2026-10-16",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2026-10-16T13:00",
+      "date": "2026-10-16",
+      "time": "13:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-23T08:00",
+      "date": "2026-10-23",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-23T09:00",
+      "date": "2026-10-23",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-23T10:30",
+      "date": "2026-10-23",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2026-10-23T11:45",
+      "date": "2026-10-23",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2026-10-23T13:00",
+      "date": "2026-10-23",
+      "time": "13:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-30T08:00",
+      "date": "2026-10-30",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-30T09:00",
+      "date": "2026-10-30",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-10-30T10:30",
+      "date": "2026-10-30",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2026-10-30T11:45",
+      "date": "2026-10-30",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2026-10-30T13:00",
+      "date": "2026-10-30",
+      "time": "13:00",
+      "enabled": false
     }
   ],
   "players": {
@@ -436,11 +586,6 @@
         "anthea"
       ]
     },
-    "2026-08-14T11:45": {
-      "players": [],
-      "yellowCandidates": [],
-      "confirmed": []
-    },
     "2026-08-21T10:30": {
       "players": [
         "david-taylor",
@@ -499,6 +644,102 @@
         "jo-tr",
         "phil-charles",
         "michael-w-m"
+      ]
+    },
+    "2026-09-04T10:30": {
+      "players": [
+        "david-taylor",
+        "jo-tr",
+        "phil-charles"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "david-taylor",
+        "jo-tr",
+        "phil-charles"
+      ]
+    },
+    "2026-09-04T11:45": {
+      "players": [],
+      "yellowCandidates": [
+        "phil-charles"
+      ],
+      "confirmed": []
+    },
+    "2026-09-11T10:30": {
+      "players": [
+        "david-taylor",
+        "jo-tr",
+        "phil-charles"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "david-taylor",
+        "jo-tr",
+        "phil-charles"
+      ]
+    },
+    "2026-09-11T11:45": {
+      "players": [
+        "mike-ertl"
+      ],
+      "yellowCandidates": [
+        "phil-charles"
+      ],
+      "confirmed": [
+        "mike-ertl"
+      ]
+    },
+    "2026-09-18T10:30": {
+      "players": [
+        "jo-tr",
+        "phil-charles"
+      ],
+      "yellowCandidates": [
+        "chris-dalley"
+      ],
+      "confirmed": [
+        "jo-tr",
+        "phil-charles"
+      ]
+    },
+    "2026-09-18T11:45": {
+      "players": [
+        "mike-ertl",
+        "chris-dalley"
+      ],
+      "yellowCandidates": [
+        "phil-charles"
+      ],
+      "confirmed": [
+        "mike-ertl",
+        "chris-dalley"
+      ]
+    },
+    "2026-09-25T10:30": {
+      "players": [
+        "jo-tr",
+        "phil-charles"
+      ],
+      "yellowCandidates": [
+        "chris-dalley"
+      ],
+      "confirmed": [
+        "jo-tr",
+        "phil-charles"
+      ]
+    },
+    "2026-09-25T11:45": {
+      "players": [
+        "mike-ertl",
+        "chris-dalley"
+      ],
+      "yellowCandidates": [
+        "phil-charles"
+      ],
+      "confirmed": [
+        "mike-ertl",
+        "chris-dalley"
       ]
     }
   },
@@ -636,19 +877,139 @@
         "rachel": "Rachel",
         "jo-tr": "Jo TR"
       }
+    },
+    "2026-09": {
+      "allocatedAt": "2026-08-28T06:34:11.309Z",
+      "allocatedBy": "jo-tr",
+      "automatic": true,
+      "completed": true,
+      "savePending": false,
+      "dueDate": "2026-08-28",
+      "catchUp": false,
+      "responses": {
+        "2026-09-04T10:30": {
+          "date": "2026-09-04",
+          "time": "10:30",
+          "green": [
+            "david-taylor",
+            "jo-tr",
+            "phil-charles"
+          ],
+          "yellow": []
+        },
+        "2026-09-04T11:45": {
+          "date": "2026-09-04",
+          "time": "11:45",
+          "green": [],
+          "yellow": [
+            "phil-charles"
+          ]
+        },
+        "2026-09-11T10:30": {
+          "date": "2026-09-11",
+          "time": "10:30",
+          "green": [
+            "david-taylor",
+            "jo-tr",
+            "phil-charles"
+          ],
+          "yellow": []
+        },
+        "2026-09-11T11:45": {
+          "date": "2026-09-11",
+          "time": "11:45",
+          "green": [
+            "mike-ertl"
+          ],
+          "yellow": [
+            "phil-charles"
+          ]
+        },
+        "2026-09-18T10:30": {
+          "date": "2026-09-18",
+          "time": "10:30",
+          "green": [
+            "chris-dalley",
+            "jo-tr",
+            "phil-charles"
+          ],
+          "yellow": []
+        },
+        "2026-09-18T11:45": {
+          "date": "2026-09-18",
+          "time": "11:45",
+          "green": [
+            "chris-dalley",
+            "mike-ertl"
+          ],
+          "yellow": [
+            "phil-charles"
+          ]
+        },
+        "2026-09-25T10:30": {
+          "date": "2026-09-25",
+          "time": "10:30",
+          "green": [
+            "chris-dalley",
+            "jo-tr",
+            "phil-charles"
+          ],
+          "yellow": []
+        },
+        "2026-09-25T11:45": {
+          "date": "2026-09-25",
+          "time": "11:45",
+          "green": [
+            "chris-dalley",
+            "mike-ertl"
+          ],
+          "yellow": [
+            "phil-charles"
+          ]
+        }
+      },
+      "originalAllocations": {
+        "2026-09-04T10:30": [
+          "david-taylor",
+          "jo-tr",
+          "phil-charles"
+        ],
+        "2026-09-04T11:45": [],
+        "2026-09-11T10:30": [
+          "david-taylor",
+          "jo-tr",
+          "phil-charles"
+        ],
+        "2026-09-11T11:45": [
+          "mike-ertl"
+        ],
+        "2026-09-18T10:30": [
+          "jo-tr",
+          "phil-charles"
+        ],
+        "2026-09-18T11:45": [
+          "mike-ertl",
+          "chris-dalley"
+        ],
+        "2026-09-25T10:30": [
+          "jo-tr",
+          "phil-charles"
+        ],
+        "2026-09-25T11:45": [
+          "mike-ertl",
+          "chris-dalley"
+        ]
+      },
+      "playerNames": {
+        "david-taylor": "David Taylor",
+        "jo-tr": "Jo TR",
+        "phil-charles": "Phil Charles",
+        "mike-ertl": "Mike Ertl",
+        "chris-dalley": "Chris Dalley"
+      }
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed David Taylor from 2026-07-31T10:30",
-      "at": "2026-07-17T10:46:45.934Z"
-    },
-    {
-      "type": "allocation-add",
-      "text": "Added David Taylor to 2026-07-31T10:30",
-      "at": "2026-07-17T10:46:48.657Z"
-    },
     {
       "type": "availability",
       "text": "Saved availability for Chris Dalley",
@@ -938,9 +1299,19 @@
       "type": "availability",
       "text": "Saved availability for Chris Dalley",
       "at": "2026-08-26T17:39:23.203Z"
+    },
+    {
+      "type": "month-created",
+      "text": "Automatically created default slots for 2026-10",
+      "at": "2026-08-28T06:34:11.306Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Automatic allocation",
+      "at": "2026-08-28T06:34:11.309Z"
     }
   ],
-  "updatedAt": "2026-08-26T17:39:23.203Z",
-  "updatedBy": "chris-dalley",
+  "updatedAt": "2026-08-28T06:34:11.343Z",
+  "updatedBy": "jo-tr",
   "manualEditedAt": "2026-08-26T10:48:49.518Z"
 }
