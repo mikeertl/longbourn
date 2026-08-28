@@ -661,9 +661,7 @@
     },
     "2026-09-04T11:45": {
       "players": [],
-      "yellowCandidates": [
-        "phil-charles"
-      ],
+      "yellowCandidates": [],
       "confirmed": []
     },
     "2026-09-11T10:30": {
@@ -1011,11 +1009,6 @@
   },
   "changes": [
     {
-      "type": "availability",
-      "text": "Saved availability for Chris Dalley",
-      "at": "2026-07-17T10:53:51.200Z"
-    },
-    {
       "type": "allocation-remove",
       "text": "Removed Rachel from 2026-07-24T10:30",
       "at": "2026-07-18T14:06:28.193Z"
@@ -1309,9 +1302,14 @@
       "type": "allocate",
       "text": "Automatic allocation",
       "at": "2026-08-28T06:34:11.309Z"
+    },
+    {
+      "type": "allocation-candidate-remove",
+      "text": "Removed pending Phil Charles from 2026-09-04T11:45",
+      "at": "2026-08-28T08:46:43.567Z"
     }
   ],
-  "updatedAt": "2026-08-28T06:34:11.343Z",
-  "updatedBy": "jo-tr",
-  "manualEditedAt": "2026-08-26T10:48:49.518Z"
+  "updatedAt": "2026-08-28T08:46:43.568Z",
+  "updatedBy": "phil-charles",
+  "manualEditedAt": "2026-08-28T08:46:43.567Z"
 }
