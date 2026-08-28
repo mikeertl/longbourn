@@ -681,13 +681,15 @@
       "players": [
         "david-taylor",
         "jo-tr",
-        "chris-danzinger"
+        "chris-danzinger",
+        "anthea"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "david-taylor",
         "jo-tr",
-        "chris-danzinger"
+        "chris-danzinger",
+        "anthea"
       ]
     },
     "2026-09-11T11:45": {
@@ -1032,11 +1034,6 @@
   },
   "changes": [
     {
-      "type": "allocation-remove",
-      "text": "Removed Phil Charles from 2026-07-31T10:30",
-      "at": "2026-07-29T13:16:48.489Z"
-    },
-    {
       "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-07-31T10:30",
       "at": "2026-07-29T13:17:09.485Z"
@@ -1330,9 +1327,14 @@
       "type": "allocation-remove",
       "text": "Removed Phil Charles from 2026-09-11T10:30",
       "at": "2026-08-28T14:42:54.677Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Anthea to 2026-09-11T10:30",
+      "at": "2026-08-28T14:43:08.987Z"
     }
   ],
-  "updatedAt": "2026-08-28T14:42:54.677Z",
+  "updatedAt": "2026-08-28T14:43:08.987Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-08-28T14:42:54.677Z"
+  "manualEditedAt": "2026-08-28T14:43:08.987Z"
 }
