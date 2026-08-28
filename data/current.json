@@ -507,13 +507,20 @@
     "chris-danzinger": {
       "green": [
         "2026-08-21T11:45",
-        "2026-08-28T10:30"
+        "2026-08-28T10:30",
+        "2026-09-04T11:45",
+        "2026-09-11T10:30",
+        "2026-09-11T11:45",
+        "2026-09-18T11:45",
+        "2026-09-25T10:30",
+        "2026-09-18T10:30",
+        "2026-09-25T11:45"
       ],
       "yellow": [
         "2026-08-28T11:45",
         "2026-08-21T10:30"
       ],
-      "updatedAt": "2026-07-19T20:40:17.401Z"
+      "updatedAt": "2026-08-28T13:26:42.119Z"
     },
     "akiko": {
       "green": [],
@@ -1027,11 +1034,6 @@
     {
       "type": "availability",
       "text": "Saved availability for Rachel",
-      "at": "2026-07-24T12:03:02.459Z"
-    },
-    {
-      "type": "availability",
-      "text": "Saved availability for Rachel",
       "at": "2026-07-24T12:03:16.682Z"
     },
     {
@@ -1323,9 +1325,14 @@
       "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-09-25T11:45",
       "at": "2026-08-28T11:50:38.496Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Chris Danziger",
+      "at": "2026-08-28T13:26:42.162Z"
     }
   ],
-  "updatedAt": "2026-08-28T11:50:38.496Z",
+  "updatedAt": "2026-08-28T13:26:42.162Z",
   "updatedBy": "chris-danzinger",
   "manualEditedAt": "2026-08-28T11:50:38.496Z"
 }
