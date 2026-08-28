@@ -709,13 +709,15 @@
       "players": [
         "jo-tr",
         "phil-charles",
-        "chris-danzinger"
+        "chris-danzinger",
+        "anthea"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "jo-tr",
         "phil-charles",
-        "chris-danzinger"
+        "chris-danzinger",
+        "anthea"
       ]
     },
     "2026-09-18T11:45": {
@@ -1033,11 +1035,6 @@
   "changes": [
     {
       "type": "availability",
-      "text": "Saved availability for Phil Charles",
-      "at": "2026-07-29T21:06:11.465Z"
-    },
-    {
-      "type": "availability",
       "text": "Saved availability for David Taylor",
       "at": "2026-07-30T15:36:14.628Z"
     },
@@ -1330,9 +1327,14 @@
       "type": "allocation-candidate-remove",
       "text": "Removed pending Chris Dalley from 2026-09-18T10:30",
       "at": "2026-08-28T14:43:53.793Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Anthea to 2026-09-18T10:30",
+      "at": "2026-08-28T14:44:11.210Z"
     }
   ],
-  "updatedAt": "2026-08-28T14:43:53.793Z",
+  "updatedAt": "2026-08-28T14:44:11.210Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-08-28T14:43:53.793Z"
+  "manualEditedAt": "2026-08-28T14:44:11.210Z"
 }
