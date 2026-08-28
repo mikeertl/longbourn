@@ -711,9 +711,7 @@
         "phil-charles",
         "chris-danzinger"
       ],
-      "yellowCandidates": [
-        "chris-dalley"
-      ],
+      "yellowCandidates": [],
       "confirmed": [
         "jo-tr",
         "phil-charles",
@@ -1034,11 +1032,6 @@
   },
   "changes": [
     {
-      "type": "allocation-add",
-      "text": "Added Chris Danziger to 2026-07-31T10:30",
-      "at": "2026-07-29T13:17:09.485Z"
-    },
-    {
       "type": "availability",
       "text": "Saved availability for Phil Charles",
       "at": "2026-07-29T21:06:11.465Z"
@@ -1332,9 +1325,14 @@
       "type": "allocation-add",
       "text": "Added Anthea to 2026-09-11T10:30",
       "at": "2026-08-28T14:43:08.987Z"
+    },
+    {
+      "type": "allocation-candidate-remove",
+      "text": "Removed pending Chris Dalley from 2026-09-18T10:30",
+      "at": "2026-08-28T14:43:53.793Z"
     }
   ],
-  "updatedAt": "2026-08-28T14:43:08.987Z",
+  "updatedAt": "2026-08-28T14:43:53.793Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-08-28T14:43:08.987Z"
+  "manualEditedAt": "2026-08-28T14:43:53.793Z"
 }
