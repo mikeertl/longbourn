@@ -681,14 +681,12 @@
       "players": [
         "david-taylor",
         "jo-tr",
-        "phil-charles",
         "chris-danzinger"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "david-taylor",
         "jo-tr",
-        "phil-charles",
         "chris-danzinger"
       ]
     },
@@ -1034,11 +1032,6 @@
   },
   "changes": [
     {
-      "type": "allocation-add",
-      "text": "Added Peter Miell to 2026-07-31T11:45",
-      "at": "2026-07-27T14:38:39.280Z"
-    },
-    {
       "type": "allocation-remove",
       "text": "Removed Phil Charles from 2026-07-31T10:30",
       "at": "2026-07-29T13:16:48.489Z"
@@ -1332,9 +1325,14 @@
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-09-11T11:45",
       "at": "2026-08-28T14:42:47.897Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Phil Charles from 2026-09-11T10:30",
+      "at": "2026-08-28T14:42:54.677Z"
     }
   ],
-  "updatedAt": "2026-08-28T14:42:47.897Z",
+  "updatedAt": "2026-08-28T14:42:54.677Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-08-28T14:42:47.897Z"
+  "manualEditedAt": "2026-08-28T14:42:54.677Z"
 }
