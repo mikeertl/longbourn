@@ -672,13 +672,15 @@
       "players": [
         "david-taylor",
         "jo-tr",
-        "phil-charles"
+        "phil-charles",
+        "chris-danzinger"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "david-taylor",
         "jo-tr",
-        "phil-charles"
+        "phil-charles",
+        "chris-danzinger"
       ]
     },
     "2026-09-11T11:45": {
@@ -1013,11 +1015,6 @@
   },
   "changes": [
     {
-      "type": "allocation-add",
-      "text": "Added Rachel to 2026-07-24T11:45",
-      "at": "2026-07-18T21:14:56.333Z"
-    },
-    {
       "type": "availability",
       "text": "Saved availability for Chris Danziger",
       "at": "2026-07-19T20:40:17.452Z"
@@ -1311,9 +1308,14 @@
       "type": "allocation-remove",
       "text": "Removed Chris Danziger from 2026-09-04T10:30",
       "at": "2026-08-28T11:48:50.495Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Chris Danziger to 2026-09-11T10:30",
+      "at": "2026-08-28T11:49:03.796Z"
     }
   ],
-  "updatedAt": "2026-08-28T11:48:50.495Z",
+  "updatedAt": "2026-08-28T11:49:03.796Z",
   "updatedBy": "chris-danzinger",
-  "manualEditedAt": "2026-08-28T11:48:50.495Z"
+  "manualEditedAt": "2026-08-28T11:49:03.796Z"
 }
