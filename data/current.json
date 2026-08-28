@@ -741,9 +741,7 @@
         "phil-charles",
         "chris-danzinger"
       ],
-      "yellowCandidates": [
-        "chris-dalley"
-      ],
+      "yellowCandidates": [],
       "confirmed": [
         "jo-tr",
         "phil-charles",
@@ -1033,11 +1031,6 @@
     }
   },
   "changes": [
-    {
-      "type": "availability",
-      "text": "Saved availability for David Taylor",
-      "at": "2026-07-30T15:36:14.628Z"
-    },
     {
       "type": "allocate",
       "text": "Automatic allocation",
@@ -1332,9 +1325,14 @@
       "type": "allocation-add",
       "text": "Added Anthea to 2026-09-18T10:30",
       "at": "2026-08-28T14:44:11.210Z"
+    },
+    {
+      "type": "allocation-candidate-remove",
+      "text": "Removed pending Chris Dalley from 2026-09-25T10:30",
+      "at": "2026-08-28T14:44:58.648Z"
     }
   ],
-  "updatedAt": "2026-08-28T14:44:11.210Z",
+  "updatedAt": "2026-08-28T14:44:58.648Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-08-28T14:44:11.210Z"
+  "manualEditedAt": "2026-08-28T14:44:58.648Z"
 }
