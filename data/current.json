@@ -744,14 +744,16 @@
     "2026-09-25T11:45": {
       "players": [
         "mike-ertl",
-        "chris-dalley"
+        "chris-dalley",
+        "chris-danzinger"
       ],
       "yellowCandidates": [
         "phil-charles"
       ],
       "confirmed": [
         "mike-ertl",
-        "chris-dalley"
+        "chris-dalley",
+        "chris-danzinger"
       ]
     }
   },
@@ -1022,11 +1024,6 @@
     }
   },
   "changes": [
-    {
-      "type": "availability",
-      "text": "Saved availability for Rachel",
-      "at": "2026-07-24T10:47:59.178Z"
-    },
     {
       "type": "availability",
       "text": "Saved availability for Rachel",
@@ -1321,9 +1318,14 @@
       "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-09-25T10:30",
       "at": "2026-08-28T11:50:34.666Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Chris Danziger to 2026-09-25T11:45",
+      "at": "2026-08-28T11:50:38.496Z"
     }
   ],
-  "updatedAt": "2026-08-28T11:50:34.666Z",
+  "updatedAt": "2026-08-28T11:50:38.496Z",
   "updatedBy": "chris-danzinger",
-  "manualEditedAt": "2026-08-28T11:50:34.665Z"
+  "manualEditedAt": "2026-08-28T11:50:38.496Z"
 }
