@@ -422,11 +422,13 @@
       ]
     },
     "2026-09-04T11:45": {
-      "players": [],
-      "yellowCandidates": [
+      "players": [
         "chris-danzinger"
       ],
-      "confirmed": []
+      "yellowCandidates": [],
+      "confirmed": [
+        "chris-danzinger"
+      ]
     },
     "2026-09-11T10:30": {
       "players": [
@@ -650,11 +652,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Phil Charles to 2026-08-28T11:45",
-      "at": "2026-08-01T10:41:45.696Z"
-    },
     {
       "type": "allocation-remove",
       "text": "Removed Phil Charles from 2026-08-28T10:30",
@@ -949,9 +946,14 @@
       "type": "allocation-remove",
       "text": "Removed Chris Danziger from 2026-09-04T11:45",
       "at": "2026-09-02T23:11:48.046Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Chris Danziger to 2026-09-04T11:45",
+      "at": "2026-09-02T23:11:58.171Z"
     }
   ],
-  "updatedAt": "2026-09-02T23:11:48.046Z",
+  "updatedAt": "2026-09-02T23:11:58.171Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-09-02T23:11:48.046Z"
+  "manualEditedAt": "2026-09-02T23:11:58.171Z"
 }
