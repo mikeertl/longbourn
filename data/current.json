@@ -507,13 +507,15 @@
       "players": [
         "mike-ertl",
         "chris-dalley",
-        "phil-charles"
+        "phil-charles",
+        "gina-williams"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
         "chris-dalley",
-        "phil-charles"
+        "phil-charles",
+        "gina-williams"
       ]
     }
   },
@@ -650,11 +652,6 @@
     }
   },
   "changes": [
-    {
-      "type": "availability",
-      "text": "Saved availability for Jo TR",
-      "at": "2026-08-01T21:08:53.400Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Jo TR to 2026-08-21T11:45",
@@ -949,9 +946,14 @@
       "type": "allocation-remove",
       "text": "Removed Chris Danziger from 2026-09-25T11:45",
       "at": "2026-09-02T23:12:39.730Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Gina Williams to 2026-09-25T11:45",
+      "at": "2026-09-02T23:12:57.993Z"
     }
   ],
-  "updatedAt": "2026-09-02T23:12:39.730Z",
+  "updatedAt": "2026-09-02T23:12:57.993Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-09-02T23:12:39.730Z"
+  "manualEditedAt": "2026-09-02T23:12:57.993Z"
 }
