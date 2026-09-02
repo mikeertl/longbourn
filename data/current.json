@@ -449,13 +449,15 @@
       "players": [
         "mike-ertl",
         "phil-charles",
-        "michael-w-m"
+        "michael-w-m",
+        "gina-williams"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
         "phil-charles",
-        "michael-w-m"
+        "michael-w-m",
+        "gina-williams"
       ]
     },
     "2026-09-18T10:30": {
@@ -650,11 +652,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Anthea to 2026-08-28T10:30",
-      "at": "2026-08-01T10:42:06.187Z"
-    },
     {
       "type": "availability",
       "text": "Saved availability for Mike Ertl",
@@ -949,9 +946,14 @@
       "type": "allocation-remove",
       "text": "Removed Chris Danziger from 2026-09-11T11:45",
       "at": "2026-09-02T23:12:15.601Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Gina Williams to 2026-09-11T11:45",
+      "at": "2026-09-02T23:12:30.024Z"
     }
   ],
-  "updatedAt": "2026-09-02T23:12:15.601Z",
+  "updatedAt": "2026-09-02T23:12:30.024Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-09-02T23:12:15.601Z"
+  "manualEditedAt": "2026-09-02T23:12:30.024Z"
 }
