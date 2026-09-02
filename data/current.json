@@ -423,9 +423,7 @@
     },
     "2026-09-04T11:45": {
       "players": [],
-      "yellowCandidates": [
-        "chris-danzinger"
-      ],
+      "yellowCandidates": [],
       "confirmed": []
     },
     "2026-09-11T10:30": {
@@ -650,11 +648,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-candidate-remove",
-      "text": "Removed pending Akiko from 2026-08-21T10:30",
-      "at": "2026-08-05T08:23:38.646Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Eyal to 2026-08-07T11:45",
@@ -949,9 +942,14 @@
       "type": "allocation-remove",
       "text": "Removed Chris Danziger from 2026-09-04T11:45",
       "at": "2026-09-02T23:14:32.287Z"
+    },
+    {
+      "type": "allocation-candidate-remove",
+      "text": "Removed pending Chris Danziger from 2026-09-04T11:45",
+      "at": "2026-09-02T23:14:44.385Z"
     }
   ],
-  "updatedAt": "2026-09-02T23:14:32.287Z",
+  "updatedAt": "2026-09-02T23:14:44.385Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-09-02T23:14:32.287Z"
+  "manualEditedAt": "2026-09-02T23:14:44.385Z"
 }
