@@ -422,13 +422,11 @@
       ]
     },
     "2026-09-04T11:45": {
-      "players": [
+      "players": [],
+      "yellowCandidates": [
         "chris-danzinger"
       ],
-      "yellowCandidates": [],
-      "confirmed": [
-        "chris-danzinger"
-      ]
+      "confirmed": []
     },
     "2026-09-11T10:30": {
       "players": [
@@ -652,11 +650,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-candidate-remove",
-      "text": "Removed pending Akiko from 2026-08-21T11:45",
-      "at": "2026-08-05T08:23:04.711Z"
-    },
     {
       "type": "allocation-candidate-remove",
       "text": "Removed pending Akiko from 2026-08-21T10:30",
@@ -951,9 +944,14 @@
       "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-09-04T11:45",
       "at": "2026-09-02T23:14:14.009Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Chris Danziger from 2026-09-04T11:45",
+      "at": "2026-09-02T23:14:32.287Z"
     }
   ],
-  "updatedAt": "2026-09-02T23:14:14.009Z",
+  "updatedAt": "2026-09-02T23:14:32.287Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-09-02T23:14:14.009Z"
+  "manualEditedAt": "2026-09-02T23:14:32.287Z"
 }
