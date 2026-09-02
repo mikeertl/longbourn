@@ -422,13 +422,11 @@
       ]
     },
     "2026-09-04T11:45": {
-      "players": [
+      "players": [],
+      "yellowCandidates": [
         "chris-danzinger"
       ],
-      "yellowCandidates": [],
-      "confirmed": [
-        "chris-danzinger"
-      ]
+      "confirmed": []
     },
     "2026-09-11T10:30": {
       "players": [
@@ -652,11 +650,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Jo TR to 2026-08-21T11:45",
-      "at": "2026-08-03T06:49:14.680Z"
-    },
     {
       "type": "allocation-remove",
       "text": "Removed Jo TR from 2026-08-21T11:45",
@@ -951,9 +944,14 @@
       "type": "allocation-add",
       "text": "Added Gina Williams to 2026-09-25T11:45",
       "at": "2026-09-02T23:12:57.993Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Chris Danziger from 2026-09-04T11:45",
+      "at": "2026-09-02T23:13:36.118Z"
     }
   ],
-  "updatedAt": "2026-09-02T23:12:57.993Z",
+  "updatedAt": "2026-09-02T23:13:36.118Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-09-02T23:12:57.993Z"
+  "manualEditedAt": "2026-09-02T23:13:36.118Z"
 }
