@@ -348,10 +348,15 @@
         "2026-09-04T10:30",
         "2026-09-11T10:30",
         "2026-09-18T10:30",
-        "2026-09-25T10:30"
+        "2026-09-25T10:30",
+        "2026-10-02T10:30",
+        "2026-10-09T10:30",
+        "2026-10-16T10:30",
+        "2026-10-23T10:30",
+        "2026-10-30T11:45"
       ],
       "yellow": [],
-      "updatedAt": "2026-08-01T21:08:53.400Z"
+      "updatedAt": "2026-09-04T06:34:03.273Z"
     },
     "david-taylor": {
       "green": [
@@ -647,11 +652,6 @@
   },
   "changes": [
     {
-      "type": "availability",
-      "text": "Saved availability for David Taylor",
-      "at": "2026-08-10T13:26:25.180Z"
-    },
-    {
       "type": "allocation-remove",
       "text": "Removed Mike Ertl from 2026-08-14T11:45",
       "at": "2026-08-13T10:33:32.369Z"
@@ -945,9 +945,14 @@
       "type": "allocation-remove",
       "text": "Removed Gina Williams from 2026-09-25T11:45",
       "at": "2026-09-03T06:06:27.841Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Jo TR",
+      "at": "2026-09-04T06:34:03.273Z"
     }
   ],
-  "updatedAt": "2026-09-03T06:06:27.841Z",
-  "updatedBy": "phil-charles",
+  "updatedAt": "2026-09-04T06:34:03.274Z",
+  "updatedBy": "jo-tr",
   "manualEditedAt": "2026-09-03T06:06:27.841Z"
 }
