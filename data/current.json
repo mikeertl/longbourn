@@ -433,14 +433,14 @@
     },
     "2026-09-11T10:30": {
       "players": [
-        "david-taylor",
         "jo-tr",
         "chris-danzinger",
         "anthea"
       ],
-      "yellowCandidates": [],
+      "yellowCandidates": [
+        "david-taylor"
+      ],
       "confirmed": [
-        "david-taylor",
         "jo-tr",
         "chris-danzinger",
         "anthea"
@@ -651,11 +651,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed Mike Ertl from 2026-08-14T11:45",
-      "at": "2026-08-13T10:33:32.369Z"
-    },
     {
       "type": "allocation-candidate-remove",
       "text": "Removed pending Mike Ertl from 2026-08-14T11:45",
@@ -950,9 +945,14 @@
       "type": "availability",
       "text": "Saved availability for Jo TR",
       "at": "2026-09-04T06:34:03.273Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed David Taylor from 2026-09-11T10:30",
+      "at": "2026-09-10T13:52:20.154Z"
     }
   ],
-  "updatedAt": "2026-09-04T06:34:03.274Z",
-  "updatedBy": "jo-tr",
-  "manualEditedAt": "2026-09-03T06:06:27.841Z"
+  "updatedAt": "2026-09-10T13:52:20.154Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-09-10T13:52:20.154Z"
 }
