@@ -502,14 +502,14 @@
     },
     "2026-09-25T10:30": {
       "players": [
-        "jo-tr",
         "chris-danzinger",
         "anthea",
         "rachel"
       ],
-      "yellowCandidates": [],
+      "yellowCandidates": [
+        "jo-tr"
+      ],
       "confirmed": [
-        "jo-tr",
         "chris-danzinger",
         "anthea",
         "rachel"
@@ -662,11 +662,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed Anthea from 2026-08-14T11:45",
-      "at": "2026-08-13T17:29:00.265Z"
-    },
     {
       "type": "allocation-remove",
       "text": "Removed Peter Miell from 2026-08-14T11:45",
@@ -961,9 +956,14 @@
       "type": "availability",
       "text": "Saved availability for Chris Dalley",
       "at": "2026-09-13T14:02:41.669Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Jo TR from 2026-09-25T10:30",
+      "at": "2026-09-14T09:25:45.834Z"
     }
   ],
-  "updatedAt": "2026-09-13T14:02:41.669Z",
-  "updatedBy": "chris-dalley",
-  "manualEditedAt": "2026-09-10T13:52:30.584Z"
+  "updatedAt": "2026-09-14T09:25:45.834Z",
+  "updatedBy": "jo-tr",
+  "manualEditedAt": "2026-09-14T09:25:45.834Z"
 }
