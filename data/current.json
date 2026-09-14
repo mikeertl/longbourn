@@ -338,10 +338,15 @@
       "green": [
         "2026-09-11T11:45",
         "2026-09-18T11:45",
-        "2026-09-25T11:45"
+        "2026-09-25T11:45",
+        "2026-10-02T11:45",
+        "2026-10-09T11:45",
+        "2026-10-16T11:45",
+        "2026-10-23T11:45",
+        "2026-10-30T11:45"
       ],
       "yellow": [],
-      "updatedAt": "2026-08-01T11:41:39.617Z"
+      "updatedAt": "2026-09-14T14:25:23.822Z"
     },
     "jo-tr": {
       "green": [
@@ -662,11 +667,6 @@
   "changes": [
     {
       "type": "allocation-candidate-remove",
-      "text": "Removed pending Mike Ertl from 2026-08-14T11:45",
-      "at": "2026-08-13T17:29:09.330Z"
-    },
-    {
-      "type": "allocation-candidate-remove",
       "text": "Removed pending Chris Dalley from 2026-08-14T11:45",
       "at": "2026-08-13T17:29:12.286Z"
     },
@@ -959,9 +959,14 @@
       "type": "allocation-candidate-remove",
       "text": "Removed pending Jo TR from 2026-09-25T10:30",
       "at": "2026-09-14T09:25:55.473Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Mike Ertl",
+      "at": "2026-09-14T14:25:23.822Z"
     }
   ],
-  "updatedAt": "2026-09-14T09:25:55.473Z",
-  "updatedBy": "jo-tr",
+  "updatedAt": "2026-09-14T14:25:23.823Z",
+  "updatedBy": "mike-ertl",
   "manualEditedAt": "2026-09-14T09:25:55.473Z"
 }
