@@ -506,9 +506,7 @@
         "anthea",
         "rachel"
       ],
-      "yellowCandidates": [
-        "jo-tr"
-      ],
+      "yellowCandidates": [],
       "confirmed": [
         "chris-danzinger",
         "anthea",
@@ -662,11 +660,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed Peter Miell from 2026-08-14T11:45",
-      "at": "2026-08-13T17:29:05.004Z"
-    },
     {
       "type": "allocation-candidate-remove",
       "text": "Removed pending Mike Ertl from 2026-08-14T11:45",
@@ -961,9 +954,14 @@
       "type": "allocation-remove",
       "text": "Removed Jo TR from 2026-09-25T10:30",
       "at": "2026-09-14T09:25:45.834Z"
+    },
+    {
+      "type": "allocation-candidate-remove",
+      "text": "Removed pending Jo TR from 2026-09-25T10:30",
+      "at": "2026-09-14T09:25:55.473Z"
     }
   ],
-  "updatedAt": "2026-09-14T09:25:45.834Z",
+  "updatedAt": "2026-09-14T09:25:55.473Z",
   "updatedBy": "jo-tr",
-  "manualEditedAt": "2026-09-14T09:25:45.834Z"
+  "manualEditedAt": "2026-09-14T09:25:55.473Z"
 }
