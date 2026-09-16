@@ -481,13 +481,15 @@
       "players": [
         "jo-tr",
         "phil-charles",
-        "anthea"
+        "anthea",
+        "michael-w-m"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "jo-tr",
         "phil-charles",
-        "anthea"
+        "anthea",
+        "michael-w-m"
       ]
     },
     "2026-09-18T11:45": {
@@ -665,11 +667,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-candidate-remove",
-      "text": "Removed pending Chris Dalley from 2026-08-14T11:45",
-      "at": "2026-08-13T17:29:12.286Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Peter Miell to 2026-08-21T11:45",
@@ -964,9 +961,14 @@
       "type": "availability",
       "text": "Saved availability for Mike Ertl",
       "at": "2026-09-14T14:25:23.822Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Michael W-M to 2026-09-18T10:30",
+      "at": "2026-09-16T19:28:38.498Z"
     }
   ],
-  "updatedAt": "2026-09-14T14:25:23.823Z",
+  "updatedAt": "2026-09-16T19:28:38.498Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-09-14T09:25:55.473Z"
+  "manualEditedAt": "2026-09-16T19:28:38.498Z"
 }
