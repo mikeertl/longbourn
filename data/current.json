@@ -526,13 +526,15 @@
       "players": [
         "mike-ertl",
         "chris-dalley",
-        "phil-charles"
+        "phil-charles",
+        "michael-w-m"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
         "chris-dalley",
-        "phil-charles"
+        "phil-charles",
+        "michael-w-m"
       ]
     }
   },
@@ -669,11 +671,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed Chris Danziger from 2026-08-21T10:30",
-      "at": "2026-08-18T18:08:11.698Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Michael W-M to 2026-08-21T10:30",
@@ -968,9 +965,14 @@
       "type": "availability",
       "text": "Saved availability for Jo TR",
       "at": "2026-09-18T21:09:56.555Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Michael W-M to 2026-09-25T11:45",
+      "at": "2026-09-24T14:21:50.545Z"
     }
   ],
-  "updatedAt": "2026-09-18T21:09:56.556Z",
-  "updatedBy": "jo-tr",
-  "manualEditedAt": "2026-09-18T12:01:03.744Z"
+  "updatedAt": "2026-09-24T14:21:50.545Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-09-24T14:21:50.545Z"
 }
