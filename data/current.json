@@ -707,12 +707,14 @@
     "2026-10-16T11:45": {
       "players": [
         "akiko",
-        "mike-ertl"
+        "mike-ertl",
+        "phil-charles"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "akiko",
-        "mike-ertl"
+        "mike-ertl",
+        "phil-charles"
       ]
     },
     "2026-10-23T10:30": {
@@ -1027,11 +1029,6 @@
   },
   "changes": [
     {
-      "type": "allocation-add",
-      "text": "Added Chris Danziger to 2026-09-04T11:45",
-      "at": "2026-08-28T11:48:12.454Z"
-    },
-    {
       "type": "allocation-remove",
       "text": "Removed Chris Danziger from 2026-09-04T10:30",
       "at": "2026-08-28T11:48:50.495Z"
@@ -1325,9 +1322,14 @@
       "type": "allocation-remove",
       "text": "Removed Phil Charles from 2026-10-16T10:30",
       "at": "2026-09-25T10:33:04.230Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-10-16T11:45",
+      "at": "2026-09-25T10:33:06.255Z"
     }
   ],
-  "updatedAt": "2026-09-25T10:33:04.230Z",
+  "updatedAt": "2026-09-25T10:33:06.255Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-09-25T10:33:04.230Z"
+  "manualEditedAt": "2026-09-25T10:33:06.255Z"
 }
