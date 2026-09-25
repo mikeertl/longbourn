@@ -681,11 +681,13 @@
     },
     "2026-10-09T10:30": {
       "players": [
-        "jo-tr"
+        "jo-tr",
+        "rachel"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "jo-tr"
+        "jo-tr",
+        "rachel"
       ]
     },
     "2026-10-09T11:45": {
@@ -1032,11 +1034,6 @@
   "changes": [
     {
       "type": "allocation-add",
-      "text": "Added Chris Danziger to 2026-09-11T10:30",
-      "at": "2026-08-28T11:49:03.796Z"
-    },
-    {
-      "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-09-11T11:45",
       "at": "2026-08-28T11:49:14.876Z"
     },
@@ -1329,9 +1326,14 @@
       "type": "allocation-add",
       "text": "Added Rachel to 2026-10-02T10:30",
       "at": "2026-09-25T10:49:28.959Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Rachel to 2026-10-09T10:30",
+      "at": "2026-09-25T10:49:42.305Z"
     }
   ],
-  "updatedAt": "2026-09-25T10:49:28.959Z",
+  "updatedAt": "2026-09-25T10:49:42.305Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-09-25T10:49:28.959Z"
+  "manualEditedAt": "2026-09-25T10:49:42.305Z"
 }
