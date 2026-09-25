@@ -656,14 +656,16 @@
     "2026-10-02T10:30": {
       "players": [
         "jo-tr",
-        "chris-dalley"
+        "chris-dalley",
+        "rachel"
       ],
       "yellowCandidates": [
         "chris-danzinger"
       ],
       "confirmed": [
         "jo-tr",
-        "chris-dalley"
+        "chris-dalley",
+        "rachel"
       ]
     },
     "2026-10-02T11:45": {
@@ -1029,11 +1031,6 @@
   },
   "changes": [
     {
-      "type": "allocation-remove",
-      "text": "Removed Chris Danziger from 2026-09-04T10:30",
-      "at": "2026-08-28T11:48:50.495Z"
-    },
-    {
       "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-09-11T10:30",
       "at": "2026-08-28T11:49:03.796Z"
@@ -1327,9 +1324,14 @@
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-10-16T11:45",
       "at": "2026-09-25T10:33:06.255Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Rachel to 2026-10-02T10:30",
+      "at": "2026-09-25T10:49:28.959Z"
     }
   ],
-  "updatedAt": "2026-09-25T10:33:06.255Z",
-  "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-09-25T10:33:06.255Z"
+  "updatedAt": "2026-09-25T10:49:28.959Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-09-25T10:49:28.959Z"
 }
