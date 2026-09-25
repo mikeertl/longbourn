@@ -655,12 +655,14 @@
     "2026-10-02T10:30": {
       "players": [
         "jo-tr",
-        "chris-dalley"
+        "chris-dalley",
+        "phil-charles"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "jo-tr",
-        "chris-dalley"
+        "chris-dalley",
+        "phil-charles"
       ]
     },
     "2026-10-02T11:45": {
@@ -1018,11 +1020,6 @@
   },
   "changes": [
     {
-      "type": "availability",
-      "text": "Saved availability for Phil Charles",
-      "at": "2026-08-26T10:40:27.754Z"
-    },
-    {
       "type": "allocation-candidate-remove",
       "text": "Removed pending Chris Danziger from 2026-08-28T11:45",
       "at": "2026-08-26T10:48:38.755Z"
@@ -1316,9 +1313,14 @@
       "type": "allocate",
       "text": "Automatic allocation",
       "at": "2026-09-25T07:05:42.556Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-10-02T10:30",
+      "at": "2026-09-25T07:57:57.178Z"
     }
   ],
-  "updatedAt": "2026-09-25T07:05:42.676Z",
-  "updatedBy": "chris-danzinger",
-  "manualEditedAt": "2026-09-24T14:21:50.545Z"
+  "updatedAt": "2026-09-25T07:57:57.178Z",
+  "updatedBy": "phil-charles",
+  "manualEditedAt": "2026-09-25T07:57:57.178Z"
 }
