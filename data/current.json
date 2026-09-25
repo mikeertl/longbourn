@@ -717,12 +717,14 @@
     "2026-10-23T10:30": {
       "players": [
         "chris-dalley",
-        "jo-tr"
+        "jo-tr",
+        "phil-charles"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "chris-dalley",
-        "jo-tr"
+        "jo-tr",
+        "phil-charles"
       ]
     },
     "2026-10-23T11:45": {
@@ -1022,11 +1024,6 @@
   },
   "changes": [
     {
-      "type": "allocation-add",
-      "text": "Added Michael W-M to 2026-08-28T11:45",
-      "at": "2026-08-26T10:48:49.518Z"
-    },
-    {
       "type": "availability",
       "text": "Saved availability for Chris Dalley",
       "at": "2026-08-26T17:39:23.203Z"
@@ -1320,9 +1317,14 @@
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-10-16T10:30",
       "at": "2026-09-25T07:59:54.242Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-10-23T10:30",
+      "at": "2026-09-25T07:59:57.429Z"
     }
   ],
-  "updatedAt": "2026-09-25T07:59:54.242Z",
+  "updatedAt": "2026-09-25T07:59:57.429Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-09-25T07:59:54.242Z"
+  "manualEditedAt": "2026-09-25T07:59:57.429Z"
 }
