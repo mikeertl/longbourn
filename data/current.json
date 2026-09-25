@@ -466,7 +466,7 @@
         "2026-10-30T11:45"
       ],
       "yellow": [],
-      "updatedAt": "2026-09-14T14:25:23.822Z"
+      "updatedAt": "2026-09-25T14:13:35.264Z"
     },
     "jo-tr": {
       "green": [
@@ -1034,16 +1034,6 @@
   "changes": [
     {
       "type": "allocation-add",
-      "text": "Added Chris Danziger to 2026-09-11T11:45",
-      "at": "2026-08-28T11:49:14.876Z"
-    },
-    {
-      "type": "allocation-add",
-      "text": "Added Chris Danziger to 2026-09-18T10:30",
-      "at": "2026-08-28T11:49:39.961Z"
-    },
-    {
-      "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-09-18T11:45",
       "at": "2026-08-28T11:50:01.086Z"
     },
@@ -1331,9 +1321,19 @@
       "type": "allocation-add",
       "text": "Added Rachel to 2026-10-09T10:30",
       "at": "2026-09-25T10:49:42.305Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Mike Ertl",
+      "at": "2026-09-25T14:12:55.972Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Mike Ertl",
+      "at": "2026-09-25T14:13:35.264Z"
     }
   ],
-  "updatedAt": "2026-09-25T10:49:42.305Z",
+  "updatedAt": "2026-09-25T14:13:35.264Z",
   "updatedBy": "mike-ertl",
   "manualEditedAt": "2026-09-25T10:49:42.305Z"
 }
