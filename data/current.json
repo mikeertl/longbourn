@@ -694,11 +694,13 @@
     },
     "2026-10-16T10:30": {
       "players": [
-        "jo-tr"
+        "jo-tr",
+        "phil-charles"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "jo-tr"
+        "jo-tr",
+        "phil-charles"
       ]
     },
     "2026-10-16T11:45": {
@@ -1020,11 +1022,6 @@
   },
   "changes": [
     {
-      "type": "allocation-candidate-remove",
-      "text": "Removed pending Chris Danziger from 2026-08-28T11:45",
-      "at": "2026-08-26T10:48:38.755Z"
-    },
-    {
       "type": "allocation-add",
       "text": "Added Michael W-M to 2026-08-28T11:45",
       "at": "2026-08-26T10:48:49.518Z"
@@ -1318,9 +1315,14 @@
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-10-02T10:30",
       "at": "2026-09-25T07:57:57.178Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-10-16T10:30",
+      "at": "2026-09-25T07:59:54.242Z"
     }
   ],
-  "updatedAt": "2026-09-25T07:57:57.178Z",
+  "updatedAt": "2026-09-25T07:59:54.242Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-09-25T07:57:57.178Z"
+  "manualEditedAt": "2026-09-25T07:59:54.242Z"
 }
