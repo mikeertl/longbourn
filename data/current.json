@@ -701,12 +701,14 @@
     "2026-10-09T10:30": {
       "players": [
         "jo-tr",
-        "rachel"
+        "rachel",
+        "michael-w-m"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "jo-tr",
-        "rachel"
+        "rachel",
+        "michael-w-m"
       ]
     },
     "2026-10-09T11:45": {
@@ -1052,11 +1054,6 @@
   },
   "changes": [
     {
-      "type": "allocation-add",
-      "text": "Added Anthea to 2026-09-11T10:30",
-      "at": "2026-08-28T14:43:08.987Z"
-    },
-    {
       "type": "allocation-candidate-remove",
       "text": "Removed pending Chris Dalley from 2026-09-18T10:30",
       "at": "2026-08-28T14:43:53.793Z"
@@ -1350,9 +1347,14 @@
       "type": "allocation-add",
       "text": "Added Michael W-M to 2026-10-02T11:45",
       "at": "2026-09-26T22:45:17.531Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Michael W-M to 2026-10-09T10:30",
+      "at": "2026-09-26T22:45:28.399Z"
     }
   ],
-  "updatedAt": "2026-09-26T22:45:17.531Z",
+  "updatedAt": "2026-09-26T22:45:28.399Z",
   "updatedBy": "michael-w-m",
-  "manualEditedAt": "2026-09-26T22:45:17.531Z"
+  "manualEditedAt": "2026-09-26T22:45:28.399Z"
 }
