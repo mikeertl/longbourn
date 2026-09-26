@@ -691,14 +691,12 @@
     "2026-10-09T10:30": {
       "players": [
         "jo-tr",
-        "rachel",
-        "michael-w-m"
+        "rachel"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "jo-tr",
-        "rachel",
-        "michael-w-m"
+        "rachel"
       ]
     },
     "2026-10-09T11:45": {
@@ -1045,11 +1043,6 @@
   "changes": [
     {
       "type": "allocation-add",
-      "text": "Added Anthea to 2026-09-04T10:30",
-      "at": "2026-08-28T14:41:39.591Z"
-    },
-    {
-      "type": "allocation-add",
       "text": "Added Phil Charles to 2026-09-11T11:45",
       "at": "2026-08-28T14:42:47.897Z"
     },
@@ -1342,9 +1335,14 @@
       "type": "allocation-remove",
       "text": "Removed Michael W-M from 2026-10-02T11:45",
       "at": "2026-09-26T15:07:22.441Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Michael W-M from 2026-10-09T10:30",
+      "at": "2026-09-26T15:07:40.330Z"
     }
   ],
-  "updatedAt": "2026-09-26T15:07:22.441Z",
+  "updatedAt": "2026-09-26T15:07:40.330Z",
   "updatedBy": "michael-w-m",
-  "manualEditedAt": "2026-09-26T15:07:22.441Z"
+  "manualEditedAt": "2026-09-26T15:07:40.330Z"
 }
