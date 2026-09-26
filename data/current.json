@@ -550,6 +550,14 @@
       ],
       "yellow": [],
       "updatedAt": "2026-09-10T19:18:06.542Z"
+    },
+    "michael-w-m": {
+      "green": [
+        "2026-10-02T11:45",
+        "2026-10-09T10:30"
+      ],
+      "yellow": [],
+      "updatedAt": "2026-09-26T15:08:15.453Z"
     }
   },
   "allocations": {
@@ -1042,11 +1050,6 @@
   },
   "changes": [
     {
-      "type": "allocation-add",
-      "text": "Added Phil Charles to 2026-09-11T11:45",
-      "at": "2026-08-28T14:42:47.897Z"
-    },
-    {
       "type": "allocation-remove",
       "text": "Removed Phil Charles from 2026-09-11T10:30",
       "at": "2026-08-28T14:42:54.677Z"
@@ -1340,9 +1343,14 @@
       "type": "allocation-remove",
       "text": "Removed Michael W-M from 2026-10-09T10:30",
       "at": "2026-09-26T15:07:40.330Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Michael W-M",
+      "at": "2026-09-26T15:08:15.453Z"
     }
   ],
-  "updatedAt": "2026-09-26T15:07:40.330Z",
+  "updatedAt": "2026-09-26T15:08:15.454Z",
   "updatedBy": "michael-w-m",
   "manualEditedAt": "2026-09-26T15:07:40.330Z"
 }
