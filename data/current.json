@@ -732,12 +732,14 @@
     "2026-10-16T10:30": {
       "players": [
         "jo-tr",
-        "david-taylor"
+        "david-taylor",
+        "anthea"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "jo-tr",
-        "david-taylor"
+        "david-taylor",
+        "anthea"
       ]
     },
     "2026-10-16T11:45": {
@@ -757,7 +759,8 @@
       "players": [
         "chris-dalley",
         "jo-tr",
-        "phil-charles"
+        "phil-charles",
+        "anthea"
       ],
       "yellowCandidates": [
         "chris-danzinger"
@@ -765,7 +768,8 @@
       "confirmed": [
         "chris-dalley",
         "jo-tr",
-        "phil-charles"
+        "phil-charles",
+        "anthea"
       ]
     },
     "2026-10-23T11:45": {
@@ -781,13 +785,15 @@
       "players": [
         "jo-tr",
         "phil-charles",
-        "david-taylor"
+        "david-taylor",
+        "anthea"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "jo-tr",
         "phil-charles",
-        "david-taylor"
+        "david-taylor",
+        "anthea"
       ]
     },
     "2026-10-30T11:45": {
@@ -1068,21 +1074,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Rachel to 2026-09-25T10:30",
-      "at": "2026-08-28T18:22:16.319Z"
-    },
-    {
-      "type": "allocation-add",
-      "text": "Added Michael W-M to 2026-09-11T11:45",
-      "at": "2026-08-29T07:30:28.470Z"
-    },
-    {
-      "type": "allocation-remove",
-      "text": "Removed Chris Danziger from 2026-09-04T11:45",
-      "at": "2026-09-02T23:11:48.046Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-09-04T11:45",
@@ -1367,9 +1358,24 @@
       "type": "allocation-add",
       "text": "Added Anthea to 2026-10-09T10:30",
       "at": "2026-09-27T17:51:01.945Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Anthea to 2026-10-16T10:30",
+      "at": "2026-09-27T17:51:34.369Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Anthea to 2026-10-23T10:30",
+      "at": "2026-09-27T17:51:53.998Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Anthea to 2026-10-30T10:30",
+      "at": "2026-09-27T17:52:12.207Z"
     }
   ],
-  "updatedAt": "2026-09-27T17:51:01.945Z",
+  "updatedAt": "2026-09-27T17:52:12.207Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-09-27T17:51:01.945Z"
+  "manualEditedAt": "2026-09-27T17:52:12.207Z"
 }
