@@ -773,12 +773,14 @@
     "2026-10-30T10:30": {
       "players": [
         "jo-tr",
-        "phil-charles"
+        "phil-charles",
+        "david-taylor"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "jo-tr",
-        "phil-charles"
+        "phil-charles",
+        "david-taylor"
       ]
     },
     "2026-10-30T11:45": {
@@ -1059,11 +1061,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Phil Charles to 2026-09-18T11:45",
-      "at": "2026-08-28T14:45:26.286Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-09-25T11:45",
@@ -1358,9 +1355,14 @@
       "type": "allocation-remove",
       "text": "Removed David Taylor from 2026-10-23T10:30",
       "at": "2026-09-27T16:21:07.439Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added David Taylor to 2026-10-30T10:30",
+      "at": "2026-09-27T16:21:15.619Z"
     }
   ],
-  "updatedAt": "2026-09-27T16:21:07.439Z",
+  "updatedAt": "2026-09-27T16:21:15.619Z",
   "updatedBy": "david-taylor",
-  "manualEditedAt": "2026-09-27T16:21:07.439Z"
+  "manualEditedAt": "2026-09-27T16:21:15.619Z"
 }
