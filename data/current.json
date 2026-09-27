@@ -672,7 +672,8 @@
       "players": [
         "jo-tr",
         "chris-dalley",
-        "rachel"
+        "rachel",
+        "david-taylor"
       ],
       "yellowCandidates": [
         "chris-danzinger"
@@ -680,7 +681,8 @@
       "confirmed": [
         "jo-tr",
         "chris-dalley",
-        "rachel"
+        "rachel",
+        "david-taylor"
       ]
     },
     "2026-10-02T11:45": {
@@ -1054,11 +1056,6 @@
   },
   "changes": [
     {
-      "type": "allocation-candidate-remove",
-      "text": "Removed pending Chris Dalley from 2026-09-18T10:30",
-      "at": "2026-08-28T14:43:53.793Z"
-    },
-    {
       "type": "allocation-add",
       "text": "Added Anthea to 2026-09-18T10:30",
       "at": "2026-08-28T14:44:11.210Z"
@@ -1352,9 +1349,14 @@
       "type": "allocation-add",
       "text": "Added Michael W-M to 2026-10-09T10:30",
       "at": "2026-09-26T22:45:28.399Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added David Taylor to 2026-10-02T10:30",
+      "at": "2026-09-27T16:19:53.945Z"
     }
   ],
-  "updatedAt": "2026-09-26T22:45:28.399Z",
-  "updatedBy": "michael-w-m",
-  "manualEditedAt": "2026-09-26T22:45:28.399Z"
+  "updatedAt": "2026-09-27T16:19:53.945Z",
+  "updatedBy": "david-taylor",
+  "manualEditedAt": "2026-09-27T16:19:53.945Z"
 }
