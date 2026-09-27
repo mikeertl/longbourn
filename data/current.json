@@ -724,11 +724,13 @@
     },
     "2026-10-16T10:30": {
       "players": [
-        "jo-tr"
+        "jo-tr",
+        "david-taylor"
       ],
       "yellowCandidates": [],
       "confirmed": [
-        "jo-tr"
+        "jo-tr",
+        "david-taylor"
       ]
     },
     "2026-10-16T11:45": {
@@ -1056,11 +1058,6 @@
   },
   "changes": [
     {
-      "type": "allocation-add",
-      "text": "Added Anthea to 2026-09-18T10:30",
-      "at": "2026-08-28T14:44:11.210Z"
-    },
-    {
       "type": "allocation-candidate-remove",
       "text": "Removed pending Chris Dalley from 2026-09-25T10:30",
       "at": "2026-08-28T14:44:58.648Z"
@@ -1354,9 +1351,14 @@
       "type": "allocation-add",
       "text": "Added David Taylor to 2026-10-02T10:30",
       "at": "2026-09-27T16:19:53.945Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added David Taylor to 2026-10-16T10:30",
+      "at": "2026-09-27T16:20:40.617Z"
     }
   ],
-  "updatedAt": "2026-09-27T16:19:53.945Z",
+  "updatedAt": "2026-09-27T16:20:40.617Z",
   "updatedBy": "david-taylor",
-  "manualEditedAt": "2026-09-27T16:19:53.945Z"
+  "manualEditedAt": "2026-09-27T16:20:40.617Z"
 }
