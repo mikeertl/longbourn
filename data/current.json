@@ -690,16 +690,15 @@
     },
     "2026-10-02T11:45": {
       "players": [
-        "mike-ertl",
         "phil-charles",
         "michael-w-m",
         "anthea"
       ],
       "yellowCandidates": [
-        "chris-danzinger"
+        "chris-danzinger",
+        "mike-ertl"
       ],
       "confirmed": [
-        "mike-ertl",
         "phil-charles",
         "michael-w-m",
         "anthea"
@@ -1075,11 +1074,6 @@
   },
   "changes": [
     {
-      "type": "allocation-add",
-      "text": "Added Chris Danziger to 2026-09-04T11:45",
-      "at": "2026-09-02T23:11:58.171Z"
-    },
-    {
       "type": "allocation-remove",
       "text": "Removed Chris Danziger from 2026-09-11T11:45",
       "at": "2026-09-02T23:12:15.601Z"
@@ -1373,9 +1367,14 @@
       "type": "allocation-add",
       "text": "Added Anthea to 2026-10-30T10:30",
       "at": "2026-09-27T17:52:12.207Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Mike Ertl from 2026-10-02T11:45",
+      "at": "2026-09-29T17:24:04.536Z"
     }
   ],
-  "updatedAt": "2026-09-27T17:52:12.207Z",
-  "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-09-27T17:52:12.207Z"
+  "updatedAt": "2026-09-29T17:24:04.536Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-09-29T17:24:04.536Z"
 }
