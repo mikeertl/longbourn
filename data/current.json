@@ -475,13 +475,15 @@
       "players": [
         "jo-tr",
         "david-taylor",
-        "anthea"
+        "anthea",
+        "rachel"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "jo-tr",
         "david-taylor",
-        "anthea"
+        "anthea",
+        "rachel"
       ]
     },
     "2026-10-16T11:45": {
@@ -688,11 +690,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Gina Williams to 2026-09-11T11:45",
-      "at": "2026-09-02T23:12:30.024Z"
-    },
     {
       "type": "allocation-remove",
       "text": "Removed Chris Danziger from 2026-09-25T11:45",
@@ -987,9 +984,14 @@
       "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-10-23T11:45",
       "at": "2026-10-02T13:31:15.588Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Rachel to 2026-10-16T10:30",
+      "at": "2026-10-06T07:37:39.978Z"
     }
   ],
-  "updatedAt": "2026-10-02T13:31:15.588Z",
-  "updatedBy": "chris-danzinger",
-  "manualEditedAt": "2026-10-02T13:31:15.552Z"
+  "updatedAt": "2026-10-06T07:37:39.979Z",
+  "updatedBy": "rachel",
+  "manualEditedAt": "2026-10-06T07:37:39.978Z"
 }
