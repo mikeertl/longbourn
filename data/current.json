@@ -450,14 +450,12 @@
     "2026-10-09T10:30": {
       "players": [
         "jo-tr",
-        "rachel",
         "michael-w-m",
         "anthea"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "jo-tr",
-        "rachel",
         "michael-w-m",
         "anthea"
       ]
@@ -688,11 +686,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Gina Williams to 2026-09-25T11:45",
-      "at": "2026-09-02T23:12:57.993Z"
-    },
     {
       "type": "allocation-remove",
       "text": "Removed Chris Danziger from 2026-09-04T11:45",
@@ -987,9 +980,14 @@
       "type": "allocation-remove",
       "text": "Removed Mike Ertl from 2026-10-09T11:45",
       "at": "2026-10-08T12:18:55.408Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Rachel from 2026-10-09T10:30",
+      "at": "2026-10-08T13:56:38.083Z"
     }
   ],
-  "updatedAt": "2026-10-08T12:18:55.408Z",
-  "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-10-08T12:18:55.408Z"
+  "updatedAt": "2026-10-08T13:56:38.083Z",
+  "updatedBy": "phil-charles",
+  "manualEditedAt": "2026-10-08T13:56:38.083Z"
 }
