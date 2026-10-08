@@ -463,13 +463,11 @@
       ]
     },
     "2026-10-09T11:45": {
-      "players": [
+      "players": [],
+      "yellowCandidates": [
         "mike-ertl"
       ],
-      "yellowCandidates": [],
-      "confirmed": [
-        "mike-ertl"
-      ]
+      "confirmed": []
     },
     "2026-10-16T10:30": {
       "players": [
@@ -690,11 +688,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed Chris Danziger from 2026-09-25T11:45",
-      "at": "2026-09-02T23:12:39.730Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Gina Williams to 2026-09-25T11:45",
@@ -989,9 +982,14 @@
       "type": "allocation-add",
       "text": "Added Rachel to 2026-10-16T10:30",
       "at": "2026-10-06T07:37:39.978Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Mike Ertl from 2026-10-09T11:45",
+      "at": "2026-10-08T12:18:55.408Z"
     }
   ],
-  "updatedAt": "2026-10-06T07:37:39.979Z",
-  "updatedBy": "rachel",
-  "manualEditedAt": "2026-10-06T07:37:39.978Z"
+  "updatedAt": "2026-10-08T12:18:55.408Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-10-08T12:18:55.408Z"
 }
