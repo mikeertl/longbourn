@@ -360,10 +360,12 @@
       "green": [
         "2026-10-02T10:30",
         "2026-10-16T10:30",
-        "2026-10-30T10:30"
+        "2026-10-30T10:30",
+        "2026-11-13T10:30",
+        "2026-11-20T10:30"
       ],
       "yellow": [],
-      "updatedAt": "2026-09-27T16:24:04.730Z"
+      "updatedAt": "2026-10-11T14:59:20.085Z"
     },
     "chris-dalley": {
       "green": [
@@ -689,11 +691,6 @@
   },
   "changes": [
     {
-      "type": "allocation-add",
-      "text": "Added Chris Danziger to 2026-09-04T11:45",
-      "at": "2026-09-02T23:13:38.698Z"
-    },
-    {
       "type": "allocation-remove",
       "text": "Removed Chris Danziger from 2026-09-04T11:45",
       "at": "2026-09-02T23:14:10.979Z"
@@ -987,9 +984,14 @@
       "type": "allocation-add",
       "text": "Added David Taylor to 2026-10-09T10:30",
       "at": "2026-10-08T13:56:47.369Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for David Taylor",
+      "at": "2026-10-11T14:59:20.085Z"
     }
   ],
-  "updatedAt": "2026-10-08T13:56:47.369Z",
-  "updatedBy": "phil-charles",
+  "updatedAt": "2026-10-11T14:59:20.086Z",
+  "updatedBy": "david-taylor",
   "manualEditedAt": "2026-10-08T13:56:47.369Z"
 }
