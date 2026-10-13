@@ -340,10 +340,14 @@
         "2026-10-09T11:45",
         "2026-10-16T11:45",
         "2026-10-23T11:45",
-        "2026-10-30T11:45"
+        "2026-10-30T11:45",
+        "2026-11-06T11:45",
+        "2026-11-13T11:45",
+        "2026-11-20T11:45",
+        "2026-11-27T11:45"
       ],
       "yellow": [],
-      "updatedAt": "2026-09-25T14:13:35.264Z"
+      "updatedAt": "2026-10-13T06:15:05.682Z"
     },
     "jo-tr": {
       "green": [
@@ -691,11 +695,6 @@
   },
   "changes": [
     {
-      "type": "allocation-remove",
-      "text": "Removed Chris Danziger from 2026-09-04T11:45",
-      "at": "2026-09-02T23:14:10.979Z"
-    },
-    {
       "type": "allocation-add",
       "text": "Added Chris Danziger to 2026-09-04T11:45",
       "at": "2026-09-02T23:14:14.009Z"
@@ -989,9 +988,14 @@
       "type": "availability",
       "text": "Saved availability for David Taylor",
       "at": "2026-10-11T14:59:20.085Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Mike Ertl",
+      "at": "2026-10-13T06:15:05.682Z"
     }
   ],
-  "updatedAt": "2026-10-11T14:59:20.086Z",
-  "updatedBy": "david-taylor",
+  "updatedAt": "2026-10-13T06:15:05.683Z",
+  "updatedBy": "mike-ertl",
   "manualEditedAt": "2026-10-08T13:56:47.369Z"
 }
