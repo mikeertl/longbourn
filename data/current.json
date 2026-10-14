@@ -399,9 +399,13 @@
       "updatedAt": "2026-08-26T10:40:27.754Z"
     },
     "rachel": {
-      "green": [],
+      "green": [
+        "2026-11-13T10:30",
+        "2026-11-20T10:30",
+        "2026-11-27T10:30"
+      ],
       "yellow": [],
-      "updatedAt": "2026-07-24T12:03:16.682Z"
+      "updatedAt": "2026-10-14T09:16:58.697Z"
     },
     "akiko": {
       "green": [
@@ -694,11 +698,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Chris Danziger to 2026-09-04T11:45",
-      "at": "2026-09-02T23:14:14.009Z"
-    },
     {
       "type": "allocation-remove",
       "text": "Removed Chris Danziger from 2026-09-04T11:45",
@@ -993,9 +992,14 @@
       "type": "availability",
       "text": "Saved availability for Mike Ertl",
       "at": "2026-10-13T06:15:05.682Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Rachel",
+      "at": "2026-10-14T09:16:58.697Z"
     }
   ],
-  "updatedAt": "2026-10-13T06:15:05.683Z",
-  "updatedBy": "mike-ertl",
+  "updatedAt": "2026-10-14T09:16:58.697Z",
+  "updatedBy": "rachel",
   "manualEditedAt": "2026-10-08T13:56:47.369Z"
 }
