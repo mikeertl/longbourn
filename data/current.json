@@ -355,10 +355,13 @@
         "2026-10-09T10:30",
         "2026-10-16T10:30",
         "2026-10-23T10:30",
-        "2026-10-30T10:30"
+        "2026-10-30T10:30",
+        "2026-11-06T10:30",
+        "2026-11-13T10:30",
+        "2026-11-27T10:30"
       ],
       "yellow": [],
-      "updatedAt": "2026-09-18T21:09:56.555Z"
+      "updatedAt": "2026-10-16T20:35:44.949Z"
     },
     "david-taylor": {
       "green": [
@@ -699,11 +702,6 @@
   },
   "changes": [
     {
-      "type": "allocation-remove",
-      "text": "Removed Chris Danziger from 2026-09-04T11:45",
-      "at": "2026-09-02T23:14:32.287Z"
-    },
-    {
       "type": "allocation-candidate-remove",
       "text": "Removed pending Chris Danziger from 2026-09-04T11:45",
       "at": "2026-09-02T23:14:44.385Z"
@@ -997,9 +995,14 @@
       "type": "availability",
       "text": "Saved availability for Rachel",
       "at": "2026-10-14T09:16:58.697Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Jo TR",
+      "at": "2026-10-16T20:35:44.950Z"
     }
   ],
-  "updatedAt": "2026-10-14T09:16:58.697Z",
-  "updatedBy": "rachel",
+  "updatedAt": "2026-10-16T20:35:44.950Z",
+  "updatedBy": "jo-tr",
   "manualEditedAt": "2026-10-08T13:56:47.369Z"
 }
