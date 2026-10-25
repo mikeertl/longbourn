@@ -397,9 +397,17 @@
       "updatedAt": "2026-09-25T17:16:06.998Z"
     },
     "phil-charles": {
-      "green": [],
-      "yellow": [],
-      "updatedAt": "2026-08-26T10:40:27.754Z"
+      "green": [
+        "2026-11-06T10:30",
+        "2026-11-20T10:30",
+        "2026-11-27T10:30"
+      ],
+      "yellow": [
+        "2026-11-06T11:45",
+        "2026-11-20T11:45",
+        "2026-11-27T11:45"
+      ],
+      "updatedAt": "2026-10-25T14:39:41.895Z"
     },
     "rachel": {
       "green": [
@@ -702,11 +710,6 @@
   },
   "changes": [
     {
-      "type": "allocation-candidate-remove",
-      "text": "Removed pending Chris Danziger from 2026-09-04T11:45",
-      "at": "2026-09-02T23:14:44.385Z"
-    },
-    {
       "type": "allocation-remove",
       "text": "Removed Gina Williams from 2026-09-25T11:45",
       "at": "2026-09-03T06:06:27.841Z"
@@ -1000,9 +1003,14 @@
       "type": "availability",
       "text": "Saved availability for Jo TR",
       "at": "2026-10-16T20:35:44.950Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Phil Charles",
+      "at": "2026-10-25T14:39:41.895Z"
     }
   ],
-  "updatedAt": "2026-10-16T20:35:44.950Z",
-  "updatedBy": "jo-tr",
+  "updatedAt": "2026-10-25T14:39:41.895Z",
+  "updatedBy": "phil-charles",
   "manualEditedAt": "2026-10-08T13:56:47.369Z"
 }
