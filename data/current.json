@@ -377,10 +377,17 @@
     "chris-dalley": {
       "green": [
         "2026-10-02T10:30",
-        "2026-10-23T10:30"
+        "2026-10-23T10:30",
+        "2026-11-06T10:30",
+        "2026-11-13T10:30",
+        "2026-11-13T11:45",
+        "2026-11-20T10:30",
+        "2026-11-20T11:45",
+        "2026-11-27T10:30",
+        "2026-11-27T11:45"
       ],
       "yellow": [],
-      "updatedAt": "2026-09-13T14:02:41.665Z"
+      "updatedAt": "2026-10-25T15:30:11.237Z"
     },
     "chris-danzinger": {
       "green": [
@@ -710,11 +717,6 @@
   },
   "changes": [
     {
-      "type": "allocation-remove",
-      "text": "Removed Gina Williams from 2026-09-25T11:45",
-      "at": "2026-09-03T06:06:27.841Z"
-    },
-    {
       "type": "availability",
       "text": "Saved availability for Jo TR",
       "at": "2026-09-04T06:34:03.273Z"
@@ -1008,9 +1010,14 @@
       "type": "availability",
       "text": "Saved availability for Phil Charles",
       "at": "2026-10-25T14:39:41.895Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Chris Dalley",
+      "at": "2026-10-25T15:30:11.242Z"
     }
   ],
-  "updatedAt": "2026-10-25T14:39:41.895Z",
-  "updatedBy": "phil-charles",
+  "updatedAt": "2026-10-25T15:30:11.242Z",
+  "updatedBy": "chris-dalley",
   "manualEditedAt": "2026-10-08T13:56:47.369Z"
 }
