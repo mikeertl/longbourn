@@ -569,13 +569,12 @@
       ]
     },
     "2026-10-30T11:45": {
-      "players": [
+      "players": [],
+      "yellowCandidates": [
+        "chris-danzinger",
         "mike-ertl"
       ],
-      "yellowCandidates": [],
-      "confirmed": [
-        "mike-ertl"
-      ]
+      "confirmed": []
     }
   },
   "allocatedMonths": {
@@ -716,11 +715,6 @@
     }
   },
   "changes": [
-    {
-      "type": "availability",
-      "text": "Saved availability for Jo TR",
-      "at": "2026-09-04T06:34:03.273Z"
-    },
     {
       "type": "allocation-remove",
       "text": "Removed David Taylor from 2026-09-11T10:30",
@@ -1015,9 +1009,14 @@
       "type": "availability",
       "text": "Saved availability for Chris Dalley",
       "at": "2026-10-25T15:30:11.242Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Mike Ertl from 2026-10-30T11:45",
+      "at": "2026-10-25T16:57:03.781Z"
     }
   ],
-  "updatedAt": "2026-10-25T15:30:11.242Z",
-  "updatedBy": "chris-dalley",
-  "manualEditedAt": "2026-10-08T13:56:47.369Z"
+  "updatedAt": "2026-10-25T16:57:03.781Z",
+  "updatedBy": "mike-ertl",
+  "manualEditedAt": "2026-10-25T16:57:03.781Z"
 }
