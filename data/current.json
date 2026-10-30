@@ -703,13 +703,15 @@
       "players": [
         "jo-tr",
         "chris-dalley",
-        "phil-charles"
+        "phil-charles",
+        "chris-danzinger"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "jo-tr",
         "chris-dalley",
-        "phil-charles"
+        "phil-charles",
+        "chris-danzinger"
       ]
     },
     "2026-11-06T11:45": {
@@ -1085,11 +1087,6 @@
   },
   "changes": [
     {
-      "type": "allocation-remove",
-      "text": "Removed Jo TR from 2026-09-25T10:30",
-      "at": "2026-09-14T09:25:45.834Z"
-    },
-    {
       "type": "allocation-candidate-remove",
       "text": "Removed pending Jo TR from 2026-09-25T10:30",
       "at": "2026-09-14T09:25:55.473Z"
@@ -1383,9 +1380,14 @@
       "type": "allocate",
       "text": "Automatic allocation",
       "at": "2026-10-30T00:05:25.860Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Chris Danziger to 2026-11-06T10:30",
+      "at": "2026-10-30T15:13:59.574Z"
     }
   ],
-  "updatedAt": "2026-10-30T00:05:25.876Z",
-  "updatedBy": "michael-w-m",
-  "manualEditedAt": "2026-10-28T12:39:52.495Z"
+  "updatedAt": "2026-10-30T15:13:59.575Z",
+  "updatedBy": "chris-danzinger",
+  "manualEditedAt": "2026-10-30T15:13:59.565Z"
 }
