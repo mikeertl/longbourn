@@ -272,6 +272,126 @@
       "date": "2026-11-27",
       "time": "13:00",
       "enabled": false
+    },
+    {
+      "id": "2026-12-04T08:00",
+      "date": "2026-12-04",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-12-04T09:00",
+      "date": "2026-12-04",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-12-04T10:30",
+      "date": "2026-12-04",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2026-12-04T11:45",
+      "date": "2026-12-04",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2026-12-04T13:00",
+      "date": "2026-12-04",
+      "time": "13:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-12-11T08:00",
+      "date": "2026-12-11",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-12-11T09:00",
+      "date": "2026-12-11",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-12-11T10:30",
+      "date": "2026-12-11",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2026-12-11T11:45",
+      "date": "2026-12-11",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2026-12-11T13:00",
+      "date": "2026-12-11",
+      "time": "13:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-12-18T08:00",
+      "date": "2026-12-18",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-12-18T09:00",
+      "date": "2026-12-18",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-12-18T10:30",
+      "date": "2026-12-18",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2026-12-18T11:45",
+      "date": "2026-12-18",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2026-12-18T13:00",
+      "date": "2026-12-18",
+      "time": "13:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-12-25T08:00",
+      "date": "2026-12-25",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-12-25T09:00",
+      "date": "2026-12-25",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2026-12-25T10:30",
+      "date": "2026-12-25",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2026-12-25T11:45",
+      "date": "2026-12-25",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2026-12-25T13:00",
+      "date": "2026-12-25",
+      "time": "13:00",
+      "enabled": false
     }
   ],
   "players": {
@@ -578,6 +698,112 @@
         "chris-danzinger",
         "michael-w-m"
       ]
+    },
+    "2026-11-06T10:30": {
+      "players": [
+        "jo-tr",
+        "chris-dalley",
+        "phil-charles"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "jo-tr",
+        "chris-dalley",
+        "phil-charles"
+      ]
+    },
+    "2026-11-06T11:45": {
+      "players": [
+        "mike-ertl"
+      ],
+      "yellowCandidates": [
+        "phil-charles"
+      ],
+      "confirmed": [
+        "mike-ertl"
+      ]
+    },
+    "2026-11-13T10:30": {
+      "players": [
+        "rachel",
+        "david-taylor",
+        "jo-tr"
+      ],
+      "yellowCandidates": [
+        "chris-dalley"
+      ],
+      "confirmed": [
+        "rachel",
+        "david-taylor",
+        "jo-tr"
+      ]
+    },
+    "2026-11-13T11:45": {
+      "players": [
+        "mike-ertl",
+        "chris-dalley"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "mike-ertl",
+        "chris-dalley"
+      ]
+    },
+    "2026-11-20T10:30": {
+      "players": [
+        "rachel",
+        "david-taylor",
+        "phil-charles"
+      ],
+      "yellowCandidates": [
+        "chris-dalley"
+      ],
+      "confirmed": [
+        "rachel",
+        "david-taylor",
+        "phil-charles"
+      ]
+    },
+    "2026-11-20T11:45": {
+      "players": [
+        "mike-ertl",
+        "chris-dalley"
+      ],
+      "yellowCandidates": [
+        "phil-charles"
+      ],
+      "confirmed": [
+        "mike-ertl",
+        "chris-dalley"
+      ]
+    },
+    "2026-11-27T10:30": {
+      "players": [
+        "jo-tr",
+        "rachel",
+        "phil-charles"
+      ],
+      "yellowCandidates": [
+        "chris-dalley"
+      ],
+      "confirmed": [
+        "jo-tr",
+        "rachel",
+        "phil-charles"
+      ]
+    },
+    "2026-11-27T11:45": {
+      "players": [
+        "mike-ertl",
+        "chris-dalley"
+      ],
+      "yellowCandidates": [
+        "phil-charles"
+      ],
+      "confirmed": [
+        "mike-ertl",
+        "chris-dalley"
+      ]
     }
   },
   "allocatedMonths": {
@@ -715,19 +941,149 @@
         "mike-ertl": "Mike Ertl",
         "akiko": "Akiko"
       }
+    },
+    "2026-11": {
+      "allocatedAt": "2026-10-30T00:05:25.860Z",
+      "allocatedBy": "michael-w-m",
+      "automatic": true,
+      "completed": true,
+      "savePending": false,
+      "dueDate": "2026-10-30",
+      "catchUp": false,
+      "responses": {
+        "2026-11-06T10:30": {
+          "date": "2026-11-06",
+          "time": "10:30",
+          "green": [
+            "chris-dalley",
+            "jo-tr",
+            "phil-charles"
+          ],
+          "yellow": []
+        },
+        "2026-11-06T11:45": {
+          "date": "2026-11-06",
+          "time": "11:45",
+          "green": [
+            "mike-ertl"
+          ],
+          "yellow": [
+            "phil-charles"
+          ]
+        },
+        "2026-11-13T10:30": {
+          "date": "2026-11-13",
+          "time": "10:30",
+          "green": [
+            "chris-dalley",
+            "david-taylor",
+            "jo-tr",
+            "rachel"
+          ],
+          "yellow": []
+        },
+        "2026-11-13T11:45": {
+          "date": "2026-11-13",
+          "time": "11:45",
+          "green": [
+            "chris-dalley",
+            "mike-ertl"
+          ],
+          "yellow": []
+        },
+        "2026-11-20T10:30": {
+          "date": "2026-11-20",
+          "time": "10:30",
+          "green": [
+            "chris-dalley",
+            "david-taylor",
+            "phil-charles",
+            "rachel"
+          ],
+          "yellow": []
+        },
+        "2026-11-20T11:45": {
+          "date": "2026-11-20",
+          "time": "11:45",
+          "green": [
+            "chris-dalley",
+            "mike-ertl"
+          ],
+          "yellow": [
+            "phil-charles"
+          ]
+        },
+        "2026-11-27T10:30": {
+          "date": "2026-11-27",
+          "time": "10:30",
+          "green": [
+            "chris-dalley",
+            "jo-tr",
+            "phil-charles",
+            "rachel"
+          ],
+          "yellow": []
+        },
+        "2026-11-27T11:45": {
+          "date": "2026-11-27",
+          "time": "11:45",
+          "green": [
+            "chris-dalley",
+            "mike-ertl"
+          ],
+          "yellow": [
+            "phil-charles"
+          ]
+        }
+      },
+      "originalAllocations": {
+        "2026-11-06T10:30": [
+          "jo-tr",
+          "chris-dalley",
+          "phil-charles"
+        ],
+        "2026-11-06T11:45": [
+          "mike-ertl"
+        ],
+        "2026-11-13T10:30": [
+          "rachel",
+          "david-taylor",
+          "jo-tr"
+        ],
+        "2026-11-13T11:45": [
+          "mike-ertl",
+          "chris-dalley"
+        ],
+        "2026-11-20T10:30": [
+          "rachel",
+          "david-taylor",
+          "phil-charles"
+        ],
+        "2026-11-20T11:45": [
+          "mike-ertl",
+          "chris-dalley"
+        ],
+        "2026-11-27T10:30": [
+          "jo-tr",
+          "rachel",
+          "phil-charles"
+        ],
+        "2026-11-27T11:45": [
+          "mike-ertl",
+          "chris-dalley"
+        ]
+      },
+      "playerNames": {
+        "chris-dalley": "Chris Dalley",
+        "jo-tr": "Jo TR",
+        "phil-charles": "Phil Charles",
+        "mike-ertl": "Mike Ertl",
+        "david-taylor": "David Taylor",
+        "rachel": "Rachel"
+      }
     }
   },
   "changes": [
-    {
-      "type": "availability",
-      "text": "Saved availability for Chris Dalley",
-      "at": "2026-09-11T07:03:20.379Z"
-    },
-    {
-      "type": "availability",
-      "text": "Saved availability for Chris Dalley",
-      "at": "2026-09-13T14:02:41.669Z"
-    },
     {
       "type": "allocation-remove",
       "text": "Removed Jo TR from 2026-09-25T10:30",
@@ -1017,9 +1373,19 @@
       "type": "allocation-add",
       "text": "Added Michael W-M to 2026-10-30T11:45",
       "at": "2026-10-28T12:39:52.495Z"
+    },
+    {
+      "type": "month-created",
+      "text": "Automatically created default slots for 2026-12",
+      "at": "2026-10-30T00:05:25.858Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Automatic allocation",
+      "at": "2026-10-30T00:05:25.860Z"
     }
   ],
-  "updatedAt": "2026-10-28T12:39:52.495Z",
+  "updatedAt": "2026-10-30T00:05:25.876Z",
   "updatedBy": "michael-w-m",
   "manualEditedAt": "2026-10-28T12:39:52.495Z"
 }
