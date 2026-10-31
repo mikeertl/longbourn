@@ -516,12 +516,16 @@
         "2026-10-16T11:45",
         "2026-10-23T10:30",
         "2026-10-23T11:45",
-        "2026-10-30T11:45"
+        "2026-10-30T11:45",
+        "2026-11-06T10:30",
+        "2026-11-27T10:30",
+        "2026-11-20T10:30",
+        "2026-11-20T11:45"
       ],
       "yellow": [
         "2026-10-16T10:30"
       ],
-      "updatedAt": "2026-09-25T17:16:06.998Z"
+      "updatedAt": "2026-10-31T11:21:39.167Z"
     },
     "phil-charles": {
       "green": [
@@ -785,7 +789,8 @@
       "players": [
         "jo-tr",
         "rachel",
-        "phil-charles"
+        "phil-charles",
+        "chris-danzinger"
       ],
       "yellowCandidates": [
         "chris-dalley"
@@ -793,7 +798,8 @@
       "confirmed": [
         "jo-tr",
         "rachel",
-        "phil-charles"
+        "phil-charles",
+        "chris-danzinger"
       ]
     },
     "2026-11-27T11:45": {
@@ -1091,16 +1097,6 @@
     {
       "type": "availability",
       "text": "Saved availability for Jo TR",
-      "at": "2026-09-18T11:16:25.716Z"
-    },
-    {
-      "type": "allocation-add",
-      "text": "Added Michael W-M to 2026-09-25T10:30",
-      "at": "2026-09-18T12:01:03.744Z"
-    },
-    {
-      "type": "availability",
-      "text": "Saved availability for Jo TR",
       "at": "2026-09-18T21:09:56.555Z"
     },
     {
@@ -1387,9 +1383,19 @@
       "type": "allocation-remove",
       "text": "Removed Chris Danziger from 2026-11-20T11:45",
       "at": "2026-10-30T15:15:05.980Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Chris Danziger to 2026-11-27T10:30",
+      "at": "2026-10-30T16:42:56.197Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Chris Danziger",
+      "at": "2026-10-31T11:21:39.191Z"
     }
   ],
-  "updatedAt": "2026-10-30T15:15:05.980Z",
+  "updatedAt": "2026-10-31T11:21:39.192Z",
   "updatedBy": "chris-danzinger",
-  "manualEditedAt": "2026-10-30T15:15:05.979Z"
+  "manualEditedAt": "2026-10-30T16:42:56.197Z"
 }
