@@ -410,7 +410,8 @@
       "players": [
         "rachel",
         "david-taylor",
-        "jo-tr"
+        "jo-tr",
+        "anthea"
       ],
       "yellowCandidates": [
         "chris-dalley"
@@ -418,7 +419,8 @@
       "confirmed": [
         "rachel",
         "david-taylor",
-        "jo-tr"
+        "jo-tr",
+        "anthea"
       ]
     },
     "2026-11-13T11:45": {
@@ -636,11 +638,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocate",
-      "text": "Automatic allocation",
-      "at": "2026-09-25T07:05:42.556Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-10-02T10:30",
@@ -935,9 +932,14 @@
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-11-06T11:45",
       "at": "2026-11-02T07:10:47.984Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Anthea to 2026-11-13T10:30",
+      "at": "2026-11-02T07:11:48.803Z"
     }
   ],
-  "updatedAt": "2026-11-02T07:10:47.984Z",
+  "updatedAt": "2026-11-02T07:11:48.803Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-11-02T07:10:47.984Z"
+  "manualEditedAt": "2026-11-02T07:11:48.803Z"
 }
