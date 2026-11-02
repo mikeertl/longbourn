@@ -397,13 +397,13 @@
     },
     "2026-11-06T11:45": {
       "players": [
-        "mike-ertl"
-      ],
-      "yellowCandidates": [
+        "mike-ertl",
         "phil-charles"
       ],
+      "yellowCandidates": [],
       "confirmed": [
-        "mike-ertl"
+        "mike-ertl",
+        "phil-charles"
       ]
     },
     "2026-11-13T10:30": {
@@ -636,11 +636,6 @@
     }
   },
   "changes": [
-    {
-      "type": "month-created",
-      "text": "Automatically created default slots for 2026-11",
-      "at": "2026-09-25T07:05:42.541Z"
-    },
     {
       "type": "allocate",
       "text": "Automatic allocation",
@@ -935,9 +930,14 @@
       "type": "allocation-add",
       "text": "Added Anthea to 2026-11-06T10:30",
       "at": "2026-11-02T07:10:41.278Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-11-06T11:45",
+      "at": "2026-11-02T07:10:47.984Z"
     }
   ],
-  "updatedAt": "2026-11-02T07:10:41.278Z",
+  "updatedAt": "2026-11-02T07:10:47.984Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-11-02T07:10:41.278Z"
+  "manualEditedAt": "2026-11-02T07:10:47.984Z"
 }
