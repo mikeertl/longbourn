@@ -438,16 +438,15 @@
       "players": [
         "rachel",
         "david-taylor",
-        "phil-charles",
         "chris-danzinger"
       ],
       "yellowCandidates": [
-        "chris-dalley"
+        "chris-dalley",
+        "phil-charles"
       ],
       "confirmed": [
         "rachel",
         "david-taylor",
-        "phil-charles",
         "chris-danzinger"
       ]
     },
@@ -638,11 +637,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Phil Charles to 2026-10-02T10:30",
-      "at": "2026-09-25T07:57:57.178Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Phil Charles to 2026-10-16T10:30",
@@ -937,9 +931,14 @@
       "type": "allocation-add",
       "text": "Added Anthea to 2026-11-13T10:30",
       "at": "2026-11-02T07:11:48.803Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed Phil Charles from 2026-11-20T10:30",
+      "at": "2026-11-02T07:12:17.672Z"
     }
   ],
-  "updatedAt": "2026-11-02T07:11:48.803Z",
+  "updatedAt": "2026-11-02T07:12:17.672Z",
   "updatedBy": "phil-charles",
-  "manualEditedAt": "2026-11-02T07:11:48.803Z"
+  "manualEditedAt": "2026-11-02T07:12:17.672Z"
 }
