@@ -409,16 +409,15 @@
     "2026-11-13T10:30": {
       "players": [
         "rachel",
-        "david-taylor",
         "jo-tr",
         "anthea"
       ],
       "yellowCandidates": [
-        "chris-dalley"
+        "chris-dalley",
+        "david-taylor"
       ],
       "confirmed": [
         "rachel",
-        "david-taylor",
         "jo-tr",
         "anthea"
       ]
@@ -644,11 +643,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Phil Charles to 2026-10-16T11:45",
-      "at": "2026-09-25T10:33:06.255Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Rachel to 2026-10-02T10:30",
@@ -943,9 +937,14 @@
       "type": "allocation-add",
       "text": "Added Michael W-M to 2026-11-13T11:45",
       "at": "2026-11-11T10:56:24.786Z"
+    },
+    {
+      "type": "allocation-remove",
+      "text": "Removed David Taylor from 2026-11-13T10:30",
+      "at": "2026-11-12T15:02:22.867Z"
     }
   ],
-  "updatedAt": "2026-11-11T10:56:24.786Z",
-  "updatedBy": "michael-w-m",
-  "manualEditedAt": "2026-11-11T10:56:24.786Z"
+  "updatedAt": "2026-11-12T15:02:22.867Z",
+  "updatedBy": "david-taylor",
+  "manualEditedAt": "2026-11-12T15:02:22.867Z"
 }
