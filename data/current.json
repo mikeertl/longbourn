@@ -409,6 +409,7 @@
     "2026-11-13T10:30": {
       "players": [
         "rachel",
+        "david-taylor",
         "jo-tr",
         "anthea"
       ],
@@ -417,23 +418,20 @@
       ],
       "confirmed": [
         "rachel",
+        "david-taylor",
         "jo-tr",
         "anthea"
       ]
     },
     "2026-11-13T11:45": {
       "players": [
-        "mike-ertl",
-        "chris-dalley",
-        "peter-miell",
-        "michael-w-m"
+        "mike-ertl"
       ],
-      "yellowCandidates": [],
+      "yellowCandidates": [
+        "chris-dalley"
+      ],
       "confirmed": [
-        "mike-ertl",
-        "chris-dalley",
-        "peter-miell",
-        "michael-w-m"
+        "mike-ertl"
       ]
     },
     "2026-11-20T10:30": {
@@ -642,6 +640,21 @@
     }
   },
   "changes": [
+    {
+      "type": "allocation-remove",
+      "text": "Removed Phil Charles from 2026-10-16T10:30",
+      "at": "2026-09-25T10:33:04.230Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Phil Charles to 2026-10-16T11:45",
+      "at": "2026-09-25T10:33:06.255Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Rachel to 2026-10-02T10:30",
+      "at": "2026-09-25T10:49:28.959Z"
+    },
     {
       "type": "allocation-add",
       "text": "Added Rachel to 2026-10-09T10:30",
@@ -923,27 +936,12 @@
       "at": "2026-11-02T07:14:23.070Z"
     },
     {
-      "type": "allocation-add",
-      "text": "Added Peter Miell to 2026-11-13T11:45",
-      "at": "2026-11-08T14:23:39.047Z"
-    },
-    {
-      "type": "allocation-add",
-      "text": "Added Michael W-M to 2026-11-13T11:45",
-      "at": "2026-11-11T10:56:24.786Z"
-    },
-    {
       "type": "allocation-remove",
-      "text": "Removed David Taylor from 2026-11-13T10:30",
-      "at": "2026-11-12T15:02:22.867Z"
-    },
-    {
-      "type": "allocation-candidate-remove",
-      "text": "Removed pending David Taylor from 2026-11-13T10:30",
-      "at": "2026-11-12T15:02:40.915Z"
+      "text": "Removed Chris Dalley from 2026-11-13T11:45",
+      "at": "2026-11-12T16:25:29.947Z"
     }
   ],
-  "updatedAt": "2026-11-12T15:02:40.915Z",
-  "updatedBy": "david-taylor",
-  "manualEditedAt": "2026-11-12T15:02:40.915Z"
+  "updatedAt": "2026-11-12T16:25:29.948Z",
+  "updatedBy": "chris-dalley",
+  "manualEditedAt": "2026-11-12T16:25:29.942Z"
 }
