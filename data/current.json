@@ -413,8 +413,7 @@
         "anthea"
       ],
       "yellowCandidates": [
-        "chris-dalley",
-        "david-taylor"
+        "chris-dalley"
       ],
       "confirmed": [
         "rachel",
@@ -643,11 +642,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Rachel to 2026-10-02T10:30",
-      "at": "2026-09-25T10:49:28.959Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Rachel to 2026-10-09T10:30",
@@ -942,9 +936,14 @@
       "type": "allocation-remove",
       "text": "Removed David Taylor from 2026-11-13T10:30",
       "at": "2026-11-12T15:02:22.867Z"
+    },
+    {
+      "type": "allocation-candidate-remove",
+      "text": "Removed pending David Taylor from 2026-11-13T10:30",
+      "at": "2026-11-12T15:02:40.915Z"
     }
   ],
-  "updatedAt": "2026-11-12T15:02:22.867Z",
+  "updatedAt": "2026-11-12T15:02:40.915Z",
   "updatedBy": "david-taylor",
-  "manualEditedAt": "2026-11-12T15:02:22.867Z"
+  "manualEditedAt": "2026-11-12T15:02:40.915Z"
 }
