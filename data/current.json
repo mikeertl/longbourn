@@ -455,14 +455,14 @@
     "2026-11-20T11:45": {
       "players": [
         "chris-dalley",
-        "phil-charles"
-      ],
-      "yellowCandidates": [
+        "phil-charles",
         "mike-ertl"
       ],
+      "yellowCandidates": [],
       "confirmed": [
         "chris-dalley",
-        "phil-charles"
+        "phil-charles",
+        "mike-ertl"
       ]
     },
     "2026-11-27T10:30": {
@@ -640,11 +640,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Phil Charles to 2026-10-16T11:45",
-      "at": "2026-09-25T10:33:06.255Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Rachel to 2026-10-02T10:30",
@@ -939,9 +934,14 @@
       "type": "allocation-remove",
       "text": "Removed Mike Ertl from 2026-11-20T11:45",
       "at": "2026-11-13T13:48:18.372Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Mike Ertl to 2026-11-20T11:45",
+      "at": "2026-11-13T13:48:20.331Z"
     }
   ],
-  "updatedAt": "2026-11-13T13:48:18.372Z",
+  "updatedAt": "2026-11-13T13:48:20.331Z",
   "updatedBy": "mike-ertl",
-  "manualEditedAt": "2026-11-13T13:48:18.372Z"
+  "manualEditedAt": "2026-11-13T13:48:20.331Z"
 }
