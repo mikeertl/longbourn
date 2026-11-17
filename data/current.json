@@ -309,10 +309,13 @@
         "2026-11-06T11:45",
         "2026-11-13T11:45",
         "2026-11-20T11:45",
-        "2026-11-27T11:45"
+        "2026-11-27T11:45",
+        "2026-12-04T11:45",
+        "2026-12-11T11:45",
+        "2026-12-18T11:45"
       ],
       "yellow": [],
-      "updatedAt": "2026-10-13T06:15:05.682Z"
+      "updatedAt": "2026-11-17T21:38:34.144Z"
     },
     "jo-tr": {
       "green": [
@@ -643,11 +646,6 @@
   },
   "changes": [
     {
-      "type": "allocation-add",
-      "text": "Added Rachel to 2026-10-09T10:30",
-      "at": "2026-09-25T10:49:42.305Z"
-    },
-    {
       "type": "availability",
       "text": "Saved availability for Mike Ertl",
       "at": "2026-09-25T14:12:55.972Z"
@@ -941,9 +939,14 @@
       "type": "allocation-add",
       "text": "Added Peter Miell to 2026-11-20T11:45",
       "at": "2026-11-15T11:11:16.876Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Mike Ertl",
+      "at": "2026-11-17T21:38:34.146Z"
     }
   ],
-  "updatedAt": "2026-11-15T11:11:16.876Z",
-  "updatedBy": "peter-miell",
+  "updatedAt": "2026-11-17T21:38:34.146Z",
+  "updatedBy": "mike-ertl",
   "manualEditedAt": "2026-11-15T11:11:16.872Z"
 }
