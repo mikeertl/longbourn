@@ -321,10 +321,13 @@
       "green": [
         "2026-11-06T10:30",
         "2026-11-13T10:30",
-        "2026-11-27T10:30"
+        "2026-11-27T10:30",
+        "2026-12-04T10:30",
+        "2026-12-11T10:30",
+        "2026-12-18T10:30"
       ],
       "yellow": [],
-      "updatedAt": "2026-10-16T20:35:44.949Z"
+      "updatedAt": "2026-11-18T07:52:44.739Z"
     },
     "david-taylor": {
       "green": [
@@ -648,11 +651,6 @@
     {
       "type": "availability",
       "text": "Saved availability for Mike Ertl",
-      "at": "2026-09-25T14:12:55.972Z"
-    },
-    {
-      "type": "availability",
-      "text": "Saved availability for Mike Ertl",
       "at": "2026-09-25T14:13:35.264Z"
     },
     {
@@ -944,9 +942,14 @@
       "type": "availability",
       "text": "Saved availability for Mike Ertl",
       "at": "2026-11-17T21:38:34.146Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Jo TR",
+      "at": "2026-11-18T07:52:44.740Z"
     }
   ],
-  "updatedAt": "2026-11-17T21:38:34.146Z",
-  "updatedBy": "mike-ertl",
+  "updatedAt": "2026-11-18T07:52:44.740Z",
+  "updatedBy": "jo-tr",
   "manualEditedAt": "2026-11-15T11:11:16.872Z"
 }
