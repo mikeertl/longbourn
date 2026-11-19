@@ -481,8 +481,7 @@
         "anthea"
       ],
       "yellowCandidates": [
-        "chris-dalley",
-        "phil-charles"
+        "chris-dalley"
       ],
       "confirmed": [
         "jo-tr",
@@ -648,11 +647,6 @@
     }
   },
   "changes": [
-    {
-      "type": "availability",
-      "text": "Saved availability for Mike Ertl",
-      "at": "2026-09-25T14:13:35.264Z"
-    },
     {
       "type": "availability",
       "text": "Saved availability for Chris Danziger",
@@ -947,9 +941,14 @@
       "type": "availability",
       "text": "Saved availability for Jo TR",
       "at": "2026-11-18T07:52:44.740Z"
+    },
+    {
+      "type": "allocation-candidate-remove",
+      "text": "Removed pending Phil Charles from 2026-11-27T10:30",
+      "at": "2026-11-19T17:57:35.840Z"
     }
   ],
-  "updatedAt": "2026-11-18T07:52:44.740Z",
-  "updatedBy": "jo-tr",
-  "manualEditedAt": "2026-11-15T11:11:16.872Z"
+  "updatedAt": "2026-11-19T17:57:35.840Z",
+  "updatedBy": "phil-charles",
+  "manualEditedAt": "2026-11-19T17:57:35.840Z"
 }
