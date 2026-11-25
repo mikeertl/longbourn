@@ -496,13 +496,15 @@
       "players": [
         "mike-ertl",
         "chris-dalley",
-        "phil-charles"
+        "phil-charles",
+        "peter-miell"
       ],
       "yellowCandidates": [],
       "confirmed": [
         "mike-ertl",
         "chris-dalley",
-        "phil-charles"
+        "phil-charles",
+        "peter-miell"
       ]
     }
   },
@@ -649,11 +651,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Michael W-M to 2026-10-02T11:45",
-      "at": "2026-09-26T15:04:48.821Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added Michael W-M to 2026-10-09T10:30",
@@ -948,9 +945,14 @@
       "type": "availability",
       "text": "Saved availability for David Taylor",
       "at": "2026-11-19T21:05:20.979Z"
+    },
+    {
+      "type": "allocation-add",
+      "text": "Added Peter Miell to 2026-11-27T11:45",
+      "at": "2026-11-25T10:08:58.120Z"
     }
   ],
-  "updatedAt": "2026-11-19T21:05:20.980Z",
-  "updatedBy": "david-taylor",
-  "manualEditedAt": "2026-11-19T17:57:35.840Z"
+  "updatedAt": "2026-11-25T10:08:58.120Z",
+  "updatedBy": "peter-miell",
+  "manualEditedAt": "2026-11-25T10:08:58.117Z"
 }
