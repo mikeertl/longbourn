@@ -379,11 +379,10 @@
       "green": [
         "2026-11-13T10:30",
         "2026-11-20T10:30",
-        "2026-11-27T10:30",
-        "2026-12-04T10:30"
+        "2026-11-27T10:30"
       ],
       "yellow": [],
-      "updatedAt": "2026-11-26T09:27:14.619Z"
+      "updatedAt": "2026-10-14T09:16:58.697Z"
     }
   },
   "allocations": {
@@ -496,15 +495,14 @@
     "2026-11-27T11:45": {
       "players": [
         "mike-ertl",
-        "chris-dalley",
         "peter-miell"
       ],
       "yellowCandidates": [
-        "phil-charles"
+        "phil-charles",
+        "chris-dalley"
       ],
       "confirmed": [
         "mike-ertl",
-        "chris-dalley",
         "peter-miell"
       ]
     }
@@ -948,12 +946,12 @@
       "at": "2026-11-25T10:54:19.310Z"
     },
     {
-      "type": "availability",
-      "text": "Saved availability for Rachel",
-      "at": "2026-11-26T09:27:14.619Z"
+      "type": "allocation-remove",
+      "text": "Removed Chris Dalley from 2026-11-27T11:45",
+      "at": "2026-11-26T09:27:25.914Z"
     }
   ],
-  "updatedAt": "2026-11-26T09:27:14.619Z",
-  "updatedBy": "rachel",
-  "manualEditedAt": "2026-11-25T10:54:19.310Z"
+  "updatedAt": "2026-11-26T09:27:25.914Z",
+  "updatedBy": "chris-dalley",
+  "manualEditedAt": "2026-11-26T09:27:25.907Z"
 }
