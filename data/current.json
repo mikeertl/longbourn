@@ -379,10 +379,11 @@
       "green": [
         "2026-11-13T10:30",
         "2026-11-20T10:30",
-        "2026-11-27T10:30"
+        "2026-11-27T10:30",
+        "2026-12-04T10:30"
       ],
       "yellow": [],
-      "updatedAt": "2026-10-14T09:16:58.697Z"
+      "updatedAt": "2026-11-26T09:27:14.619Z"
     }
   },
   "allocations": {
@@ -651,11 +652,6 @@
     }
   },
   "changes": [
-    {
-      "type": "allocation-remove",
-      "text": "Removed Michael W-M from 2026-10-02T11:45",
-      "at": "2026-09-26T15:07:22.441Z"
-    },
     {
       "type": "allocation-remove",
       "text": "Removed Michael W-M from 2026-10-09T10:30",
@@ -950,9 +946,14 @@
       "type": "allocation-remove",
       "text": "Removed Phil Charles from 2026-11-27T11:45",
       "at": "2026-11-25T10:54:19.310Z"
+    },
+    {
+      "type": "availability",
+      "text": "Saved availability for Rachel",
+      "at": "2026-11-26T09:27:14.619Z"
     }
   ],
-  "updatedAt": "2026-11-25T10:54:19.310Z",
-  "updatedBy": "phil-charles",
+  "updatedAt": "2026-11-26T09:27:14.619Z",
+  "updatedBy": "rachel",
   "manualEditedAt": "2026-11-25T10:54:19.310Z"
 }
