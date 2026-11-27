@@ -242,6 +242,156 @@
       "date": "2026-12-25",
       "time": "13:00",
       "enabled": false
+    },
+    {
+      "id": "2027-01-01T08:00",
+      "date": "2027-01-01",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-01T09:00",
+      "date": "2027-01-01",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-01T10:30",
+      "date": "2027-01-01",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2027-01-01T11:45",
+      "date": "2027-01-01",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2027-01-01T13:00",
+      "date": "2027-01-01",
+      "time": "13:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-08T08:00",
+      "date": "2027-01-08",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-08T09:00",
+      "date": "2027-01-08",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-08T10:30",
+      "date": "2027-01-08",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2027-01-08T11:45",
+      "date": "2027-01-08",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2027-01-08T13:00",
+      "date": "2027-01-08",
+      "time": "13:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-15T08:00",
+      "date": "2027-01-15",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-15T09:00",
+      "date": "2027-01-15",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-15T10:30",
+      "date": "2027-01-15",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2027-01-15T11:45",
+      "date": "2027-01-15",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2027-01-15T13:00",
+      "date": "2027-01-15",
+      "time": "13:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-22T08:00",
+      "date": "2027-01-22",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-22T09:00",
+      "date": "2027-01-22",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-22T10:30",
+      "date": "2027-01-22",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2027-01-22T11:45",
+      "date": "2027-01-22",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2027-01-22T13:00",
+      "date": "2027-01-22",
+      "time": "13:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-29T08:00",
+      "date": "2027-01-29",
+      "time": "08:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-29T09:00",
+      "date": "2027-01-29",
+      "time": "09:00",
+      "enabled": false
+    },
+    {
+      "id": "2027-01-29T10:30",
+      "date": "2027-01-29",
+      "time": "10:30",
+      "enabled": true
+    },
+    {
+      "id": "2027-01-29T11:45",
+      "date": "2027-01-29",
+      "time": "11:45",
+      "enabled": true
+    },
+    {
+      "id": "2027-01-29T13:00",
+      "date": "2027-01-29",
+      "time": "13:00",
+      "enabled": false
     }
   ],
   "players": {
@@ -505,6 +655,76 @@
         "mike-ertl",
         "peter-miell"
       ]
+    },
+    "2026-12-04T10:30": {
+      "players": [
+        "rachel",
+        "jo-tr"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "rachel",
+        "jo-tr"
+      ]
+    },
+    "2026-12-04T11:45": {
+      "players": [
+        "mike-ertl"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "mike-ertl"
+      ]
+    },
+    "2026-12-11T10:30": {
+      "players": [
+        "david-taylor",
+        "jo-tr"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "david-taylor",
+        "jo-tr"
+      ]
+    },
+    "2026-12-11T11:45": {
+      "players": [
+        "mike-ertl"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "mike-ertl"
+      ]
+    },
+    "2026-12-18T10:30": {
+      "players": [
+        "david-taylor",
+        "jo-tr"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "david-taylor",
+        "jo-tr"
+      ]
+    },
+    "2026-12-18T11:45": {
+      "players": [
+        "mike-ertl"
+      ],
+      "yellowCandidates": [],
+      "confirmed": [
+        "mike-ertl"
+      ]
+    },
+    "2026-12-25T10:30": {
+      "players": [],
+      "yellowCandidates": [],
+      "confirmed": []
+    },
+    "2026-12-25T11:45": {
+      "players": [],
+      "yellowCandidates": [],
+      "confirmed": []
     }
   },
   "allocatedMonths": {
@@ -647,19 +867,114 @@
         "david-taylor": "David Taylor",
         "rachel": "Rachel"
       }
+    },
+    "2026-12": {
+      "allocatedAt": "2026-11-27T07:18:33.341Z",
+      "allocatedBy": "mike-ertl",
+      "automatic": true,
+      "completed": true,
+      "savePending": false,
+      "dueDate": "2026-11-27",
+      "catchUp": false,
+      "responses": {
+        "2026-12-04T10:30": {
+          "date": "2026-12-04",
+          "time": "10:30",
+          "green": [
+            "jo-tr",
+            "rachel"
+          ],
+          "yellow": []
+        },
+        "2026-12-04T11:45": {
+          "date": "2026-12-04",
+          "time": "11:45",
+          "green": [
+            "mike-ertl"
+          ],
+          "yellow": []
+        },
+        "2026-12-11T10:30": {
+          "date": "2026-12-11",
+          "time": "10:30",
+          "green": [
+            "david-taylor",
+            "jo-tr"
+          ],
+          "yellow": []
+        },
+        "2026-12-11T11:45": {
+          "date": "2026-12-11",
+          "time": "11:45",
+          "green": [
+            "mike-ertl"
+          ],
+          "yellow": []
+        },
+        "2026-12-18T10:30": {
+          "date": "2026-12-18",
+          "time": "10:30",
+          "green": [
+            "david-taylor",
+            "jo-tr"
+          ],
+          "yellow": []
+        },
+        "2026-12-18T11:45": {
+          "date": "2026-12-18",
+          "time": "11:45",
+          "green": [
+            "mike-ertl"
+          ],
+          "yellow": []
+        },
+        "2026-12-25T10:30": {
+          "date": "2026-12-25",
+          "time": "10:30",
+          "green": [],
+          "yellow": []
+        },
+        "2026-12-25T11:45": {
+          "date": "2026-12-25",
+          "time": "11:45",
+          "green": [],
+          "yellow": []
+        }
+      },
+      "originalAllocations": {
+        "2026-12-04T10:30": [
+          "rachel",
+          "jo-tr"
+        ],
+        "2026-12-04T11:45": [
+          "mike-ertl"
+        ],
+        "2026-12-11T10:30": [
+          "david-taylor",
+          "jo-tr"
+        ],
+        "2026-12-11T11:45": [
+          "mike-ertl"
+        ],
+        "2026-12-18T10:30": [
+          "david-taylor",
+          "jo-tr"
+        ],
+        "2026-12-18T11:45": [
+          "mike-ertl"
+        ],
+        "2026-12-25T10:30": [],
+        "2026-12-25T11:45": []
+      },
+      "playerNames": {
+        "jo-tr": "Jo TR",
+        "rachel": "Rachel",
+        "mike-ertl": "Mike Ertl",
+        "david-taylor": "David Taylor"
+      }
     }
   },
   "changes": [
-    {
-      "type": "allocation-add",
-      "text": "Added Michael W-M to 2026-10-02T11:45",
-      "at": "2026-09-26T22:45:17.531Z"
-    },
-    {
-      "type": "allocation-add",
-      "text": "Added Michael W-M to 2026-10-09T10:30",
-      "at": "2026-09-26T22:45:28.399Z"
-    },
     {
       "type": "allocation-add",
       "text": "Added David Taylor to 2026-10-02T10:30",
@@ -949,9 +1264,19 @@
       "type": "availability",
       "text": "Saved availability for Rachel",
       "at": "2026-11-26T10:07:09.486Z"
+    },
+    {
+      "type": "month-created",
+      "text": "Automatically created default slots for 2027-01",
+      "at": "2026-11-27T07:18:33.323Z"
+    },
+    {
+      "type": "allocate",
+      "text": "Automatic allocation",
+      "at": "2026-11-27T07:18:33.341Z"
     }
   ],
-  "updatedAt": "2026-11-26T10:07:09.487Z",
-  "updatedBy": "rachel",
+  "updatedAt": "2026-11-27T07:18:33.744Z",
+  "updatedBy": "mike-ertl",
   "manualEditedAt": "2026-11-26T09:31:25.809Z"
 }
